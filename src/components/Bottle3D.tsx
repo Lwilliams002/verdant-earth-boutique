@@ -242,7 +242,6 @@ function LabelDecal({ label, sublabel }: { label: string; sublabel: string }) {
           color="#16302a"
           anchorX="center"
           anchorY="middle"
-          font-style="italic"
         >
           {sublabel}
         </Text>
