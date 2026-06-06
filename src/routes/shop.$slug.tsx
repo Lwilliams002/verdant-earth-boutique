@@ -3,7 +3,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FloatingBottle } from "@/components/FloatingBottle";
 import { BrandMark } from "@/components/BrandMark";
-import { getProduct, products } from "@/lib/products";
+import { getProduct, products, type Product } from "@/lib/products";
 import { Minus, Plus, Check, ArrowRight } from "lucide-react";
 import { useState } from "react";
 import botanicalBg from "@/assets/botanical-bg.jpg";
@@ -50,7 +50,7 @@ export const Route = createFileRoute("/shop/$slug")({
 });
 
 function ProductPage() {
-  const { product } = Route.useLoaderData();
+  const { product } = Route.useLoaderData() as { product: Product };
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const related = products.filter((p) => p.slug !== product.slug).slice(0, 3);
