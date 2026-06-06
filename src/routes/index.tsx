@@ -1,7 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { Bottle3D } from "@/components/Bottle3D";
+import { FloatingBottle } from "@/components/FloatingBottle";
 import { Marquee } from "@/components/Marquee";
 import { BrandMark } from "@/components/BrandMark";
 import { products } from "@/lib/products";
@@ -103,11 +103,12 @@ function Hero({ hero }: { hero: (typeof products)[number] }) {
             <div className="aspect-square w-[70%] rounded-full bg-forest-deep/8 blur-2xl" />
           </div>
 
-          {/* Floating product — real 3D mesh */}
-          <Bottle3D
-            label="Earth & Tonic"
-            sublabel={hero.name}
-            className="relative z-10 h-[520px] w-[360px] sm:h-[620px] sm:w-[440px]"
+          {/* Floating product */}
+          <FloatingBottle
+            src={hero.image}
+            alt={hero.name}
+            priority
+            className="relative z-10 h-[520px] w-[360px] sm:h-[600px] sm:w-[420px]"
           />
 
           {/* floating badge */}
