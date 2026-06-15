@@ -311,7 +311,21 @@ function Ingredients() {
     { name: "Dandelion Root", note: "Traditional aid" },
   ];
   return (
-    <section className="mx-auto max-w-7xl px-6 py-28 lg:px-10">
+    <section className="relative mx-auto max-w-7xl px-6 py-28 lg:px-10">
+      <img
+        src={navVines}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="nav-vine-soft pointer-events-none absolute -top-10 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+      />
+      <img
+        src={navVines}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="nav-vine-soft nav-vine-flip pointer-events-none absolute -bottom-10 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+      />
       <div className="mx-auto max-w-2xl text-center">
         <span className="eyebrow text-moss divider-leaf">Powered by nature</span>
         <h2 className="mt-5 font-display text-5xl text-forest-deep md:text-6xl">
