@@ -250,13 +250,19 @@ function Story() {
         backgroundPosition: "center",
         mixBlendMode: "overlay",
       }} />
-      <VineCurl
+      <img
+        src={vineHanging}
+        alt=""
         aria-hidden
-        className="pointer-events-none absolute -left-8 top-0 z-0 hidden h-[420px] w-[200px] text-sage/40 animate-sway-slow lg:block"
+        loading="lazy"
+        className="pointer-events-none absolute -left-16 -top-8 z-0 hidden h-[480px] w-auto opacity-70 animate-sway-slow origin-top lg:block"
       />
-      <CornerVine
+      <img
+        src={leavesCorner}
+        alt=""
         aria-hidden
-        className="pointer-events-none absolute -right-6 bottom-0 z-0 hidden h-[260px] w-[260px] -scale-x-100 text-sage/35 animate-sway-reverse lg:block"
+        loading="lazy"
+        className="pointer-events-none absolute -right-10 -bottom-10 z-0 hidden h-[360px] w-auto -scale-x-100 opacity-60 lg:block"
       />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10">
         <div>
