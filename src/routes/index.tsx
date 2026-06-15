@@ -8,6 +8,7 @@ import { products } from "@/lib/products";
 import botanicalBg from "@/assets/botanical-bg.jpg";
 import sideVine from "@/assets/plants/side-vine.png";
 import navVines from "@/assets/nav-vines.png";
+import sectionLeaves from "@/assets/section-leaves.png";
 import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake } from "lucide-react";
 
 export const Route = createFileRoute("/")({
