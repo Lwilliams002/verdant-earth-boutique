@@ -164,7 +164,14 @@ function Pillars() {
     { icon: HeartHandshake, title: "Crafted with Care", desc: "Small batch, made by hand." },
   ];
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+    <section className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10">
+      <img
+        src={navVines}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="nav-vine-soft pointer-events-none absolute -top-10 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-40"
+      />
       <div className="grid gap-y-10 md:grid-cols-4 md:gap-x-8">
         {items.map(({ icon: Icon, title, desc }) => (
           <div key={title} className="flex flex-col items-start">
