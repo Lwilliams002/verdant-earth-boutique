@@ -251,6 +251,20 @@ function Story() {
         mixBlendMode: "overlay",
       }} />
       <img
+        src={navVines}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="nav-vine-dark pointer-events-none absolute -top-6 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+      />
+      <img
+        src={navVines}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="nav-vine-dark nav-vine-flip pointer-events-none absolute -bottom-6 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+      />
+      <img
         src={sideVine}
         alt=""
         aria-hidden
