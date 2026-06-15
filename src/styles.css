@@ -213,10 +213,10 @@
   }
   .section-leaves {
     mix-blend-mode: multiply;
-    opacity: 0.9;
-    filter: saturate(1.1) contrast(1.05);
-    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    opacity: 0.95;
+    filter: saturate(1.25) contrast(1.35);
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   }
   .text-glow {
     text-shadow: 0 1px 10px var(--cream), 0 1px 4px var(--cream);
