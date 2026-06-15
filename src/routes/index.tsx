@@ -273,14 +273,14 @@ function Story() {
         alt=""
         aria-hidden
         loading="lazy"
-        className="story-sprig pointer-events-none absolute -left-16 top-24 z-0 hidden h-[46rem] w-auto md:block"
+        className="story-sprig pointer-events-none absolute -left-28 top-20 z-0 h-[38rem] w-auto opacity-90 md:-left-16 md:top-24 md:h-[46rem]"
       />
       <img
         src={storySprig}
         alt=""
         aria-hidden
         loading="lazy"
-        className="story-sprig pointer-events-none absolute -right-16 top-32 z-0 hidden h-[44rem] w-auto -scale-x-100 md:block"
+        className="story-sprig pointer-events-none absolute -right-28 top-72 z-0 h-[36rem] w-auto -scale-x-100 opacity-90 md:-right-16 md:top-32 md:h-[44rem]"
       />
       <div className="relative z-10 mx-auto max-w-4xl px-6 py-28 text-center lg:px-10">
         <span className="eyebrow inline-block text-cream/70">— Our story</span>
