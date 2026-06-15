@@ -225,16 +225,21 @@
     mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
   }
-  .story-border {
-    mix-blend-mode: screen;
+  .story-plants {
     opacity: 1;
-    filter: saturate(1.3) brightness(1.6) contrast(1.2);
-    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
-    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    filter: drop-shadow(0 0 18px rgba(218, 232, 195, 0.38));
+    mask-image: linear-gradient(to bottom, black 74%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 74%, transparent 100%);
   }
 
-  .story-border-flip {
+  .story-plants-flip {
     transform: scaleY(-1);
+  }
+  .story-sprig {
+    opacity: 0.9;
+    filter: drop-shadow(0 0 22px rgba(218, 232, 195, 0.34));
+    mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 84%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 12%, black 84%, transparent 100%);
   }
   .text-glow {
     text-shadow: 0 1px 10px var(--cream), 0 1px 4px var(--cream);

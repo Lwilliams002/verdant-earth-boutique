@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1600 520" fill="none">
+  <defs>
+    <filter id="softGlow" x="-20%" y="-30%" width="140%" height="160%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feColorMatrix in="blur" type="matrix" values="0 0 0 0 0.78 0 0 0 0 0.9 0 0 0 0 0.68 0 0 0 0.45 0"/>
+      <feMerge>
+        <feMergeNode/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+    <linearGradient id="leaf" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#F3E7C8"/>
+      <stop offset="0.55" stop-color="#C7D9B5"/>
+      <stop offset="1" stop-color="#86A574"/>
+    </linearGradient>
+  </defs>
+
+  <g filter="url(#softGlow)" opacity="0.96">
+    <path d="M-30 92C158 156 288 46 452 98C610 148 680 238 828 164C994 80 1108 98 1250 164C1388 228 1504 162 1630 72" stroke="#D9E5C7" stroke-width="13" stroke-linecap="round" opacity="0.55"/>
+    <path d="M-18 132C170 202 334 80 496 144C638 200 720 274 854 206C1000 132 1122 132 1268 206C1408 278 1512 222 1620 132" stroke="#F0E5C5" stroke-width="5" stroke-linecap="round" opacity="0.86"/>
+
+    <g fill="url(#leaf)" opacity="0.95">
+      <path d="M84 116c42-54 94-68 124-50-12 44-56 76-124 50Z"/>
+      <path d="M158 156c54-34 101-30 124-4-26 36-72 50-124 4Z"/>
+      <path d="M244 102c24-58 68-84 104-78 1 47-31 88-104 78Z"/>
+      <path d="M344 126c54-36 102-32 126-8-24 40-76 54-126 8Z"/>
+      <path d="M462 158c22-58 68-88 106-82 0 48-34 92-106 82Z"/>
+      <path d="M574 202c56-30 104-20 122 10-32 34-82 42-122-10Z"/>
+      <path d="M700 220c24-60 72-88 110-78-2 48-38 88-110 78Z"/>
+      <path d="M808 190c46-46 96-56 126-34-17 44-62 70-126 34Z"/>
+      <path d="M928 148c28-62 78-86 114-72-6 46-44 84-114 72Z"/>
+      <path d="M1032 136c56-32 104-24 124 4-30 36-80 48-124-4Z"/>
+      <path d="M1156 166c28-60 76-86 114-74-4 48-42 86-114 74Z"/>
+      <path d="M1266 216c58-28 106-16 122 16-34 30-84 36-122-16Z"/>
+      <path d="M1398 210c24-60 70-90 108-82 0 48-36 90-108 82Z"/>
+      <path d="M1482 150c48-44 98-52 126-28-18 42-66 66-126 28Z"/>
+    </g>
+
+    <g stroke="#F5EACD" stroke-linecap="round" stroke-width="4" opacity="0.9">
+      <path d="M210 220c30-62 60-92 116-126"/>
+      <path d="M300 238c30-56 74-100 132-124"/>
+      <path d="M420 256c36-62 86-98 154-114"/>
+      <path d="M552 298c42-72 94-106 166-118"/>
+      <path d="M680 308c48-74 110-112 188-130"/>
+      <path d="M844 292c50-72 116-114 202-140"/>
+      <path d="M1012 260c64-62 128-82 206-68"/>
+      <path d="M1198 300c48-68 112-94 204-86"/>
+      <path d="M1368 292c44-64 98-98 178-118"/>
+    </g>
+
+    <g stroke="#BED3AA" stroke-linecap="round" stroke-width="3.5" opacity="0.86">
+      <path d="M238 216c-22-16-42-24-70-28"/><path d="M258 182c-18-22-34-34-58-44"/><path d="M288 150c-10-24-20-42-38-60"/>
+      <path d="M472 232c-26-12-48-16-78-14"/><path d="M500 194c-20-20-40-30-68-36"/><path d="M534 164c-12-26-26-44-48-60"/>
+      <path d="M742 270c-28-8-54-8-84 0"/><path d="M780 224c-26-18-50-24-82-24"/><path d="M826 190c-18-26-36-42-64-54"/>
+      <path d="M1052 224c-30-4-54 0-82 12"/><path d="M1102 194c-26-16-54-20-86-16"/><path d="M1156 186c-18-24-40-40-70-48"/>
+      <path d="M1318 272c-28-8-54-8-86 2"/><path d="M1360 232c-24-18-50-26-82-24"/><path d="M1408 202c-16-28-36-46-64-60"/>
+    </g>
+  </g>
+</svg>
