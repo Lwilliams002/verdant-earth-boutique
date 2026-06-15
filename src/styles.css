@@ -213,16 +213,10 @@
   }
   .section-leaves {
     mix-blend-mode: multiply;
-    opacity: 0.45;
-    filter: saturate(0.85) contrast(0.96);
-    mask-image:
-      linear-gradient(to bottom, black 25%, transparent 100%),
-      radial-gradient(140% 100% at 50% 0%, black 45%, transparent 100%);
-    mask-composite: intersect;
-    -webkit-mask-image:
-      linear-gradient(to bottom, black 25%, transparent 100%),
-      radial-gradient(140% 100% at 50% 0%, black 45%, transparent 100%);
-    -webkit-mask-composite: source-in;
+    opacity: 0.9;
+    filter: saturate(1.1) contrast(1.05);
+    mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
   }
   .text-glow {
     text-shadow: 0 1px 10px var(--cream), 0 1px 4px var(--cream);
