@@ -67,14 +67,14 @@ function Hero({ hero }: { hero: (typeof products)[number] }) {
         alt=""
         aria-hidden
         loading="lazy"
-        className="plant-photo pointer-events-none absolute right-3 top-[34rem] z-0 h-[230px] w-auto opacity-65 animate-sway-slow origin-top sm:top-[30rem] md:left-4 md:right-auto md:top-16 md:h-[430px] md:opacity-70 lg:left-8"
+        className="plant-photo pointer-events-none absolute right-6 top-[37rem] z-0 h-[220px] w-auto opacity-65 animate-sway-slow origin-top sm:top-[32rem] md:top-[34rem] md:h-[300px] md:opacity-70 lg:left-8 lg:right-auto lg:top-80 lg:h-[360px]"
       />
       <img
         src={leavesCorner}
         alt=""
         aria-hidden
         loading="lazy"
-        className="plant-photo pointer-events-none absolute right-4 top-[27rem] z-0 h-[190px] w-auto opacity-70 sm:top-[24rem] md:right-8 md:top-10 md:h-[320px] md:opacity-65"
+        className="plant-photo pointer-events-none absolute right-4 top-[19rem] z-0 h-[160px] w-auto opacity-70 sm:top-[18rem] md:right-8 md:top-24 md:h-[230px] md:opacity-70 lg:right-10 lg:top-28 lg:h-[300px]"
       />
       <img
         src={herbSprig}
