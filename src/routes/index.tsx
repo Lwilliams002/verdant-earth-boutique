@@ -195,7 +195,7 @@ function Collection() {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute left-1/2 -top-10 z-0 hidden h-[180px] w-auto -translate-x-1/2 opacity-80 md:block"
+        className="pointer-events-none absolute -right-16 top-20 z-0 hidden h-[140px] w-auto opacity-40 md:block"
       />
       <div className="relative flex items-end justify-between gap-6">
         <div>
