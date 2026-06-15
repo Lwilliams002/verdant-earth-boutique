@@ -143,6 +143,23 @@
     content: ""; height: 1px; width: 2.5rem;
     background: currentColor; opacity: 0.4;
   }
+  .mask-fade-r {
+    -webkit-mask-image: linear-gradient(to right, black 50%, transparent 100%);
+    mask-image: linear-gradient(to right, black 50%, transparent 100%);
+  }
+  .mask-fade-l {
+    -webkit-mask-image: linear-gradient(to left, black 50%, transparent 100%);
+    mask-image: linear-gradient(to left, black 50%, transparent 100%);
+  }
+  .mask-fade-t {
+    -webkit-mask-image: linear-gradient(to top, black 50%, transparent 100%);
+    mask-image: linear-gradient(to top, black 50%, transparent 100%);
+  }
+  .mask-fade-b {
+    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
+  }
+  .blend-multiply { mix-blend-mode: multiply; }
 }
 
 @keyframes float-y {

@@ -67,24 +67,24 @@ function Hero({ hero }: { hero: (typeof products)[number] }) {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -left-16 -top-10 z-0 hidden h-[620px] w-auto opacity-90 animate-sway-slow origin-top md:block"
+        className="pointer-events-none absolute -left-32 top-20 z-0 hidden h-[420px] w-auto opacity-35 animate-sway-slow origin-top mask-fade-r md:block"
       />
       <img
         src={leavesCorner}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -right-10 -top-10 z-0 h-[280px] w-auto opacity-85 md:h-[420px]"
+        className="pointer-events-none absolute -right-32 -top-20 z-0 hidden h-[360px] w-auto opacity-25 mask-fade-l md:block"
       />
       <img
         src={herbSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute bottom-6 left-2 z-0 hidden h-[160px] w-auto opacity-90 animate-sway md:block"
+        className="pointer-events-none absolute -bottom-10 -left-20 z-0 hidden h-[140px] w-auto opacity-30 animate-sway mask-fade-r md:block"
       />
 
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 pb-24 pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-10 lg:pb-32 lg:pt-24">
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-6 pb-24 pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-10 lg:pb-32 lg:pt-24">
         <div className="flex flex-col justify-center">
           <span className="eyebrow text-moss">— Est. 2026 · Small batch wellness</span>
           <h1 className="mt-6 font-display text-[clamp(3rem,7vw,6.5rem)] leading-[0.95] text-forest-deep">
@@ -189,13 +189,13 @@ function Pillars() {
 
 function Collection() {
   return (
-    <section className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10">
+    <section className="relative z-10 mx-auto max-w-7xl px-6 py-20 lg:px-10">
       <img
         src={fernSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute left-1/2 -top-10 z-0 hidden h-[180px] w-auto -translate-x-1/2 opacity-80 md:block"
+        className="pointer-events-none absolute -right-16 top-20 z-0 hidden h-[140px] w-auto opacity-40 md:block"
       />
       <div className="relative flex items-end justify-between gap-6">
         <div>
@@ -255,16 +255,16 @@ function Story() {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -left-16 -top-8 z-0 hidden h-[480px] w-auto opacity-70 animate-sway-slow origin-top lg:block"
+        className="pointer-events-none absolute -left-8 bottom-0 z-0 hidden h-[260px] w-auto opacity-40 animate-sway-slow origin-top lg:block"
       />
       <img
         src={leavesCorner}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -right-10 -bottom-10 z-0 hidden h-[360px] w-auto -scale-x-100 opacity-60 lg:block"
+        className="pointer-events-none absolute -right-16 -top-16 z-0 hidden h-[220px] w-auto -scale-x-100 opacity-30 lg:block"
       />
-      <div className="relative mx-auto grid max-w-7xl gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10">
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10">
         <div>
           <BrandMark className="h-20 w-16 text-cream" />
           <span className="eyebrow mt-8 inline-block text-cream/70">— Our story</span>
@@ -337,14 +337,14 @@ function Newsletter() {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -left-4 top-6 hidden h-[160px] w-auto opacity-90 animate-sway md:block"
+        className="pointer-events-none absolute -left-16 top-28 hidden h-[100px] w-auto opacity-40 animate-sway md:block"
       />
       <img
         src={herbSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -right-4 top-12 hidden h-[160px] w-auto -scale-x-100 opacity-90 animate-sway-reverse md:block"
+        className="pointer-events-none absolute -right-16 bottom-8 hidden h-[100px] w-auto -scale-x-100 opacity-40 animate-sway-reverse md:block"
       />
       <BrandMark className="mx-auto h-14 w-12 text-forest-deep" />
       <h2 className="mt-6 font-display text-4xl text-forest-deep md:text-5xl">
