@@ -83,7 +83,7 @@ export function SiteHeader() {
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="eyebrow text-foreground/80"
+                className="eyebrow text-forest-deep"
               >
                 {n.label}
               </Link>
