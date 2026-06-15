@@ -19,7 +19,8 @@ export function SiteHeader() {
         src={navVines}
         alt=""
         aria-hidden
-        className="pointer-events-none absolute -top-10 left-0 z-50 h-32 w-full object-cover object-top md:h-40"
+        loading="lazy"
+        className="nav-vine pointer-events-none absolute -top-6 left-0 right-0 z-0 h-40 w-full object-cover object-top md:h-56"
       />
       <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <nav className="hidden flex-1 items-center gap-8 text-sm tracking-wide text-foreground/80 md:flex">
