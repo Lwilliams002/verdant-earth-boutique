@@ -67,21 +67,21 @@ function Hero({ hero }: { hero: (typeof products)[number] }) {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -left-16 -top-10 z-0 hidden h-[620px] w-auto opacity-90 animate-sway-slow origin-top md:block"
+        className="pointer-events-none absolute -left-6 top-32 z-0 hidden h-[340px] w-auto opacity-60 animate-sway-slow origin-top md:block"
       />
       <img
         src={leavesCorner}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -right-10 -top-10 z-0 h-[280px] w-auto opacity-85 md:h-[420px]"
+        className="pointer-events-none absolute -right-24 -top-24 z-0 hidden h-[320px] w-auto opacity-40 md:block"
       />
       <img
         src={herbSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute bottom-6 left-2 z-0 hidden h-[160px] w-auto opacity-90 animate-sway md:block"
+        className="pointer-events-none absolute bottom-4 -left-10 z-0 hidden h-[120px] w-auto opacity-50 animate-sway md:block"
       />
 
       <div className="mx-auto grid max-w-7xl gap-10 px-6 pb-24 pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-10 lg:pb-32 lg:pt-24">
