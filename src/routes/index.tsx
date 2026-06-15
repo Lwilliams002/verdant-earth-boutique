@@ -6,10 +6,6 @@ import { Marquee } from "@/components/Marquee";
 import { BrandMark } from "@/components/BrandMark";
 import { products } from "@/lib/products";
 import botanicalBg from "@/assets/botanical-bg.jpg";
-import vineHanging from "@/assets/plants/vine-hanging.png";
-import fernSprig from "@/assets/plants/fern-sprig.png";
-import leavesCorner from "@/assets/plants/leaves-corner.png";
-import herbSprig from "@/assets/plants/herb-sprig.png";
 import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -61,28 +57,6 @@ function Hero({ hero }: { hero: (typeof products)[number] }) {
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/80 via-background/40 to-background" />
 
-      {/* Real botanical decorations */}
-      <img
-        src={vineHanging}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="plant-photo pointer-events-none absolute right-6 top-[37rem] z-0 h-[220px] w-auto opacity-65 animate-sway-slow origin-top sm:top-[32rem] md:top-[34rem] md:h-[300px] md:opacity-70 lg:left-8 lg:right-auto lg:top-80 lg:h-[360px]"
-      />
-      <img
-        src={leavesCorner}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="plant-photo pointer-events-none absolute right-4 top-[19rem] z-0 h-[160px] w-auto opacity-70 sm:top-[18rem] md:right-8 md:top-24 md:h-[230px] md:opacity-70 lg:right-10 lg:top-28 lg:h-[300px]"
-      />
-      <img
-        src={herbSprig}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="plant-photo pointer-events-none absolute bottom-8 left-5 z-0 h-[105px] w-auto opacity-70 animate-sway md:left-12 md:h-[145px] md:opacity-65"
-      />
 
       <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-6 pb-24 pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-10 lg:pb-32 lg:pt-24">
         <div className="flex flex-col justify-center">
@@ -190,13 +164,6 @@ function Pillars() {
 function Collection() {
   return (
     <section className="relative z-10 mx-auto max-w-7xl px-6 py-20 lg:px-10">
-      <img
-        src={fernSprig}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="plant-photo pointer-events-none absolute right-4 top-8 z-0 h-[145px] w-auto opacity-70 sm:h-[175px] md:right-8 md:top-14 md:h-[210px] md:opacity-65"
-      />
       <div className="relative z-10 flex items-end justify-between gap-6">
         <div>
           <span className="eyebrow text-moss">— The collection</span>
@@ -250,20 +217,6 @@ function Story() {
         backgroundPosition: "center",
         mixBlendMode: "overlay",
       }} />
-      <img
-        src={vineHanging}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="plant-photo pointer-events-none absolute left-4 bottom-6 z-0 hidden h-[300px] w-auto opacity-60 animate-sway-slow origin-top lg:block"
-      />
-      <img
-        src={leavesCorner}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="plant-photo pointer-events-none absolute right-5 top-6 z-0 hidden h-[260px] w-auto -scale-x-100 opacity-55 lg:block"
-      />
       <div className="relative z-10 mx-auto grid max-w-7xl gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10">
         <div>
           <BrandMark className="h-20 w-16 text-cream" />
@@ -332,20 +285,6 @@ function Ingredients() {
 function Newsletter() {
   return (
     <section className="relative mx-auto max-w-3xl px-6 py-24 text-center">
-      <img
-        src={herbSprig}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="plant-photo pointer-events-none absolute left-3 top-24 hidden h-[125px] w-auto opacity-65 animate-sway md:block"
-      />
-      <img
-        src={herbSprig}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="plant-photo pointer-events-none absolute right-3 bottom-8 hidden h-[125px] w-auto -scale-x-100 opacity-65 animate-sway-reverse md:block"
-      />
       <BrandMark className="mx-auto h-14 w-12 text-forest-deep" />
       <h2 className="mt-6 font-display text-4xl text-forest-deep md:text-5xl">
         Join the <span className="font-script text-moss">rooted</span> circle.

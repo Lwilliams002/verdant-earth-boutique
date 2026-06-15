@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { BrandMark } from "./BrandMark";
 import { useState } from "react";
 import { ShoppingBag, Menu, X } from "lucide-react";
+import navVines from "@/assets/nav-vines.png";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -14,7 +15,13 @@ export function SiteHeader() {
 
   return (
     <header className="sticky top-0 z-40 border-b border-border/60 bg-background/85 backdrop-blur-md">
-      <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
+      <img
+        src={navVines}
+        alt=""
+        aria-hidden
+        className="pointer-events-none absolute -top-10 left-0 z-50 h-32 w-full object-cover object-top md:h-40"
+      />
+      <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
         <nav className="hidden flex-1 items-center gap-8 text-sm tracking-wide text-foreground/80 md:flex">
           {nav.slice(0, 2).map((n) => (
             <Link
