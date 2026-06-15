@@ -6,10 +6,6 @@ import { Marquee } from "@/components/Marquee";
 import { BrandMark } from "@/components/BrandMark";
 import { products } from "@/lib/products";
 import botanicalBg from "@/assets/botanical-bg.jpg";
-import vineHanging from "@/assets/plants/vine-hanging.png";
-import fernSprig from "@/assets/plants/fern-sprig.png";
-import leavesCorner from "@/assets/plants/leaves-corner.png";
-import herbSprig from "@/assets/plants/herb-sprig.png";
 import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake } from "lucide-react";
 
 export const Route = createFileRoute("/")({
