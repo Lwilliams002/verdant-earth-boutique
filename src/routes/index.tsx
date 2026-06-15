@@ -34,7 +34,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   const hero = products[0];
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen overflow-x-hidden bg-background">
       <SiteHeader />
       <Hero hero={hero} />
       <Marquee />
@@ -67,21 +67,21 @@ function Hero({ hero }: { hero: (typeof products)[number] }) {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -left-32 top-20 z-0 hidden h-[420px] w-auto opacity-35 animate-sway-slow origin-top mask-fade-r md:block"
+        className="plant-photo pointer-events-none absolute right-6 top-[37rem] z-0 h-[220px] w-auto opacity-65 animate-sway-slow origin-top sm:top-[32rem] md:top-[34rem] md:h-[300px] md:opacity-70 lg:left-8 lg:right-auto lg:top-80 lg:h-[360px]"
       />
       <img
         src={leavesCorner}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -right-32 -top-20 z-0 hidden h-[360px] w-auto opacity-25 mask-fade-l md:block"
+        className="plant-photo pointer-events-none absolute right-4 top-[19rem] z-0 h-[160px] w-auto opacity-70 sm:top-[18rem] md:right-8 md:top-24 md:h-[230px] md:opacity-70 lg:right-10 lg:top-28 lg:h-[300px]"
       />
       <img
         src={herbSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -bottom-10 -left-20 z-0 hidden h-[140px] w-auto opacity-30 animate-sway mask-fade-r md:block"
+        className="plant-photo pointer-events-none absolute bottom-8 left-5 z-0 h-[105px] w-auto opacity-70 animate-sway md:left-12 md:h-[145px] md:opacity-65"
       />
 
       <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-6 pb-24 pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-10 lg:pb-32 lg:pt-24">
@@ -195,9 +195,9 @@ function Collection() {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -right-16 top-20 z-0 hidden h-[140px] w-auto opacity-40 md:block"
+        className="plant-photo pointer-events-none absolute right-4 top-8 z-0 h-[145px] w-auto opacity-70 sm:h-[175px] md:right-8 md:top-14 md:h-[210px] md:opacity-65"
       />
-      <div className="relative flex items-end justify-between gap-6">
+      <div className="relative z-10 flex items-end justify-between gap-6">
         <div>
           <span className="eyebrow text-moss">— The collection</span>
           <h2 className="mt-3 font-display text-5xl text-forest-deep md:text-6xl">
@@ -255,14 +255,14 @@ function Story() {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -left-8 bottom-0 z-0 hidden h-[260px] w-auto opacity-40 animate-sway-slow origin-top lg:block"
+        className="plant-photo pointer-events-none absolute left-4 bottom-6 z-0 hidden h-[300px] w-auto opacity-60 animate-sway-slow origin-top lg:block"
       />
       <img
         src={leavesCorner}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -right-16 -top-16 z-0 hidden h-[220px] w-auto -scale-x-100 opacity-30 lg:block"
+        className="plant-photo pointer-events-none absolute right-5 top-6 z-0 hidden h-[260px] w-auto -scale-x-100 opacity-55 lg:block"
       />
       <div className="relative z-10 mx-auto grid max-w-7xl gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10">
         <div>
@@ -337,14 +337,14 @@ function Newsletter() {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -left-16 top-28 hidden h-[100px] w-auto opacity-40 animate-sway md:block"
+        className="plant-photo pointer-events-none absolute left-3 top-24 hidden h-[125px] w-auto opacity-65 animate-sway md:block"
       />
       <img
         src={herbSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -right-16 bottom-8 hidden h-[100px] w-auto -scale-x-100 opacity-40 animate-sway-reverse md:block"
+        className="plant-photo pointer-events-none absolute right-3 bottom-8 hidden h-[125px] w-auto -scale-x-100 opacity-65 animate-sway-reverse md:block"
       />
       <BrandMark className="mx-auto h-14 w-12 text-forest-deep" />
       <h2 className="mt-6 font-display text-4xl text-forest-deep md:text-5xl">

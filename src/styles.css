@@ -159,6 +159,9 @@
     -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
     mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
   }
+  .plant-photo {
+    filter: saturate(1.18) contrast(1.06) drop-shadow(0 18px 18px rgba(36, 50, 30, 0.14));
+  }
   .blend-multiply { mix-blend-mode: multiply; }
 }
 
