@@ -23,13 +23,13 @@ export function SiteHeader() {
         className="nav-vine pointer-events-none absolute -top-6 left-0 right-0 z-0 h-40 w-full object-cover object-top md:h-56"
       />
       <div className="relative z-10 mx-auto flex max-w-7xl items-center justify-between px-6 py-4 lg:px-10">
-        <nav className="hidden flex-1 items-center gap-8 text-sm tracking-wide text-foreground/80 md:flex">
+        <nav className="hidden flex-1 items-center gap-8 text-sm tracking-wide text-forest-deep md:flex">
           {nav.slice(0, 2).map((n) => (
             <Link
               key={n.to}
               to={n.to}
-              className="eyebrow transition-colors hover:text-forest-deep"
-              activeProps={{ className: "text-forest-deep" }}
+              className="eyebrow text-glow transition-colors hover:text-moss"
+              activeProps={{ className: "text-moss" }}
             >
               {n.label}
             </Link>
@@ -39,18 +39,18 @@ export function SiteHeader() {
         <Link to="/" className="flex items-center gap-3 text-forest-deep">
           <BrandMark className="h-9 w-7" />
           <div className="flex flex-col items-center leading-none">
-            <span className="font-display text-xl tracking-[0.32em]">EARTH &amp; TONIC</span>
+            <span className="font-display text-xl tracking-[0.32em] text-glow">EARTH &amp; TONIC</span>
             <span className="mt-1 text-[10px] tracking-[0.4em] text-muted-foreground">EST · 2026</span>
           </div>
         </Link>
 
-        <nav className="hidden flex-1 items-center justify-end gap-8 text-sm tracking-wide text-foreground/80 md:flex">
+        <nav className="hidden flex-1 items-center justify-end gap-8 text-sm tracking-wide text-forest-deep md:flex">
           {nav.slice(2).map((n) => (
             <Link
               key={n.to}
               to={n.to}
-              className="eyebrow transition-colors hover:text-forest-deep"
-              activeProps={{ className: "text-forest-deep" }}
+              className="eyebrow text-glow transition-colors hover:text-moss"
+              activeProps={{ className: "text-moss" }}
             >
               {n.label}
             </Link>
@@ -83,7 +83,7 @@ export function SiteHeader() {
                 key={n.to}
                 to={n.to}
                 onClick={() => setOpen(false)}
-                className="eyebrow text-foreground/80"
+                className="eyebrow text-forest-deep"
               >
                 {n.label}
               </Link>
