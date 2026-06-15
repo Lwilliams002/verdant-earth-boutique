@@ -332,13 +332,19 @@ function Ingredients() {
 function Newsletter() {
   return (
     <section className="relative mx-auto max-w-3xl px-6 py-24 text-center">
-      <SmallSprig
+      <img
+        src={herbSprig}
+        alt=""
         aria-hidden
-        className="pointer-events-none absolute left-4 top-10 hidden h-[140px] w-[80px] text-moss/45 animate-sway md:block"
+        loading="lazy"
+        className="pointer-events-none absolute -left-4 top-6 hidden h-[160px] w-auto opacity-90 animate-sway md:block"
       />
-      <SmallSprig
+      <img
+        src={herbSprig}
+        alt=""
         aria-hidden
-        className="pointer-events-none absolute right-4 top-16 hidden h-[140px] w-[80px] -scale-x-100 text-moss/45 animate-sway-reverse md:block"
+        loading="lazy"
+        className="pointer-events-none absolute -right-4 top-12 hidden h-[160px] w-auto -scale-x-100 opacity-90 animate-sway-reverse md:block"
       />
       <BrandMark className="mx-auto h-14 w-12 text-forest-deep" />
       <h2 className="mt-6 font-display text-4xl text-forest-deep md:text-5xl">
