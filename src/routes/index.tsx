@@ -7,6 +7,7 @@ import { BrandMark } from "@/components/BrandMark";
 import { products } from "@/lib/products";
 import botanicalBg from "@/assets/botanical-bg.jpg";
 import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake } from "lucide-react";
+import { VineCurl, LeafSprig, FernArc, CornerVine, SmallSprig } from "@/components/Vines";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -56,6 +57,24 @@ function Hero({ hero }: { hero: (typeof products)[number] }) {
         }}
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/80 via-background/40 to-background" />
+
+      {/* Decorative vines around the hero */}
+      <VineCurl
+        aria-hidden
+        className="pointer-events-none absolute -left-10 top-0 z-0 hidden h-[520px] w-[240px] text-moss/55 animate-sway-slow md:block"
+      />
+      <CornerVine
+        aria-hidden
+        className="pointer-events-none absolute -right-6 -top-6 z-0 h-[220px] w-[220px] text-forest/45 animate-sway-reverse md:h-[300px] md:w-[300px]"
+      />
+      <LeafSprig
+        aria-hidden
+        className="pointer-events-none absolute bottom-0 right-10 z-0 hidden h-[260px] w-[180px] text-moss/40 animate-sway lg:block"
+      />
+      <SmallSprig
+        aria-hidden
+        className="pointer-events-none absolute bottom-16 left-6 z-0 hidden h-[140px] w-[80px] text-forest/40 animate-sway md:block"
+      />
 
       <div className="mx-auto grid max-w-7xl gap-10 px-6 pb-24 pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-10 lg:pb-32 lg:pt-24">
         <div className="flex flex-col justify-center">
@@ -162,8 +181,12 @@ function Pillars() {
 
 function Collection() {
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-      <div className="flex items-end justify-between gap-6">
+    <section className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10">
+      <FernArc
+        aria-hidden
+        className="pointer-events-none absolute left-1/2 top-4 z-0 hidden h-[120px] w-[460px] -translate-x-1/2 text-moss/45 md:block"
+      />
+      <div className="relative flex items-end justify-between gap-6">
         <div>
           <span className="eyebrow text-moss">— The collection</span>
           <h2 className="mt-3 font-display text-5xl text-forest-deep md:text-6xl">
@@ -216,6 +239,14 @@ function Story() {
         backgroundPosition: "center",
         mixBlendMode: "overlay",
       }} />
+      <VineCurl
+        aria-hidden
+        className="pointer-events-none absolute -left-8 top-0 z-0 hidden h-[420px] w-[200px] text-sage/40 animate-sway-slow lg:block"
+      />
+      <CornerVine
+        aria-hidden
+        className="pointer-events-none absolute -right-6 bottom-0 z-0 hidden h-[260px] w-[260px] -scale-x-100 text-sage/35 animate-sway-reverse lg:block"
+      />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10">
         <div>
           <BrandMark className="h-20 w-16 text-cream" />
@@ -283,7 +314,15 @@ function Ingredients() {
 
 function Newsletter() {
   return (
-    <section className="mx-auto max-w-3xl px-6 py-24 text-center">
+    <section className="relative mx-auto max-w-3xl px-6 py-24 text-center">
+      <SmallSprig
+        aria-hidden
+        className="pointer-events-none absolute left-4 top-10 hidden h-[140px] w-[80px] text-moss/45 animate-sway md:block"
+      />
+      <SmallSprig
+        aria-hidden
+        className="pointer-events-none absolute right-4 top-16 hidden h-[140px] w-[80px] -scale-x-100 text-moss/45 animate-sway-reverse md:block"
+      />
       <BrandMark className="mx-auto h-14 w-12 text-forest-deep" />
       <h2 className="mt-6 font-display text-4xl text-forest-deep md:text-5xl">
         Join the <span className="font-script text-moss">rooted</span> circle.
