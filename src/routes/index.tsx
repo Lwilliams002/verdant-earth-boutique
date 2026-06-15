@@ -61,22 +61,27 @@ function Hero({ hero }: { hero: (typeof products)[number] }) {
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/80 via-background/40 to-background" />
 
-      {/* Decorative vines around the hero */}
-      <VineCurl
+      {/* Real botanical decorations */}
+      <img
+        src={vineHanging}
+        alt=""
         aria-hidden
-        className="pointer-events-none absolute -left-10 top-0 z-0 hidden h-[520px] w-[240px] text-moss/55 animate-sway-slow md:block"
+        loading="lazy"
+        className="pointer-events-none absolute -left-16 -top-10 z-0 hidden h-[620px] w-auto opacity-90 animate-sway-slow origin-top md:block"
       />
-      <CornerVine
+      <img
+        src={leavesCorner}
+        alt=""
         aria-hidden
-        className="pointer-events-none absolute -right-6 -top-6 z-0 h-[220px] w-[220px] text-forest/45 animate-sway-reverse md:h-[300px] md:w-[300px]"
+        loading="lazy"
+        className="pointer-events-none absolute -right-10 -top-10 z-0 h-[280px] w-auto opacity-85 md:h-[420px]"
       />
-      <LeafSprig
+      <img
+        src={herbSprig}
+        alt=""
         aria-hidden
-        className="pointer-events-none absolute bottom-0 right-10 z-0 hidden h-[260px] w-[180px] text-moss/40 animate-sway lg:block"
-      />
-      <SmallSprig
-        aria-hidden
-        className="pointer-events-none absolute bottom-16 left-6 z-0 hidden h-[140px] w-[80px] text-forest/40 animate-sway md:block"
+        loading="lazy"
+        className="pointer-events-none absolute bottom-6 left-2 z-0 hidden h-[160px] w-auto opacity-90 animate-sway md:block"
       />
 
       <div className="mx-auto grid max-w-7xl gap-10 px-6 pb-24 pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-10 lg:pb-32 lg:pt-24">
