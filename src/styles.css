@@ -226,18 +226,13 @@
     -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
   }
   .story-border {
-    mix-blend-mode: normal;
-    opacity: 0.65;
-    filter: saturate(0.95) brightness(1.15);
-    mask-image:
-      linear-gradient(to bottom, black 40%, transparent 100%),
-      radial-gradient(140% 90% at 50% 0%, black 60%, transparent 100%);
-    mask-composite: intersect;
-    -webkit-mask-image:
-      linear-gradient(to bottom, black 40%, transparent 100%),
-      radial-gradient(140% 90% at 50% 0%, black 60%, transparent 100%);
-    -webkit-mask-composite: source-in;
+    mix-blend-mode: screen;
+    opacity: 1;
+    filter: saturate(1.3) brightness(1.6) contrast(1.2);
+    mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
   }
+
   .story-border-flip {
     transform: scaleY(-1);
   }
