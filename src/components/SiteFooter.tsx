@@ -1,11 +1,19 @@
 import { Link } from "@tanstack/react-router";
 import { BrandMark } from "./BrandMark";
 import { Instagram } from "lucide-react";
+import navVines from "@/assets/nav-vines.png";
 
 export function SiteFooter() {
   return (
-    <footer className="mt-32 bg-forest-deep text-cream">
-      <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+    <footer className="relative mt-32 overflow-hidden bg-forest-deep text-cream">
+      <img
+        src={navVines}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="nav-vine-dark pointer-events-none absolute -top-6 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+      />
+      <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 lg:px-10">
         <div className="grid gap-14 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
           <div>
             <div className="flex items-center gap-3">
