@@ -171,7 +171,7 @@ function Pillars() {
         alt=""
         aria-hidden
         loading="lazy"
-        className="section-leaves pointer-events-none absolute -top-6 left-0 right-0 z-0 h-40 w-full object-cover object-top md:h-56"
+        className="section-leaves pointer-events-none absolute -top-10 left-0 right-0 z-0 h-56 w-full object-cover object-top md:h-80"
       />
       <div className="grid gap-y-10 md:grid-cols-4 md:gap-x-8">
         {items.map(({ icon: Icon, title, desc }) => (
