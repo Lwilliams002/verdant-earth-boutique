@@ -264,7 +264,7 @@ function Story() {
         loading="lazy"
         className="pointer-events-none absolute -right-16 -top-16 z-0 hidden h-[220px] w-auto -scale-x-100 opacity-30 lg:block"
       />
-      <div className="relative mx-auto grid max-w-7xl gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10">
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10">
         <div>
           <BrandMark className="h-20 w-16 text-cream" />
           <span className="eyebrow mt-8 inline-block text-cream/70">— Our story</span>
