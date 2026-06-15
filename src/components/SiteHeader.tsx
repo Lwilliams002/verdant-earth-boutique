@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { BrandMark } from "./BrandMark";
 import { useState } from "react";
 import { ShoppingBag, Menu, X } from "lucide-react";
+import navVines from "@/assets/nav-vines.png.asset.json";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
