@@ -34,7 +34,7 @@ export const Route = createFileRoute("/")({
 function Home() {
   const hero = products[0];
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen overflow-x-hidden bg-background">
       <SiteHeader />
       <Hero hero={hero} />
       <Marquee />
