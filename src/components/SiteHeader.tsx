@@ -49,8 +49,8 @@ export function SiteHeader() {
             <Link
               key={n.to}
               to={n.to}
-              className="eyebrow transition-colors hover:text-forest-deep"
-              activeProps={{ className: "text-forest-deep" }}
+              className="eyebrow text-glow transition-colors hover:text-moss"
+              activeProps={{ className: "text-moss" }}
             >
               {n.label}
             </Link>
