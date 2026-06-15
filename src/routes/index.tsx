@@ -8,6 +8,7 @@ import { products } from "@/lib/products";
 import botanicalBg from "@/assets/botanical-bg.jpg";
 import sideVine from "@/assets/plants/side-vine.png";
 import navVines from "@/assets/nav-vines.png";
+import sectionLeaves from "@/assets/section-leaves.png";
 import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -166,11 +167,11 @@ function Pillars() {
   return (
     <section className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10">
       <img
-        src={navVines}
+        src={sectionLeaves}
         alt=""
         aria-hidden
         loading="lazy"
-        className="nav-vine-soft pointer-events-none absolute -top-10 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-40"
+        className="section-leaves pointer-events-none absolute -top-10 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
       />
       <div className="grid gap-y-10 md:grid-cols-4 md:gap-x-8">
         {items.map(({ icon: Icon, title, desc }) => (
