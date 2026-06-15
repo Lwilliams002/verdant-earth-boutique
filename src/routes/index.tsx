@@ -9,6 +9,7 @@ import botanicalBg from "@/assets/botanical-bg.jpg";
 import sideVine from "@/assets/plants/side-vine.png";
 import navVines from "@/assets/nav-vines.png";
 import sectionLeaves from "@/assets/section-leaves.png";
+import collectionHerbs from "@/assets/collection-herbs.png";
 import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -192,11 +193,11 @@ function Collection() {
   return (
     <section className="relative z-10 mx-auto max-w-7xl px-6 py-20 lg:px-10">
       <img
-        src={navVines}
+        src={collectionHerbs}
         alt=""
         aria-hidden
         loading="lazy"
-        className="nav-vine-soft pointer-events-none absolute -top-8 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+        className="collection-herbs pointer-events-none absolute -top-10 left-0 right-0 z-0 h-36 w-full object-cover object-top md:h-52"
       />
       <div className="relative z-10 flex items-end justify-between gap-6">
         <div>
