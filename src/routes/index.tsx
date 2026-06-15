@@ -84,7 +84,7 @@ function Hero({ hero }: { hero: (typeof products)[number] }) {
         className="pointer-events-none absolute bottom-4 -left-10 z-0 hidden h-[120px] w-auto opacity-50 animate-sway md:block"
       />
 
-      <div className="mx-auto grid max-w-7xl gap-10 px-6 pb-24 pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-10 lg:pb-32 lg:pt-24">
+      <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-6 pb-24 pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-10 lg:pb-32 lg:pt-24">
         <div className="flex flex-col justify-center">
           <span className="eyebrow text-moss">— Est. 2026 · Small batch wellness</span>
           <h1 className="mt-6 font-display text-[clamp(3rem,7vw,6.5rem)] leading-[0.95] text-forest-deep">
