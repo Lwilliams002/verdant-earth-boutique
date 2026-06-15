@@ -190,9 +190,12 @@ function Pillars() {
 function Collection() {
   return (
     <section className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10">
-      <FernArc
+      <img
+        src={fernSprig}
+        alt=""
         aria-hidden
-        className="pointer-events-none absolute left-1/2 top-4 z-0 hidden h-[120px] w-[460px] -translate-x-1/2 text-moss/45 md:block"
+        loading="lazy"
+        className="pointer-events-none absolute left-1/2 -top-10 z-0 hidden h-[180px] w-auto -translate-x-1/2 opacity-80 md:block"
       />
       <div className="relative flex items-end justify-between gap-6">
         <div>
