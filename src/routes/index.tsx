@@ -58,6 +58,23 @@ function Hero({ hero }: { hero: (typeof products)[number] }) {
       />
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/80 via-background/40 to-background" />
 
+      <img
+        src={sideVine}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="side-vine animate-sway-slow pointer-events-none absolute -left-10 -top-6 z-0 hidden h-[34rem] w-auto md:block"
+      />
+      <img
+        src={sideVine}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="side-vine animate-sway-reverse pointer-events-none absolute -right-12 top-[22rem] z-0 hidden h-[28rem] w-auto -scale-x-100 md:block"
+      />
+
+
+
 
       <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-6 pb-24 pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-10 lg:pb-32 lg:pt-24">
         <div className="flex flex-col justify-center">
