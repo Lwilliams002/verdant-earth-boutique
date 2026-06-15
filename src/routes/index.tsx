@@ -269,7 +269,7 @@ function Story() {
         loading="lazy"
         width={1920}
         height={512}
-        className="story-border story-border-flip pointer-events-none absolute -bottom-6 left-0 right-0 z-0 h-36 w-full object-cover object-top md:h-48"
+        className="story-border story-border-flip pointer-events-none absolute -bottom-10 left-0 right-0 z-0 h-48 w-full object-cover object-top md:h-64"
       />
       <div className="relative z-10 mx-auto max-w-4xl px-6 py-28 text-center lg:px-10">
         <span className="eyebrow inline-block text-cream/70">— Our story</span>
