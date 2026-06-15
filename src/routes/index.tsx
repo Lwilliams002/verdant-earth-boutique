@@ -235,6 +235,14 @@ function Story() {
         backgroundPosition: "center",
         mixBlendMode: "overlay",
       }} />
+      <img
+        src={sideVine}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none absolute -right-10 top-0 z-0 hidden h-[36rem] w-auto opacity-30 mix-blend-screen md:block"
+        style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 70%, transparent 100%)" }}
+      />
       <div className="relative z-10 mx-auto grid max-w-7xl gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10">
         <div>
           <BrandMark className="h-20 w-16 text-cream" />
