@@ -225,6 +225,22 @@
     mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
     -webkit-mask-image: linear-gradient(to bottom, black 55%, transparent 100%);
   }
+  .story-border {
+    mix-blend-mode: normal;
+    opacity: 0.65;
+    filter: saturate(0.95) brightness(1.15);
+    mask-image:
+      linear-gradient(to bottom, black 40%, transparent 100%),
+      radial-gradient(140% 90% at 50% 0%, black 60%, transparent 100%);
+    mask-composite: intersect;
+    -webkit-mask-image:
+      linear-gradient(to bottom, black 40%, transparent 100%),
+      radial-gradient(140% 90% at 50% 0%, black 60%, transparent 100%);
+    -webkit-mask-composite: source-in;
+  }
+  .story-border-flip {
+    transform: scaleY(-1);
+  }
   .text-glow {
     text-shadow: 0 1px 10px var(--cream), 0 1px 4px var(--cream);
   }
