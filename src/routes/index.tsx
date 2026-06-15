@@ -10,7 +10,8 @@ import sideVine from "@/assets/plants/side-vine.png";
 import navVines from "@/assets/nav-vines.png";
 import sectionLeaves from "@/assets/section-leaves.png";
 import collectionHerbs from "@/assets/collection-herbs.png";
-import storyBorder from "@/assets/story-border.png";
+import storyPlants from "@/assets/story-plants.svg";
+import storySprig from "@/assets/story-sprig.svg";
 import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -254,22 +255,32 @@ function Story() {
         mixBlendMode: "overlay",
       }} />
       <img
-        src={storyBorder}
+        src={storyPlants}
         alt=""
         aria-hidden
         loading="lazy"
-        width={1920}
-        height={512}
-        className="story-border pointer-events-none absolute -top-10 left-0 right-0 z-0 h-48 w-full object-cover object-top md:h-64"
+        className="story-plants pointer-events-none absolute -top-8 left-0 right-0 z-0 h-56 w-full object-cover object-top md:h-72"
       />
       <img
-        src={storyBorder}
+        src={storyPlants}
         alt=""
         aria-hidden
         loading="lazy"
-        width={1920}
-        height={512}
-        className="story-border story-border-flip pointer-events-none absolute -bottom-10 left-0 right-0 z-0 h-48 w-full object-cover object-top md:h-64"
+        className="story-plants story-plants-flip pointer-events-none absolute -bottom-8 left-0 right-0 z-0 h-56 w-full object-cover object-top md:h-72"
+      />
+      <img
+        src={storySprig}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="story-sprig pointer-events-none absolute -left-16 top-24 z-0 hidden h-[46rem] w-auto md:block"
+      />
+      <img
+        src={storySprig}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="story-sprig pointer-events-none absolute -right-16 top-32 z-0 hidden h-[44rem] w-auto -scale-x-100 md:block"
       />
       <div className="relative z-10 mx-auto max-w-4xl px-6 py-28 text-center lg:px-10">
         <span className="eyebrow inline-block text-cream/70">— Our story</span>
