@@ -260,7 +260,7 @@ function Story() {
         loading="lazy"
         width={1920}
         height={512}
-        className="story-border pointer-events-none absolute -top-6 left-0 right-0 z-0 h-36 w-full object-cover object-top md:h-48"
+        className="story-border pointer-events-none absolute -top-10 left-0 right-0 z-0 h-48 w-full object-cover object-top md:h-64"
       />
       <img
         src={storyBorder}
