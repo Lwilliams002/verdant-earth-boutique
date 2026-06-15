@@ -311,6 +311,21 @@ function Ingredients() {
 function Newsletter() {
   return (
     <section className="relative mx-auto max-w-3xl px-6 py-24 text-center">
+      <img
+        src={sideVine}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="side-vine pointer-events-none absolute -left-16 top-0 z-0 hidden h-[22rem] w-auto md:block"
+      />
+      <img
+        src={sideVine}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="side-vine pointer-events-none absolute -right-16 top-0 z-0 hidden h-[22rem] w-auto -scale-x-100 md:block"
+      />
+      <div className="relative z-10">
       <BrandMark className="mx-auto h-14 w-12 text-forest-deep" />
       <h2 className="mt-6 font-display text-4xl text-forest-deep md:text-5xl">
         Join the <span className="font-script text-moss">rooted</span> circle.
