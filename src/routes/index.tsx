@@ -255,14 +255,14 @@ function Story() {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -left-16 -top-8 z-0 hidden h-[480px] w-auto opacity-70 animate-sway-slow origin-top lg:block"
+        className="pointer-events-none absolute -left-8 bottom-0 z-0 hidden h-[260px] w-auto opacity-40 animate-sway-slow origin-top lg:block"
       />
       <img
         src={leavesCorner}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -right-10 -bottom-10 z-0 hidden h-[360px] w-auto -scale-x-100 opacity-60 lg:block"
+        className="pointer-events-none absolute -right-16 -top-16 z-0 hidden h-[220px] w-auto -scale-x-100 opacity-30 lg:block"
       />
       <div className="relative mx-auto grid max-w-7xl gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10">
         <div>
