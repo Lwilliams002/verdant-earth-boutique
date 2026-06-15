@@ -254,26 +254,22 @@ function Story() {
         mixBlendMode: "overlay",
       }} />
       <img
-        src={navVines}
+        src={storyBorder}
         alt=""
         aria-hidden
         loading="lazy"
-        className="nav-vine-dark pointer-events-none absolute -top-6 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+        width={1920}
+        height={512}
+        className="story-border pointer-events-none absolute -top-6 left-0 right-0 z-0 h-36 w-full object-cover object-top md:h-48"
       />
       <img
-        src={navVines}
+        src={storyBorder}
         alt=""
         aria-hidden
         loading="lazy"
-        className="nav-vine-dark nav-vine-flip pointer-events-none absolute -bottom-6 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
-      />
-      <img
-        src={sideVine}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="pointer-events-none absolute -right-10 top-0 z-0 hidden h-[36rem] w-auto opacity-30 mix-blend-screen md:block"
-        style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 70%, transparent 100%)" }}
+        width={1920}
+        height={512}
+        className="story-border story-border-flip pointer-events-none absolute -bottom-6 left-0 right-0 z-0 h-36 w-full object-cover object-top md:h-48"
       />
       <div className="relative z-10 mx-auto max-w-4xl px-6 py-28 text-center lg:px-10">
         <span className="eyebrow inline-block text-cream/70">— Our story</span>
