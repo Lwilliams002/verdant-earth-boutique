@@ -337,14 +337,14 @@ function Newsletter() {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -left-4 top-6 hidden h-[160px] w-auto opacity-90 animate-sway md:block"
+        className="pointer-events-none absolute -left-16 top-28 hidden h-[100px] w-auto opacity-40 animate-sway md:block"
       />
       <img
         src={herbSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -right-4 top-12 hidden h-[160px] w-auto -scale-x-100 opacity-90 animate-sway-reverse md:block"
+        className="pointer-events-none absolute -right-16 bottom-8 hidden h-[100px] w-auto -scale-x-100 opacity-40 animate-sway-reverse md:block"
       />
       <BrandMark className="mx-auto h-14 w-12 text-forest-deep" />
       <h2 className="mt-6 font-display text-4xl text-forest-deep md:text-5xl">
