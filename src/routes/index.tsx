@@ -189,7 +189,7 @@ function Pillars() {
 
 function Collection() {
   return (
-    <section className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10">
+    <section className="relative z-10 mx-auto max-w-7xl px-6 py-20 lg:px-10">
       <img
         src={fernSprig}
         alt=""
