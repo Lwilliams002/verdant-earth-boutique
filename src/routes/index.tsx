@@ -255,14 +255,14 @@ function Story() {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -left-8 bottom-0 z-0 hidden h-[260px] w-auto opacity-40 animate-sway-slow origin-top lg:block"
+        className="plant-photo pointer-events-none absolute left-4 bottom-6 z-0 hidden h-[300px] w-auto opacity-60 animate-sway-slow origin-top lg:block"
       />
       <img
         src={leavesCorner}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -right-16 -top-16 z-0 hidden h-[220px] w-auto -scale-x-100 opacity-30 lg:block"
+        className="plant-photo pointer-events-none absolute right-5 top-6 z-0 hidden h-[260px] w-auto -scale-x-100 opacity-55 lg:block"
       />
       <div className="relative z-10 mx-auto grid max-w-7xl gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10">
         <div>
@@ -337,14 +337,14 @@ function Newsletter() {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -left-16 top-28 hidden h-[100px] w-auto opacity-40 animate-sway md:block"
+        className="plant-photo pointer-events-none absolute left-3 top-24 hidden h-[125px] w-auto opacity-65 animate-sway md:block"
       />
       <img
         src={herbSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -right-16 bottom-8 hidden h-[100px] w-auto -scale-x-100 opacity-40 animate-sway-reverse md:block"
+        className="plant-photo pointer-events-none absolute right-3 bottom-8 hidden h-[125px] w-auto -scale-x-100 opacity-65 animate-sway-reverse md:block"
       />
       <BrandMark className="mx-auto h-14 w-12 text-forest-deep" />
       <h2 className="mt-6 font-display text-4xl text-forest-deep md:text-5xl">
