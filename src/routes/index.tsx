@@ -348,6 +348,7 @@ function Newsletter() {
           JOIN
         </button>
       </form>
+      </div>
     </section>
   );
 }
