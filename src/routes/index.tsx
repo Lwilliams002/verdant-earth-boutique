@@ -7,6 +7,7 @@ import { BrandMark } from "@/components/BrandMark";
 import { products } from "@/lib/products";
 import botanicalBg from "@/assets/botanical-bg.jpg";
 import sideVine from "@/assets/plants/side-vine.png";
+import navVines from "@/assets/nav-vines.png";
 import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -163,7 +164,14 @@ function Pillars() {
     { icon: HeartHandshake, title: "Crafted with Care", desc: "Small batch, made by hand." },
   ];
   return (
-    <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
+    <section className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10">
+      <img
+        src={navVines}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="nav-vine-soft pointer-events-none absolute -top-10 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-40"
+      />
       <div className="grid gap-y-10 md:grid-cols-4 md:gap-x-8">
         {items.map(({ icon: Icon, title, desc }) => (
           <div key={title} className="flex flex-col items-start">
@@ -182,6 +190,13 @@ function Pillars() {
 function Collection() {
   return (
     <section className="relative z-10 mx-auto max-w-7xl px-6 py-20 lg:px-10">
+      <img
+        src={navVines}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="nav-vine-soft pointer-events-none absolute -top-8 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+      />
       <div className="relative z-10 flex items-end justify-between gap-6">
         <div>
           <span className="eyebrow text-moss">— The collection</span>
@@ -236,6 +251,20 @@ function Story() {
         mixBlendMode: "overlay",
       }} />
       <img
+        src={navVines}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="nav-vine-dark pointer-events-none absolute -top-6 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+      />
+      <img
+        src={navVines}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="nav-vine-dark nav-vine-flip pointer-events-none absolute -bottom-6 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+      />
+      <img
         src={sideVine}
         alt=""
         aria-hidden
@@ -282,7 +311,21 @@ function Ingredients() {
     { name: "Dandelion Root", note: "Traditional aid" },
   ];
   return (
-    <section className="mx-auto max-w-7xl px-6 py-28 lg:px-10">
+    <section className="relative mx-auto max-w-7xl px-6 py-28 lg:px-10">
+      <img
+        src={navVines}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="nav-vine-soft pointer-events-none absolute -top-10 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+      />
+      <img
+        src={navVines}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="nav-vine-soft nav-vine-flip pointer-events-none absolute -bottom-10 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+      />
       <div className="mx-auto max-w-2xl text-center">
         <span className="eyebrow text-moss divider-leaf">Powered by nature</span>
         <h2 className="mt-5 font-display text-5xl text-forest-deep md:text-6xl">
