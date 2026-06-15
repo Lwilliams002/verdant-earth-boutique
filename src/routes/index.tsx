@@ -274,29 +274,38 @@ function Story() {
         className="pointer-events-none absolute -right-10 top-0 z-0 hidden h-[36rem] w-auto opacity-30 mix-blend-screen md:block"
         style={{ maskImage: "linear-gradient(to bottom, transparent 0%, black 20%, black 70%, transparent 100%)" }}
       />
-      <div className="relative z-10 mx-auto grid max-w-7xl gap-16 px-6 py-28 lg:grid-cols-2 lg:px-10">
-        <div>
-          <BrandMark className="h-20 w-16 text-cream" />
-          <span className="eyebrow mt-8 inline-block text-cream/70">— Our story</span>
-          <h2 className="mt-4 font-display text-5xl leading-tight md:text-6xl">
-            Nature has everything we need <span className="font-script italic text-sage">to heal.</span>
-          </h2>
+      <div className="relative z-10 mx-auto max-w-4xl px-6 py-28 text-center lg:px-10">
+        <span className="eyebrow inline-block text-cream/70">— Our story</span>
+        <h2 className="mt-4 font-display text-5xl leading-tight tracking-[0.15em] md:text-6xl">
+          WHY I STARTED
+        </h2>
+
+        <div className="mt-12 space-y-8 text-lg leading-relaxed text-cream/85">
+          <p>
+            For years, I searched for wellness products made with ingredients I could trust and products that were simple and honest.
+          </p>
+          <p>
+            I realized that wellness doesn't come from complicated routines or endless ingredient lists. It comes from nature. From plants.
+          </p>
+          <p>
+            Earth &amp; Tonic was born from a passion for natural living and a desire to create products that support everyday wellness.
+          </p>
+          <p>
+            Every product is made with carefully selected ingredients inspired by tradition and crafted with purpose. No seed oils.
+          </p>
         </div>
-        <div className="flex flex-col justify-center gap-6 text-cream/85">
-          <p className="text-lg leading-relaxed">
-            Earth &amp; Tonic was born from a simple belief — that the most powerful wellness rituals
-            are the ones rooted in the soil. Every tincture, every bar, every jar is formulated with
-            traditional herbs and made in small batches so each bottle carries intention.
-          </p>
-          <p className="text-lg leading-relaxed">
-            From our farm partners to your countertop, nothing is rushed. Everything is rooted.
-          </p>
-          <Link
-            to="/about"
-            className="mt-4 inline-flex w-fit items-center gap-3 border-b border-cream/40 pb-1 text-sm tracking-[0.2em]"
-          >
-            READ OUR STORY <ArrowRight className="h-4 w-4" />
-          </Link>
+
+        <div className="mx-auto mt-12 max-w-xl border border-cream/30 px-8 py-6">
+          <p className="font-display text-sm tracking-[0.2em]">THIS ISN'T JUST A BUSINESS.</p>
+          <p className="mt-2 text-cream/85">A return to simple ingredients.</p>
+          <p className="text-cream/85">A return to nature.</p>
+        </div>
+
+        <div className="mt-12">
+          <p className="font-script text-2xl text-sage">Thank you for being part of this journey.</p>
+          <p className="mt-4 font-script text-xl text-sage">With gratitude,</p>
+          <p className="mt-1 font-display text-lg tracking-[0.15em]">PAMELA ESPINOZA</p>
+          <p className="mt-1 text-sm tracking-[0.15em] text-cream/60">FOUNDER, EARTH &amp; TONIC</p>
         </div>
       </div>
     </section>
