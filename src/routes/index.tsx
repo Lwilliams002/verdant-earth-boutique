@@ -321,19 +321,27 @@ function Ingredients() {
   ];
   return (
     <section className="relative mx-auto max-w-7xl px-6 py-28 lg:px-10">
-      <img
-        src={navVines}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="nav-vine-soft pointer-events-none absolute -top-10 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+      <div
+        className="pointer-events-none absolute inset-0 -z-0 opacity-[0.07]"
+        style={{
+          backgroundImage: `url(${plantPattern})`,
+          backgroundSize: "360px auto",
+          backgroundRepeat: "repeat",
+        }}
       />
       <img
-        src={navVines}
+        src={plantSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        className="nav-vine-soft nav-vine-flip pointer-events-none absolute -bottom-10 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+        className="pointer-events-none absolute -left-8 top-16 z-0 hidden h-[28rem] w-auto opacity-50 md:block"
+      />
+      <img
+        src={plantSprig}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none absolute -right-8 bottom-16 z-0 hidden h-[28rem] w-auto -scale-x-100 opacity-50 md:block"
       />
       <div className="mx-auto max-w-2xl text-center">
         <span className="eyebrow text-moss divider-leaf">Powered by nature</span>
@@ -363,19 +371,27 @@ function Ingredients() {
 function Newsletter() {
   return (
     <section className="relative mx-auto max-w-3xl px-6 py-24 text-center">
-      <img
-        src={sideVine}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="side-vine pointer-events-none absolute -left-16 top-0 z-0 hidden h-[22rem] w-auto md:block"
+      <div
+        className="pointer-events-none absolute inset-0 -z-0 opacity-[0.08]"
+        style={{
+          backgroundImage: `url(${plantPattern})`,
+          backgroundSize: "320px auto",
+          backgroundRepeat: "repeat",
+        }}
       />
       <img
-        src={sideVine}
+        src={plantSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        className="side-vine pointer-events-none absolute -right-16 top-0 z-0 hidden h-[22rem] w-auto -scale-x-100 md:block"
+        className="pointer-events-none absolute -left-20 top-0 z-0 hidden h-[24rem] w-auto opacity-60 md:block"
+      />
+      <img
+        src={plantSprig}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none absolute -right-20 top-0 z-0 hidden h-[24rem] w-auto -scale-x-100 opacity-60 md:block"
       />
       <div className="relative z-10">
       <BrandMark className="mx-auto h-14 w-12 text-forest-deep" />
