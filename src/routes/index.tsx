@@ -10,7 +10,10 @@ import sideVine from "@/assets/plants/side-vine.png";
 import navVines from "@/assets/nav-vines.png";
 import sectionLeaves from "@/assets/section-leaves.png";
 import collectionHerbs from "@/assets/collection-herbs.png";
-import storyRealPlants from "@/assets/story-real-plants.png";
+import plantSprigAsset from "@/assets/plant-sprig.jpeg.asset.json";
+import plantPatternAsset from "@/assets/plant-pattern.jpeg.asset.json";
+const plantSprig = plantSprigAsset.url;
+const plantPattern = plantPatternAsset.url;
 import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -247,29 +250,27 @@ function Collection() {
 function Story() {
   return (
     <section id="story" className="relative mt-12 overflow-hidden bg-forest-deep text-cream">
-      <div className="absolute inset-0 z-0 opacity-20" style={{
-        backgroundImage: `url(${botanicalBg})`,
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        mixBlendMode: "overlay",
-      }} />
-      <img
-        src={storyRealPlants}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        width={1920}
-        height={1080}
-        className="story-real-plants pointer-events-none absolute -top-8 left-0 right-0 z-[1] h-56 w-full object-cover object-top md:h-72"
+      <div
+        className="absolute inset-0 z-0 opacity-[0.08] mix-blend-screen"
+        style={{
+          backgroundImage: `url(${plantPattern})`,
+          backgroundSize: "420px auto",
+          backgroundRepeat: "repeat",
+        }}
       />
       <img
-        src={storyRealPlants}
+        src={plantSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        width={1920}
-        height={1080}
-        className="story-real-plants story-plants-flip pointer-events-none absolute -bottom-8 left-0 right-0 z-[1] h-56 w-full object-cover object-top md:h-72"
+        className="pointer-events-none absolute -left-10 top-12 z-[1] h-[26rem] w-auto opacity-60 mix-blend-screen md:-left-4 md:h-[34rem]"
+      />
+      <img
+        src={plantSprig}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none absolute -right-10 bottom-12 z-[1] h-[26rem] w-auto -scale-x-100 opacity-60 mix-blend-screen md:-right-4 md:h-[34rem]"
       />
       <div className="relative z-10 mx-auto max-w-4xl px-6 py-28 text-center lg:px-10">
         <span className="eyebrow inline-block text-cream/70">— Our story</span>
@@ -320,19 +321,27 @@ function Ingredients() {
   ];
   return (
     <section className="relative mx-auto max-w-7xl px-6 py-28 lg:px-10">
-      <img
-        src={navVines}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="nav-vine-soft pointer-events-none absolute -top-10 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+      <div
+        className="pointer-events-none absolute inset-0 -z-0 opacity-[0.07]"
+        style={{
+          backgroundImage: `url(${plantPattern})`,
+          backgroundSize: "360px auto",
+          backgroundRepeat: "repeat",
+        }}
       />
       <img
-        src={navVines}
+        src={plantSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        className="nav-vine-soft nav-vine-flip pointer-events-none absolute -bottom-10 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+        className="pointer-events-none absolute -left-8 top-16 z-0 hidden h-[28rem] w-auto opacity-50 md:block"
+      />
+      <img
+        src={plantSprig}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none absolute -right-8 bottom-16 z-0 hidden h-[28rem] w-auto -scale-x-100 opacity-50 md:block"
       />
       <div className="mx-auto max-w-2xl text-center">
         <span className="eyebrow text-moss divider-leaf">Powered by nature</span>
@@ -362,19 +371,27 @@ function Ingredients() {
 function Newsletter() {
   return (
     <section className="relative mx-auto max-w-3xl px-6 py-24 text-center">
-      <img
-        src={sideVine}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="side-vine pointer-events-none absolute -left-16 top-0 z-0 hidden h-[22rem] w-auto md:block"
+      <div
+        className="pointer-events-none absolute inset-0 -z-0 opacity-[0.08]"
+        style={{
+          backgroundImage: `url(${plantPattern})`,
+          backgroundSize: "320px auto",
+          backgroundRepeat: "repeat",
+        }}
       />
       <img
-        src={sideVine}
+        src={plantSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        className="side-vine pointer-events-none absolute -right-16 top-0 z-0 hidden h-[22rem] w-auto -scale-x-100 md:block"
+        className="pointer-events-none absolute -left-20 top-0 z-0 hidden h-[24rem] w-auto opacity-60 md:block"
+      />
+      <img
+        src={plantSprig}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none absolute -right-20 top-0 z-0 hidden h-[24rem] w-auto -scale-x-100 opacity-60 md:block"
       />
       <div className="relative z-10">
       <BrandMark className="mx-auto h-14 w-12 text-forest-deep" />
