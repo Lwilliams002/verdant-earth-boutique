@@ -274,8 +274,8 @@ function Story() {
       />
       <div className="relative z-10 mx-auto max-w-4xl px-6 py-28 text-center lg:px-10">
         <span className="eyebrow inline-block text-cream/70">— Our story</span>
-        <h2 className="mt-4 font-display text-5xl leading-tight tracking-[0.15em] md:text-6xl">
-          WHY I STARTED
+        <h2 className="mt-4 font-script text-5xl leading-tight md:text-6xl">
+          Why I started
         </h2>
 
         <div className="mt-12 space-y-8 text-lg leading-relaxed text-cream/85">
