@@ -274,13 +274,13 @@ function Story() {
       />
       <div className="relative z-10 mx-auto max-w-4xl px-6 py-28 text-center lg:px-10">
         <span className="eyebrow inline-block text-cream/70">— Our story</span>
-        <h2 className="mt-4 font-script text-5xl leading-tight md:text-6xl">
+        <h2 className="mt-4 story-script-heading text-5xl leading-tight md:text-6xl">
           Why I started
         </h2>
 
-        <div className="mt-12 space-y-8 text-lg leading-relaxed text-cream/85">
+        <div className="mx-auto mt-12 max-w-2xl space-y-6 text-left text-base leading-relaxed text-cream/85">
           <p>
-            For years, I searched for wellness products made with ingredients I could trust and products that were simple and honest.
+            For years, I searched for wellness products made with ingredients I could trust — products that were simple and honest.
           </p>
           <p>
             I realized that wellness doesn't come from complicated routines or endless ingredient lists. It comes from nature. From plants.
