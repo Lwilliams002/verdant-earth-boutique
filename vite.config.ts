@@ -27,10 +27,5 @@ export default defineConfig({
     router: {
       basepath: githubPagesBase,
     },
-    prerender: {
-      enabled: true,
-      crawlLinks: true,
-    },
-    pages: prerenderedPages.map((path) => ({ path })),
   },
 });
