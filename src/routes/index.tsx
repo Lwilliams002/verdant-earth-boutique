@@ -10,7 +10,10 @@ import sideVine from "@/assets/plants/side-vine.png";
 import navVines from "@/assets/nav-vines.png";
 import sectionLeaves from "@/assets/section-leaves.png";
 import collectionHerbs from "@/assets/collection-herbs.png";
-import storyRealPlants from "@/assets/story-real-plants.png";
+import plantSprigAsset from "@/assets/plant-sprig.jpeg.asset.json";
+import plantPatternAsset from "@/assets/plant-pattern.jpeg.asset.json";
+const plantSprig = plantSprigAsset.url;
+const plantPattern = plantPatternAsset.url;
 import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -67,9 +70,6 @@ function Hero({ hero }: { hero: (typeof products)[number] }) {
         alt=""
         aria-hidden
         loading="lazy"
-        decoding="async"
-        width={1024}
-        height={1024}
         className="side-vine animate-sway-slow pointer-events-none absolute -left-10 -top-6 z-0 hidden h-[34rem] w-auto md:block"
       />
       <img
@@ -77,11 +77,11 @@ function Hero({ hero }: { hero: (typeof products)[number] }) {
         alt=""
         aria-hidden
         loading="lazy"
-        decoding="async"
-        width={1024}
-        height={1024}
         className="side-vine animate-sway-reverse pointer-events-none absolute -right-12 top-[22rem] z-0 hidden h-[28rem] w-auto -scale-x-100 md:block"
       />
+
+
+
 
       <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-6 pb-24 pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-10 lg:pb-32 lg:pt-24">
         <div className="flex flex-col justify-center">
@@ -114,15 +114,9 @@ function Hero({ hero }: { hero: (typeof products)[number] }) {
           </div>
 
           <div className="mt-14 flex flex-wrap items-center gap-x-8 gap-y-4 text-xs tracking-[0.18em] text-muted-foreground">
-            <span className="flex items-center gap-2">
-              <Leaf className="h-3.5 w-3.5" /> ORGANIC HERBS
-            </span>
-            <span className="flex items-center gap-2">
-              <Droplet className="h-3.5 w-3.5" /> NO SEED OILS
-            </span>
-            <span className="flex items-center gap-2">
-              <Sprout className="h-3.5 w-3.5" /> SMALL BATCH
-            </span>
+            <span className="flex items-center gap-2"><Leaf className="h-3.5 w-3.5" /> ORGANIC HERBS</span>
+            <span className="flex items-center gap-2"><Droplet className="h-3.5 w-3.5" /> NO SEED OILS</span>
+            <span className="flex items-center gap-2"><Sprout className="h-3.5 w-3.5" /> SMALL BATCH</span>
           </div>
         </div>
 
@@ -182,10 +176,7 @@ function Pillars() {
         alt=""
         aria-hidden
         loading="lazy"
-        decoding="async"
-        width={1920}
-        height={512}
-        className="section-leaves pointer-events-none absolute -top-10 left-0 right-0 z-0 h-44 w-full object-cover object-top md:h-64 lg:h-72"
+        className="section-leaves pointer-events-none absolute -top-10 left-0 right-0 z-0 h-56 w-full object-cover object-top md:h-80"
       />
       <div className="grid gap-y-10 md:grid-cols-4 md:gap-x-8">
         {items.map(({ icon: Icon, title, desc }) => (
@@ -210,10 +201,7 @@ function Collection() {
         alt=""
         aria-hidden
         loading="lazy"
-        decoding="async"
-        width={1536}
-        height={1024}
-        className="collection-herbs pointer-events-none absolute -top-12 left-0 right-0 z-0 h-40 w-full object-cover object-top md:h-56 lg:h-64"
+        className="collection-herbs pointer-events-none absolute -top-10 left-0 right-0 z-0 h-36 w-full object-cover object-top md:h-52"
       />
       <div className="relative z-10 flex items-end justify-between gap-6">
         <div>
@@ -222,10 +210,7 @@ function Collection() {
             <span className="font-script text-moss">Crafted</span> for daily rituals
           </h2>
         </div>
-        <Link
-          to="/shop"
-          className="eyebrow hidden border-b border-forest-deep/40 pb-1 text-forest-deep md:inline"
-        >
+        <Link to="/shop" className="eyebrow hidden border-b border-forest-deep/40 pb-1 text-forest-deep md:inline">
           View all →
         </Link>
       </div>
@@ -266,62 +251,45 @@ function Story() {
   return (
     <section id="story" className="relative mt-12 overflow-hidden bg-forest-deep text-cream">
       <div
-        className="absolute inset-0 z-0 opacity-20"
+        className="absolute inset-0 z-0 opacity-[0.08] mix-blend-screen"
         style={{
-          backgroundImage: `url(${botanicalBg})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          mixBlendMode: "overlay",
+          backgroundImage: `url(${plantPattern})`,
+          backgroundSize: "420px auto",
+          backgroundRepeat: "repeat",
         }}
       />
       <img
-        src={storyRealPlants}
+        src={plantSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        decoding="async"
-        width={1920}
-        height={1080}
-        className="story-real-plants story-plants-top pointer-events-none absolute -top-24 left-0 right-0 z-[1] h-80 w-full object-cover sm:-top-28 sm:h-96 lg:-top-36 lg:h-[30rem]"
+        className="pointer-events-none absolute -left-10 top-12 z-[1] h-[26rem] w-auto opacity-60 mix-blend-screen md:-left-4 md:h-[34rem]"
       />
       <img
-        src={storyRealPlants}
+        src={plantSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        decoding="async"
-        width={1920}
-        height={1080}
-        className="story-real-plants story-plants-bottom pointer-events-none absolute -bottom-24 left-0 right-0 z-[1] h-80 w-full object-cover sm:-bottom-28 sm:h-96 lg:-bottom-36 lg:h-[30rem]"
+        className="pointer-events-none absolute -right-10 bottom-12 z-[1] h-[26rem] w-auto -scale-x-100 opacity-60 mix-blend-screen md:-right-4 md:h-[34rem]"
       />
-      <div className="relative z-10 mx-auto max-w-4xl px-6 py-32 text-center sm:py-36 lg:px-10 lg:py-40">
+      <div className="relative z-10 mx-auto max-w-4xl px-6 py-28 text-center lg:px-10">
         <span className="eyebrow inline-block text-cream/70">— Our story</span>
-        <h2
-          className="story-script-heading mt-4 text-[clamp(4.5rem,11vw,8.5rem)] leading-none tracking-normal text-sage"
-          style={{
-            fontFamily:
-              '"Snell Roundhand", "Apple Chancery", "Brush Script MT", "Pinyon Script", cursive',
-          }}
-        >
-          Why I Started
+        <h2 className="mt-4 font-script text-5xl leading-tight md:text-6xl">
+          Why I started
         </h2>
 
         <div className="mt-12 space-y-8 text-lg leading-relaxed text-cream/85">
           <p>
-            For years, I searched for wellness products made with ingredients I could trust and
-            products that were simple and honest.
+            For years, I searched for wellness products made with ingredients I could trust and products that were simple and honest.
           </p>
           <p>
-            I realized that wellness doesn't come from complicated routines or endless ingredient
-            lists. It comes from nature. From plants.
+            I realized that wellness doesn't come from complicated routines or endless ingredient lists. It comes from nature. From plants.
           </p>
           <p>
-            Earth &amp; Tonic was born from a passion for natural living and a desire to create
-            products that support everyday wellness.
+            Earth &amp; Tonic was born from a passion for natural living and a desire to create products that support everyday wellness.
           </p>
           <p>
-            Every product is made with carefully selected ingredients inspired by tradition and
-            crafted with purpose. No seed oils.
+            Every product is made with carefully selected ingredients inspired by tradition and crafted with purpose. No seed oils.
           </p>
         </div>
 
@@ -332,9 +300,7 @@ function Story() {
         </div>
 
         <div className="mt-12">
-          <p className="font-script text-2xl text-sage">
-            Thank you for being part of this journey.
-          </p>
+          <p className="font-script text-2xl text-sage">Thank you for being part of this journey.</p>
           <p className="mt-4 font-script text-xl text-sage">With gratitude,</p>
           <p className="mt-1 font-display text-lg tracking-[0.15em]">PAMELA ESPINOZA</p>
           <p className="mt-1 text-sm tracking-[0.15em] text-cream/60">FOUNDER, EARTH &amp; TONIC</p>
@@ -355,25 +321,27 @@ function Ingredients() {
   ];
   return (
     <section className="relative mx-auto max-w-7xl px-6 py-28 lg:px-10">
-      <img
-        src={navVines}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        decoding="async"
-        width={1920}
-        height={1080}
-        className="nav-vine-soft pointer-events-none absolute -top-10 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+      <div
+        className="pointer-events-none absolute inset-0 -z-0 opacity-[0.07]"
+        style={{
+          backgroundImage: `url(${plantPattern})`,
+          backgroundSize: "360px auto",
+          backgroundRepeat: "repeat",
+        }}
       />
       <img
-        src={navVines}
+        src={plantSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        decoding="async"
-        width={1920}
-        height={1080}
-        className="nav-vine-soft nav-vine-flip pointer-events-none absolute -bottom-10 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
+        className="pointer-events-none absolute -left-8 top-16 z-0 hidden h-[28rem] w-auto opacity-50 md:block"
+      />
+      <img
+        src={plantSprig}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none absolute -right-8 bottom-16 z-0 hidden h-[28rem] w-auto -scale-x-100 opacity-50 md:block"
       />
       <div className="mx-auto max-w-2xl text-center">
         <span className="eyebrow text-moss divider-leaf">Powered by nature</span>
@@ -383,8 +351,8 @@ function Ingredients() {
           <span className="font-script text-moss">One quiet ritual.</span>
         </h2>
         <p className="mt-6 text-foreground/70">
-          Every formula begins with whole-plant ingredients chosen for what they do — and how gently
-          they do it.
+          Every formula begins with whole-plant ingredients chosen for what they do — and how
+          gently they do it.
         </p>
       </div>
       <div className="mt-16 grid gap-px overflow-hidden rounded-sm bg-border sm:grid-cols-2 lg:grid-cols-3">
@@ -403,49 +371,51 @@ function Ingredients() {
 function Newsletter() {
   return (
     <section className="relative mx-auto max-w-3xl px-6 py-24 text-center">
-      <img
-        src={sideVine}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        decoding="async"
-        width={1024}
-        height={1024}
-        className="side-vine pointer-events-none absolute -left-16 top-0 z-0 hidden h-[22rem] w-auto md:block"
+      <div
+        className="pointer-events-none absolute inset-0 -z-0 opacity-[0.08]"
+        style={{
+          backgroundImage: `url(${plantPattern})`,
+          backgroundSize: "320px auto",
+          backgroundRepeat: "repeat",
+        }}
       />
       <img
-        src={sideVine}
+        src={plantSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        decoding="async"
-        width={1024}
-        height={1024}
-        className="side-vine pointer-events-none absolute -right-16 top-0 z-0 hidden h-[22rem] w-auto -scale-x-100 md:block"
+        className="pointer-events-none absolute -left-20 top-0 z-0 hidden h-[24rem] w-auto opacity-60 md:block"
+      />
+      <img
+        src={plantSprig}
+        alt=""
+        aria-hidden
+        loading="lazy"
+        className="pointer-events-none absolute -right-20 top-0 z-0 hidden h-[24rem] w-auto -scale-x-100 opacity-60 md:block"
       />
       <div className="relative z-10">
-        <BrandMark className="mx-auto h-14 w-12 text-forest-deep" />
-        <h2 className="mt-6 font-display text-4xl text-forest-deep md:text-5xl">
-          Join the <span className="font-script text-moss">rooted</span> circle.
-        </h2>
-        <p className="mt-4 text-muted-foreground">
-          Receive seasonal rituals, early product drops and a little bit of plant wisdom — straight
-          to your inbox.
-        </p>
-        <form
-          onSubmit={(e) => e.preventDefault()}
-          className="mx-auto mt-8 flex max-w-md items-center gap-2 rounded-full border border-border bg-card p-1.5"
-        >
-          <input
-            type="email"
-            required
-            placeholder="your@email.com"
-            className="flex-1 bg-transparent px-4 py-2 text-sm outline-none placeholder:text-muted-foreground"
-          />
-          <button className="rounded-full bg-forest-deep px-5 py-2 text-xs tracking-[0.2em] text-cream hover:bg-forest">
-            JOIN
-          </button>
-        </form>
+      <BrandMark className="mx-auto h-14 w-12 text-forest-deep" />
+      <h2 className="mt-6 font-display text-4xl text-forest-deep md:text-5xl">
+        Join the <span className="font-script text-moss">rooted</span> circle.
+      </h2>
+      <p className="mt-4 text-muted-foreground">
+        Receive seasonal rituals, early product drops and a little bit of plant wisdom — straight
+        to your inbox.
+      </p>
+      <form
+        onSubmit={(e) => e.preventDefault()}
+        className="mx-auto mt-8 flex max-w-md items-center gap-2 rounded-full border border-border bg-card p-1.5"
+      >
+        <input
+          type="email"
+          required
+          placeholder="your@email.com"
+          className="flex-1 bg-transparent px-4 py-2 text-sm outline-none placeholder:text-muted-foreground"
+        />
+        <button className="rounded-full bg-forest-deep px-5 py-2 text-xs tracking-[0.2em] text-cream hover:bg-forest">
+          JOIN
+        </button>
+      </form>
       </div>
     </section>
   );

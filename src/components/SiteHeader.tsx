@@ -1,8 +1,8 @@
 import { Link } from "@tanstack/react-router";
-import { BrandMark } from "./BrandMark";
 import { useState } from "react";
 import { ShoppingBag, Menu, X } from "lucide-react";
 import navVines from "@/assets/nav-vines.png";
+import logoAsset from "@/assets/pam-logo.png.asset.json";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -36,12 +36,12 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <Link to="/" className="flex items-center gap-3 text-forest-deep">
-          <BrandMark className="h-9 w-7" />
-          <div className="flex flex-col items-center leading-none">
-            <span className="font-display text-xl tracking-[0.32em] text-glow">EARTH &amp; TONIC</span>
-            <span className="mt-1 text-[10px] tracking-[0.4em] text-muted-foreground">EST · 2026</span>
-          </div>
+        <Link to="/" className="flex items-center">
+          <img
+            src={logoAsset.url}
+            alt="Earth & Tonic"
+            className="h-12 w-auto object-contain"
+          />
         </Link>
 
         <nav className="hidden flex-1 items-center justify-end gap-8 text-sm tracking-wide text-forest-deep md:flex">
