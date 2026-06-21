@@ -346,7 +346,7 @@ function Ingredients() {
       <div className="mx-auto max-w-2xl text-center">
         <span className="eyebrow text-moss divider-leaf">Powered by nature</span>
         <h2 className="mt-5 font-display text-5xl text-forest-deep md:text-6xl">
-          Six organic herbs.
+          Organic herbs.
           <br />
           <span className="font-script text-moss">One quiet ritual.</span>
         </h2>
