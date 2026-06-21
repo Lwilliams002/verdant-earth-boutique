@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { ArrowRight } from "lucide-react";
+import { journalPosts } from "@/lib/journal";
 
 export const Route = createFileRoute("/journal")({
   head: () => ({
@@ -12,12 +13,6 @@ export const Route = createFileRoute("/journal")({
   }),
   component: JournalPage,
 });
-
-const posts = [
-  { title: "Returning to the root: an intro to bitter herbs", excerpt: "Why bitter botanicals like dandelion and ginger have been digestion's quiet allies for centuries.", tag: "Herbalism" },
-  { title: "The case against melatonin (and what we use instead)", excerpt: "How traditional nervines like passionflower and skullcap support sleep without dependence.", tag: "Sleep" },
-  { title: "A morning ritual in three drops", excerpt: "A simple, slow practice for grounding your nervous system before the day begins.", tag: "Rituals" },
-];
 
 function JournalPage() {
   return (
@@ -31,14 +26,22 @@ function JournalPage() {
       </section>
       <section className="mx-auto max-w-5xl px-6 py-20">
         <div className="divide-y divide-border border-y border-border">
-          {posts.map((p) => (
-            <Link key={p.title} to="/journal" className="group flex items-center justify-between gap-8 py-10">
+          {journalPosts.map((p) => (
+            <Link
+              key={p.slug}
+              to="/journal/$slug"
+              params={{ slug: p.slug }}
+              className="group flex items-center justify-between gap-8 py-10"
+            >
               <div>
                 <span className="eyebrow text-moss">{p.tag}</span>
                 <h2 className="mt-2 font-display text-3xl text-forest-deep transition-colors group-hover:text-moss">
                   {p.title}
                 </h2>
                 <p className="mt-2 max-w-2xl text-muted-foreground">{p.excerpt}</p>
+                <p className="mt-3 text-xs uppercase tracking-widest text-muted-foreground/70">
+                  {p.date} · {p.readTime}
+                </p>
               </div>
               <ArrowRight className="h-5 w-5 shrink-0 text-forest-deep transition-transform group-hover:translate-x-1" />
             </Link>
