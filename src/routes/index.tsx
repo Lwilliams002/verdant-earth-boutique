@@ -10,7 +10,7 @@ import sideVine from "@/assets/plants/side-vine.png";
 import navVines from "@/assets/nav-vines.png";
 import sectionLeaves from "@/assets/section-leaves.png";
 import collectionHerbs from "@/assets/collection-herbs.png";
-import plantSprigAsset from "@/assets/plant-sprig.jpeg.asset.json";
+import plantSprigAsset from "@/assets/plant-sprig.png.asset.json";
 import plantPatternAsset from "@/assets/plant-pattern.jpeg.asset.json";
 const plantSprig = plantSprigAsset.url;
 const plantPattern = plantPatternAsset.url;
