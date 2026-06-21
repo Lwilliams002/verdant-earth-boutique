@@ -40,7 +40,7 @@ export function SiteHeader() {
           <img
             src={logoAsset.url}
             alt="Earth & Tonic"
-            className="h-12 w-auto object-contain"
+            className="h-20 w-auto object-contain md:h-24"
           />
         </Link>
 
