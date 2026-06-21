@@ -6,7 +6,8 @@ import { BrandMark } from "@/components/BrandMark";
 import { getProduct, products, type Product } from "@/lib/products";
 import { Minus, Plus, Check, ArrowRight } from "lucide-react";
 import { useState } from "react";
-import botanicalBg from "@/assets/botanical-bg.jpg";
+import botanicalBgAsset from "@/assets/botanical-bg.jpg.asset.json";
+const botanicalBg = botanicalBgAsset.url;
 
 export const Route = createFileRoute("/shop/$slug")({
   head: ({ params }) => {
