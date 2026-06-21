@@ -54,6 +54,9 @@ function ProductPage() {
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const related = products.filter((p) => p.slug !== product.slug).slice(0, 3);
+  const mid = Math.ceil(product.ingredients.length / 2);
+  const leftIngredients = product.ingredients.slice(0, mid);
+  const rightIngredients = product.ingredients.slice(mid);
 
   return (
     <div className="min-h-screen bg-background">
