@@ -11,7 +11,7 @@ import sectionLeaves from "@/assets/section-leaves.png";
 import collectionHerbs from "@/assets/collection-herbs.png";
 import plantSprig from "@/assets/plant-sprig.png";
 import plantPattern from "@/assets/plant-pattern.jpeg";
-import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake } from "lucide-react";
+import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake, Flower, TreePine, Sun, HandHeart } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -309,14 +309,34 @@ function Story() {
 }
 
 function Ingredients() {
-  const herbs = [
-    { name: "Ginger Root", note: "Soothes the stomach" },
-    { name: "Chamomile", note: "Calms the mind" },
-    { name: "Lavender", note: "Promotes rest" },
-    { name: "Lemon Balm", note: "Eases tension" },
-    { name: "Fennel Seed", note: "Reduces bloating" },
-    { name: "Dandelion Root", note: "Traditional aid" },
+  const categories = [
+    {
+      icon: TreePine,
+      title: "Roots & Barks",
+      desc: "The backbone of every tonic. Ginger, dandelion and burdock roots are slowly dried to preserve their warming, grounding properties.",
+      examples: ["Ginger Root", "Dandelion", "Burdock", "Turmeric"],
+    },
+    {
+      icon: Flower,
+      title: "Flowers & Leaves",
+      desc: "Gentle powerhouses for calm and clarity. Chamomile, lavender and lemon balm are hand-harvested at peak bloom for full aromatic potency.",
+      examples: ["Chamomile", "Lavender", "Lemon Balm", "Hibiscus"],
+    },
+    {
+      icon: Sun,
+      title: "Seeds & Berries",
+      desc: "Concentrated nutrition in tiny packages. Fennel, milk thistle and rosehip deliver time-tested support for digestion and vitality.",
+      examples: ["Fennel Seed", "Milk Thistle", "Rosehip", "Elderberry"],
+    },
   ];
+
+  const standards = [
+    { icon: Leaf, label: "Certified Organic", detail: "Grown without pesticides or synthetic fertilisers" },
+    { icon: Droplet, label: "Whole-Plant Extracts", detail: "We use the full herb, not isolated fragments" },
+    { icon: HandHeart, label: "Small-Batch Crafted", detail: "Made by hand in limited quantities for freshness" },
+    { icon: Sprout, label: "Never Any Seed Oils", detail: "Only clean carrier oils and botanical bases" },
+  ];
+
   return (
     <section className="relative mx-auto max-w-7xl px-6 py-28 lg:px-10">
       <div
@@ -341,24 +361,75 @@ function Ingredients() {
         loading="lazy"
         className="pointer-events-none absolute -right-8 bottom-16 z-0 hidden h-[28rem] w-auto -scale-x-100 opacity-50 md:block"
       />
-      <div className="mx-auto max-w-2xl text-center">
+
+      {/* Header */}
+      <div className="relative z-10 mx-auto max-w-2xl text-center">
         <span className="eyebrow text-moss divider-leaf">Powered by nature</span>
         <h2 className="mt-5 font-display text-5xl text-forest-deep md:text-6xl">
-          Organic herbs.
+          What goes in
           <br />
-          <span className="font-script text-moss">One quiet ritual.</span>
+          <span className="font-script text-moss">matters.</span>
         </h2>
-        <p className="mt-6 text-foreground/70">
-          Every formula begins with whole-plant ingredients chosen for what they do — and how
-          gently they do it.
+        <p className="mt-6 leading-relaxed text-foreground/70">
+          Every Earth &amp; Tonic formula begins with whole-plant ingredients chosen for what they do
+          — and how gently they do it. No isolates, no synthetics, no shortcuts. Just the full,
+          honest power of herbs that have been trusted for generations.
         </p>
       </div>
-      <div className="mt-16 grid gap-px overflow-hidden rounded-sm bg-border sm:grid-cols-2 lg:grid-cols-3">
-        {herbs.map((h) => (
-          <div key={h.name} className="bg-background p-8">
-            <BrandMark className="h-10 w-8 text-moss" />
-            <h3 className="mt-4 font-display text-2xl text-forest-deep">{h.name}</h3>
-            <p className="mt-1 text-sm text-muted-foreground">{h.note}</p>
+
+      {/* Category Cards */}
+      <div className="relative z-10 mt-20 grid gap-6 md:grid-cols-3">
+        {categories.map(({ icon: Icon, title, desc, examples }) => (
+          <div
+            key={title}
+            className="group flex flex-col rounded-sm border border-border bg-card p-8 transition-shadow hover:shadow-lg"
+          >
+            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-forest/20 text-forest-deep transition-colors group-hover:bg-forest-deep group-hover:text-cream">
+              <Icon className="h-5 w-5" />
+            </div>
+            <h3 className="mt-6 font-display text-2xl text-forest-deep">{title}</h3>
+            <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{desc}</p>
+            <div className="mt-6 flex flex-wrap gap-2">
+              {examples.map((e) => (
+                <span
+                  key={e}
+                  className="rounded-full border border-border px-3 py-1 text-xs tracking-wide text-foreground/80"
+                >
+                  {e}
+                </span>
+              ))}
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Sourcing Story */}
+      <div className="relative z-10 mx-auto mt-20 max-w-3xl text-center">
+        <div className="inline-flex items-center justify-center gap-3">
+          <span className="h-px w-8 bg-forest/20" />
+          <BrandMark className="h-8 w-6 text-moss" />
+          <span className="h-px w-8 bg-forest/20" />
+        </div>
+        <h3 className="mt-5 font-display text-3xl text-forest-deep md:text-4xl">
+          From soil to <span className="font-script text-moss">bottle.</span>
+        </h3>
+        <p className="mt-4 leading-relaxed text-foreground/70">
+          We work with small organic farms that tend their herbs with the same patience we bring to
+          our kitchen. Roots are dug by hand. Flowers are picked at dawn when their oils are richest.
+          Every ingredient travels a short, traceable path from field to formulation, handled with
+          care at every step.
+        </p>
+      </div>
+
+      {/* Standards Row */}
+      <div className="relative z-10 mx-auto mt-16 grid max-w-4xl gap-8 sm:grid-cols-2 lg:grid-cols-4">
+        {standards.map(({ icon: Icon, label, detail }) => (
+          <div key={label} className="flex flex-col items-center text-center">
+            <div className="flex h-11 w-11 items-center justify-center rounded-full border border-forest/15 text-forest-deep">
+              <Icon className="h-4 w-4" />
+            </div>
+            <p className="mt-3 text-sm font-medium tracking-wide text-forest-deep">{label}</p>
+            <p className="mt-1 text-xs leading-relaxed text-muted-foreground">{detail}</p>
           </div>
         ))}
       </div>
