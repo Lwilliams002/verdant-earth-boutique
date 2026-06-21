@@ -68,7 +68,7 @@ function JournalPostPage() {
           {post.author} · {post.date} · {post.readTime}
         </p>
         <div className="mt-12 space-y-6 text-lg leading-relaxed text-forest-deep/80">
-          {post.content.map((paragraph, i) => (
+          {post.content.map((paragraph: string, i: number) => (
             <p key={i}>{paragraph}</p>
           ))}
         </div>
