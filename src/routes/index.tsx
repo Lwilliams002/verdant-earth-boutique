@@ -11,7 +11,7 @@ import sectionLeaves from "@/assets/section-leaves.png";
 import collectionHerbs from "@/assets/collection-herbs.png";
 import plantSprig from "@/assets/plant-sprig.png";
 import plantPattern from "@/assets/plant-pattern.jpeg";
-import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake } from "lucide-react";
+import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake, Flower, TreePine, Sun, HandHeart } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
