@@ -103,6 +103,73 @@ function AboutPage() {
         </div>
       </section>
 
+      {/* Timeline */}
+      <section className="bg-background py-24">
+        <div className="mx-auto max-w-4xl px-6">
+          <div className="text-center">
+            <span className="eyebrow inline-block text-moss">— The journey</span>
+            <h2 className="mt-4 font-display text-4xl text-forest-deep md:text-5xl">
+              From kitchen table to today
+            </h2>
+          </div>
+
+          <div className="relative mt-16">
+            {/* vertical line */}
+            <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-forest-deep/20" />
+
+            {[
+              {
+                year: "2016",
+                title: "The first batch",
+                desc: "Small remedies made for family and friends, inspired by my grandmother’s kitchen tradition.",
+              },
+              {
+                year: "2018",
+                title: "Earth & Tonic is born",
+                desc: "A quiet launch from a home studio, built on honesty, whole plants, and patience.",
+              },
+              {
+                year: "2020",
+                title: "Farm partnerships",
+                desc: "Began working directly with small organic herb farms we still source from today.",
+              },
+              {
+                year: "2023",
+                title: "Expanded offerings",
+                desc: "Added botanical skincare and seasonal collections, always small-batch and seed-oil free.",
+              },
+              {
+                year: "Today",
+                title: "A growing community",
+                desc: "Shipping nationwide to customers who believe wellness should feel as good as it works.",
+              },
+            ].map((m, i) => {
+              const isLeft = i % 2 === 0;
+              return (
+                <div key={m.year} className="relative mb-12 last:mb-0">
+                  <div className="flex items-center gap-6 md:gap-0">
+                    {/* content */}
+                    <div className={`md:w-1/2 ${isLeft ? "md:pr-12 md:text-right" : "md:order-3 md:pl-12 md:text-left"}`}>
+                      <span className="font-script text-3xl text-moss">{m.year}</span>
+                      <h3 className="mt-1 font-display text-xl text-forest-deep">{m.title}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-forest-deep/70">{m.desc}</p>
+                    </div>
+
+                    {/* node */}
+                    <div className="relative z-10 flex w-8 shrink-0 justify-center md:order-2 md:w-auto">
+                      <div className="h-3 w-3 rounded-full border-2 border-forest-deep bg-background" />
+                    </div>
+
+                    {/* spacer for alternating layout */}
+                    <div className={`hidden md:block md:w-1/2 ${isLeft ? "md:order-3" : "md:order-1"}`} />
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
       {/* Process */}
       <section className="bg-forest-deep py-24 text-cream">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-3">
