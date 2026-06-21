@@ -54,6 +54,9 @@ function ProductPage() {
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
   const related = products.filter((p) => p.slug !== product.slug).slice(0, 3);
+  const mid = Math.ceil(product.ingredients.length / 2);
+  const leftIngredients = product.ingredients.slice(0, mid);
+  const rightIngredients = product.ingredients.slice(mid);
 
   return (
     <div className="min-h-screen bg-background">
@@ -66,44 +69,86 @@ function ProductPage() {
         />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/70 to-background" />
 
-        <div className="mx-auto grid max-w-7xl gap-12 px-6 py-16 lg:grid-cols-[1.05fr_1fr] lg:px-10 lg:py-24">
-          <div className="relative flex items-center justify-center">
-            <div className="absolute aspect-square w-[80%] rounded-full border border-forest/15" />
-            <FloatingBottle
-              src={product.image}
-              alt={product.name}
-              priority
-              className="relative z-10 h-[520px] w-[380px] sm:h-[620px] sm:w-[440px]"
-            />
-          </div>
-
-          <div className="flex flex-col justify-center">
+        <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
+          {/* Title row */}
+          <div className="text-center">
             <span className="eyebrow text-moss">{product.category}</span>
-            <h1 className="mt-4 font-display text-6xl leading-none text-forest-deep md:text-7xl">
+            <h1 className="mt-3 font-display text-6xl leading-none text-forest-deep md:text-7xl">
               {product.name}
             </h1>
-            <p className="mt-3 font-script text-3xl text-moss">{product.tagline}</p>
+            <p className="mt-2 font-script text-3xl text-moss">{product.tagline}</p>
+          </div>
 
-            <p className="mt-8 max-w-md text-foreground/75">{product.short}</p>
+          {/* Loadout: ingredients | product | ingredients */}
+          <div className="mt-14 grid items-center gap-8 lg:grid-cols-[1fr_minmax(320px,1.1fr)_1fr]">
+            {/* Left ingredients */}
+            <ul className="order-2 space-y-6 lg:order-1">
+              {leftIngredients.map((i) => (
+                <li
+                  key={i.name}
+                  className="group flex items-start gap-4 lg:flex-row-reverse lg:text-right"
+                >
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-forest/20 bg-card transition-colors group-hover:border-moss">
+                    <BrandMark className="h-7 w-6 text-moss" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-display text-xl text-forest-deep">{i.name}</h3>
+                    <p className="mt-1 text-sm text-foreground/70">{i.note}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
 
-            <div className="mt-8 flex flex-wrap gap-2">
+            {/* Center product */}
+            <div className="relative order-1 flex items-center justify-center lg:order-2">
+              <div className="absolute aspect-square w-[88%] rounded-full border border-forest/15" />
+              <div className="absolute aspect-square w-[70%] rounded-full border border-forest/10" />
+              <FloatingBottle
+                src={product.image}
+                alt={product.name}
+                priority
+                className="relative z-10 h-[440px] w-[320px] sm:h-[560px] sm:w-[400px]"
+              />
+            </div>
+
+            {/* Right ingredients */}
+            <ul className="order-3 space-y-6">
+              {rightIngredients.map((i) => (
+                <li key={i.name} className="group flex items-start gap-4">
+                  <div className="flex h-14 w-14 shrink-0 items-center justify-center rounded-full border border-forest/20 bg-card transition-colors group-hover:border-moss">
+                    <BrandMark className="h-7 w-6 text-moss" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <h3 className="font-display text-xl text-forest-deep">{i.name}</h3>
+                    <p className="mt-1 text-sm text-foreground/70">{i.note}</p>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Buy panel */}
+          <div className="mx-auto mt-16 max-w-2xl rounded-sm border border-border bg-card/60 p-8 backdrop-blur">
+            <p className="text-center text-foreground/75">{product.short}</p>
+
+            <div className="mt-6 flex flex-wrap justify-center gap-2">
               {product.badges.map((b) => (
                 <span
                   key={b}
-                  className="rounded-full border border-border bg-card px-3 py-1 text-xs tracking-wider text-foreground/70"
+                  className="rounded-full border border-border bg-background px-3 py-1 text-xs tracking-wider text-foreground/70"
                 >
                   {b}
                 </span>
               ))}
             </div>
 
-            <div className="mt-10 flex items-center gap-6">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
               <span className="font-display text-3xl text-forest-deep">${product.price}</span>
               <span className="text-xs tracking-[0.2em] text-muted-foreground">{product.size}</span>
             </div>
 
             <div className="mt-6 flex items-stretch gap-3">
-              <div className="flex items-center rounded-full border border-border bg-card">
+              <div className="flex items-center rounded-full border border-border bg-background">
                 <button
                   aria-label="Decrease"
                   className="px-4 py-3 text-foreground/70 hover:text-forest-deep"
@@ -134,7 +179,7 @@ function ProductPage() {
                 )}
               </button>
             </div>
-            <p className="mt-3 text-xs text-muted-foreground">
+            <p className="mt-3 text-center text-xs text-muted-foreground">
               Free shipping on orders over $60. Ships in 1–2 business days.
             </p>
           </div>
