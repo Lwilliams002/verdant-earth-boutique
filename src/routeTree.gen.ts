@@ -10,21 +10,16 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
-import { Route as JournalRouteImport } from './routes/journal'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ShopIndexRouteImport } from './routes/shop.index'
+import { Route as JournalIndexRouteImport } from './routes/journal.index'
 import { Route as ShopSlugRouteImport } from './routes/shop.$slug'
 import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
   path: '/sitemap.xml',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const JournalRoute = JournalRouteImport.update({
-  id: '/journal',
-  path: '/journal',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -42,43 +37,48 @@ const ShopIndexRoute = ShopIndexRouteImport.update({
   path: '/shop/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JournalIndexRoute = JournalIndexRouteImport.update({
+  id: '/journal/',
+  path: '/journal/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ShopSlugRoute = ShopSlugRouteImport.update({
   id: '/shop/$slug',
   path: '/shop/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const JournalSlugRoute = JournalSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => JournalRoute,
+  id: '/journal/$slug',
+  path: '/journal/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/journal': typeof JournalRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
+  '/journal/': typeof JournalIndexRoute
   '/shop/': typeof ShopIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/journal': typeof JournalRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
+  '/journal': typeof JournalIndexRoute
   '/shop': typeof ShopIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/journal': typeof JournalRouteWithChildren
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
+  '/journal/': typeof JournalIndexRoute
   '/shop/': typeof ShopIndexRoute
 }
 export interface FileRouteTypes {
@@ -86,37 +86,38 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
-    | '/journal'
     | '/sitemap.xml'
     | '/journal/$slug'
     | '/shop/$slug'
+    | '/journal/'
     | '/shop/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/journal'
     | '/sitemap.xml'
     | '/journal/$slug'
     | '/shop/$slug'
+    | '/journal'
     | '/shop'
   id:
     | '__root__'
     | '/'
     | '/about'
-    | '/journal'
     | '/sitemap.xml'
     | '/journal/$slug'
     | '/shop/$slug'
+    | '/journal/'
     | '/shop/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  JournalRoute: typeof JournalRouteWithChildren
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
+  JournalSlugRoute: typeof JournalSlugRoute
   ShopSlugRoute: typeof ShopSlugRoute
+  JournalIndexRoute: typeof JournalIndexRoute
   ShopIndexRoute: typeof ShopIndexRoute
 }
 
@@ -127,13 +128,6 @@ declare module '@tanstack/react-router' {
       path: '/sitemap.xml'
       fullPath: '/sitemap.xml'
       preLoaderRoute: typeof SitemapDotxmlRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/journal': {
-      id: '/journal'
-      path: '/journal'
-      fullPath: '/journal'
-      preLoaderRoute: typeof JournalRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -157,6 +151,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/journal/': {
+      id: '/journal/'
+      path: '/journal'
+      fullPath: '/journal/'
+      preLoaderRoute: typeof JournalIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/shop/$slug': {
       id: '/shop/$slug'
       path: '/shop/$slug'
@@ -166,31 +167,21 @@ declare module '@tanstack/react-router' {
     }
     '/journal/$slug': {
       id: '/journal/$slug'
-      path: '/$slug'
+      path: '/journal/$slug'
       fullPath: '/journal/$slug'
       preLoaderRoute: typeof JournalSlugRouteImport
-      parentRoute: typeof JournalRoute
+      parentRoute: typeof rootRouteImport
     }
   }
 }
 
-interface JournalRouteChildren {
-  JournalSlugRoute: typeof JournalSlugRoute
-}
-
-const JournalRouteChildren: JournalRouteChildren = {
-  JournalSlugRoute: JournalSlugRoute,
-}
-
-const JournalRouteWithChildren =
-  JournalRoute._addFileChildren(JournalRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  JournalRoute: JournalRouteWithChildren,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
+  JournalSlugRoute: JournalSlugRoute,
   ShopSlugRoute: ShopSlugRoute,
+  JournalIndexRoute: JournalIndexRoute,
   ShopIndexRoute: ShopIndexRoute,
 }
 export const routeTree = rootRouteImport
