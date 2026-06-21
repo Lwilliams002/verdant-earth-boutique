@@ -2,7 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ShoppingBag, Menu, X } from "lucide-react";
 import navVines from "@/assets/nav-vines.png";
-import logoAsset from "@/assets/pam-logo.png.asset.json";
+import logoAsset from "@/assets/pamela-logo.png.asset.json";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -40,7 +40,7 @@ export function SiteHeader() {
           <img
             src={logoAsset.url}
             alt="Earth & Tonic"
-            className="h-12 w-auto object-contain"
+            className="h-20 w-auto object-contain md:h-24"
           />
         </Link>
 
