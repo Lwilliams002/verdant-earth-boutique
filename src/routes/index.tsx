@@ -278,21 +278,18 @@ function Story() {
           Why I started
         </h2>
 
-        <div className="mx-auto mt-14 max-w-2xl space-y-6 text-left text-base leading-[1.85] text-cream/85">
+        <div className="mx-auto mt-14 max-w-2xl space-y-6 text-center text-base leading-[1.85] text-cream/85">
           <p>
-            My journey began in my grandmother's kitchen, where the windowsill was always crowded with mason jars of dried herbs, roots, and flowers she had gathered from her garden. Long before wellness was an industry, she understood what plants could do. Chamomile for calm, ginger for comfort, lavender for rest — she never called it holistic or artisanal. She just called it living.
+            My journey began in my grandmother's kitchen, where mason jars of dried herbs lined the windowsill — chamomile, ginger, lavender — gathered from her garden and used with quiet confidence. She never called it holistic. She just called it living.
           </p>
           <p>
-            Years later, standing in the skincare aisle of a big-box store, I found myself reading ingredient lists I couldn't pronounce and reaching for products wrapped in promises of "natural" that felt anything but. I was tired of compromises. Tired of choosing between effective and honest. I kept thinking back to those jars on the windowsill and wondering — what happened to simplicity?
+            Years later, I stood in aisle after aisle of products wrapped in promises of "natural" that felt anything but. I was tired of compromises and ingredients I couldn't pronounce. I kept thinking about those jars, and I started making my own remedies in that same spirit.
           </p>
           <p>
-            I started making my own remedies in that same spirit. Small batches at first, just for family and friends, using organic herbs sourced from farms I could name and traditions I could trace. What began as a personal pursuit slowly became something bigger — a quiet rebellion against overcomplicated routines and synthetic shortcuts. Earth &amp; Tonic grew from that desire: to create products as clean and purposeful as the ones my grandmother made, but crafted with the care and consistency of a modern maker.
+            What began as small batches for family and friends slowly became something bigger. Earth &amp; Tonic grew from a simple desire: to create products as honest and purposeful as the ones my grandmother made, using organic herbs from farms I trust, handled with intention, and free from seed oils, synthetic fragrances, or fillers.
           </p>
           <p>
-            Every formula we offer begins with whole-plant ingredients chosen not for trends, but for what they have done for generations. We work with small organic farms, hand-process in limited batches, and never use seed oils, synthetic fragrances, or fillers. We don't chase complexity — we believe a few powerful ingredients, handled with intention, are more than enough.
-          </p>
-          <p>
-            This isn't a brand built on buzzwords. It is a return to what we have always known: that nature, handled with respect, holds everything we need.
+            This isn't a brand built on buzzwords. It is a return to what we have always known — that nature, handled with respect, holds everything we need.
           </p>
         </div>
 
