@@ -278,31 +278,35 @@ function Story() {
           Why I started
         </h2>
 
-        <div className="mx-auto mt-12 max-w-2xl space-y-6 text-left text-base leading-relaxed text-cream/85">
+        <div className="mx-auto mt-14 max-w-2xl space-y-6 text-left text-base leading-[1.85] text-cream/85">
           <p>
-            For years, I searched for wellness products made with ingredients I could trust — products that were simple and honest.
+            My journey began in my grandmother's kitchen, where the windowsill was always crowded with mason jars of dried herbs, roots, and flowers she had gathered from her garden. Long before wellness was an industry, she understood what plants could do. Chamomile for calm, ginger for comfort, lavender for rest — she never called it holistic or artisanal. She just called it living.
           </p>
           <p>
-            I realized that wellness doesn't come from complicated routines or endless ingredient lists. It comes from nature. From plants.
+            Years later, standing in the skincare aisle of a big-box store, I found myself reading ingredient lists I couldn't pronounce and reaching for products wrapped in promises of "natural" that felt anything but. I was tired of compromises. Tired of choosing between effective and honest. I kept thinking back to those jars on the windowsill and wondering — what happened to simplicity?
           </p>
           <p>
-            Earth &amp; Tonic was born from a passion for natural living and a desire to create products that support everyday wellness.
+            I started making my own remedies in that same spirit. Small batches at first, just for family and friends, using organic herbs sourced from farms I could name and traditions I could trace. What began as a personal pursuit slowly became something bigger — a quiet rebellion against overcomplicated routines and synthetic shortcuts. Earth &amp; Tonic grew from that desire: to create products as clean and purposeful as the ones my grandmother made, but crafted with the care and consistency of a modern maker.
           </p>
           <p>
-            Every product is made with carefully selected ingredients inspired by tradition and crafted with purpose. No seed oils.
+            Every formula we offer begins with whole-plant ingredients chosen not for trends, but for what they have done for generations. We work with small organic farms, hand-process in limited batches, and never use seed oils, synthetic fragrances, or fillers. We don't chase complexity — we believe a few powerful ingredients, handled with intention, are more than enough.
+          </p>
+          <p>
+            This isn't a brand built on buzzwords. It is a return to what we have always known: that nature, handled with respect, holds everything we need.
           </p>
         </div>
 
-        <div className="mx-auto mt-12 max-w-xl border border-cream/30 px-8 py-6">
+        <div className="mx-auto mt-14 max-w-xl border border-cream/30 px-8 py-8">
           <p className="font-display text-sm tracking-[0.2em]">THIS ISN'T JUST A BUSINESS.</p>
-          <p className="mt-2 text-cream/85">A return to simple ingredients.</p>
-          <p className="text-cream/85">A return to nature.</p>
+          <p className="mt-3 text-cream/85 leading-relaxed">A return to simple ingredients, chosen with care.</p>
+          <p className="text-cream/85 leading-relaxed">A return to tradition, rooted in trust.</p>
+          <p className="text-cream/85 leading-relaxed">A return to nature — where wellness began.</p>
         </div>
 
-        <div className="mt-12">
+        <div className="mt-14">
           <p className="font-script text-2xl text-sage">Thank you for being part of this journey.</p>
-          <p className="mt-4 font-script text-xl text-sage">With gratitude,</p>
-          <p className="mt-1 font-display text-lg tracking-[0.15em]">PAMELA ESPINOZA</p>
+          <p className="mt-5 font-script text-xl text-sage">With gratitude,</p>
+          <p className="mt-2 font-display text-lg tracking-[0.15em]">PAMELA ESPINOZA</p>
           <p className="mt-1 text-sm tracking-[0.15em] text-cream/60">FOUNDER, EARTH &amp; TONIC</p>
         </div>
       </div>
