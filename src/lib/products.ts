@@ -1,7 +1,11 @@
-import gutTonic from "@/assets/gut-tonic.png";
-import sleepDrops from "@/assets/sleep-drops.png";
-import hibiscusSoap from "@/assets/hibiscus-soap.png";
-import milkHoney from "@/assets/milk-honey.png";
+import gutTonicAsset from "@/assets/gut-tonic.png.asset.json";
+import sleepDropsAsset from "@/assets/sleep-drops.png.asset.json";
+import hibiscusSoapAsset from "@/assets/hibiscus-soap.png.asset.json";
+import milkHoneyAsset from "@/assets/milk-honey.png.asset.json";
+const gutTonic = gutTonicAsset.url;
+const sleepDrops = sleepDropsAsset.url;
+const hibiscusSoap = hibiscusSoapAsset.url;
+const milkHoney = milkHoneyAsset.url;
 
 export type Product = {
   slug: string;
