@@ -1,8 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { BrandMark } from "./BrandMark";
 import { Instagram } from "lucide-react";
-import navVinesAsset from "@/assets/nav-vines.png.asset.json";
-const navVines = navVinesAsset.url;
+import navVines from "@/assets/nav-vines.png";
 
 export function SiteFooter() {
   return (

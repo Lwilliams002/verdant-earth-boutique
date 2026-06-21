@@ -2,8 +2,7 @@ import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { BrandMark } from "@/components/BrandMark";
-import botanicalBgAsset from "@/assets/botanical-bg.jpg.asset.json";
-const botanicalBg = botanicalBgAsset.url;
+import botanicalBg from "@/assets/botanical-bg.jpg";
 
 export const Route = createFileRoute("/about")({
   head: () => ({

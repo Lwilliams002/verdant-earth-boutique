@@ -1,9 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ShoppingBag, Menu, X } from "lucide-react";
-import navVinesAsset from "@/assets/nav-vines.png.asset.json";
-const navVines = navVinesAsset.url;
-import logoAsset from "@/assets/pamela-logo.png.asset.json";
+import navVines from "@/assets/nav-vines.png";
+import logo from "@/assets/pamela-logo.png";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -39,7 +38,7 @@ export function SiteHeader() {
 
         <Link to="/" className="flex items-center">
           <img
-            src={logoAsset.url}
+            src={logo}
             alt="Earth & Tonic"
             className="h-20 w-auto object-contain md:h-24"
           />
