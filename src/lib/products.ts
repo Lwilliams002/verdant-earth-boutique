@@ -13,7 +13,7 @@ export type Product = {
   short: string;
   long: string;
   benefits: string[];
-  ingredients: { name: string; note: string }[];
+  ingredients: { name: string; note: string; desc: string }[];
   size: string;
   badges: string[];
 };
@@ -35,12 +35,12 @@ export const products: Product[] = [
       "Supports everyday digestive wellness",
     ],
     ingredients: [
-      { name: "Ginger Root", note: "Soothes the stomach" },
-      { name: "Fennel Seed", note: "Reduces bloating" },
-      { name: "Peppermint Leaf", note: "Calms discomfort" },
-      { name: "Chamomile Flower", note: "Gentle & calming" },
-      { name: "Lemon Balm", note: "Eases tension" },
-      { name: "Dandelion Root", note: "Traditional digestive aid" },
+      { name: "Ginger Root", note: "Soothes the stomach", desc: "A warming root used for centuries to settle the stomach, stimulate digestion and ease queasiness after meals." },
+      { name: "Fennel Seed", note: "Reduces bloating", desc: "Sweet, aromatic seeds that relax the digestive tract and help release trapped gas and uncomfortable bloating." },
+      { name: "Peppermint Leaf", note: "Calms discomfort", desc: "Cooling menthol-rich leaves that soothe digestive spasms and bring quick, refreshing relief to an unsettled belly." },
+      { name: "Chamomile Flower", note: "Gentle & calming", desc: "Delicate blossoms that calm both the gut and the mind, easing tension that often shows up as digestive upset." },
+      { name: "Lemon Balm", note: "Eases tension", desc: "A bright, lemony herb from the mint family that gently relieves stress-related digestive discomfort." },
+      { name: "Dandelion Root", note: "Traditional digestive aid", desc: "A time-honored bitter root that encourages healthy bile flow and supports the body's natural digestion and detox pathways." },
     ],
     size: "1 FL OZ · 30 ML",
     badges: ["Plant Powered", "Clean Ingredients", "No Seed Oils", "Cruelty Free"],
@@ -61,12 +61,12 @@ export const products: Product[] = [
       "Wake up rested & balanced",
     ],
     ingredients: [
-      { name: "Chamomile", note: "Soothes & supports relaxation" },
-      { name: "Lemon Balm", note: "Calms the mind" },
-      { name: "Passionflower", note: "Reduces restlessness" },
-      { name: "Lavender", note: "Promotes calm" },
-      { name: "Oat Straw", note: "Nourishes the nervous system" },
-      { name: "Skullcap", note: "Eases occasional stress" },
+      { name: "Chamomile", note: "Soothes & supports relaxation", desc: "The classic bedtime flower, prized for its gentle sedative qualities that help the body wind down naturally." },
+      { name: "Lemon Balm", note: "Calms the mind", desc: "A soothing herb that quiets racing thoughts and eases the mental chatter that keeps you up at night." },
+      { name: "Passionflower", note: "Reduces restlessness", desc: "A beautiful climbing vine traditionally used to still restlessness and support deeper, more continuous sleep." },
+      { name: "Lavender", note: "Promotes calm", desc: "Fragrant purple blooms known to lower tension and signal to the nervous system that it's safe to rest." },
+      { name: "Oat Straw", note: "Nourishes the nervous system", desc: "The green tops of the oat plant, rich in minerals that feed and steady an overworked nervous system." },
+      { name: "Skullcap", note: "Eases occasional stress", desc: "A traditional nervine herb that melts away the day's accumulated stress and supports a calm transition to sleep." },
     ],
     size: "2 FL OZ · 60 ML",
     badges: ["No Melatonin", "Non-Habit Forming", "Plant Based", "Small Batch"],
@@ -87,11 +87,11 @@ export const products: Product[] = [
       "Made with real botanicals",
     ],
     ingredients: [
-      { name: "Hibiscus Flower", note: "Antioxidant glow" },
-      { name: "Pink Clay", note: "Draws out impurities" },
-      { name: "Coconut Oil", note: "Creamy nourishing lather" },
-      { name: "Olive Oil", note: "Vitamins to protect skin" },
-      { name: "Shea Butter", note: "Moisturizes & softens" },
+      { name: "Hibiscus Flower", note: "Antioxidant glow", desc: "Known as the 'botox plant,' hibiscus is packed with natural AHAs and antioxidants that gently exfoliate and brighten." },
+      { name: "Pink Clay", note: "Draws out impurities", desc: "A mild mineral clay that lifts away dirt and excess oil without stripping, leaving skin balanced and refreshed." },
+      { name: "Coconut Oil", note: "Creamy nourishing lather", desc: "Creates the bar's rich, cushiony lather while delivering fatty acids that leave skin soft and supple." },
+      { name: "Olive Oil", note: "Vitamins to protect skin", desc: "A skincare staple since antiquity, full of vitamins A and E that protect and condition delicate skin." },
+      { name: "Shea Butter", note: "Moisturizes & softens", desc: "A deeply emollient butter that seals in moisture, so skin feels nourished long after you rinse." },
     ],
     size: "4.5 OZ BAR",
     badges: ["Real Botanicals", "Handmade", "Plant Based", "All Skin Types"],
@@ -112,12 +112,12 @@ export const products: Product[] = [
       "Leaves skin silky smooth",
     ],
     ingredients: [
-      { name: "Organic Shea Butter", note: "Rich, healing" },
-      { name: "Organic Mango Butter", note: "Softens & smooths" },
-      { name: "Oat Milk Extract", note: "Calms the skin" },
-      { name: "Organic Honey Extract", note: "Natural humectant" },
-      { name: "Organic Jojoba Oil", note: "Balances moisture" },
-      { name: "Vitamin E Oil", note: "Antioxidant care" },
+      { name: "Organic Shea Butter", note: "Rich, healing", desc: "Hand-harvested from the shea tree, this rich butter deeply repairs dryness and restores the skin's natural barrier." },
+      { name: "Organic Mango Butter", note: "Softens & smooths", desc: "A silky, fast-absorbing butter pressed from mango seeds that smooths rough patches without any greasy feel." },
+      { name: "Oat Milk Extract", note: "Calms the skin", desc: "Gentle oat-derived soothers that calm itchiness and irritation, ideal for even the most sensitive skin." },
+      { name: "Organic Honey Extract", note: "Natural humectant", desc: "Nature's moisture magnet, drawing hydration into the skin and holding it there for lasting softness." },
+      { name: "Organic Jojoba Oil", note: "Balances moisture", desc: "A liquid wax nearly identical to skin's own sebum, absorbing effortlessly to balance and condition." },
+      { name: "Vitamin E Oil", note: "Antioxidant care", desc: "A protective antioxidant that defends skin from daily environmental stress while keeping the formula naturally fresh." },
     ],
     size: "NET WT. 8 OZ · 227 G",
     badges: ["Organic", "Cruelty Free", "Small Batch", "Made With Love"],

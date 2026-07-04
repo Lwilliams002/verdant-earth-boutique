@@ -61,14 +61,14 @@ function AboutPage() {
           className="pointer-events-none absolute -right-10 bottom-12 z-[1] h-[26rem] w-auto -scale-x-100 opacity-60 mix-blend-screen md:-right-4 md:h-[34rem]"
         />
         <div className="relative z-10 mx-auto max-w-4xl px-6 py-28 text-center lg:px-10">
-          <span className="eyebrow inline-block text-cream/70">— Our story</span>
+          <span className="eyebrow inline-block text-cream/70">Our story</span>
           <h2 className="mt-4 story-script-heading text-5xl leading-tight md:text-6xl">
             Why I started
           </h2>
 
           <div className="mx-auto mt-14 max-w-2xl space-y-6 text-center text-base leading-[1.85] text-cream/85">
             <p>
-              My journey began in my grandmother's kitchen, where mason jars of dried herbs lined the windowsill — chamomile, ginger, lavender — gathered from her garden and used with quiet confidence. She never called it holistic. She just called it living.
+              My journey began in my grandmother's kitchen, where mason jars of dried herbs lined the windowsill: chamomile, ginger, lavender, gathered from her garden and used with quiet confidence. She never called it holistic. She just called it living.
             </p>
             <p>
               Years later, I stood in aisle after aisle of products wrapped in promises of "natural" that felt anything but. I was tired of compromises and ingredients I couldn't pronounce. I kept thinking about those jars, and I started making my own remedies in that same spirit.
@@ -77,13 +77,13 @@ function AboutPage() {
               What began as small batches for family and friends slowly became something bigger. Earth &amp; Tonic grew from a simple desire: to create products as honest and purposeful as the ones my grandmother made, using organic herbs from farms I trust, handled with intention, and free from seed oils, synthetic fragrances, or fillers.
             </p>
             <p>
-              This isn't a brand built on buzzwords. It is a return to what we have always known — that nature, handled with respect, holds everything we need.
+              This isn't a brand built on buzzwords. It is a return to what we have always known, that nature, handled with respect, holds everything we need.
             </p>
             <p>
               Every formula we craft is rooted in that kitchen-table tradition. We choose whole-plant extracts because isolates miss the symphony. We partner with small organic farms because patience grows better medicine. We make everything by hand in small batches because freshness matters, and because there is something sacred about slowing down.
             </p>
             <p>
-              My grandmother never measured her legacy in jars. She measured it in the quiet trust of the people she cared for. That is the spirit behind every bottle that leaves our studio — not perfection, but presence. Not hype, but honesty.
+              My grandmother never measured her legacy in jars. She measured it in the quiet trust of the people she cared for. That is the spirit behind every bottle that leaves our studio. Not perfection, but presence. Not hype, but honesty.
             </p>
           </div>
 
@@ -91,7 +91,7 @@ function AboutPage() {
             <p className="font-display text-sm tracking-[0.2em]">THIS ISN'T JUST A BUSINESS.</p>
             <p className="mt-3 text-cream/85 leading-relaxed">A return to simple ingredients, chosen with care.</p>
             <p className="text-cream/85 leading-relaxed">A return to tradition, rooted in trust.</p>
-            <p className="text-cream/85 leading-relaxed">A return to nature — where wellness began.</p>
+            <p className="text-cream/85 leading-relaxed">A return to nature, where wellness began.</p>
           </div>
 
           <div className="mt-14">
@@ -115,7 +115,7 @@ function AboutPage() {
 
           <div className="relative mt-16">
             {/* vertical line */}
-            <div className="absolute left-1/2 top-0 h-full w-px -translate-x-1/2 bg-forest-deep/20" />
+            <div className="absolute left-4 top-0 h-full w-px bg-forest-deep/20 md:left-1/2 md:-translate-x-1/2" />
 
             {[
               {
@@ -147,17 +147,21 @@ function AboutPage() {
               const isLeft = i % 2 === 0;
               return (
                 <div key={m.year} className="relative mb-12 last:mb-0">
-                  <div className="flex items-center gap-6 md:gap-0">
+                  <div className="flex items-start md:items-center">
+                    {/* node */}
+                    <div className="relative z-10 flex w-8 shrink-0 justify-center pt-3 md:order-2 md:w-auto md:pt-0">
+                      <div className="h-3 w-3 rounded-full border-2 border-forest-deep bg-background" />
+                    </div>
+
                     {/* content */}
-                    <div className={`md:w-1/2 ${isLeft ? "md:pr-12 md:text-right" : "md:order-3 md:pl-12 md:text-left"}`}>
+                    <div
+                      className={`min-w-0 flex-1 pl-4 text-left md:flex-none md:pl-0 md:w-1/2 ${
+                        isLeft ? "md:order-1 md:pr-12 md:text-right" : "md:order-3 md:pl-12 md:text-left"
+                      }`}
+                    >
                       <span className="font-script text-3xl text-moss">{m.year}</span>
                       <h3 className="mt-1 font-display text-xl text-forest-deep">{m.title}</h3>
                       <p className="mt-2 text-sm leading-relaxed text-forest-deep/70">{m.desc}</p>
-                    </div>
-
-                    {/* node */}
-                    <div className="relative z-10 flex w-8 shrink-0 justify-center md:order-2 md:w-auto">
-                      <div className="h-3 w-3 rounded-full border-2 border-forest-deep bg-background" />
                     </div>
 
                     {/* spacer for alternating layout */}

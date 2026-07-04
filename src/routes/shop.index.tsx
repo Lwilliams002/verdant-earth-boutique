@@ -47,7 +47,7 @@ function ShopPage() {
           ))}
         </div>
 
-        <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="mt-14 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-6 lg:grid-cols-3 lg:gap-10">
           {list.map((p) => (
             <Link
               key={p.slug}
@@ -66,11 +66,11 @@ function ShopPage() {
                 />
                 <span className="absolute left-4 top-4 eyebrow text-moss">{p.category}</span>
               </div>
-              <div className="mt-5 flex items-baseline justify-between gap-4">
-                <h3 className="font-display text-2xl text-forest-deep">{p.name}</h3>
-                <span className="text-sm text-foreground/70">${p.price}</span>
+              <div className="mt-3 flex items-baseline justify-between gap-2 sm:mt-5 sm:gap-4">
+                <h3 className="font-display text-lg text-forest-deep sm:text-2xl">{p.name}</h3>
+                <span className="text-xs text-foreground/70 sm:text-sm">${p.price}</span>
               </div>
-              <p className="mt-1 text-sm italic text-muted-foreground">{p.tagline}</p>
+              <p className="mt-1 text-xs italic text-muted-foreground sm:text-sm">{p.tagline}</p>
             </Link>
           ))}
         </div>

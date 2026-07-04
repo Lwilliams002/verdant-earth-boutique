@@ -212,7 +212,7 @@ function Collection() {
         </Link>
       </div>
 
-      <div className="mt-14 grid gap-10 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="mt-14 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-6 lg:grid-cols-4 lg:gap-10">
         {products.map((p) => (
           <Link
             key={p.slug}
@@ -232,11 +232,11 @@ function Collection() {
               />
               <span className="absolute left-4 top-4 eyebrow text-moss">{p.category}</span>
             </div>
-            <div className="mt-5 flex items-baseline justify-between gap-4">
-              <h3 className="font-display text-2xl text-forest-deep">{p.name}</h3>
-              <span className="text-sm text-foreground/70">${p.price}</span>
+            <div className="mt-3 flex items-baseline justify-between gap-2 sm:mt-5 sm:gap-4">
+              <h3 className="font-display text-lg text-forest-deep sm:text-2xl">{p.name}</h3>
+              <span className="text-xs text-foreground/70 sm:text-sm">${p.price}</span>
             </div>
-            <p className="mt-1 text-sm italic text-muted-foreground">{p.tagline}</p>
+            <p className="mt-1 text-xs italic text-muted-foreground sm:text-sm">{p.tagline}</p>
           </Link>
         ))}
       </div>
@@ -270,14 +270,14 @@ function Story() {
         className="pointer-events-none absolute -right-10 bottom-12 z-[1] h-[26rem] w-auto -scale-x-100 opacity-60 mix-blend-screen md:-right-4 md:h-[34rem]"
       />
       <div className="relative z-10 mx-auto max-w-4xl px-6 py-28 text-center lg:px-10">
-        <span className="eyebrow inline-block text-cream/70">— Our story</span>
+        <span className="eyebrow inline-block text-cream/70">Our story</span>
         <h2 className="mt-4 story-script-heading text-5xl leading-tight md:text-6xl">
           Why I started
         </h2>
 
         <div className="mx-auto mt-14 max-w-2xl space-y-6 text-center text-base leading-[1.85] text-cream/85">
           <p>
-            My journey began in my grandmother's kitchen, where mason jars of dried herbs lined the windowsill — chamomile, ginger, lavender — gathered from her garden and used with quiet confidence. She never called it holistic. She just called it living.
+            My journey began in my grandmother's kitchen, where mason jars of dried herbs lined the windowsill: chamomile, ginger, lavender, gathered from her garden and used with quiet confidence. She never called it holistic. She just called it living.
           </p>
           <p>
             Years later, I stood in aisle after aisle of products wrapped in promises of "natural" that felt anything but. I was tired of compromises and ingredients I couldn't pronounce. I kept thinking about those jars, and I started making my own remedies in that same spirit.
@@ -286,7 +286,7 @@ function Story() {
             What began as small batches for family and friends slowly became something bigger. Earth &amp; Tonic grew from a simple desire: to create products as honest and purposeful as the ones my grandmother made, using organic herbs from farms I trust, handled with intention, and free from seed oils, synthetic fragrances, or fillers.
           </p>
           <p>
-            This isn't a brand built on buzzwords. It is a return to what we have always known — that nature, handled with respect, holds everything we need.
+            This isn't a brand built on buzzwords. It is a return to what we have always known, that nature, handled with respect, holds everything we need.
           </p>
         </div>
 
@@ -294,7 +294,7 @@ function Story() {
           <p className="font-display text-sm tracking-[0.2em]">THIS ISN'T JUST A BUSINESS.</p>
           <p className="mt-3 text-cream/85 leading-relaxed">A return to simple ingredients, chosen with care.</p>
           <p className="text-cream/85 leading-relaxed">A return to tradition, rooted in trust.</p>
-          <p className="text-cream/85 leading-relaxed">A return to nature — where wellness began.</p>
+          <p className="text-cream/85 leading-relaxed">A return to nature, where wellness began.</p>
         </div>
 
         <div className="mt-14">

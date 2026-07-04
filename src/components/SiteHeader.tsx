@@ -2,7 +2,6 @@ import { Link } from "@tanstack/react-router";
 import { useState } from "react";
 import { ShoppingBag, Menu, X } from "lucide-react";
 import navVines from "@/assets/nav-vines.png";
-import logo from "@/assets/pamela-logo.png";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -36,12 +35,17 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <Link to="/" className="flex items-center">
-          <img
-            src={logo}
-            alt="Earth & Tonic"
-            className="h-20 w-auto object-contain md:h-24"
+        <Link to="/" className="relative flex flex-col items-center text-center leading-none">
+          <span
+            aria-hidden
+            className="absolute -inset-x-6 -inset-y-3 rounded-full bg-cream/80 blur-xl"
           />
+          <span className="text-glow relative font-display text-2xl font-semibold tracking-[0.08em] text-forest-deep md:text-3xl">
+            Earth <span className="font-script font-normal text-moss">&amp;</span> Tonic
+          </span>
+          <span className="text-glow eyebrow relative mt-1 text-[10px] font-semibold text-moss">
+            Rooted in nature
+          </span>
         </Link>
 
         <nav className="hidden flex-1 items-center justify-end gap-8 text-sm tracking-wide text-forest-deep md:flex">
