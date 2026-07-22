@@ -209,13 +209,12 @@ function Pillars() {
         className="section-leaves pointer-events-none absolute -top-10 left-0 right-0 z-0 h-56 w-full object-cover object-top md:h-80"
       />
       <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4 md:gap-x-8">
-        {items.map(({ icon: Icon, title, desc }) => (
+        {items.map(({ icon: Icon, title }) => (
           <div key={title} className="flex flex-col items-center text-center md:items-start md:text-left">
             <div className="flex h-14 w-14 items-center justify-center rounded-full border border-forest/20 text-forest-deep">
               <Icon className="h-5 w-5" />
             </div>
             <h3 className="mt-5 font-display text-xl text-forest-deep">{title}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{desc}</p>
           </div>
         ))}
       </div>
