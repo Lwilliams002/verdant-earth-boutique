@@ -3,10 +3,12 @@ import { persist, createJSONStorage } from "zustand/middleware";
 import {
   type CartItem,
   createShopifyCart,
+  createShopifyBundleCart,
   addLineToShopifyCart,
   updateShopifyCartLine,
   removeLineFromShopifyCart,
   syncShopifyCart,
+  BUNDLE_DISCOUNT_CODE,
 } from "@/lib/shopify";
 
 interface CartStore {
