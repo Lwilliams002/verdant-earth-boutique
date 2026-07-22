@@ -27,6 +27,9 @@ const { default: server } = await import("./node_modules/.nitro/vite/services/ss
 
 let failed = false;
 
+// Ensure the output directory exists before writing any files
+mkdirSync(join(__dirname, ".output/public"), { recursive: true });
+
 for (const page of pages) {
   const url = `https://example.com${BASE}${page}`;
   try {
