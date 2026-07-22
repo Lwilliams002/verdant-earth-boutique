@@ -21,13 +21,13 @@ import { ArrowRight, Leaf, Sprout, Droplet, HandHeart } from "lucide-react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Earth & Tonic — Rooted in nature. Crafted for wellness." },
+      { title: "Earth & Tonic Rooted in nature. Crafted for wellness." },
       {
         name: "description",
         content:
           "Small-batch herbal tonics and botanical skincare made with organic ingredients. Discover Earth & Tonic's organic balms and tonics.",
       },
-      { property: "og:title", content: "Earth & Tonic — Rooted in nature." },
+      { property: "og:title", content: "Earth & Tonic Rooted in nature." },
       {
         property: "og:description",
         content: "Organic herbal tonics & botanical skincare, crafted in small batches.",
@@ -99,7 +99,7 @@ function Hero({ hero }: { hero?: ShopifyProduct["node"] }) {
 
       <div className="relative z-10 mx-auto grid max-w-7xl gap-10 px-6 pb-24 pt-16 lg:grid-cols-[1.05fr_1fr] lg:gap-6 lg:px-10 lg:pb-32 lg:pt-24">
         <div className="flex flex-col justify-center">
-          <span className="eyebrow text-moss">— Est. 2026 · Small batch wellness</span>
+          <span className="eyebrow text-moss">Est. 2026 · Small batch wellness</span>
           <h1 className="mt-6 font-display text-[clamp(3rem,7vw,6.5rem)] leading-[0.95] text-forest-deep">
             Back to the
             <br />
@@ -107,7 +107,7 @@ function Hero({ hero }: { hero?: ShopifyProduct["node"] }) {
             wellness.
           </h1>
           <p className="mt-8 max-w-md text-lg leading-relaxed text-foreground/75">
-            Herbal tonics and botanical skincare crafted in small batches with organic ingredients —
+            Herbal tonics and botanical skincare crafted in small batches with organic ingredients
             for everyday routines that feel grounded, gentle and good.
           </p>
 
@@ -170,7 +170,7 @@ function Hero({ hero }: { hero?: ShopifyProduct["node"] }) {
                 params={{ slug: hero.handle }}
                 className="mt-3 inline-flex items-center gap-1 text-xs tracking-wider text-forest-deep hover:underline"
               >
-                SHOP — {hero.priceRange.minVariantPrice.currencyCode} {parseFloat(hero.priceRange.minVariantPrice.amount).toFixed(0)}{" "}
+                SHOP {hero.priceRange.minVariantPrice.currencyCode} {parseFloat(hero.priceRange.minVariantPrice.amount).toFixed(0)}{" "}
                 <ArrowRight className="h-3 w-3" />
               </Link>
             </div>
@@ -183,7 +183,7 @@ function Hero({ hero }: { hero?: ShopifyProduct["node"] }) {
               params={{ slug: hero.handle }}
               className="group absolute inset-x-6 bottom-2 z-20 inline-flex items-center justify-center gap-3 rounded-full bg-forest-deep px-6 py-3.5 text-xs tracking-[0.2em] text-cream shadow-lg transition-colors hover:bg-forest sm:hidden"
             >
-              SHOP {hero.title.toUpperCase()} — {hero.priceRange.minVariantPrice.currencyCode} {parseFloat(hero.priceRange.minVariantPrice.amount).toFixed(0)}
+              SHOP {hero.title.toUpperCase()} {hero.priceRange.minVariantPrice.currencyCode} {parseFloat(hero.priceRange.minVariantPrice.amount).toFixed(0)}
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Link>
           )}
@@ -205,7 +205,7 @@ function Collection({ products }: { products: ShopifyProduct[] }) {
       />
       <div className="relative z-10 flex items-end justify-between gap-6">
         <div>
-          <span className="eyebrow text-moss">— The collection</span>
+          <span className="eyebrow text-moss">The collection</span>
           <h2 className="mt-3 font-display text-5xl text-forest-deep md:text-6xl">
             <span className="font-script text-moss">Crafted</span> for daily routines
           </h2>
@@ -259,7 +259,7 @@ function Collection({ products }: { products: ShopifyProduct[] }) {
       <div className="relative z-10 mt-24">
         <div className="flex items-end justify-between gap-6">
           <div>
-            <span className="eyebrow text-moss">— In the works</span>
+            <span className="eyebrow text-moss">In the works</span>
             <h3 className="mt-3 font-display text-4xl text-forest-deep md:text-5xl">
               <span className="font-script text-moss">Coming</span> soon
             </h3>
@@ -370,7 +370,7 @@ function Story() {
           </div>
 
           <div className="mt-10">
-            <p className="font-script text-2xl text-sage">— Pamela</p>
+            <p className="font-script text-2xl text-sage">Pamela</p>
             <p className="mt-2 text-sm tracking-[0.15em] text-cream/60">FOUNDER, EARTH &amp; TONIC</p>
           </div>
         </div>
