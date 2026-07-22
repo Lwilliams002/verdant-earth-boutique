@@ -41,8 +41,8 @@ export function SiteHeader() {
             aria-hidden
             className="absolute -inset-x-6 -inset-y-3 rounded-full bg-cream/80 blur-xl"
           />
-          <span className="text-glow relative font-display text-2xl font-semibold tracking-[0.08em] text-forest-deep md:text-3xl">
-            Earth <span className="font-script font-normal text-moss">&amp;</span> Tonic
+          <span className="text-glow relative text-xl font-light tracking-[0.28em] text-forest-deep md:text-2xl" style={{ fontFamily: "var(--font-brand)" }}>
+            EARTH &amp; TONIC
           </span>
           <span className="text-glow eyebrow relative mt-1 text-[10px] font-semibold text-moss">
             Rooted in nature

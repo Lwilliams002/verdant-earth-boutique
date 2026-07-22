@@ -20,7 +20,7 @@ export function SiteFooter() {
             <div className="flex items-center gap-3">
               <BrandMark className="h-10 w-8 text-cream" />
               <div className="flex flex-col leading-none">
-                <span className="font-display text-lg tracking-[0.32em]">EARTH &amp; TONIC</span>
+                <span className="text-lg font-light tracking-[0.32em]" style={{ fontFamily: "var(--font-brand)" }}>EARTH &amp; TONIC</span>
                 <span className="mt-1 text-[10px] tracking-[0.4em] text-cream/70">EST · 2026</span>
               </div>
             </div>
