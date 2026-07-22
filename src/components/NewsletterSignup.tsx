@@ -78,47 +78,11 @@ export function NewsletterSignup({
           {description}
         </p>
       )}
-      <form
-        onSubmit={onSubmit}
-        className={`mt-5 flex flex-col gap-2 sm:flex-row sm:items-stretch`}
-      >
-        <label htmlFor={`newsletter-email-${variant}`} className="sr-only">
-          Email address
-        </label>
-        <input
-          id={`newsletter-email-${variant}`}
-          type="email"
-          required
-          autoComplete="email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          placeholder="your@email.com"
-          maxLength={255}
-          className={`flex-1 rounded-sm border px-4 py-3 text-sm outline-none transition-colors ${
+      {done ? (
+        <div
+          className={`mt-5 rounded-sm border px-5 py-4 ${
             isDark
-              ? "border-cream/25 bg-transparent text-cream placeholder:text-cream/50 focus:border-cream/60"
-              : "border-forest-deep/20 bg-white text-forest-deep placeholder:text-foreground/40 focus:border-forest-deep/50"
-          }`}
-        />
-        <button
-          type="submit"
-          disabled={submitting}
-          className={`rounded-sm px-6 py-3 text-xs tracking-[0.25em] transition-colors disabled:opacity-60 ${
-            isDark
-              ? "bg-cream text-forest-deep hover:bg-cream/90"
-              : "bg-forest-deep text-cream hover:bg-forest-deep/90"
-          }`}
-        >
-          {submitting ? "JOINING…" : done ? "SUBSCRIBED" : "SUBSCRIBE"}
-        </button>
-      </form>
-      <p
-        className={`mt-3 text-[11px] tracking-wide ${
-          isDark ? "text-cream/50" : "text-foreground/50"
-        }`}
-      >
-        No spam. Unsubscribe anytime.
-      </p>
-    </div>
-  );
+              ? "border-cream/30 bg-cream/10 text-cream"
+              : "border-forest-deep/20 bg-forest-deep/5 text-forest-deep"
+=
 }
