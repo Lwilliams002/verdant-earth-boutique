@@ -534,14 +534,6 @@ function Ingredients() {
                 </div>
               </div>
 
-              <Link
-                to={p.slug === "shop" ? "/shop" : "/shop/$slug"}
-                params={p.slug === "shop" ? undefined : { slug: p.slug }}
-                className="mt-8 inline-flex items-center gap-2 text-sm font-medium tracking-wide text-forest-deep underline-offset-4 hover:underline"
-              >
-                {p.slug === "shop" ? "Shop the duo" : `Shop ${p.name}`}
-                <ArrowRight className="h-4 w-4" />
-              </Link>
             </div>
           </div>
         ))}
