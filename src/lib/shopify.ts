@@ -390,3 +390,40 @@ export async function syncShopifyCart(cartId: string): Promise<{ exists: boolean
   if (!cart) return { exists: false, totalQuantity: 0 };
   return { exists: true, totalQuantity: cart.totalQuantity ?? 0 };
 }
+
+const CUSTOMER_CREATE_MUTATION = `
+  mutation NewsletterCustomerCreate($input: CustomerCreateInput!) {
+    customerCreate(input: $input) {
+      customer { id email acceptsMarketing }
+      customerUserErrors { code field message }
+    }
+  }
+`;
+
+export async function subscribeShopifyEmail(
+  email: string
+): Promise<{ success: boolean; message?: string }> {
+  // Generate a random password; user never needs it — this is just to
+  // create the customer record with marketing consent so it shows up in
+  // Shopify Admin under Customers / Email subscribers.
+  const password =
+    "Nl!" +
+    Math.random().toString(36).slice(2, 12) +
+    Math.random().toString(36).slice(2, 8).toUpperCase();
+
+  const data = await storefrontApiRequest(CUSTOMER_CREATE_MUTATION, {
+    input: { email, password, acceptsMarketing: true },
+  });
+
+  const errors = data?.data?.customerCreate?.customerUserErrors || [];
+  if (errors.length > 0) {
+    const codes = errors.map((e: { code?: string }) => e.code);
+    // TAKEN = email already exists as a customer — treat as success for signup UX.
+    if (codes.includes("TAKEN") || codes.includes("CUSTOMER_DISABLED")) {
+      return { success: true, message: "already_subscribed" };
+    }
+    console.error("customerCreate failed:", errors);
+    return { success: false, message: errors[0]?.message };
+  }
+  return { success: true };
+}
