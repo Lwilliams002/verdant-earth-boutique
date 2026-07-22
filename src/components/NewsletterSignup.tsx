@@ -32,25 +32,18 @@ export function NewsletterSignup({
     }
     setSubmitting(true);
     try {
-      const body = new URLSearchParams();
-      body.set("form_type", "customer");
-      body.set("utf8", "✓");
-      body.set("contact[email]", value);
-      body.set("contact[tags]", "newsletter,prospect");
-      body.set("contact[accepts_marketing]", "true");
-
-      // Shopify accepts cross-origin form posts; response is opaque under no-cors,
-      // which is fine — the subscription is recorded on the store side.
-      await fetch(`https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/contact`, {
-        method: "POST",
-        mode: "no-cors",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: body.toString(),
-      });
-
+      const result = await subscribeShopifyEmail(value);
+      if (!result.success) {
+        toast.error(result.message || "Something went wrong. Please try again.");
+        return;
+      }
       setDone(true);
       setEmail("");
-      toast.success("You're on the list — thanks for joining.");
+      toast.success(
+        result.message === "already_subscribed"
+          ? "You're already on the list — thanks!"
+          : "You're on the list — thanks for joining."
+      );
     } catch {
       toast.error("Something went wrong. Please try again.");
     } finally {
