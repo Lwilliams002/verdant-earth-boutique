@@ -10,16 +10,22 @@ import {
 } from "@/components/ui/sheet";
 import { ShoppingBag, Minus, Plus, Trash2, ExternalLink, Loader2 } from "lucide-react";
 import { useCartStore } from "@/stores/cartStore";
+import { BUNDLE_DISCOUNT_AMOUNT, BUNDLE_PRODUCT_HANDLES } from "@/lib/shopify";
 
 export function CartDrawer() {
   const { items, isLoading, isSyncing, cartOpen, updateQuantity, removeItem, getCheckoutUrl, syncCart, setCartOpen } =
     useCartStore();
   const totalItems = items.reduce((sum, item) => sum + item.quantity, 0);
-  const totalPrice = items.reduce(
+  const subtotal = items.reduce(
     (sum, item) => sum + parseFloat(item.price.amount) * item.quantity,
     0
   );
   const currency = items[0]?.price.currencyCode || "USD";
+  const hasBundle = BUNDLE_PRODUCT_HANDLES.every((handle) =>
+    items.some((i) => i.product.node.handle === handle && i.quantity >= 1)
+  );
+  const discount = hasBundle ? BUNDLE_DISCOUNT_AMOUNT : 0;
+  const totalPrice = Math.max(0, subtotal - discount);
 
   useEffect(() => {
     if (cartOpen) syncCart();
@@ -124,7 +130,17 @@ export function CartDrawer() {
                   ))}
                 </div>
               </div>
-              <div className="flex-shrink-0 space-y-4 pt-4 border-t border-border bg-cream">
+              <div className="flex-shrink-0 space-y-3 pt-4 border-t border-border bg-cream">
+                <div className="flex justify-between items-center text-sm text-muted-foreground">
+                  <span>Subtotal</span>
+                  <span>{currency} {subtotal.toFixed(2)}</span>
+                </div>
+                {hasBundle && (
+                  <div className="flex justify-between items-center text-sm text-forest">
+                    <span>Ritual Bundle discount (BUNDLE5)</span>
+                    <span>− {currency} {discount.toFixed(2)}</span>
+                  </div>
+                )}
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-display text-forest-deep">Total</span>
                   <span className="text-xl font-bold text-forest-deep">
