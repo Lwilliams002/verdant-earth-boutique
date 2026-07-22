@@ -285,7 +285,7 @@ function Collection({ products }: { products: ShopifyProduct[] }) {
         })}
       </div>
 
-      {/* Coming soon */}
+      {/* Coming soon — hidden until launch
       <div className="relative z-10 mt-24">
         <div className="flex items-end justify-between gap-6">
           <div>
@@ -332,6 +332,7 @@ function Collection({ products }: { products: ShopifyProduct[] }) {
           />
         </div>
       </div>
+      */}
     </section>
   );
 }
