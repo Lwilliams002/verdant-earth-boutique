@@ -266,7 +266,7 @@ function ProductPage() {
               Why <span className="font-script text-moss">{product.title}?</span>
             </h2>
             <p className="mt-6 text-foreground/75">
-              {product.description || "Crafted with care using organic, whole-plant ingredients."}
+              {product.description || "Crafted with care using organic, whole plant ingredients."}
             </p>
           </div>
           <div className="grid gap-px overflow-hidden rounded-sm bg-border sm:grid-cols-2">

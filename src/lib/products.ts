@@ -27,7 +27,7 @@ export const products: Product[] = [
     image: gutTonic,
     category: "Tonics",
     short: "A 100% natural daily blend for bloat, gas, and digestion crafted from six organic herbs.",
-    long: "Many digestive issues don't start with what you eat they start with how well your body digests it. Gut Tonic is a small-batch herbal extract designed to support your gut from the root, gently and daily.",
+    long: "Many digestive issues don't start with what you eat they start with how well your body digests it. Gut Tonic is a small batch herbal extract designed to support your gut from the root, gently and daily.",
     benefits: [
       "Soothes occasional bloating",
       "Eases gas & digestive discomfort",
@@ -37,10 +37,10 @@ export const products: Product[] = [
     ingredients: [
       { name: "Ginger Root", note: "Soothes the stomach", desc: "A warming root used for centuries to settle the stomach, stimulate digestion and ease queasiness after meals." },
       { name: "Fennel Seed", note: "Reduces bloating", desc: "Sweet, aromatic seeds that relax the digestive tract and help release trapped gas and uncomfortable bloating." },
-      { name: "Peppermint Leaf", note: "Calms discomfort", desc: "Cooling menthol-rich leaves that soothe digestive spasms and bring quick, refreshing relief to an unsettled belly." },
+      { name: "Peppermint Leaf", note: "Calms discomfort", desc: "Cooling menthol rich leaves that soothe digestive spasms and bring quick, refreshing relief to an unsettled belly." },
       { name: "Chamomile Flower", note: "Gentle & calming", desc: "Delicate blossoms that calm both the gut and the mind, easing tension that often shows up as digestive upset." },
-      { name: "Lemon Balm", note: "Eases tension", desc: "A bright, lemony herb from the mint family that gently relieves stress-related digestive discomfort." },
-      { name: "Dandelion Root", note: "Traditional digestive aid", desc: "A time-honored bitter root that encourages healthy bile flow and supports the body's natural digestion and detox pathways." },
+      { name: "Lemon Balm", note: "Eases tension", desc: "A bright, lemony herb from the mint family that gently relieves stress related digestive discomfort." },
+      { name: "Dandelion Root", note: "Traditional digestive aid", desc: "A time honored bitter root that encourages healthy bile flow and supports the body's natural digestion and detox pathways." },
     ],
     size: "1 FL OZ · 30 ML",
     badges: ["Plant Powered", "Clean Ingredients", "No Seed Oils", "Cruelty Free"],
@@ -104,7 +104,7 @@ export const products: Product[] = [
     image: milkHoney,
     category: "Skincare",
     short: "A deeply nourishing body cream whipped with organic shea, mango butter and honey extract.",
-    long: "Made with skin-loving ingredients chosen for deep hydration and a silky, never-greasy finish. Soft skin starts here.",
+    long: "Made with skin loving ingredients chosen for deep hydration and a silky, never greasy finish. Soft skin starts here.",
     benefits: [
       "Deep hydration",
       "Softens dry skin",
@@ -112,8 +112,8 @@ export const products: Product[] = [
       "Leaves skin silky smooth",
     ],
     ingredients: [
-      { name: "Organic Shea Butter", note: "Rich, healing", desc: "Hand-harvested from the shea tree, this rich butter deeply repairs dryness and restores the skin's natural barrier." },
-      { name: "Organic Mango Butter", note: "Softens & smooths", desc: "A silky, fast-absorbing butter pressed from mango seeds that smooths rough patches without any greasy feel." },
+      { name: "Organic Shea Butter", note: "Rich, healing", desc: "Hand harvested from the shea tree, this rich butter deeply repairs dryness and restores the skin's natural barrier." },
+      { name: "Organic Mango Butter", note: "Softens & smooths", desc: "A silky, fast absorbing butter pressed from mango seeds that smooths rough patches without any greasy feel." },
       { name: "Oat Milk Extract", note: "Calms the skin", desc: "Gentle oat-derived soothers that calm itchiness and irritation, ideal for even the most sensitive skin." },
       { name: "Organic Honey Extract", note: "Natural humectant", desc: "Nature's moisture magnet, drawing hydration into the skin and holding it there for lasting softness." },
       { name: "Organic Jojoba Oil", note: "Balances moisture", desc: "A liquid wax nearly identical to skin's own sebum, absorbing effortlessly to balance and condition." },
