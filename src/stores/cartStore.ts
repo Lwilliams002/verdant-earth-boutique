@@ -88,6 +88,29 @@ export const useCartStore = create<CartStore>()(
         }
       },
 
+      addBundle: async (bundleItems) => {
+        if (bundleItems.length === 0) return;
+        set({ isLoading: true });
+        try {
+          const result = await createShopifyBundleCart(
+            bundleItems.map((i) => ({ variantId: i.variantId, quantity: i.quantity })),
+            [BUNDLE_DISCOUNT_CODE]
+          );
+          if (result) {
+            set({
+              cartId: result.cartId,
+              checkoutUrl: result.checkoutUrl,
+              items: bundleItems.map((i) => ({ ...i, lineId: result.lineIds[i.variantId] ?? null })),
+              cartOpen: true,
+            });
+          }
+        } catch (error) {
+          console.error("Failed to add bundle:", error);
+        } finally {
+          set({ isLoading: false });
+        }
+      },
+
       updateQuantity: async (variantId, quantity) => {
         if (quantity <= 0) {
           await get().removeItem(variantId);
