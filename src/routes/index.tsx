@@ -57,9 +57,8 @@ function Home() {
       <SiteHeader />
       <Hero hero={hero} />
       <Marquee />
-      <Pillars />
-        <Collection products={products ?? []} />
-        <BundleCTA products={products ?? []} />
+      <Collection products={products ?? []} />
+      <BundleCTA products={products ?? []} />
       <Story />
       <Ingredients />
       <Newsletter />
