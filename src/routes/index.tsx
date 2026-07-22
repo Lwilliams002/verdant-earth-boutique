@@ -16,7 +16,7 @@ import founderStory from "@/assets/founder-story.png";
 import { BundleCTA } from "@/components/BundleCTA";
 import { COMING_SOON } from "@/lib/productMeta";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
-import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake, HandHeart, Flower2, TreePine, Sparkles } from "lucide-react";
+import { ArrowRight, Leaf, Sprout, Droplet, HandHeart } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
