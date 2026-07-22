@@ -108,7 +108,7 @@ function Hero({ hero }: { hero?: ShopifyProduct["node"] }) {
           </h1>
           <p className="mt-8 max-w-md text-lg leading-relaxed text-foreground/75">
             Herbal tonics and botanical skincare crafted in small batches with organic ingredients —
-            for everyday rituals that feel grounded, gentle and good.
+            for everyday routines that feel grounded, gentle and good.
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-4">

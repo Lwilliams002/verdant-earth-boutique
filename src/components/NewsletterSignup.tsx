@@ -98,7 +98,7 @@ export function NewsletterSignup({
                 }`}
               >
                 You&apos;re on the list — watch your inbox for updates on new
-                drops and herbal rituals.
+                drops and herbal routines.
               </p>
             </div>
           </div>
