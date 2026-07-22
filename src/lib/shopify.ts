@@ -5,6 +5,13 @@ export const SHOPIFY_STORE_PERMANENT_DOMAIN = "ndkugy-pp.myshopify.com";
 export const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
 export const SHOPIFY_STOREFRONT_TOKEN = "176743865361306f1c0d7655ccd125a9";
 
+export const BUNDLE_DISCOUNT_CODE = "BUNDLE5";
+export const BUNDLE_DISCOUNT_AMOUNT = 5;
+export const BUNDLE_PRODUCT_HANDLES = [
+  "earth-balm-botanical-skin-balm-2oz",
+  "moon-balm-lavender-botanical-balm-2-0z",
+];
+
 export interface ShopifyProduct {
   node: {
     id: string;
@@ -288,6 +295,33 @@ export async function createShopifyCart(
   if (!lineId) return null;
 
   return { cartId: cart.id, checkoutUrl: formatCheckoutUrl(cart.checkoutUrl), lineId };
+}
+
+export async function createShopifyBundleCart(
+  items: Array<{ variantId: string; quantity: number }>,
+  discountCodes: string[] = []
+): Promise<{ cartId: string; checkoutUrl: string; lineIds: Record<string, string> } | null> {
+  const data = await storefrontApiRequest(CART_CREATE_MUTATION, {
+    input: {
+      lines: items.map((i) => ({ quantity: i.quantity, merchandiseId: i.variantId })),
+      discountCodes,
+    },
+  });
+
+  if (data?.data?.cartCreate?.userErrors?.length > 0) {
+    console.error("Bundle cart creation failed:", data.data.cartCreate.userErrors);
+    return null;
+  }
+
+  const cart = data?.data?.cartCreate?.cart;
+  if (!cart?.checkoutUrl) return null;
+
+  const lineIds: Record<string, string> = {};
+  for (const edge of cart.lines.edges) {
+    lineIds[edge.node.merchandise.id] = edge.node.id;
+  }
+
+  return { cartId: cart.id, checkoutUrl: formatCheckoutUrl(cart.checkoutUrl), lineIds };
 }
 
 export async function addLineToShopifyCart(

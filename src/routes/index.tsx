@@ -13,6 +13,7 @@ import sectionLeaves from "@/assets/section-leaves.png";
 import collectionHerbs from "@/assets/collection-herbs.png";
 import plantSprig from "@/assets/plant-sprig.png";
 import plantPattern from "@/assets/plant-pattern.jpeg";
+import { BundleCTA } from "@/components/BundleCTA";
 import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake, Flower, TreePine, Sun, HandHeart } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -52,7 +53,8 @@ function Home() {
       <Hero hero={hero} />
       <Marquee />
       <Pillars />
-      <Collection products={products ?? []} />
+        <Collection products={products ?? []} />
+        <BundleCTA products={products ?? []} />
       <Story />
       <Ingredients />
       <Newsletter />

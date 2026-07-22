@@ -3,10 +3,12 @@ import { persist, createJSONStorage } from "zustand/middleware";
 import {
   type CartItem,
   createShopifyCart,
+  createShopifyBundleCart,
   addLineToShopifyCart,
   updateShopifyCartLine,
   removeLineFromShopifyCart,
   syncShopifyCart,
+  BUNDLE_DISCOUNT_CODE,
 } from "@/lib/shopify";
 
 interface CartStore {
@@ -17,6 +19,7 @@ interface CartStore {
   isSyncing: boolean;
   cartOpen: boolean;
   addItem: (item: Omit<CartItem, "lineId">) => Promise<void>;
+  addBundle: (items: Array<Omit<CartItem, "lineId">>) => Promise<void>;
   updateQuantity: (variantId: string, quantity: number) => Promise<void>;
   removeItem: (variantId: string) => Promise<void>;
   clearCart: () => void;
@@ -80,6 +83,29 @@ export const useCartStore = create<CartStore>()(
           }
         } catch (error) {
           console.error("Failed to add item:", error);
+        } finally {
+          set({ isLoading: false });
+        }
+      },
+
+      addBundle: async (bundleItems) => {
+        if (bundleItems.length === 0) return;
+        set({ isLoading: true });
+        try {
+          const result = await createShopifyBundleCart(
+            bundleItems.map((i) => ({ variantId: i.variantId, quantity: i.quantity })),
+            [BUNDLE_DISCOUNT_CODE]
+          );
+          if (result) {
+            set({
+              cartId: result.cartId,
+              checkoutUrl: result.checkoutUrl,
+              items: bundleItems.map((i) => ({ ...i, lineId: result.lineIds[i.variantId] ?? null })),
+              cartOpen: true,
+            });
+          }
+        } catch (error) {
+          console.error("Failed to add bundle:", error);
         } finally {
           set({ isLoading: false });
         }
