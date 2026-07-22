@@ -9,10 +9,10 @@ export type IngredientMeta = { name: string; note: string; desc: string };
 // Falls back to a generic set for products not listed here.
 export const PRODUCT_INGREDIENTS: Record<string, IngredientMeta[]> = {
   "earth-balm-botanical-skin-balm-2oz": [
-    { name: "Calendula", note: "Soothes skin", desc: "Golden petals traditionally used to calm irritation and support the skin's natural repair." },
-    { name: "Comfrey Leaf", note: "Restores", desc: "A time-honored botanical rich in allantoin that helps soften and restore tired skin." },
-    { name: "Beeswax", note: "Protective seal", desc: "A gentle, breathable barrier that locks in moisture without clogging pores." },
-    { name: "Olive Oil", note: "Nourishing base", desc: "Cold-pressed and packed with vitamins A and E to condition and protect delicate skin." },
+    { name: "Infused oil with Calendula flower", note: "Soothes skin", desc: "Calendula petals infused into oil to calm irritation and support the skin's natural repair." },
+    { name: "Infused oil with Chamomile", note: "Gentle & soothing", desc: "Chamomile flowers steeped in oil to soften skin and ease everyday sensitivity." },
+    { name: "Jojoba oil", note: "Balances moisture", desc: "A plant wax closely matching skin's own oils, absorbing easily to balance and condition." },
+    { name: "Organic arrowroot powder", note: "Light texture", desc: "A naturally lightweight powder that gives the balm a silky, non-greasy finish." },
   ],
   "moon-balm-lavender-botanical-balm-2-0z": [
     { name: "Lavender", note: "Calms the senses", desc: "Fragrant blooms that ease tension and signal to the nervous system it's safe to rest." },
