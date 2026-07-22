@@ -11,6 +11,7 @@ import sectionLeaves from "@/assets/section-leaves.png";
 import collectionHerbs from "@/assets/collection-herbs.png";
 import plantSprig from "@/assets/plant-sprig.png";
 import plantPattern from "@/assets/plant-pattern.jpeg";
+import founderStory from "@/assets/founder-story.png";
 import { BundleCTA } from "@/components/BundleCTA";
 import { COMING_SOON } from "@/lib/productMeta";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
@@ -361,27 +362,47 @@ function Story() {
         loading="lazy"
         className="pointer-events-none absolute -right-10 bottom-12 z-[1] h-[26rem] w-auto -scale-x-100 opacity-60 mix-blend-screen md:-right-4 md:h-[34rem]"
       />
-      <div className="relative z-10 mx-auto max-w-4xl px-6 py-28 text-center lg:px-10">
-        <span className="eyebrow inline-block text-cream/70">Our story</span>
-        <h2 className="mt-4 story-script-heading text-5xl leading-tight md:text-6xl">
-          Why I started
-        </h2>
-
-        <div className="mx-auto mt-14 max-w-2xl space-y-6 text-center text-base leading-[1.85] text-cream/85">
-          <p>
-            Earth &amp; Tonic started during my own health journey after being diagnosed with PCOS. I wanted to better understand my body, so I began researching herbs and natural ingredients to support my overall wellness. What started as a personal passion quickly turned into something I genuinely loved.
-          </p>
-          <p>
-            I also realized how many everyday products are filled with unnecessary synthetic ingredients. That inspired me to create products made with clean, thoughtfully chosen ingredients because I truly believe we don't always need all the extra additives to care for our bodies.
-          </p>
-          <p>
-            Thank you for being here and supporting my small business. It truly means the world to me.
-          </p>
+      <div className="relative z-10 mx-auto grid max-w-6xl items-center gap-10 px-6 py-24 lg:grid-cols-[1fr_1.15fr] lg:gap-16 lg:px-10 lg:py-32">
+        {/* Founder photo */}
+        <div className="relative mx-auto w-full max-w-sm lg:max-w-none">
+          <div className="absolute -inset-3 rounded-sm bg-cream/8 blur-xl" />
+          <div className="relative overflow-hidden rounded-sm border-4 border-cream/90 bg-cream p-2 shadow-2xl">
+            <img
+              src={founderStory}
+              alt="Pamela, founder of Earth & Tonic, holding Earth Balm and Moon Balm"
+              loading="lazy"
+              className="aspect-[3/4] w-full object-cover object-top"
+            />
+          </div>
+          <div className="absolute -bottom-4 -right-4 z-20 hidden rounded-full border border-cream/30 bg-forest-deep/90 px-5 py-3 text-center backdrop-blur lg:block">
+            <span className="font-script text-2xl leading-none text-sage">Pamela</span>
+            <span className="block text-[10px] tracking-[0.2em] text-cream/70">FOUNDER</span>
+          </div>
         </div>
 
-        <div className="mt-14">
-          <p className="font-script text-2xl text-sage">— Pamela</p>
-          <p className="mt-2 text-sm tracking-[0.15em] text-cream/60">FOUNDER, EARTH &amp; TONIC</p>
+        {/* Story text */}
+        <div className="text-center lg:text-left">
+          <span className="eyebrow inline-block text-cream/70">Our story</span>
+          <h2 className="mt-4 story-script-heading text-5xl leading-tight md:text-6xl">
+            Why I started
+          </h2>
+
+          <div className="mx-auto mt-10 max-w-xl space-y-5 text-base leading-[1.85] text-cream/85 lg:mx-0">
+            <p>
+              Earth &amp; Tonic started during my own health journey after being diagnosed with PCOS. I wanted to better understand my body, so I began researching herbs and natural ingredients to support my overall wellness. What started as a personal passion quickly turned into something I genuinely loved.
+            </p>
+            <p>
+              I also realized how many everyday products are filled with unnecessary synthetic ingredients. That inspired me to create products made with clean, thoughtfully chosen ingredients because I truly believe we don't always need all the extra additives to care for our bodies.
+            </p>
+            <p>
+              Thank you for being here and supporting my small business. It truly means the world to me.
+            </p>
+          </div>
+
+          <div className="mt-10">
+            <p className="font-script text-2xl text-sage">— Pamela</p>
+            <p className="mt-2 text-sm tracking-[0.15em] text-cream/60">FOUNDER, EARTH &amp; TONIC</p>
+          </div>
         </div>
       </div>
     </section>
