@@ -11,7 +11,7 @@ import sectionLeaves from "@/assets/section-leaves.png";
 import collectionHerbs from "@/assets/collection-herbs.png";
 import plantSprig from "@/assets/plant-sprig.png";
 import plantPattern from "@/assets/plant-pattern.jpeg";
-import founderStory from "@/assets/founder-story.png.asset.json";
+import founderStory from "@/assets/founder-story.png";
 import { BundleCTA } from "@/components/BundleCTA";
 import { COMING_SOON } from "@/lib/productMeta";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
