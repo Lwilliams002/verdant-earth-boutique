@@ -297,6 +297,33 @@ export async function createShopifyCart(
   return { cartId: cart.id, checkoutUrl: formatCheckoutUrl(cart.checkoutUrl), lineId };
 }
 
+export async function createShopifyBundleCart(
+  items: Array<{ variantId: string; quantity: number }>,
+  discountCodes: string[] = []
+): Promise<{ cartId: string; checkoutUrl: string; lineIds: Record<string, string> } | null> {
+  const data = await storefrontApiRequest(CART_CREATE_MUTATION, {
+    input: {
+      lines: items.map((i) => ({ quantity: i.quantity, merchandiseId: i.variantId })),
+      discountCodes,
+    },
+  });
+
+  if (data?.data?.cartCreate?.userErrors?.length > 0) {
+    console.error("Bundle cart creation failed:", data.data.cartCreate.userErrors);
+    return null;
+  }
+
+  const cart = data?.data?.cartCreate?.cart;
+  if (!cart?.checkoutUrl) return null;
+
+  const lineIds: Record<string, string> = {};
+  for (const edge of cart.lines.edges) {
+    lineIds[edge.node.merchandise.id] = edge.node.id;
+  }
+
+  return { cartId: cart.id, checkoutUrl: formatCheckoutUrl(cart.checkoutUrl), lineIds };
+}
+
 export async function addLineToShopifyCart(
   cartId: string,
   item: CartItem
