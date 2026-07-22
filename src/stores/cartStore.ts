@@ -19,6 +19,7 @@ interface CartStore {
   isSyncing: boolean;
   cartOpen: boolean;
   addItem: (item: Omit<CartItem, "lineId">) => Promise<void>;
+  addBundle: (items: Array<Omit<CartItem, "lineId">>) => Promise<void>;
   updateQuantity: (variantId: string, quantity: number) => Promise<void>;
   removeItem: (variantId: string) => Promise<void>;
   clearCart: () => void;
