@@ -1,5 +1,4 @@
 import { Link } from "@tanstack/react-router";
-import { BrandMark } from "./BrandMark";
 import { Instagram } from "lucide-react";
 import navVines from "@/assets/nav-vines.png";
 import { NewsletterSignup } from "./NewsletterSignup";
@@ -17,12 +16,9 @@ export function SiteFooter() {
       <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 lg:px-10">
         <div className="grid gap-14 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex items-center gap-3">
-              <BrandMark className="h-10 w-8 text-cream" />
-              <div className="flex flex-col leading-none">
-                <span className="text-lg font-light tracking-[0.32em]" style={{ fontFamily: "var(--font-brand)" }}>EARTH &amp; TONIC</span>
-                <span className="mt-1 text-[10px] tracking-[0.4em] text-cream/70">EST · 2026</span>
-              </div>
+            <div className="flex flex-col leading-none">
+              <span className="text-lg font-light tracking-[0.32em]" style={{ fontFamily: "var(--font-brand)" }}>EARTH &amp; TONIC</span>
+              <span className="mt-1 text-[10px] tracking-[0.4em] text-cream/70">EST · 2026</span>
             </div>
             <p className="mt-6 max-w-xs font-display text-2xl italic text-cream/90">
               Rooted in nature. <br />Crafted for wellness.

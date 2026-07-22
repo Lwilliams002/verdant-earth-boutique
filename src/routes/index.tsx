@@ -4,7 +4,6 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FloatingBottle } from "@/components/FloatingBottle";
 import { Marquee } from "@/components/Marquee";
-import { BrandMark } from "@/components/BrandMark";
 import { fetchShopifyProducts, type ShopifyProduct } from "@/lib/shopify";
 import botanicalBg from "@/assets/botanical-bg.jpg";
 import sideVine from "@/assets/plants/side-vine.png";
@@ -487,9 +486,8 @@ function Ingredients() {
       {/* Sourcing Story */}
       <div className="relative z-10 mx-auto mt-20 max-w-3xl text-center">
         <div className="inline-flex items-center justify-center gap-3">
-          <span className="h-px w-8 bg-forest/20" />
-          <BrandMark className="h-8 w-6 text-moss" />
-          <span className="h-px w-8 bg-forest/20" />
+          <span className="h-px w-12 bg-forest/20" />
+          <span className="h-px w-12 bg-forest/20" />
         </div>
         <h3 className="mt-5 font-display text-3xl text-forest-deep md:text-4xl">
           From soil to <span className="font-script text-moss">bottle.</span>
@@ -544,8 +542,7 @@ function Newsletter() {
         className="pointer-events-none absolute -right-20 top-0 z-0 hidden h-[24rem] w-auto -scale-x-100 opacity-60 md:block"
       />
       <div className="relative z-10">
-      <BrandMark className="mx-auto h-14 w-12 text-forest-deep" />
-      <h2 className="mt-6 font-display text-4xl text-forest-deep md:text-5xl">
+      <h2 className="font-display text-4xl text-forest-deep md:text-5xl">
         Join the <span className="font-script text-moss">rooted</span> circle.
       </h2>
       <p className="mt-4 text-muted-foreground">

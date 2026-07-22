@@ -3,7 +3,6 @@ import { useSuspenseQuery } from "@tanstack/react-query";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FloatingBottle } from "@/components/FloatingBottle";
-import { BrandMark } from "@/components/BrandMark";
 import { Minus, Plus, Check, ArrowRight, Loader2 } from "lucide-react";
 import { useState } from "react";
 import botanicalBg from "@/assets/botanical-bg.jpg";
@@ -272,8 +271,7 @@ function ProductPage() {
           </div>
           <div className="grid gap-px overflow-hidden rounded-sm bg-border sm:grid-cols-2">
             {["Plant Powered", "Clean Ingredients", "Small Batch", "Cruelty Free"].map((b) => (
-              <div key={b} className="flex items-start gap-3 bg-background p-6">
-                <BrandMark className="mt-1 h-6 w-5 shrink-0 text-moss" />
+              <div key={b} className="flex items-center gap-3 bg-background p-6">
                 <p className="text-sm text-foreground/80">{b}</p>
               </div>
             ))}
