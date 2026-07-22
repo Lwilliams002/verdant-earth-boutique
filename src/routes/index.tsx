@@ -11,11 +11,13 @@ import sectionLeaves from "@/assets/section-leaves.png";
 import collectionHerbs from "@/assets/collection-herbs.png";
 import plantSprig from "@/assets/plant-sprig.png";
 import plantPattern from "@/assets/plant-pattern.jpeg";
+import productEarthCollection from "@/assets/product-earth-balm-collection.png";
+import productDuoBoxed from "@/assets/product-duo-boxed.png";
 import founderStory from "@/assets/founder-story.png";
 import { BundleCTA } from "@/components/BundleCTA";
 import { COMING_SOON } from "@/lib/productMeta";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
-import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake, Flower, TreePine, Sun, HandHeart } from "lucide-react";
+import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake, HandHeart } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -410,31 +412,44 @@ function Story() {
 }
 
 function Ingredients() {
-  const categories = [
+  const products = [
     {
-      icon: TreePine,
-      title: "Roots & Barks",
-      desc: "The backbone of every tonic. Ginger, dandelion and burdock roots are slowly dried to preserve their warming, grounding properties.",
-      examples: ["Ginger Root", "Dandelion", "Burdock", "Turmeric"],
+      image: productEarthCollection,
+      name: "Earth Balm",
+      tagline: "Botanical Skin Balm",
+      copy:
+        "A grounding everyday balm crafted with calendula and chamomile-infused oils to soothe, soften and restore skin that needs a little extra care.",
+      ingredients: [
+        "Calendula Infused Oil",
+        "Chamomile Infused Oil",
+        "Jojoba Oil",
+        "Beeswax",
+        "Organic Arrowroot",
+      ],
+      slug: "earth-balm-botanical-skin-balm-2oz",
     },
     {
-      icon: Flower,
-      title: "Flowers & Leaves",
-      desc: "Gentle powerhouses for calm and clarity. Chamomile, lavender and lemon balm are hand-harvested at peak bloom for full aromatic potency.",
-      examples: ["Chamomile", "Lavender", "Lemon Balm", "Hibiscus"],
-    },
-    {
-      icon: Sun,
-      title: "Seeds & Berries",
-      desc: "Concentrated nutrition in tiny packages. Fennel, milk thistle and rosehip deliver time-tested support for digestion and vitality.",
-      examples: ["Fennel Seed", "Milk Thistle", "Rosehip", "Elderberry"],
+      image: productDuoBoxed,
+      name: "The Duo",
+      tagline: "Earth Balm + Moon Balm",
+      copy:
+        "Two balms, one routine. Earth Balm to ground your mornings and Moon Balm — infused with lavender — to soften the wind-down into evening.",
+      ingredients: [
+        "Lavender Infused Oil",
+        "Chamomile Infused Oil",
+        "Calendula Infused Oil",
+        "Jojoba Oil",
+        "Beeswax",
+        "Organic Arrowroot",
+      ],
+      slug: "shop",
     },
   ];
 
   const standards = [
     { icon: Leaf, label: "Certified Organic", detail: "Grown without pesticides or synthetic fertilisers" },
-    { icon: Droplet, label: "Whole-Plant Extracts", detail: "We use the full herb, not isolated fragments" },
-    { icon: HandHeart, label: "Small-Batch Crafted", detail: "Made by hand in limited quantities for freshness" },
+    { icon: Droplet, label: "Infused, Not Isolated", detail: "Whole botanicals steeped into every oil" },
+    { icon: HandHeart, label: "Small-Batch Crafted", detail: "Handmade in limited quantities for freshness" },
     { icon: Sprout, label: "Clean Ingredients", detail: "Only clean carrier oils and botanical bases" },
   ];
 
@@ -453,14 +468,14 @@ function Ingredients() {
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -left-8 top-16 z-0 hidden h-[28rem] w-auto opacity-50 md:block"
+        className="pointer-events-none absolute -left-8 top-16 z-0 hidden h-[28rem] w-auto opacity-40 md:block"
       />
       <img
         src={plantSprig}
         alt=""
         aria-hidden
         loading="lazy"
-        className="pointer-events-none absolute -right-8 bottom-16 z-0 hidden h-[28rem] w-auto -scale-x-100 opacity-50 md:block"
+        className="pointer-events-none absolute -right-8 bottom-16 z-0 hidden h-[28rem] w-auto -scale-x-100 opacity-40 md:block"
       />
 
       {/* Header */}
@@ -472,57 +487,67 @@ function Ingredients() {
           <span className="font-script text-moss">matters.</span>
         </h2>
         <p className="mt-6 leading-relaxed text-foreground/70">
-          Every Earth &amp; Tonic formula begins with whole-plant ingredients chosen for what they do
-          — and how gently they do it. No isolates, no synthetics, no shortcuts. Just the full,
-          honest power of herbs that have been trusted for generations.
+          Every balm is built from a short list of whole-plant ingredients — chosen for what they
+          do, and how gently they do it. No isolates, no synthetics, no shortcuts.
         </p>
       </div>
 
-      {/* Category Cards */}
-      <div className="relative z-10 mt-20 grid gap-6 md:grid-cols-3">
-        {categories.map(({ icon: Icon, title, desc, examples }) => (
+      {/* Product showcases */}
+      <div className="relative z-10 mt-20 space-y-24">
+        {products.map((p, i) => (
           <div
-            key={title}
-            className="group flex flex-col rounded-sm border border-border bg-card p-8 transition-shadow hover:shadow-lg"
+            key={p.name}
+            className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${
+              i % 2 === 1 ? "md:[&>div:first-child]:order-2" : ""
+            }`}
           >
-            <div className="flex h-12 w-12 items-center justify-center rounded-full border border-forest/20 text-forest-deep transition-colors group-hover:bg-forest-deep group-hover:text-cream">
-              <Icon className="h-5 w-5" />
+            <div className="relative">
+              <div className="absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-sage/20 to-cream/40 blur-2xl" />
+              <img
+                src={p.image}
+                alt={`${p.name} — ${p.tagline}`}
+                loading="lazy"
+                className="w-full rounded-[1.5rem] object-cover shadow-xl"
+              />
             </div>
-            <h3 className="mt-6 font-display text-2xl text-forest-deep">{title}</h3>
-            <p className="mt-3 flex-1 text-sm leading-relaxed text-muted-foreground">{desc}</p>
-            <div className="mt-6 flex flex-wrap gap-2">
-              {examples.map((e) => (
-                <span
-                  key={e}
-                  className="rounded-full border border-border px-3 py-1 text-xs tracking-wide text-foreground/80"
-                >
-                  {e}
-                </span>
-              ))}
+            <div>
+              <span className="eyebrow text-moss">{p.tagline}</span>
+              <h3 className="mt-3 font-display text-4xl text-forest-deep md:text-5xl">
+                {p.name}
+              </h3>
+              <p className="mt-5 leading-relaxed text-foreground/75">{p.copy}</p>
+
+              <div className="mt-8">
+                <p className="text-xs font-medium tracking-[0.2em] text-forest-deep/70">
+                  MADE WITH
+                </p>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {p.ingredients.map((ing) => (
+                    <span
+                      key={ing}
+                      className="rounded-full border border-forest/20 bg-card/60 px-3 py-1.5 text-xs tracking-wide text-foreground/80"
+                    >
+                      {ing}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <Link
+                to={p.slug === "shop" ? "/shop" : "/shop/$slug"}
+                params={p.slug === "shop" ? undefined : { slug: p.slug }}
+                className="mt-8 inline-flex items-center gap-2 text-sm font-medium tracking-wide text-forest-deep underline-offset-4 hover:underline"
+              >
+                {p.slug === "shop" ? "Shop the duo" : `Shop ${p.name}`}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
             </div>
           </div>
         ))}
       </div>
 
-      {/* Sourcing Story */}
-      <div className="relative z-10 mx-auto mt-20 max-w-3xl text-center">
-        <div className="inline-flex items-center justify-center gap-3">
-          <span className="h-px w-12 bg-forest/20" />
-          <span className="h-px w-12 bg-forest/20" />
-        </div>
-        <h3 className="mt-5 font-display text-3xl text-forest-deep md:text-4xl">
-          From soil to <span className="font-script text-moss">bottle.</span>
-        </h3>
-        <p className="mt-4 leading-relaxed text-foreground/70">
-          We work with small organic farms that tend their herbs with the same patience we bring to
-          our kitchen. Roots are dug by hand. Flowers are picked at dawn when their oils are richest.
-          Every ingredient travels a short, traceable path from field to formulation, handled with
-          care at every step.
-        </p>
-      </div>
-
       {/* Standards Row */}
-      <div className="relative z-10 mx-auto mt-16 grid max-w-4xl gap-8 sm:grid-cols-2 lg:grid-cols-4">
+      <div className="relative z-10 mx-auto mt-24 grid max-w-4xl gap-8 sm:grid-cols-2 lg:grid-cols-4">
         {standards.map(({ icon: Icon, label, detail }) => (
           <div key={label} className="flex flex-col items-center text-center">
             <div className="flex h-11 w-11 items-center justify-center rounded-full border border-forest/15 text-forest-deep">
