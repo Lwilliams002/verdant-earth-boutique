@@ -9,9 +9,9 @@ import founderStory from "@/assets/founder-story.png";
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
-      { title: "Our Story — Earth & Tonic" },
+      { title: "Our Story Earth & Tonic" },
       { name: "description", content: "Earth & Tonic is a small-batch wellness studio rooted in nature, crafting herbal tonics and botanical skincare with intention." },
-      { property: "og:title", content: "Our Story — Earth & Tonic" },
+      { property: "og:title", content: "Our Story Earth & Tonic" },
       { property: "og:description", content: "The founder story behind Earth & Tonic, clean ingredients, and small-batch botanical wellness." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -30,7 +30,7 @@ function AboutPage() {
         <div className="absolute inset-0 -z-10 opacity-40" style={{ backgroundImage: `url(${botanicalBg})`, backgroundSize: "cover", backgroundPosition: "center" }} />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/70 to-background" />
         <div className="mx-auto max-w-4xl px-6 py-28 text-center lg:py-36">
-          <span className="eyebrow inline-block text-moss">— Our story</span>
+          <span className="eyebrow inline-block text-moss">Our story</span>
           <h1 className="mt-4 font-display text-6xl leading-tight text-forest-deep md:text-7xl">
             Rooted in nature.
             <br />
@@ -39,7 +39,7 @@ function AboutPage() {
         </div>
       </section>
 
-      {/* Story — matches homepage Why I Started */}
+      {/* Story matches homepage Why I Started */}
       <section className="relative overflow-hidden bg-forest-deep text-cream">
         <div
           className="absolute inset-0 z-0 opacity-[0.08] mix-blend-screen"
@@ -101,7 +101,7 @@ function AboutPage() {
             </div>
 
             <div className="mt-10">
-              <p className="font-script text-2xl text-sage">— Pamela</p>
+              <p className="font-script text-2xl text-sage">Pamela</p>
               <p className="mt-2 text-sm tracking-[0.15em] text-cream/60">FOUNDER, EARTH &amp; TONIC</p>
             </div>
           </div>
