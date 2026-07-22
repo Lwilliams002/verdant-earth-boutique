@@ -368,7 +368,7 @@ function Story() {
           <div className="absolute -inset-3 rounded-sm bg-cream/8 blur-xl" />
           <div className="relative overflow-hidden rounded-sm border-4 border-cream/90 bg-cream p-2 shadow-2xl">
             <img
-              src={founderStory.url}
+              src={founderStory}
               alt="Pamela, founder of Earth & Tonic, holding Earth Balm and Moon Balm"
               loading="lazy"
               className="aspect-[3/4] w-full object-cover object-top"
