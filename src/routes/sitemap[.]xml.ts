@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { fetchShopifyProducts } from "@/lib/shopify.functions";
+import { fetchShopifyProducts } from "@/lib/shopify";
 
 const BASE_URL = "";
 

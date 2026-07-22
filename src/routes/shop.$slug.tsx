@@ -7,7 +7,7 @@ import { BrandMark } from "@/components/BrandMark";
 import { Minus, Plus, Check, ArrowRight, Loader2 } from "lucide-react";
 import { useState } from "react";
 import botanicalBg from "@/assets/botanical-bg.jpg";
-import { fetchShopifyProductByHandle, fetchShopifyProducts } from "@/lib/shopify.functions";
+import { fetchShopifyProductByHandle, fetchShopifyProducts } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import type { ShopifyProduct } from "@/lib/shopify";
 import { getIngredients } from "@/lib/productMeta";

@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { fetchShopifyProducts } from "@/lib/shopify.functions";
+import { fetchShopifyProducts } from "@/lib/shopify";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const Route = createFileRoute("/shop/")({
