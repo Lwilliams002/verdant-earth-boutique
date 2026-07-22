@@ -85,6 +85,22 @@ function AboutPage() {
         </div>
       </section>
 
+      {/* Process */}
+      <section className="bg-forest-deep py-24 text-cream">
+        <div className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-3">
+          {[
+            { n: "01", t: "Source", d: "We carefully choose every ingredient because what goes into our products matters." },
+            { n: "02", t: "Craft", d: "Every batch is handcrafted in small quantities." },
+            { n: "03", t: "Share", d: "Created to become part of your everyday routine." },
+          ].map((s) => (
+            <div key={s.n}>
+              <span className="font-script text-5xl text-sage">{s.n}</span>
+              <h3 className="mt-3 font-display text-3xl">{s.t}</h3>
+              <p className="mt-3 text-cream/80">{s.d}</p>
+            </div>
+          ))}
+        </div>
+      </section>
 
       <SiteFooter />
     </div>
