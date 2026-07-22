@@ -1,10 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FloatingBottle } from "@/components/FloatingBottle";
 import { Marquee } from "@/components/Marquee";
 import { BrandMark } from "@/components/BrandMark";
-import { products } from "@/lib/products";
+import { fetchShopifyProducts } from "@/lib/shopify.functions";
+import type { ShopifyProduct } from "@/lib/shopify";
 import botanicalBg from "@/assets/botanical-bg.jpg";
 import sideVine from "@/assets/plants/side-vine.png";
 import sectionLeaves from "@/assets/section-leaves.png";
@@ -20,7 +22,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Small-batch herbal tonics and botanical skincare made with organic ingredients. Discover Gut Tonic, Sleep Drops and more from Earth & Tonic.",
+          "Small-batch herbal tonics and botanical skincare made with organic ingredients. Discover Earth & Tonic's organic balms and tonics.",
       },
       { property: "og:title", content: "Earth & Tonic — Rooted in nature." },
       {
@@ -29,18 +31,28 @@ export const Route = createFileRoute("/")({
       },
     ],
   }),
+  loader: async ({ context }) => {
+    await context.queryClient.ensureQueryData({
+      queryKey: ["shopify-products"],
+      queryFn: () => fetchShopifyProducts(),
+    });
+  },
   component: Home,
 });
 
 function Home() {
-  const hero = products[0];
+  const { data: products } = useSuspenseQuery({
+    queryKey: ["shopify-products"],
+    queryFn: () => fetchShopifyProducts(),
+  });
+  const hero = products?.[0]?.node;
   return (
     <div className="min-h-screen overflow-x-hidden bg-background">
       <SiteHeader />
       <Hero hero={hero} />
       <Marquee />
       <Pillars />
-      <Collection />
+      <Collection products={products ?? []} />
       <Story />
       <Ingredients />
       <Newsletter />
@@ -49,7 +61,7 @@ function Home() {
   );
 }
 
-function Hero({ hero }: { hero: (typeof products)[number] }) {
+function Hero({ hero }: { hero?: ShopifyProduct["node"] }) {
   return (
     <section className="relative overflow-hidden">
       <div
@@ -127,32 +139,37 @@ function Hero({ hero }: { hero: (typeof products)[number] }) {
           </div>
 
           {/* Floating product */}
-          <FloatingBottle
-            src={hero.image}
-            alt={hero.name}
-            priority
-            className="relative z-10 h-[520px] w-[360px] sm:h-[600px] sm:w-[420px]"
-          />
+          {hero && (
+            <FloatingBottle
+              src={hero.images.edges[0]?.node?.url}
+              alt={hero.images.edges[0]?.node?.altText ?? hero.title}
+              priority
+              className="relative z-10 h-[520px] w-[360px] sm:h-[600px] sm:w-[420px]"
+            />
+          )}
 
           {/* floating badge */}
           <div className="absolute right-2 top-10 z-20 hidden flex-col items-center rounded-full border border-forest/20 bg-cream/90 p-4 text-center backdrop-blur sm:flex">
             <span className="font-script text-2xl leading-none text-forest-deep">est.</span>
             <span className="eyebrow mt-1 text-moss">2026</span>
           </div>
-          <div className="absolute bottom-10 left-2 z-20 hidden max-w-[180px] rounded-2xl border border-forest/15 bg-cream/90 p-5 text-sm backdrop-blur sm:block">
-            <div className="eyebrow text-moss">Featured</div>
-            <div className="mt-1 font-display text-lg leading-tight text-forest-deep">
-              {hero.name}
+          {hero && (
+            <div className="absolute bottom-10 left-2 z-20 hidden max-w-[180px] rounded-2xl border border-forest/15 bg-cream/90 p-5 text-sm backdrop-blur sm:block">
+              <div className="eyebrow text-moss">Featured</div>
+              <div className="mt-1 font-display text-lg leading-tight text-forest-deep">
+                {hero.title}
+              </div>
+              <div className="mt-1 text-xs text-muted-foreground line-clamp-2">{hero.description}</div>
+              <Link
+                to="/shop/$slug"
+                params={{ slug: hero.handle }}
+                className="mt-3 inline-flex items-center gap-1 text-xs tracking-wider text-forest-deep hover:underline"
+              >
+                SHOP — {hero.priceRange.minVariantPrice.currencyCode} {parseFloat(hero.priceRange.minVariantPrice.amount).toFixed(0)}{" "}
+                <ArrowRight className="h-3 w-3" />
+              </Link>
             </div>
-            <div className="mt-1 text-xs text-muted-foreground">{hero.tagline}</div>
-            <Link
-              to="/shop/$slug"
-              params={{ slug: hero.slug }}
-              className="mt-3 inline-flex items-center gap-1 text-xs tracking-wider text-forest-deep hover:underline"
-            >
-              SHOP — ${hero.price} <ArrowRight className="h-3 w-3" />
-            </Link>
-          </div>
+          )}
         </div>
       </div>
     </section>
@@ -190,7 +207,7 @@ function Pillars() {
   );
 }
 
-function Collection() {
+function Collection({ products }: { products: ShopifyProduct[] }) {
   return (
     <section className="relative z-10 mx-auto max-w-7xl px-6 py-20 lg:px-10">
       <img
@@ -213,32 +230,43 @@ function Collection() {
       </div>
 
       <div className="mt-14 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-6 lg:grid-cols-4 lg:gap-10">
-        {products.map((p) => (
-          <Link
-            key={p.slug}
-            to="/shop/$slug"
-            params={{ slug: p.slug }}
-            className="group flex flex-col"
-          >
-            <div className="relative flex aspect-[3/4] items-center justify-center overflow-hidden rounded-sm bg-cream-deep">
-              <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-forest/5" />
-              <img
-                src={p.image}
-                alt={p.name}
-                loading="lazy"
-                width={420}
-                height={560}
-                className="bottle-shadow h-[88%] w-auto object-contain transition-transform duration-700 group-hover:scale-105"
-              />
-              <span className="absolute left-4 top-4 eyebrow text-moss">{p.category}</span>
-            </div>
-            <div className="mt-3 flex items-baseline justify-between gap-2 sm:mt-5 sm:gap-4">
-              <h3 className="font-display text-lg text-forest-deep sm:text-2xl">{p.name}</h3>
-              <span className="text-xs text-foreground/70 sm:text-sm">${p.price}</span>
-            </div>
-            <p className="mt-1 text-xs italic text-muted-foreground sm:text-sm">{p.tagline}</p>
-          </Link>
-        ))}
+        {products.map((p) => {
+          const node = p.node;
+          const image = node.images.edges[0]?.node;
+          const price = node.priceRange.minVariantPrice;
+          return (
+            <Link
+              key={node.handle}
+              to="/shop/$slug"
+              params={{ slug: node.handle }}
+              className="group flex flex-col"
+            >
+              <div className="relative flex aspect-[3/4] items-center justify-center overflow-hidden rounded-sm bg-cream-deep">
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-forest/5" />
+                {image ? (
+                  <img
+                    src={image.url}
+                    alt={image.altText ?? node.title}
+                    loading="lazy"
+                    width={420}
+                    height={560}
+                    className="bottle-shadow h-[88%] w-auto object-contain transition-transform duration-700 group-hover:scale-105"
+                  />
+                ) : (
+                  <div className="h-[88%] w-full bg-muted" />
+                )}
+                <span className="absolute left-4 top-4 eyebrow text-moss">{node.productType || "Product"}</span>
+              </div>
+              <div className="mt-3 flex items-baseline justify-between gap-2 sm:mt-5 sm:gap-4">
+                <h3 className="font-display text-lg text-forest-deep sm:text-2xl">{node.title}</h3>
+                <span className="text-xs text-foreground/70 sm:text-sm">
+                  {price.currencyCode} {parseFloat(price.amount).toFixed(0)}
+                </span>
+              </div>
+              <p className="mt-1 text-xs italic text-muted-foreground sm:text-sm line-clamp-2">{node.description}</p>
+            </Link>
+          );
+        })}
       </div>
     </section>
   );

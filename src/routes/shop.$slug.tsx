@@ -1,37 +1,42 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { useSuspenseQuery } from "@tanstack/react-query";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FloatingBottle } from "@/components/FloatingBottle";
 import { BrandMark } from "@/components/BrandMark";
-import { getProduct, products, type Product } from "@/lib/products";
-import { Minus, Plus, Check, ArrowRight } from "lucide-react";
+import { Minus, Plus, Check, ArrowRight, Loader2 } from "lucide-react";
 import { useState } from "react";
 import botanicalBg from "@/assets/botanical-bg.jpg";
+import { fetchShopifyProductByHandle, fetchShopifyProducts } from "@/lib/shopify.functions";
+import { useCartStore } from "@/stores/cartStore";
+import type { ShopifyProduct } from "@/lib/shopify";
+import { toast } from "sonner";
 
 export const Route = createFileRoute("/shop/$slug")({
-  head: ({ params }) => {
-    const p = getProduct(params.slug);
-    return {
-      meta: [
-        { title: p ? `${p.name} — Earth & Tonic` : "Product — Earth & Tonic" },
-        { name: "description", content: p?.short ?? "Earth & Tonic product" },
-        { property: "og:title", content: p?.name ?? "Earth & Tonic" },
-        { property: "og:description", content: p?.short ?? "" },
-        ...(p ? [{ property: "og:image", content: p.image } as const] : []),
-      ],
-    };
-  },
-  loader: ({ params }) => {
-    const p = getProduct(params.slug);
-    if (!p) throw notFound();
-    return { product: p };
+  head: ({ params }) => ({
+    meta: [
+      { title: `${params.slug} — Earth & Tonic` },
+      { name: "description", content: "Earth & Tonic product" },
+    ],
+  }),
+  loader: async ({ context, params }) => {
+    await context.queryClient.ensureQueryData({
+      queryKey: ["shopify-product", params.slug],
+      queryFn: () => fetchShopifyProductByHandle({ data: { handle: params.slug } }),
+    });
+    await context.queryClient.ensureQueryData({
+      queryKey: ["shopify-products"],
+      queryFn: () => fetchShopifyProducts(),
+    });
   },
   notFoundComponent: () => (
     <div className="min-h-screen bg-background">
       <SiteHeader />
       <div className="mx-auto max-w-3xl px-6 py-32 text-center">
         <h1 className="font-display text-5xl text-forest-deep">Not found</h1>
-        <Link to="/shop" className="eyebrow mt-6 inline-block text-moss">← Back to shop</Link>
+        <Link to="/shop" className="eyebrow mt-6 inline-block text-moss">
+          ← Back to shop
+        </Link>
       </div>
       <SiteFooter />
     </div>
@@ -50,13 +55,44 @@ export const Route = createFileRoute("/shop/$slug")({
 });
 
 function ProductPage() {
-  const { product } = Route.useLoaderData() as { product: Product };
+  const { slug } = Route.useParams();
+  const { data: product } = useSuspenseQuery({
+    queryKey: ["shopify-product", slug],
+    queryFn: () => fetchShopifyProductByHandle({ data: { handle: slug } }),
+  });
+  const { data: allProducts } = useSuspenseQuery({
+    queryKey: ["shopify-products"],
+    queryFn: () => fetchShopifyProducts(),
+  });
+
+  if (!product) throw notFound();
+
   const [qty, setQty] = useState(1);
   const [added, setAdded] = useState(false);
-  const related = products.filter((p) => p.slug !== product.slug).slice(0, 3);
-  const mid = Math.ceil(product.ingredients.length / 2);
-  const leftIngredients = product.ingredients.slice(0, mid);
-  const rightIngredients = product.ingredients.slice(mid);
+  const addItem = useCartStore((state) => state.addItem);
+  const isLoading = useCartStore((state) => state.isLoading);
+
+  const image = product.images.edges[0]?.node;
+  const price = product.priceRange.minVariantPrice;
+  const variant = product.variants.edges[0]?.node;
+  const related = (allProducts ?? [])
+    .filter((p: ShopifyProduct) => p.node.handle !== product.handle)
+    .slice(0, 3);
+
+  const handleAddToCart = async () => {
+    if (!variant) return;
+    await addItem({
+      product: { node: product },
+      variantId: variant.id,
+      variantTitle: variant.title,
+      price: variant.price,
+      quantity: qty,
+      selectedOptions: variant.selectedOptions,
+    });
+    setAdded(true);
+    toast.success("Added to cart", { description: `${product.title} — ${qty} item${qty > 1 ? "s" : ""}` });
+    setTimeout(() => setAdded(false), 1800);
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -72,82 +108,42 @@ function ProductPage() {
         <div className="mx-auto max-w-7xl px-6 py-16 lg:px-10 lg:py-24">
           {/* Title row */}
           <div className="text-center">
-            <span className="eyebrow text-moss">{product.category}</span>
+            <span className="eyebrow text-moss">{product.productType || "Product"}</span>
             <h1 className="mt-3 font-display text-6xl leading-none text-forest-deep md:text-7xl">
-              {product.name}
+              {product.title}
             </h1>
-            <p className="mt-2 font-script text-3xl text-moss">{product.tagline}</p>
+            <p className="mt-2 font-script text-3xl text-moss">{product.vendor}</p>
           </div>
 
-          {/* Loadout: ingredients | product | ingredients */}
-          <div className="mt-10 grid grid-cols-[1fr_auto_1fr] items-center gap-3 sm:gap-6 lg:mt-14 lg:grid-cols-[1fr_minmax(320px,1.1fr)_1fr] lg:gap-8">
-            {/* Left ingredients */}
-            <ul className="space-y-8 lg:space-y-6">
-              {leftIngredients.map((i) => (
-                <li
-                  key={i.name}
-                  className="group flex flex-col items-end gap-2 text-right lg:flex-row-reverse lg:items-start lg:gap-4"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-forest/20 bg-card transition-colors group-hover:border-moss lg:h-14 lg:w-14">
-                    <BrandMark className="h-5 w-4 text-moss lg:h-7 lg:w-6" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-display text-sm leading-tight text-forest-deep sm:text-base lg:text-xl">{i.name}</h3>
-                    <p className="mt-1 hidden text-sm text-foreground/70 sm:block">{i.note}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-
-            {/* Center product */}
+          {/* Center product */}
+          <div className="mt-10 flex items-center justify-center lg:mt-14">
             <div className="relative flex items-center justify-center">
               <div className="absolute aspect-square w-[88%] rounded-full border border-forest/15" />
               <div className="absolute aspect-square w-[70%] rounded-full border border-forest/10" />
-              <FloatingBottle
-                src={product.image}
-                alt={product.name}
-                priority
-                className="relative z-10 h-[300px] w-[190px] sm:h-[440px] sm:w-[300px] lg:h-[560px] lg:w-[400px]"
-              />
+              {image ? (
+                <FloatingBottle
+                  src={image.url}
+                  alt={image.altText ?? product.title}
+                  priority
+                  className="relative z-10 h-[300px] w-[190px] sm:h-[440px] sm:w-[300px] lg:h-[560px] lg:w-[400px]"
+                />
+              ) : (
+                <div className="relative z-10 h-[300px] w-[190px] sm:h-[440px] sm:w-[300px] lg:h-[560px] lg:w-[400px] bg-muted rounded-full" />
+              )}
             </div>
-
-            {/* Right ingredients */}
-            <ul className="space-y-8 lg:space-y-6">
-              {rightIngredients.map((i) => (
-                <li
-                  key={i.name}
-                  className="group flex flex-col items-start gap-2 text-left lg:flex-row lg:gap-4"
-                >
-                  <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-forest/20 bg-card transition-colors group-hover:border-moss lg:h-14 lg:w-14">
-                    <BrandMark className="h-5 w-4 text-moss lg:h-7 lg:w-6" />
-                  </div>
-                  <div className="min-w-0 flex-1">
-                    <h3 className="font-display text-sm leading-tight text-forest-deep sm:text-base lg:text-xl">{i.name}</h3>
-                    <p className="mt-1 hidden text-sm text-foreground/70 sm:block">{i.note}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
           </div>
 
           {/* Buy panel */}
           <div className="mx-auto mt-16 max-w-2xl rounded-sm border border-border bg-card/60 p-8 backdrop-blur">
-            <p className="text-center text-foreground/75">{product.short}</p>
-
-            <div className="mt-6 flex flex-wrap justify-center gap-2">
-              {product.badges.map((b) => (
-                <span
-                  key={b}
-                  className="rounded-full border border-border bg-background px-3 py-1 text-xs tracking-wider text-foreground/70"
-                >
-                  {b}
-                </span>
-              ))}
-            </div>
+            <p className="text-center text-foreground/75">{product.description || product.title}</p>
 
             <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
-              <span className="font-display text-3xl text-forest-deep">${product.price}</span>
-              <span className="text-xs tracking-[0.2em] text-muted-foreground">{product.size}</span>
+              <span className="font-display text-3xl text-forest-deep">
+                {price.currencyCode} {parseFloat(price.amount).toFixed(2)}
+              </span>
+              <span className="text-xs tracking-[0.2em] text-muted-foreground">
+                {variant?.title || "Default"}
+              </span>
             </div>
 
             <div className="mt-6 flex items-stretch gap-3">
@@ -169,16 +165,20 @@ function ProductPage() {
                 </button>
               </div>
               <button
-                onClick={() => {
-                  setAdded(true);
-                  setTimeout(() => setAdded(false), 1800);
-                }}
-                className="flex-1 rounded-full bg-forest-deep px-7 py-4 text-sm tracking-[0.2em] text-cream transition-colors hover:bg-forest"
+                onClick={handleAddToCart}
+                disabled={!variant || isLoading}
+                className="flex-1 rounded-full bg-forest-deep px-7 py-4 text-sm tracking-[0.2em] text-cream transition-colors hover:bg-forest disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {added ? (
-                  <span className="inline-flex items-center justify-center gap-2"><Check className="h-4 w-4" /> ADDED</span>
+                {isLoading ? (
+                  <span className="inline-flex items-center justify-center gap-2">
+                    <Loader2 className="h-4 w-4 animate-spin" /> ADDING
+                  </span>
+                ) : added ? (
+                  <span className="inline-flex items-center justify-center gap-2">
+                    <Check className="h-4 w-4" /> ADDED
+                  </span>
                 ) : (
-                  `ADD TO CART — $${(product.price * qty).toFixed(0)}`
+                  `ADD TO CART — ${price.currencyCode} ${(parseFloat(price.amount) * qty).toFixed(2)}`
                 )}
               </button>
             </div>
@@ -195,12 +195,14 @@ function ProductPage() {
           <div>
             <span className="eyebrow text-moss">— Made with intention</span>
             <h2 className="mt-3 font-display text-5xl text-forest-deep">
-              Why <span className="font-script text-moss">{product.name}?</span>
+              Why <span className="font-script text-moss">{product.title}?</span>
             </h2>
-            <p className="mt-6 text-foreground/75">{product.long}</p>
+            <p className="mt-6 text-foreground/75">
+              {product.description || "Crafted with care using organic, whole-plant ingredients."}
+            </p>
           </div>
           <div className="grid gap-px overflow-hidden rounded-sm bg-border sm:grid-cols-2">
-            {product.benefits.map((b) => (
+            {["Plant Powered", "Clean Ingredients", "Small Batch", "Cruelty Free"].map((b) => (
               <div key={b} className="flex items-start gap-3 bg-background p-6">
                 <BrandMark className="mt-1 h-6 w-5 shrink-0 text-moss" />
                 <p className="text-sm text-foreground/80">{b}</p>
@@ -210,57 +212,48 @@ function ProductPage() {
         </div>
       </section>
 
-      {/* Ingredients */}
-      <section className="bg-cream-deep">
-        <div className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
-          <div className="text-center">
-            <span className="eyebrow text-moss divider-leaf">Crafted with</span>
-            <h2 className="mt-4 font-display text-5xl text-forest-deep">
-              <span className="font-script text-moss">{product.ingredients.length}</span> organic ingredients
-            </h2>
-          </div>
-          <div className="mt-12 grid gap-px overflow-hidden rounded-sm bg-border sm:grid-cols-2 lg:grid-cols-3">
-            {product.ingredients.map((i) => (
-              <div key={i.name} className="bg-cream-deep p-8">
-                <BrandMark className="h-10 w-8 text-moss" />
-                <h3 className="mt-4 font-display text-2xl text-forest-deep">{i.name}</h3>
-                <p className="mt-1 eyebrow text-moss">{i.note}</p>
-                <p className="mt-3 text-sm leading-relaxed text-muted-foreground">{i.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
       {/* Related */}
-      <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
-        <div className="flex items-end justify-between">
-          <h2 className="font-display text-4xl text-forest-deep">You may also love</h2>
-          <Link to="/shop" className="eyebrow border-b border-forest-deep/40 pb-1 text-forest-deep">
-            View all <ArrowRight className="ml-1 inline h-3 w-3" />
-          </Link>
-        </div>
-        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-6 lg:gap-10">
-          {related.map((p) => (
-            <Link key={p.slug} to="/shop/$slug" params={{ slug: p.slug }} className="group">
-              <div className="flex aspect-[3/4] items-center justify-center overflow-hidden rounded-sm bg-cream-deep">
-                <img
-                  src={p.image}
-                  alt={p.name}
-                  loading="lazy"
-                  width={420}
-                  height={560}
-                  className="bottle-shadow h-[88%] w-auto object-contain transition-transform duration-700 group-hover:scale-105"
-                />
-              </div>
-              <div className="mt-3 flex items-baseline justify-between gap-2 sm:mt-4">
-                <h3 className="font-display text-lg text-forest-deep sm:text-xl">{p.name}</h3>
-                <span className="text-xs text-foreground/70 sm:text-sm">${p.price}</span>
-              </div>
+      {related.length > 0 && (
+        <section className="mx-auto max-w-7xl px-6 py-24 lg:px-10">
+          <div className="flex items-end justify-between">
+            <h2 className="font-display text-4xl text-forest-deep">You may also love</h2>
+            <Link to="/shop" className="eyebrow border-b border-forest-deep/40 pb-1 text-forest-deep">
+              View all <ArrowRight className="ml-1 inline h-3 w-3" />
             </Link>
-          ))}
-        </div>
-      </section>
+          </div>
+          <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:grid-cols-3 sm:gap-6 lg:gap-10">
+            {related.map((p: ShopifyProduct) => {
+              const node = p.node;
+              const relatedImage = node.images.edges[0]?.node;
+              const relatedPrice = node.priceRange.minVariantPrice;
+              return (
+                <Link key={node.handle} to="/shop/$slug" params={{ slug: node.handle }} className="group">
+                  <div className="flex aspect-[3/4] items-center justify-center overflow-hidden rounded-sm bg-cream-deep">
+                    {relatedImage ? (
+                      <img
+                        src={relatedImage.url}
+                        alt={relatedImage.altText ?? node.title}
+                        loading="lazy"
+                        width={420}
+                        height={560}
+                        className="bottle-shadow h-[88%] w-auto object-contain transition-transform duration-700 group-hover:scale-105"
+                      />
+                    ) : (
+                      <div className="h-[88%] w-full bg-muted" />
+                    )}
+                  </div>
+                  <div className="mt-3 flex items-baseline justify-between gap-2 sm:mt-4">
+                    <h3 className="font-display text-lg text-forest-deep sm:text-xl">{node.title}</h3>
+                    <span className="text-xs text-foreground/70 sm:text-sm">
+                      {relatedPrice.currencyCode} {parseFloat(relatedPrice.amount).toFixed(0)}
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
+          </div>
+        </section>
+      )}
 
       <SiteFooter />
     </div>
