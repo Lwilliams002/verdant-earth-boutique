@@ -1,7 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { BrandMark } from "@/components/BrandMark";
 import botanicalBg from "@/assets/botanical-bg.jpg";
 import plantPattern from "@/assets/plant-pattern.jpeg";
 import plantSprig from "@/assets/plant-sprig.png";
@@ -30,8 +29,7 @@ function AboutPage() {
         <div className="absolute inset-0 -z-10 opacity-40" style={{ backgroundImage: `url(${botanicalBg})`, backgroundSize: "cover", backgroundPosition: "center" }} />
         <div className="absolute inset-0 -z-10 bg-gradient-to-b from-background/70 to-background" />
         <div className="mx-auto max-w-4xl px-6 py-28 text-center lg:py-36">
-          <BrandMark className="mx-auto h-16 w-14 text-forest-deep" />
-          <span className="eyebrow mt-8 inline-block text-moss">— Our story</span>
+          <span className="eyebrow inline-block text-moss">— Our story</span>
           <h1 className="mt-4 font-display text-6xl leading-tight text-forest-deep md:text-7xl">
             Rooted in nature.
             <br />
