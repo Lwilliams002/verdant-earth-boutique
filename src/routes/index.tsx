@@ -497,11 +497,11 @@ function Ingredients() {
         {products.map((p, i) => (
           <div
             key={p.name}
-            className={`grid items-center gap-10 md:grid-cols-2 md:gap-16 ${
+            className={`grid items-center gap-8 md:grid-cols-[minmax(0,2fr)_minmax(0,3fr)] md:gap-12 ${
               i % 2 === 1 ? "md:[&>div:first-child]:order-2" : ""
             }`}
           >
-            <div className="relative">
+            <div className="relative mx-auto w-full max-w-xs md:max-w-sm">
               <div className="absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-sage/20 to-cream/40 blur-2xl" />
               <img
                 src={p.image}
@@ -510,6 +510,7 @@ function Ingredients() {
                 className="w-full rounded-[1.5rem] object-cover shadow-xl"
               />
             </div>
+
             <div>
               <span className="eyebrow text-moss">{p.tagline}</span>
               <h3 className="mt-3 font-display text-4xl text-forest-deep md:text-5xl">
