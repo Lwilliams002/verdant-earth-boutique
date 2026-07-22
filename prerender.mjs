@@ -11,16 +11,42 @@ const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const BASE = process.env.GITHUB_PAGES === "true" ? "/verdant-earth-boutique" : "";
 
-const pages = [
+const staticPages = [
   "/",
   "/about",
   "/journal",
   "/shop",
-  "/shop/gut-tonic",
-  "/shop/sleep-drops",
-  "/shop/hibiscus-bloom-soap",
-  "/shop/milk-honey-body-butter",
 ];
+
+const fallbackProductPages = [
+  "/shop/earth-balm-botanical-skin-balm-2oz",
+  "/shop/moon-balm-lavender-botanical-balm-2-0z",
+];
+
+async function getShopifyProductPages() {
+  try {
+    const response = await fetch("https://ndkugy-pp.myshopify.com/api/2025-07/graphql.json", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Shopify-Storefront-Access-Token": "176743865361306f1c0d7655ccd125a9",
+      },
+      body: JSON.stringify({
+        query: `query GetProductHandles { products(first: 100) { edges { node { handle } } } }`,
+      }),
+    });
+
+    if (!response.ok) throw new Error(`Shopify returned ${response.status}`);
+    const data = await response.json();
+    const handles = data?.data?.products?.edges?.map((edge) => edge?.node?.handle).filter(Boolean) ?? [];
+    return handles.map((handle) => `/shop/${handle}`);
+  } catch (error) {
+    console.warn(`Could not fetch Shopify product handles; using fallback product pages. ${error.message}`);
+    return fallbackProductPages;
+  }
+}
+
+const pages = [...new Set([...staticPages, ...(await getShopifyProductPages())])];
 
 // Dynamically import the built SSR server (ESM)
 const { default: server } = await import("./node_modules/.nitro/vite/services/ssr/index.js");
