@@ -237,7 +237,7 @@ function Collection({ products }: { products: ShopifyProduct[] }) {
         <div>
           <span className="eyebrow text-moss">— The collection</span>
           <h2 className="mt-3 font-display text-5xl text-forest-deep md:text-6xl">
-            <span className="font-script text-moss">Crafted</span> for daily rituals
+            <span className="font-script text-moss">Crafted</span> for daily routines
           </h2>
         </div>
         <Link to="/shop" className="eyebrow hidden border-b border-forest-deep/40 pb-1 text-forest-deep md:inline">
@@ -414,7 +414,7 @@ function Ingredients() {
     { icon: Leaf, label: "Certified Organic", detail: "Grown without pesticides or synthetic fertilisers" },
     { icon: Droplet, label: "Whole-Plant Extracts", detail: "We use the full herb, not isolated fragments" },
     { icon: HandHeart, label: "Small-Batch Crafted", detail: "Made by hand in limited quantities for freshness" },
-    { icon: Sprout, label: "Never Any Seed Oils", detail: "Only clean carrier oils and botanical bases" },
+    { icon: Sprout, label: "Clean Ingredients", detail: "Only clean carrier oils and botanical bases" },
   ];
 
   return (
