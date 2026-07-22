@@ -1,7 +1,8 @@
 import { Link } from "@tanstack/react-router";
 import { useState } from "react";
-import { ShoppingBag, Menu, X } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import navVines from "@/assets/nav-vines.png";
+import { CartDrawer } from "@/components/CartDrawer";
 
 export function SiteHeader() {
   const [open, setOpen] = useState(false);
@@ -59,15 +60,7 @@ export function SiteHeader() {
               {n.label}
             </Link>
           ))}
-          <button
-            aria-label="Cart"
-            className="relative rounded-full border border-border p-2 transition-colors hover:bg-secondary"
-          >
-            <ShoppingBag className="h-4 w-4" />
-            <span className="absolute -right-1 -top-1 flex h-4 w-4 items-center justify-center rounded-full bg-forest text-[10px] font-medium text-cream">
-              0
-            </span>
-          </button>
+          <CartDrawer />
         </nav>
 
         <button

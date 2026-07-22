@@ -1,6 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import type {} from "@tanstack/react-start";
-import { products } from "@/lib/products";
+import { fetchShopifyProducts } from "@/lib/shopify.functions";
 
 const BASE_URL = "";
 
@@ -8,12 +8,13 @@ export const Route = createFileRoute("/sitemap.xml")({
   server: {
     handlers: {
       GET: async () => {
+        const products = await fetchShopifyProducts();
         const entries = [
           { path: "/", changefreq: "weekly", priority: "1.0" },
           { path: "/shop", changefreq: "weekly", priority: "0.9" },
           { path: "/about", changefreq: "monthly", priority: "0.6" },
           { path: "/journal", changefreq: "weekly", priority: "0.6" },
-          ...products.map((p) => ({ path: `/shop/${p.slug}`, changefreq: "weekly", priority: "0.8" })),
+          ...products.map((p) => ({ path: `/shop/${p.node.handle}`, changefreq: "weekly", priority: "0.8" })),
         ];
         const urls = entries
           .map((e) =>
