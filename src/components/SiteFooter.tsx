@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { BrandMark } from "./BrandMark";
 import { Instagram } from "lucide-react";
 import navVines from "@/assets/nav-vines.png";
+import { NewsletterSignup } from "./NewsletterSignup";
 
 export function SiteFooter() {
   return (
