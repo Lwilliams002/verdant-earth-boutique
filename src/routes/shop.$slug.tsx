@@ -10,6 +10,7 @@ import botanicalBg from "@/assets/botanical-bg.jpg";
 import { fetchShopifyProductByHandle, fetchShopifyProducts } from "@/lib/shopify.functions";
 import { useCartStore } from "@/stores/cartStore";
 import type { ShopifyProduct } from "@/lib/shopify";
+import { getIngredients } from "@/lib/productMeta";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/shop/$slug")({
@@ -75,6 +76,9 @@ function ProductPage() {
   const image = product.images.edges[0]?.node;
   const price = product.priceRange.minVariantPrice;
   const variant = product.variants.edges[0]?.node;
+  const ingredients = getIngredients(product.handle);
+  const leftIngredients = ingredients.slice(0, 2);
+  const rightIngredients = ingredients.slice(2, 4);
   const related = (allProducts ?? [])
     .filter((p: ShopifyProduct) => p.node.handle !== product.handle)
     .slice(0, 3);
@@ -115,8 +119,19 @@ function ProductPage() {
             <p className="mt-2 font-script text-3xl text-moss">{product.vendor}</p>
           </div>
 
-          {/* Center product */}
-          <div className="mt-10 flex items-center justify-center lg:mt-14">
+          {/* Center product with flanking ingredients */}
+          <div className="mt-10 grid gap-8 lg:mt-14 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-10">
+            {/* Left ingredients — desktop only */}
+            <div className="hidden lg:flex lg:flex-col lg:gap-10 lg:pr-4 lg:text-right">
+              {leftIngredients.map((ing) => (
+                <div key={ing.name} className="ml-auto max-w-xs">
+                  <span className="eyebrow text-moss">{ing.note}</span>
+                  <h3 className="mt-2 font-display text-2xl text-forest-deep">{ing.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/70">{ing.desc}</p>
+                </div>
+              ))}
+            </div>
+
             <div className="relative flex items-center justify-center">
               <div className="absolute aspect-square w-[88%] rounded-full border border-forest/15" />
               <div className="absolute aspect-square w-[70%] rounded-full border border-forest/10" />
@@ -131,13 +146,35 @@ function ProductPage() {
                 <div className="relative z-10 h-[300px] w-[190px] sm:h-[440px] sm:w-[300px] lg:h-[560px] lg:w-[400px] bg-muted rounded-full" />
               )}
             </div>
+
+            {/* Right ingredients — desktop only */}
+            <div className="hidden lg:flex lg:flex-col lg:gap-10 lg:pl-4">
+              {rightIngredients.map((ing) => (
+                <div key={ing.name} className="max-w-xs">
+                  <span className="eyebrow text-moss">{ing.note}</span>
+                  <h3 className="mt-2 font-display text-2xl text-forest-deep">{ing.name}</h3>
+                  <p className="mt-2 text-sm leading-relaxed text-foreground/70">{ing.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Mobile / tablet ingredient grid */}
+          <div className="mt-10 grid grid-cols-2 gap-6 lg:hidden">
+            {ingredients.map((ing) => (
+              <div key={ing.name}>
+                <span className="eyebrow text-moss">{ing.note}</span>
+                <h3 className="mt-1 font-display text-lg text-forest-deep">{ing.name}</h3>
+                <p className="mt-1 text-xs leading-relaxed text-foreground/70">{ing.desc}</p>
+              </div>
+            ))}
           </div>
 
           {/* Buy panel */}
-          <div className="mx-auto mt-16 max-w-2xl rounded-sm border border-border bg-card/60 p-8 backdrop-blur">
+          <div className="mx-auto mt-16 max-w-2xl rounded-sm border border-border bg-card/60 p-6 backdrop-blur sm:p-8">
             <p className="text-center text-foreground/75">{product.description || product.title}</p>
 
-            <div className="mt-8 flex flex-wrap items-center justify-center gap-6">
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-6">
               <span className="font-display text-3xl text-forest-deep">
                 {price.currencyCode} {parseFloat(price.amount).toFixed(2)}
               </span>
@@ -146,8 +183,8 @@ function ProductPage() {
               </span>
             </div>
 
-            <div className="mt-6 flex items-stretch gap-3">
-              <div className="flex items-center rounded-full border border-border bg-background">
+            <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row">
+              <div className="flex items-center justify-center rounded-full border border-border bg-background self-center sm:self-auto">
                 <button
                   aria-label="Decrease"
                   className="px-4 py-3 text-foreground/70 hover:text-forest-deep"
@@ -188,6 +225,34 @@ function ProductPage() {
           </div>
         </div>
       </section>
+
+      {/* Sticky mobile buy bar */}
+      <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 px-4 py-3 backdrop-blur lg:hidden">
+        <div className="mx-auto flex max-w-2xl items-center gap-3">
+          <div className="flex-1">
+            <p className="font-display text-sm leading-tight text-forest-deep line-clamp-1">{product.title}</p>
+            <p className="text-xs text-muted-foreground">
+              {price.currencyCode} {(parseFloat(price.amount) * qty).toFixed(2)}
+            </p>
+          </div>
+          <button
+            onClick={handleAddToCart}
+            disabled={!variant || isLoading}
+            className="shrink-0 rounded-full bg-forest-deep px-5 py-3 text-xs tracking-[0.18em] text-cream transition-colors hover:bg-forest disabled:opacity-50"
+          >
+            {isLoading ? (
+              <Loader2 className="h-4 w-4 animate-spin" />
+            ) : added ? (
+              <span className="inline-flex items-center gap-2"><Check className="h-4 w-4" /> ADDED</span>
+            ) : (
+              "ADD TO CART"
+            )}
+          </button>
+        </div>
+      </div>
+
+      {/* Spacer so sticky bar doesn't cover footer content on mobile */}
+      <div className="h-20 lg:hidden" aria-hidden />
 
       {/* Why */}
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
