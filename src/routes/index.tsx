@@ -7,7 +7,6 @@ import { Marquee } from "@/components/Marquee";
 import { fetchShopifyProducts, type ShopifyProduct } from "@/lib/shopify";
 import botanicalBg from "@/assets/botanical-bg.jpg";
 import sideVine from "@/assets/plants/side-vine.png";
-import sectionLeaves from "@/assets/section-leaves.png";
 import collectionHerbs from "@/assets/collection-herbs.png";
 import plantSprig from "@/assets/plant-sprig.png";
 import plantPattern from "@/assets/plant-pattern.jpeg";
