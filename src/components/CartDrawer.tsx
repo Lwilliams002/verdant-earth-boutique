@@ -130,7 +130,17 @@ export function CartDrawer() {
                   ))}
                 </div>
               </div>
-              <div className="flex-shrink-0 space-y-4 pt-4 border-t border-border bg-cream">
+              <div className="flex-shrink-0 space-y-3 pt-4 border-t border-border bg-cream">
+                <div className="flex justify-between items-center text-sm text-muted-foreground">
+                  <span>Subtotal</span>
+                  <span>{currency} {subtotal.toFixed(2)}</span>
+                </div>
+                {hasBundle && (
+                  <div className="flex justify-between items-center text-sm text-forest">
+                    <span>Ritual Bundle discount (BUNDLE5)</span>
+                    <span>− {currency} {discount.toFixed(2)}</span>
+                  </div>
+                )}
                 <div className="flex justify-between items-center">
                   <span className="text-lg font-display text-forest-deep">Total</span>
                   <span className="text-xl font-bold text-forest-deep">
