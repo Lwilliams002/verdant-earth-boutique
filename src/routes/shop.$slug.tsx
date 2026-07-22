@@ -23,7 +23,7 @@ export const Route = createFileRoute("/shop/$slug")({
   loader: async ({ context, params }) => {
     await context.queryClient.ensureQueryData({
       queryKey: ["shopify-product", params.slug],
-      queryFn: () => fetchShopifyProductByHandle({ data: { handle: params.slug } }),
+      queryFn: () => fetchShopifyProductByHandle(params.slug),
     });
     await context.queryClient.ensureQueryData({
       queryKey: ["shopify-products"],
@@ -59,7 +59,7 @@ function ProductPage() {
   const { slug } = Route.useParams();
   const { data: product } = useSuspenseQuery({
     queryKey: ["shopify-product", slug],
-    queryFn: () => fetchShopifyProductByHandle({ data: { handle: slug } }),
+    queryFn: () => fetchShopifyProductByHandle(slug),
   });
   const { data: allProducts } = useSuspenseQuery({
     queryKey: ["shopify-products"],
