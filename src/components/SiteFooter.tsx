@@ -45,7 +45,7 @@ export function SiteFooter() {
         <div className="mt-16 border-t border-cream/15 pt-12">
           <NewsletterSignup
             variant="dark"
-            heading="Join the ritual"
+            heading="Join the routine"
             description="Get new drops, herbal notes, and small-batch launches straight to your inbox."
             className="max-w-xl"
           />
