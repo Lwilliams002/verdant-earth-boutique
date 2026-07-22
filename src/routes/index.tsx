@@ -173,22 +173,20 @@ function Hero({ hero }: { hero?: ShopifyProduct["node"] }) {
               </Link>
             </div>
           )}
+
+          {/* Mobile hero CTA — appears directly under the bottle */}
+          {hero && (
+            <Link
+              to="/shop/$slug"
+              params={{ slug: hero.handle }}
+              className="group absolute inset-x-6 bottom-2 z-20 inline-flex items-center justify-center gap-3 rounded-full bg-forest-deep px-6 py-3.5 text-xs tracking-[0.2em] text-cream shadow-lg transition-colors hover:bg-forest sm:hidden"
+            >
+              SHOP {hero.title.toUpperCase()} — {hero.priceRange.minVariantPrice.currencyCode} {parseFloat(hero.priceRange.minVariantPrice.amount).toFixed(0)}
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+            </Link>
+          )}
         </div>
       </div>
-
-      {/* Mobile hero CTA — featured product shop link */}
-      {hero && (
-        <div className="mt-8 flex justify-center sm:hidden">
-          <Link
-            to="/shop/$slug"
-            params={{ slug: hero.handle }}
-            className="group inline-flex items-center gap-3 rounded-full bg-forest-deep px-7 py-4 text-sm tracking-[0.2em] text-cream transition-colors hover:bg-forest"
-          >
-            SHOP {hero.title.toUpperCase()} — {hero.priceRange.minVariantPrice.currencyCode} {parseFloat(hero.priceRange.minVariantPrice.amount).toFixed(0)}
-            <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-          </Link>
-        </div>
-      )}
     </section>
   );
 }
