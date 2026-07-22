@@ -11,6 +11,8 @@ import sectionLeaves from "@/assets/section-leaves.png";
 import collectionHerbs from "@/assets/collection-herbs.png";
 import plantSprig from "@/assets/plant-sprig.png";
 import plantPattern from "@/assets/plant-pattern.jpeg";
+import productEarthCollection from "@/assets/product-earth-balm-collection.png";
+import productDuoBoxed from "@/assets/product-duo-boxed.png";
 import founderStory from "@/assets/founder-story.png";
 import { BundleCTA } from "@/components/BundleCTA";
 import { COMING_SOON } from "@/lib/productMeta";
