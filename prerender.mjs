@@ -22,8 +22,8 @@ const pages = [
   "/shop/milk-honey-body-butter",
 ];
 
-// Dynamically import the built server (ESM)
-const { default: server } = await import("./dist/server/server.js");
+// Dynamically import the built SSR server (ESM)
+const { default: server } = await import("./node_modules/.nitro/vite/services/ssr/index.js");
 
 let failed = false;
 
@@ -44,9 +44,9 @@ for (const page of pages) {
 
     let outputPath;
     if (page === "/") {
-      outputPath = join(__dirname, "dist/client/index.html");
+      outputPath = join(__dirname, ".output/public/index.html");
     } else {
-      outputPath = join(__dirname, `dist/client${page}/index.html`);
+      outputPath = join(__dirname, `.output/public${page}/index.html`);
       mkdirSync(dirname(outputPath), { recursive: true });
     }
 
@@ -79,7 +79,7 @@ const notFoundHtml = `<!doctype html>
   <body>Redirecting…</body>
 </html>`;
 
-writeFileSync(join(__dirname, "dist/client/404.html"), notFoundHtml, "utf-8");
+writeFileSync(join(__dirname, ".output/public/404.html"), notFoundHtml, "utf-8");
 console.log("✓ 404.html (redirect stub)");
 
 if (failed) {
@@ -88,4 +88,7 @@ if (failed) {
 }
 
 console.log("\nPre-rendering complete ✓");
+
+
+
 
