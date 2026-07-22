@@ -68,108 +68,19 @@ function AboutPage() {
 
           <div className="mx-auto mt-14 max-w-2xl space-y-6 text-center text-base leading-[1.85] text-cream/85">
             <p>
-              My journey began in my grandmother's kitchen, where mason jars of dried herbs lined the windowsill: chamomile, ginger, lavender, gathered from her garden and used with quiet confidence. She never called it holistic. She just called it living.
+              Earth &amp; Tonic started during my own health journey after being diagnosed with PCOS. I wanted to better understand my body, so I began researching herbs and natural ingredients to support my overall wellness. What started as a personal passion quickly turned into something I genuinely loved.
             </p>
             <p>
-              Years later, I stood in aisle after aisle of products wrapped in promises of "natural" that felt anything but. I was tired of compromises and ingredients I couldn't pronounce. I kept thinking about those jars, and I started making my own remedies in that same spirit.
+              I also realized how many everyday products are filled with unnecessary synthetic ingredients. That inspired me to create products made with clean, thoughtfully chosen ingredients because I truly believe we don't always need all the extra additives to care for our bodies.
             </p>
             <p>
-              What began as small batches for family and friends slowly became something bigger. Earth &amp; Tonic grew from a simple desire: to create products as honest and purposeful as the ones my grandmother made, using organic herbs from farms I trust, handled with intention, and free from seed oils, synthetic fragrances, or fillers.
+              Thank you for being here and supporting my small business. It truly means the world to me.
             </p>
-            <p>
-              This isn't a brand built on buzzwords. It is a return to what we have always known, that nature, handled with respect, holds everything we need.
-            </p>
-            <p>
-              Every formula we craft is rooted in that kitchen-table tradition. We choose whole-plant extracts because isolates miss the symphony. We partner with small organic farms because patience grows better medicine. We make everything by hand in small batches because freshness matters, and because there is something sacred about slowing down.
-            </p>
-            <p>
-              My grandmother never measured her legacy in jars. She measured it in the quiet trust of the people she cared for. That is the spirit behind every bottle that leaves our studio. Not perfection, but presence. Not hype, but honesty.
-            </p>
-          </div>
-
-          <div className="mx-auto mt-14 max-w-xl border border-cream/30 px-8 py-8">
-            <p className="font-display text-sm tracking-[0.2em]">THIS ISN'T JUST A BUSINESS.</p>
-            <p className="mt-3 text-cream/85 leading-relaxed">A return to simple ingredients, chosen with care.</p>
-            <p className="text-cream/85 leading-relaxed">A return to tradition, rooted in trust.</p>
-            <p className="text-cream/85 leading-relaxed">A return to nature, where wellness began.</p>
           </div>
 
           <div className="mt-14">
-            <p className="font-script text-2xl text-sage">Thank you for being part of this journey.</p>
-            <p className="mt-5 font-script text-xl text-sage">With gratitude,</p>
-            <p className="mt-2 font-display text-lg tracking-[0.15em]">PAMELA ESPINOZA</p>
-            <p className="mt-1 text-sm tracking-[0.15em] text-cream/60">FOUNDER, EARTH &amp; TONIC</p>
-          </div>
-        </div>
-      </section>
-
-      {/* Timeline */}
-      <section className="bg-background py-24">
-        <div className="mx-auto max-w-4xl px-6">
-          <div className="text-center">
-            <span className="eyebrow inline-block text-moss">— The journey</span>
-            <h2 className="mt-4 font-display text-4xl text-forest-deep md:text-5xl">
-              From kitchen table to today
-            </h2>
-          </div>
-
-          <div className="relative mt-16">
-            {/* vertical line */}
-            <div className="absolute left-4 top-0 h-full w-px bg-forest-deep/20 md:left-1/2 md:-translate-x-1/2" />
-
-            {[
-              {
-                year: "2016",
-                title: "The first batch",
-                desc: "Small remedies made for family and friends, inspired by my grandmother’s kitchen tradition.",
-              },
-              {
-                year: "2018",
-                title: "Earth & Tonic is born",
-                desc: "A quiet launch from a home studio, built on honesty, whole plants, and patience.",
-              },
-              {
-                year: "2020",
-                title: "Farm partnerships",
-                desc: "Began working directly with small organic herb farms we still source from today.",
-              },
-              {
-                year: "2023",
-                title: "Expanded offerings",
-                desc: "Added botanical skincare and seasonal collections, always small-batch and seed-oil free.",
-              },
-              {
-                year: "Today",
-                title: "A growing community",
-                desc: "Shipping nationwide to customers who believe wellness should feel as good as it works.",
-              },
-            ].map((m, i) => {
-              const isLeft = i % 2 === 0;
-              return (
-                <div key={m.year} className="relative mb-12 last:mb-0">
-                  <div className="flex items-start md:items-center">
-                    {/* node */}
-                    <div className="relative z-10 flex w-8 shrink-0 justify-center pt-3 md:order-2 md:w-auto md:pt-0">
-                      <div className="h-3 w-3 rounded-full border-2 border-forest-deep bg-background" />
-                    </div>
-
-                    {/* content */}
-                    <div
-                      className={`min-w-0 flex-1 pl-4 text-left md:flex-none md:pl-0 md:w-1/2 ${
-                        isLeft ? "md:order-1 md:pr-12 md:text-right" : "md:order-3 md:pl-12 md:text-left"
-                      }`}
-                    >
-                      <span className="font-script text-3xl text-moss">{m.year}</span>
-                      <h3 className="mt-1 font-display text-xl text-forest-deep">{m.title}</h3>
-                      <p className="mt-2 text-sm leading-relaxed text-forest-deep/70">{m.desc}</p>
-                    </div>
-
-                    {/* spacer for alternating layout */}
-                    <div className={`hidden md:block md:w-1/2 ${isLeft ? "md:order-3" : "md:order-1"}`} />
-                  </div>
-                </div>
-              );
-            })}
+            <p className="font-script text-2xl text-sage">— Pamela</p>
+            <p className="mt-2 text-sm tracking-[0.15em] text-cream/60">FOUNDER, EARTH &amp; TONIC</p>
           </div>
         </div>
       </section>
@@ -178,9 +89,9 @@ function AboutPage() {
       <section className="bg-forest-deep py-24 text-cream">
         <div className="mx-auto grid max-w-6xl gap-10 px-6 md:grid-cols-3">
           {[
-            { n: "01", t: "Source", d: "Organic herbs from farm partners we know by name." },
-            { n: "02", t: "Craft", d: "Slow-extracted, small-batch and tested by hand." },
-            { n: "03", t: "Share", d: "Bottled with intention, shipped to your countertop." },
+            { n: "01", t: "Source", d: "We carefully choose every ingredient because what goes into our products matters." },
+            { n: "02", t: "Craft", d: "Every batch is handcrafted in small quantities." },
+            { n: "03", t: "Share", d: "Created to become part of your everyday routine." },
           ].map((s) => (
             <div key={s.n}>
               <span className="font-script text-5xl text-sage">{s.n}</span>
