@@ -11,6 +11,10 @@ export const Route = createFileRoute("/about")({
     meta: [
       { title: "Our Story — Earth & Tonic" },
       { name: "description", content: "Earth & Tonic is a small-batch wellness studio rooted in nature, crafting herbal tonics and botanical skincare with intention." },
+      { property: "og:title", content: "Our Story — Earth & Tonic" },
+      { property: "og:description", content: "The founder story behind Earth & Tonic, clean ingredients, and small-batch botanical wellness." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: AboutPage,

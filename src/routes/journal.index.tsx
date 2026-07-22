@@ -9,6 +9,10 @@ export const Route = createFileRoute("/journal/")({
     meta: [
       { title: "Journal — Earth & Tonic" },
       { name: "description", content: "Seasonal rituals, plant wisdom and notes from the Earth & Tonic studio." },
+      { property: "og:title", content: "Journal — Earth & Tonic" },
+      { property: "og:description", content: "Read Earth & Tonic notes on herbs, clean rituals, and botanical wellness." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   component: JournalPage,

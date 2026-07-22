@@ -10,6 +10,10 @@ export const Route = createFileRoute("/shop/")({
     meta: [
       { title: "Shop — Earth & Tonic" },
       { name: "description", content: "Shop organic herbal tonics and botanical skincare from Earth & Tonic." },
+      { property: "og:title", content: "Shop — Earth & Tonic" },
+      { property: "og:description", content: "Browse Earth & Tonic's small-batch botanical products made with organic herbs." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   loader: async ({ context }) => {

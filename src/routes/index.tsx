@@ -31,6 +31,8 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Organic herbal tonics & botanical skincare, crafted in small batches.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   loader: async ({ context }) => {
