@@ -14,6 +14,7 @@ import collectionHerbs from "@/assets/collection-herbs.png";
 import plantSprig from "@/assets/plant-sprig.png";
 import plantPattern from "@/assets/plant-pattern.jpeg";
 import { BundleCTA } from "@/components/BundleCTA";
+import { COMING_SOON } from "@/lib/productMeta";
 import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake, Flower, TreePine, Sun, HandHeart } from "lucide-react";
 
 export const Route = createFileRoute("/")({
