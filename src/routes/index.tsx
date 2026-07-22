@@ -194,36 +194,6 @@ function Hero({ hero }: { hero?: ShopifyProduct["node"] }) {
   );
 }
 
-function Pillars() {
-  const items = [
-    { icon: Flower2, title: "Plant Powered", desc: "Whole-plant extracts from organic farms." },
-    { icon: TreePine, title: "Rooted in Nature", desc: "Traditional herbs, modern formulation." },
-    { icon: Sparkles, title: "Clean Ingredients", desc: "Never any seed oils or synthetics." },
-    { icon: HandHeart, title: "Crafted with Care", desc: "Small batch, made by hand." },
-  ];
-  return (
-    <section className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10">
-      <img
-        src={sectionLeaves}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="section-leaves pointer-events-none absolute -top-10 left-0 right-0 z-0 h-56 w-full object-cover object-top md:h-80"
-      />
-      <div className="grid grid-cols-2 gap-x-6 gap-y-10 md:grid-cols-4 md:gap-x-8">
-        {items.map(({ icon: Icon, title }) => (
-          <div key={title} className="flex flex-col items-center text-center md:items-start md:text-left">
-            <div className="flex h-14 w-14 items-center justify-center rounded-full border border-forest/20 text-forest-deep">
-              <Icon className="h-5 w-5" />
-            </div>
-            <h3 className="mt-5 font-display text-xl text-forest-deep">{title}</h3>
-          </div>
-        ))}
-      </div>
-    </section>
-  );
-}
-
 function Collection({ products }: { products: ShopifyProduct[] }) {
   return (
     <section className="relative z-10 mx-auto max-w-7xl px-6 py-20 lg:px-10">
