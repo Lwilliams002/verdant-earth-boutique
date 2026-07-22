@@ -237,7 +237,7 @@ function Collection({ products }: { products: ShopifyProduct[] }) {
         <div>
           <span className="eyebrow text-moss">— The collection</span>
           <h2 className="mt-3 font-display text-5xl text-forest-deep md:text-6xl">
-            <span className="font-script text-moss">Crafted</span> for daily rituals
+            <span className="font-script text-moss">Crafted</span> for daily routines
           </h2>
         </div>
         <Link to="/shop" className="eyebrow hidden border-b border-forest-deep/40 pb-1 text-forest-deep md:inline">
