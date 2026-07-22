@@ -414,7 +414,7 @@ function Ingredients() {
     { icon: Leaf, label: "Certified Organic", detail: "Grown without pesticides or synthetic fertilisers" },
     { icon: Droplet, label: "Whole-Plant Extracts", detail: "We use the full herb, not isolated fragments" },
     { icon: HandHeart, label: "Small-Batch Crafted", detail: "Made by hand in limited quantities for freshness" },
-    { icon: Sprout, label: "Never Any Seed Oils", detail: "Only clean carrier oils and botanical bases" },
+    { icon: Sprout, label: "Clean Ingredients", detail: "Only clean carrier oils and botanical bases" },
   ];
 
   return (
