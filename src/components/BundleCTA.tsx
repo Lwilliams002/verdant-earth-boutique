@@ -55,11 +55,11 @@ export function BundleCTA({ products }: { products: ShopifyProduct[] }) {
               <Sparkles className="h-3.5 w-3.5" /> Limited bundle
             </span>
             <h2 className="mt-3 font-display text-4xl md:text-5xl">
-              The <span className="font-script text-sage">Ritual</span> Bundle
+              The <span className="font-script text-sage">Routine</span> Bundle
             </h2>
             <p className="mt-4 max-w-xl text-cream/80 leading-relaxed">
               Both of our botanical balms together — Earth Balm and Moon Balm — for a complete morning
-              and evening ritual. Save ${BUNDLE_DISCOUNT_AMOUNT.toFixed(2)} when you take home the pair.
+              and evening routine. Save ${BUNDLE_DISCOUNT_AMOUNT.toFixed(2)} when you take home the pair.
             </p>
             <div className="mt-6 flex flex-wrap gap-6">
               {bundleProducts.map((p) => {
