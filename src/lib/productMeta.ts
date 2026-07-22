@@ -24,8 +24,8 @@ export const PRODUCT_INGREDIENTS: Record<string, IngredientMeta[]> = {
 
 export const DEFAULT_INGREDIENTS: IngredientMeta[] = [
   { name: "Organic Herbs", note: "Whole plant", desc: "Whole-plant botanicals from farms we trust, chosen for purity and potency." },
-  { name: "Clean Carrier Oils", note: "Nourishing base", desc: "Cold-pressed plant oils — never seed oils — that carry active botanicals into the skin." },
-  { name: "Small-Batch Craft", note: "Made by hand", desc: "Formulated and poured in small batches to preserve freshness and integrity." },
+  { name: "Clean Carrier Oils", note: "Nourishing base", desc: "Cold-pressed plant oils never seed oils that carry active botanicals into the skin." },
+  { name: "Small Batch Craft", note: "Made by hand", desc: "Formulated and poured in small batches to preserve freshness and integrity." },
   { name: "No Synthetics", note: "Nothing hidden", desc: "Free from synthetic fragrance, dyes, and fillers. Just what belongs." },
 ];
 

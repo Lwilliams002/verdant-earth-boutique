@@ -138,7 +138,7 @@ export function CartDrawer() {
                 {hasBundle && (
                   <div className="flex justify-between items-center text-sm text-forest">
                     <span>Routine Bundle discount (BUNDLE5)</span>
-                    <span>− {currency} {discount.toFixed(2)}</span>
+                    <span>{currency} {discount.toFixed(2)}</span>
                   </div>
                 )}
                 <div className="flex justify-between items-center">

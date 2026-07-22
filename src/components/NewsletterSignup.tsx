@@ -41,8 +41,8 @@ export function NewsletterSignup({
       setEmail("");
       toast.success(
         result.message === "already_subscribed"
-          ? "You're already on the list — thanks!"
-          : "You're on the list — thanks for joining."
+          ? "You're already on the list thanks!"
+          : "You're on the list thanks for joining."
       );
     } catch {
       toast.error("Something went wrong. Please try again.");
@@ -97,7 +97,7 @@ export function NewsletterSignup({
                   isDark ? "text-cream/75" : "text-foreground/70"
                 }`}
               >
-                You&apos;re on the list — watch your inbox for updates on new
+                You&apos;re on the list watch your inbox for updates on new
                 drops and herbal routines.
               </p>
             </div>
