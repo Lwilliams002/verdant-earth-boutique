@@ -271,6 +271,45 @@ function Collection({ products }: { products: ShopifyProduct[] }) {
           );
         })}
       </div>
+
+      {/* Coming soon */}
+      <div className="relative z-10 mt-24">
+        <div className="flex items-end justify-between gap-6">
+          <div>
+            <span className="eyebrow text-moss">— In the works</span>
+            <h3 className="mt-3 font-display text-4xl text-forest-deep md:text-5xl">
+              <span className="font-script text-moss">Coming</span> soon
+            </h3>
+            <p className="mt-3 max-w-lg text-sm text-foreground/70">
+              New tonics and skincare joining the shelf. Sign up below to be first to know when they launch.
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-10 grid grid-cols-2 gap-x-4 gap-y-8 sm:gap-6 lg:grid-cols-4 lg:gap-10">
+          {COMING_SOON.map((p) => (
+            <div key={p.slug} className="group flex flex-col opacity-90">
+              <div className="relative flex aspect-[3/4] items-center justify-center overflow-hidden rounded-sm bg-cream-deep">
+                <img
+                  src={p.image}
+                  alt={p.name}
+                  loading="lazy"
+                  className="bottle-shadow h-[80%] w-auto object-contain grayscale-[35%] transition-transform duration-700 group-hover:scale-105"
+                />
+                <span className="absolute left-4 top-4 eyebrow text-moss">{p.category}</span>
+                <div className="absolute inset-x-0 bottom-0 flex items-center justify-center bg-forest-deep/85 py-2 text-cream">
+                  <span className="eyebrow text-[10px] tracking-[0.25em]">Coming soon</span>
+                </div>
+              </div>
+              <div className="mt-3 flex items-baseline justify-between gap-2 sm:mt-5 sm:gap-4">
+                <h4 className="font-display text-lg text-forest-deep sm:text-2xl">{p.name}</h4>
+                <span className="text-xs text-foreground/70 sm:text-sm">${p.price}</span>
+              </div>
+              <p className="mt-1 text-xs italic text-muted-foreground sm:text-sm">{p.tagline}</p>
+            </div>
+          ))}
+        </div>
+      </div>
     </section>
   );
 }
