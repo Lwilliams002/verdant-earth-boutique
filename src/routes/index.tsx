@@ -17,7 +17,7 @@ import founderStory from "@/assets/founder-story.png";
 import { BundleCTA } from "@/components/BundleCTA";
 import { COMING_SOON } from "@/lib/productMeta";
 import { NewsletterSignup } from "@/components/NewsletterSignup";
-import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake, HandHeart } from "lucide-react";
+import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake, HandHeart, Flower2, TreePine, Sparkles } from "lucide-react";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -197,10 +197,10 @@ function Hero({ hero }: { hero?: ShopifyProduct["node"] }) {
 
 function Pillars() {
   const items = [
-    { icon: Leaf, title: "Plant Powered", desc: "Whole-plant extracts from organic farms." },
-    { icon: Sprout, title: "Rooted in Nature", desc: "Traditional herbs, modern formulation." },
-    { icon: Droplet, title: "Clean Ingredients", desc: "Never any seed oils or synthetics." },
-    { icon: HeartHandshake, title: "Crafted with Care", desc: "Small batch, made by hand." },
+    { icon: Flower2, title: "Plant Powered", desc: "Whole-plant extracts from organic farms." },
+    { icon: TreePine, title: "Rooted in Nature", desc: "Traditional herbs, modern formulation." },
+    { icon: Sparkles, title: "Clean Ingredients", desc: "Never any seed oils or synthetics." },
+    { icon: HandHeart, title: "Crafted with Care", desc: "Small batch, made by hand." },
   ];
   return (
     <section className="relative mx-auto max-w-7xl px-6 py-20 lg:px-10">
