@@ -176,7 +176,7 @@ function Hero({ hero }: { hero?: ShopifyProduct["node"] }) {
             </div>
           )}
 
-          {/* Mobile hero CTA — appears directly under the bottle */}
+          {/* Mobile hero CTA appears directly under the bottle */}
           {hero && (
             <Link
               to="/shop/$slug"
@@ -255,7 +255,7 @@ function Collection({ products }: { products: ShopifyProduct[] }) {
         })}
       </div>
 
-      {/* Coming soon — hidden until launch
+      {/* Coming soon hidden until launch
       <div className="relative z-10 mt-24">
         <div className="flex items-end justify-between gap-6">
           <div>
@@ -401,7 +401,7 @@ function Ingredients() {
       name: "The Duo",
       tagline: "Earth Balm + Moon Balm",
       copy:
-        "Two balms, one routine. Earth Balm to ground your mornings and Moon Balm — infused with lavender — to soften the wind-down into evening.",
+        "Two balms, one routine. Earth Balm to ground your mornings and Moon Balm infused with lavender to soften the wind-down into evening.",
       ingredients: [
         "Lavender Infused Oil",
         "Chamomile Infused Oil",
@@ -455,7 +455,7 @@ function Ingredients() {
           <span className="font-script text-moss">matters.</span>
         </h2>
         <p className="mt-6 leading-relaxed text-foreground/70">
-          Every balm is built from a short list of whole-plant ingredients — chosen for what they
+          Every balm is built from a short list of whole-plant ingredients chosen for what they
           do, and how gently they do it. No isolates, no synthetics, no shortcuts.
         </p>
       </div>
@@ -473,7 +473,7 @@ function Ingredients() {
               <div className="absolute inset-0 -z-10 rounded-[2rem] bg-gradient-to-br from-sage/20 to-cream/40 blur-2xl" />
               <img
                 src={p.image}
-                alt={`${p.name} — ${p.tagline}`}
+                alt={`${p.name} ${p.tagline}`}
                 loading="lazy"
                 className="w-full rounded-[1.5rem] object-cover shadow-xl"
               />
@@ -553,7 +553,7 @@ function Newsletter() {
         Join the <span className="font-script text-moss">rooted</span> circle.
       </h2>
       <p className="mt-4 text-muted-foreground">
-        Receive seasonal routines, early product drops and a little bit of plant wisdom — straight
+        Receive seasonal routines, early product drops and a little bit of plant wisdom straight
         to your inbox.
       </p>
       <form

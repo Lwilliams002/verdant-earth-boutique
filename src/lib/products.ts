@@ -26,8 +26,8 @@ export const products: Product[] = [
     price: 38,
     image: gutTonic,
     category: "Tonics",
-    short: "A 100% natural daily blend for bloat, gas, and digestion — crafted from six organic herbs.",
-    long: "Many digestive issues don't start with what you eat — they start with how well your body digests it. Gut Tonic is a small-batch herbal extract designed to support your gut from the root, gently and daily.",
+    short: "A 100% natural daily blend for bloat, gas, and digestion crafted from six organic herbs.",
+    long: "Many digestive issues don't start with what you eat they start with how well your body digests it. Gut Tonic is a small-batch herbal extract designed to support your gut from the root, gently and daily.",
     benefits: [
       "Soothes occasional bloating",
       "Eases gas & digestive discomfort",
@@ -52,7 +52,7 @@ export const products: Product[] = [
     price: 44,
     image: sleepDrops,
     category: "Tonics",
-    short: "A calming herbal blend to help you unwind, quiet the mind, and drift naturally — no melatonin, ever.",
+    short: "A calming herbal blend to help you unwind, quiet the mind, and drift naturally no melatonin, ever.",
     long: "Crafted to support your nervous system and ease the day's tension. Six traditional botanicals work together to bring you back to rest, gently and without dependence.",
     benefits: [
       "Calms the mind & eases stress",

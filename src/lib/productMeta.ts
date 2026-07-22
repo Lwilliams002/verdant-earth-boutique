@@ -18,7 +18,7 @@ export const PRODUCT_INGREDIENTS: Record<string, IngredientMeta[]> = {
     { name: "Lavender", note: "Calms the senses", desc: "Fragrant blooms that ease tension and signal to the nervous system it's safe to rest." },
     { name: "Chamomile", note: "Gentle & soothing", desc: "Delicate flowers infused into oil to calm both skin and mind at day's end." },
     { name: "Beeswax", note: "Protective seal", desc: "A breathable botanical wax that seals in moisture for hydrated, supple skin overnight." },
-    { name: "Jojoba Oil", note: "Balances moisture", desc: "A liquid wax nearly identical to skin's own sebum — absorbs easily, balances beautifully." },
+    { name: "Jojoba Oil", note: "Balances moisture", desc: "A liquid wax nearly identical to skin's own sebum absorbs easily, balances beautifully." },
   ],
 };
 
@@ -33,7 +33,7 @@ export function getIngredients(handle: string): IngredientMeta[] {
   return PRODUCT_INGREDIENTS[handle] ?? DEFAULT_INGREDIENTS;
 }
 
-// Products we plan to bring back — surfaced as "Coming soon" in the collection.
+// Products we plan to bring back surfaced as "Coming soon" in the collection.
 export type ComingSoonProduct = {
   slug: string;
   name: string;
