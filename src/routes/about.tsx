@@ -68,37 +68,19 @@ function AboutPage() {
 
           <div className="mx-auto mt-14 max-w-2xl space-y-6 text-center text-base leading-[1.85] text-cream/85">
             <p>
-              My journey began in my grandmother's kitchen, where mason jars of dried herbs lined the windowsill: chamomile, ginger, lavender, gathered from her garden and used with quiet confidence. She never called it holistic. She just called it living.
+              Earth &amp; Tonic started during my own health journey after being diagnosed with PCOS. I wanted to better understand my body, so I began researching herbs and natural ingredients to support my overall wellness. What started as a personal passion quickly turned into something I genuinely loved.
             </p>
             <p>
-              Years later, I stood in aisle after aisle of products wrapped in promises of "natural" that felt anything but. I was tired of compromises and ingredients I couldn't pronounce. I kept thinking about those jars, and I started making my own remedies in that same spirit.
+              I also realized how many everyday products are filled with unnecessary synthetic ingredients. That inspired me to create products made with clean, thoughtfully chosen ingredients because I truly believe we don't always need all the extra additives to care for our bodies.
             </p>
             <p>
-              What began as small batches for family and friends slowly became something bigger. Earth &amp; Tonic grew from a simple desire: to create products as honest and purposeful as the ones my grandmother made, using organic herbs from farms I trust, handled with intention, and free from seed oils, synthetic fragrances, or fillers.
+              Thank you for being here and supporting my small business. It truly means the world to me.
             </p>
-            <p>
-              This isn't a brand built on buzzwords. It is a return to what we have always known, that nature, handled with respect, holds everything we need.
-            </p>
-            <p>
-              Every formula we craft is rooted in that kitchen-table tradition. We choose whole-plant extracts because isolates miss the symphony. We partner with small organic farms because patience grows better medicine. We make everything by hand in small batches because freshness matters, and because there is something sacred about slowing down.
-            </p>
-            <p>
-              My grandmother never measured her legacy in jars. She measured it in the quiet trust of the people she cared for. That is the spirit behind every bottle that leaves our studio. Not perfection, but presence. Not hype, but honesty.
-            </p>
-          </div>
-
-          <div className="mx-auto mt-14 max-w-xl border border-cream/30 px-8 py-8">
-            <p className="font-display text-sm tracking-[0.2em]">THIS ISN'T JUST A BUSINESS.</p>
-            <p className="mt-3 text-cream/85 leading-relaxed">A return to simple ingredients, chosen with care.</p>
-            <p className="text-cream/85 leading-relaxed">A return to tradition, rooted in trust.</p>
-            <p className="text-cream/85 leading-relaxed">A return to nature, where wellness began.</p>
           </div>
 
           <div className="mt-14">
-            <p className="font-script text-2xl text-sage">Thank you for being part of this journey.</p>
-            <p className="mt-5 font-script text-xl text-sage">With gratitude,</p>
-            <p className="mt-2 font-display text-lg tracking-[0.15em]">PAMELA ESPINOZA</p>
-            <p className="mt-1 text-sm tracking-[0.15em] text-cream/60">FOUNDER, EARTH &amp; TONIC</p>
+            <p className="font-script text-2xl text-sage">— Pamela</p>
+            <p className="mt-2 text-sm tracking-[0.15em] text-cream/60">FOUNDER, EARTH &amp; TONIC</p>
           </div>
         </div>
       </section>
