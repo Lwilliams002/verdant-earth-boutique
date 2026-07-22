@@ -5,8 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { FloatingBottle } from "@/components/FloatingBottle";
 import { Marquee } from "@/components/Marquee";
 import { BrandMark } from "@/components/BrandMark";
-import { fetchShopifyProducts } from "@/lib/shopify.functions";
-import type { ShopifyProduct } from "@/lib/shopify";
+import { fetchShopifyProducts, type ShopifyProduct } from "@/lib/shopify";
 import botanicalBg from "@/assets/botanical-bg.jpg";
 import sideVine from "@/assets/plants/side-vine.png";
 import sectionLeaves from "@/assets/section-leaves.png";
@@ -32,6 +31,8 @@ export const Route = createFileRoute("/")({
         property: "og:description",
         content: "Organic herbal tonics & botanical skincare, crafted in small batches.",
       },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   loader: async ({ context }) => {

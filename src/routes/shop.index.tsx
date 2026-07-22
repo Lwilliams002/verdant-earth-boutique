@@ -2,7 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useSuspenseQuery } from "@tanstack/react-query";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
-import { fetchShopifyProducts } from "@/lib/shopify.functions";
+import { fetchShopifyProducts } from "@/lib/shopify";
 import { Skeleton } from "@/components/ui/skeleton";
 
 export const Route = createFileRoute("/shop/")({
@@ -10,6 +10,10 @@ export const Route = createFileRoute("/shop/")({
     meta: [
       { title: "Shop — Earth & Tonic" },
       { name: "description", content: "Shop organic herbal tonics and botanical skincare from Earth & Tonic." },
+      { property: "og:title", content: "Shop — Earth & Tonic" },
+      { property: "og:description", content: "Browse Earth & Tonic's small-batch botanical products made with organic herbs." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   loader: async ({ context }) => {

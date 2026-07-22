@@ -17,6 +17,8 @@ export const Route = createFileRoute("/journal/$slug")({
           { name: "description", content: loaderData.post.excerpt },
           { property: "og:title", content: loaderData.post.title },
           { property: "og:description", content: loaderData.post.excerpt },
+          { property: "og:type", content: "article" },
+          { name: "twitter:card", content: "summary" },
         ]
       : [],
   }),

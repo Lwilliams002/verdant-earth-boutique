@@ -7,7 +7,7 @@ import { BrandMark } from "@/components/BrandMark";
 import { Minus, Plus, Check, ArrowRight, Loader2 } from "lucide-react";
 import { useState } from "react";
 import botanicalBg from "@/assets/botanical-bg.jpg";
-import { fetchShopifyProductByHandle, fetchShopifyProducts } from "@/lib/shopify.functions";
+import { fetchShopifyProductByHandle, fetchShopifyProducts } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import type { ShopifyProduct } from "@/lib/shopify";
 import { getIngredients } from "@/lib/productMeta";
@@ -18,12 +18,16 @@ export const Route = createFileRoute("/shop/$slug")({
     meta: [
       { title: `${params.slug} — Earth & Tonic` },
       { name: "description", content: "Earth & Tonic product" },
+      { property: "og:title", content: `${params.slug} — Earth & Tonic` },
+      { property: "og:description", content: "Explore this small-batch Earth & Tonic botanical product made with organic herbs." },
+      { property: "og:type", content: "website" },
+      { name: "twitter:card", content: "summary" },
     ],
   }),
   loader: async ({ context, params }) => {
     await context.queryClient.ensureQueryData({
       queryKey: ["shopify-product", params.slug],
-      queryFn: () => fetchShopifyProductByHandle({ data: { handle: params.slug } }),
+      queryFn: () => fetchShopifyProductByHandle(params.slug),
     });
     await context.queryClient.ensureQueryData({
       queryKey: ["shopify-products"],
@@ -59,7 +63,7 @@ function ProductPage() {
   const { slug } = Route.useParams();
   const { data: product } = useSuspenseQuery({
     queryKey: ["shopify-product", slug],
-    queryFn: () => fetchShopifyProductByHandle({ data: { handle: slug } }),
+    queryFn: () => fetchShopifyProductByHandle(slug),
   });
   const { data: allProducts } = useSuspenseQuery({
     queryKey: ["shopify-products"],
