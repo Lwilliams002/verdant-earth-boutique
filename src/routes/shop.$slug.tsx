@@ -15,10 +15,10 @@ import { toast } from "sonner";
 export const Route = createFileRoute("/shop/$slug")({
   head: ({ params }) => ({
     meta: [
-      { title: `${params.slug} — Earth & Tonic` },
+      { title: `${params.slug} Earth & Tonic` },
       { name: "description", content: "Earth & Tonic product" },
-      { property: "og:title", content: `${params.slug} — Earth & Tonic` },
-      { property: "og:description", content: "Explore this small-batch Earth & Tonic botanical product made with organic herbs." },
+      { property: "og:title", content: `${params.slug} Earth & Tonic` },
+      { property: "og:description", content: "Explore this small batch Earth & Tonic botanical product made with organic herbs." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -97,7 +97,7 @@ function ProductPage() {
       selectedOptions: variant.selectedOptions,
     });
     setAdded(true);
-    toast.success("Added to cart", { description: `${product.title} — ${qty} item${qty > 1 ? "s" : ""}` });
+    toast.success("Added to cart", { description: `${product.title} ${qty} item${qty > 1 ? "s" : ""}` });
     setTimeout(() => setAdded(false), 1800);
   };
 
@@ -124,7 +124,7 @@ function ProductPage() {
 
           {/* Center product with flanking ingredients */}
           <div className="mt-10 grid gap-8 lg:mt-14 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-10">
-            {/* Left ingredients — desktop only */}
+            {/* Left ingredients desktop only */}
             <div className="hidden lg:flex lg:flex-col lg:gap-10 lg:pr-4 lg:text-right">
               {leftIngredients.map((ing) => (
                 <div key={ing.name} className="ml-auto max-w-xs">
@@ -150,7 +150,7 @@ function ProductPage() {
               )}
             </div>
 
-            {/* Right ingredients — desktop only */}
+            {/* Right ingredients desktop only */}
             <div className="hidden lg:flex lg:flex-col lg:gap-10 lg:pl-4">
               {rightIngredients.map((ing) => (
                 <div key={ing.name} className="max-w-xs">
@@ -218,12 +218,12 @@ function ProductPage() {
                     <Check className="h-4 w-4" /> ADDED
                   </span>
                 ) : (
-                  `ADD TO CART — ${price.currencyCode} ${(parseFloat(price.amount) * qty).toFixed(2)}`
+                  `ADD TO CART ${price.currencyCode} ${(parseFloat(price.amount) * qty).toFixed(2)}`
                 )}
               </button>
             </div>
             <p className="mt-3 text-center text-xs text-muted-foreground">
-              Free shipping on orders over $60. Ships in 1–2 business days.
+              Free shipping on orders over $60. Ships in 1 to 2 business days.
             </p>
           </div>
         </div>
@@ -261,12 +261,12 @@ function ProductPage() {
       <section className="mx-auto max-w-7xl px-6 py-20 lg:px-10">
         <div className="grid gap-12 lg:grid-cols-[1fr_1.2fr]">
           <div>
-            <span className="eyebrow text-moss">— Made with intention</span>
+            <span className="eyebrow text-moss">Made with intention</span>
             <h2 className="mt-3 font-display text-5xl text-forest-deep">
               Why <span className="font-script text-moss">{product.title}?</span>
             </h2>
             <p className="mt-6 text-foreground/75">
-              {product.description || "Crafted with care using organic, whole-plant ingredients."}
+              {product.description || "Crafted with care using organic, whole plant ingredients."}
             </p>
           </div>
           <div className="grid gap-px overflow-hidden rounded-sm bg-border sm:grid-cols-2">

@@ -403,7 +403,7 @@ const CUSTOMER_CREATE_MUTATION = `
 export async function subscribeShopifyEmail(
   email: string
 ): Promise<{ success: boolean; message?: string }> {
-  // Generate a random password; user never needs it — this is just to
+  // Generate a random password; user never needs it this is just to
   // create the customer record with marketing consent so it shows up in
   // Shopify Admin under Customers / Email subscribers.
   const password =
@@ -418,7 +418,7 @@ export async function subscribeShopifyEmail(
   const errors = data?.data?.customerCreate?.customerUserErrors || [];
   if (errors.length > 0) {
     const codes = errors.map((e: { code?: string }) => e.code);
-    // TAKEN = email already exists as a customer — treat as success for signup UX.
+    // TAKEN = email already exists as a customer treat as success for signup UX.
     if (codes.includes("TAKEN") || codes.includes("CUSTOMER_DISABLED")) {
       return { success: true, message: "already_subscribed" };
     }

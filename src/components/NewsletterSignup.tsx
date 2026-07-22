@@ -14,7 +14,7 @@ interface NewsletterSignupProps {
 export function NewsletterSignup({
   variant = "light",
   heading = "Join the list",
-  description = "Be first to know about new tonics, skincare, and small-batch drops.",
+  description = "Be first to know about new tonics, skincare, and small batch drops.",
   className = "",
 }: NewsletterSignupProps) {
   const [email, setEmail] = useState("");
@@ -41,8 +41,8 @@ export function NewsletterSignup({
       setEmail("");
       toast.success(
         result.message === "already_subscribed"
-          ? "You're already on the list — thanks!"
-          : "You're on the list — thanks for joining."
+          ? "You're already on the list thanks!"
+          : "You're on the list thanks for joining."
       );
     } catch {
       toast.error("Something went wrong. Please try again.");
@@ -97,7 +97,7 @@ export function NewsletterSignup({
                   isDark ? "text-cream/75" : "text-foreground/70"
                 }`}
               >
-                You&apos;re on the list — watch your inbox for updates on new
+                You&apos;re on the list watch your inbox for updates on new
                 drops and herbal routines.
               </p>
             </div>

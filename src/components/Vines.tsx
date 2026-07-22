@@ -1,7 +1,7 @@
 import { type SVGProps } from "react";
 
 /**
- * Decorative botanical SVGs — vines, leaves, sprigs.
+ * Decorative botanical SVGs vines, leaves, sprigs.
  * All use currentColor so they inherit from text-* classes.
  */
 

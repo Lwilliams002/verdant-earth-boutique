@@ -8,10 +8,10 @@ import { Skeleton } from "@/components/ui/skeleton";
 export const Route = createFileRoute("/shop/")({
   head: () => ({
     meta: [
-      { title: "Shop — Earth & Tonic" },
+      { title: "Shop Earth & Tonic" },
       { name: "description", content: "Shop organic herbal tonics and botanical skincare from Earth & Tonic." },
-      { property: "og:title", content: "Shop — Earth & Tonic" },
-      { property: "og:description", content: "Browse Earth & Tonic's small-batch botanical products made with organic herbs." },
+      { property: "og:title", content: "Shop Earth & Tonic" },
+      { property: "og:description", content: "Browse Earth & Tonic's small batch botanical products made with organic herbs." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],
@@ -36,12 +36,12 @@ function ShopPage() {
       <SiteHeader />
       <section className="mx-auto max-w-7xl px-6 pb-24 pt-16 lg:px-10 lg:pt-24">
         <div className="mx-auto max-w-2xl text-center">
-          <span className="eyebrow text-moss">— The Apothecary</span>
+          <span className="eyebrow text-moss">The Apothecary</span>
           <h1 className="mt-4 font-display text-6xl text-forest-deep">
             <span className="font-script text-moss">All</span> products
           </h1>
           <p className="mt-5 text-foreground/70">
-            Small-batch tonics and botanical skincare, made with organic ingredients.
+            Small batch tonics and botanical skincare, made with organic ingredients.
           </p>
         </div>
 

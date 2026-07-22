@@ -13,7 +13,7 @@ export const Route = createFileRoute("/journal/$slug")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.post.title} — Earth & Tonic Journal` },
+          { title: `${loaderData.post.title} Earth & Tonic Journal` },
           { name: "description", content: loaderData.post.excerpt },
           { property: "og:title", content: loaderData.post.title },
           { property: "og:description", content: loaderData.post.excerpt },
@@ -62,7 +62,7 @@ function JournalPostPage() {
         >
           <ArrowLeft className="h-4 w-4" /> The journal
         </Link>
-        <span className="eyebrow mt-8 block text-moss">— {post.tag}</span>
+        <span className="eyebrow mt-8 block text-moss">{post.tag}</span>
         <h1 className="mt-3 font-display text-5xl text-forest-deep md:text-6xl">
           {post.title}
         </h1>
@@ -79,7 +79,7 @@ function JournalPostPage() {
       {others.length > 0 && (
         <section className="border-t border-border bg-cream/40">
           <div className="mx-auto max-w-5xl px-6 py-16">
-            <span className="eyebrow text-moss">— Keep reading</span>
+            <span className="eyebrow text-moss">Keep reading</span>
             <div className="mt-6 grid gap-8 md:grid-cols-2">
               {others.map((p) => (
                 <Link

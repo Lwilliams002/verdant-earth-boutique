@@ -46,7 +46,7 @@ export function SiteFooter() {
           <NewsletterSignup
             variant="dark"
             heading="Join the routine"
-            description="Get new drops, herbal notes, and small-batch launches straight to your inbox."
+            description="Get new drops, herbal notes, and small batch launches straight to your inbox."
             className="max-w-xl"
           />
         </div>

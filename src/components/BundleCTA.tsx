@@ -58,7 +58,7 @@ export function BundleCTA({ products }: { products: ShopifyProduct[] }) {
               The <span className="font-script text-sage">Routine</span> Bundle
             </h2>
             <p className="mt-4 max-w-xl text-cream/80 leading-relaxed">
-              Both of our botanical balms together — Earth Balm and Moon Balm — for a complete morning
+              Both of our botanical balms together Earth Balm and Moon Balm for a complete morning
               and evening routine. Save ${BUNDLE_DISCOUNT_AMOUNT.toFixed(2)} when you take home the pair.
             </p>
             <div className="mt-6 flex flex-wrap gap-6">
