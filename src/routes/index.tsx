@@ -15,6 +15,7 @@ import plantSprig from "@/assets/plant-sprig.png";
 import plantPattern from "@/assets/plant-pattern.jpeg";
 import { BundleCTA } from "@/components/BundleCTA";
 import { COMING_SOON } from "@/lib/productMeta";
+import { NewsletterSignup } from "@/components/NewsletterSignup";
 import { ArrowRight, Leaf, Sprout, Droplet, HeartHandshake, Flower, TreePine, Sun, HandHeart } from "lucide-react";
 
 export const Route = createFileRoute("/")({
@@ -320,6 +321,15 @@ function Collection({ products }: { products: ShopifyProduct[] }) {
               <p className="mt-1 text-xs italic text-muted-foreground sm:text-sm">{p.tagline}</p>
             </div>
           ))}
+        </div>
+
+        <div className="mt-14 rounded-sm border border-forest-deep/10 bg-cream-deep/50 p-8 md:p-12">
+          <NewsletterSignup
+            variant="light"
+            heading="Be first in line"
+            description="Sign up to get early access when these tonics and skincare launch."
+            className="mx-auto max-w-xl text-center [&_form]:justify-center"
+          />
         </div>
       </div>
     </section>

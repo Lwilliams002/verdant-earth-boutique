@@ -2,6 +2,7 @@ import { Link } from "@tanstack/react-router";
 import { BrandMark } from "./BrandMark";
 import { Instagram } from "lucide-react";
 import navVines from "@/assets/nav-vines.png";
+import { NewsletterSignup } from "./NewsletterSignup";
 
 export function SiteFooter() {
   return (
@@ -44,6 +45,16 @@ export function SiteFooter() {
             { to: "/about", label: "Returns" },
           ]} />
         </div>
+
+        <div className="mt-16 border-t border-cream/15 pt-12">
+          <NewsletterSignup
+            variant="dark"
+            heading="Join the ritual"
+            description="Get new drops, herbal notes, and small-batch launches straight to your inbox."
+            className="max-w-xl"
+          />
+        </div>
+
 
         <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-cream/15 pt-8 text-xs tracking-wide text-cream/60 md:flex-row md:items-center">
           <span>© {new Date().getFullYear()} Earth &amp; Tonic. All rights reserved.</span>
