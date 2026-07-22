@@ -7,9 +7,9 @@ import { journalPosts } from "@/lib/journal";
 export const Route = createFileRoute("/journal/")({
   head: () => ({
     meta: [
-      { title: "Journal — Earth & Tonic" },
+      { title: "Journal Earth & Tonic" },
       { name: "description", content: "Seasonal routines, plant wisdom and notes from the Earth & Tonic studio." },
-      { property: "og:title", content: "Journal — Earth & Tonic" },
+      { property: "og:title", content: "Journal Earth & Tonic" },
       { property: "og:description", content: "Read Earth & Tonic notes on herbs, clean routines, and botanical wellness." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
@@ -23,7 +23,7 @@ function JournalPage() {
     <div className="min-h-screen bg-background">
       <SiteHeader />
       <section className="mx-auto max-w-4xl px-6 pt-24 text-center">
-        <span className="eyebrow text-moss">— The journal</span>
+        <span className="eyebrow text-moss">The journal</span>
         <h1 className="mt-4 font-display text-6xl text-forest-deep md:text-7xl">
           Notes from the <span className="font-script text-moss">studio</span>
         </h1>
