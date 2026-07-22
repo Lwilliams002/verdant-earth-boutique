@@ -61,26 +61,15 @@ for (const page of pages) {
   }
 }
 
-// Also create a 404.html that redirects to the SPA root
-// This handles any routes GitHub Pages can't find directly
-const notFoundHtml = `<!doctype html>
-<html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Redirecting…</title>
-    <script>
-      // GitHub Pages SPA redirect trick
-      var base = '${BASE}';
-      var path = window.location.pathname.replace(base, '') || '/';
-      var search = window.location.search;
-      var hash = window.location.hash;
-      window.location.replace(
-        base + '/?redirect=' + encodeURIComponent(path + search) + hash
-      );
-    </script>
-  </head>
-  <body>Redirecting…</body>
-</html>`;
+// Also create a 404.html that serves the SPA shell so client-side routing
+// can handle any path GitHub Pages can't find directly (e.g. dynamic product slugs).
+// Reusing the prerendered homepage HTML ensures the SPA bootstrap assets load
+// under the correct base path, then TanStack Router resolves the real route.
+const { readFileSync } = await import("fs");
+const notFoundHtml = readFileSync(
+  join(__dirname, ".output/public/index.html"),
+  "utf-8"
+);
 
 writeFileSync(join(__dirname, ".output/public/404.html"), notFoundHtml, "utf-8");
 console.log("✓ 404.html (redirect stub)");
