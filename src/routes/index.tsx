@@ -4,7 +4,6 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { FloatingBottle } from "@/components/FloatingBottle";
 import { Marquee } from "@/components/Marquee";
-import { BrandMark } from "@/components/BrandMark";
 import { fetchShopifyProducts, type ShopifyProduct } from "@/lib/shopify";
 import botanicalBg from "@/assets/botanical-bg.jpg";
 import sideVine from "@/assets/plants/side-vine.png";
