@@ -76,6 +76,9 @@ function ProductPage() {
   const image = product.images.edges[0]?.node;
   const price = product.priceRange.minVariantPrice;
   const variant = product.variants.edges[0]?.node;
+  const ingredients = getIngredients(product.handle);
+  const leftIngredients = ingredients.slice(0, 2);
+  const rightIngredients = ingredients.slice(2, 4);
   const related = (allProducts ?? [])
     .filter((p: ShopifyProduct) => p.node.handle !== product.handle)
     .slice(0, 3);
