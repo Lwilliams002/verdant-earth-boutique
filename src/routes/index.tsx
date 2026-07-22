@@ -549,7 +549,7 @@ function Newsletter() {
         Join the <span className="font-script text-moss">rooted</span> circle.
       </h2>
       <p className="mt-4 text-muted-foreground">
-        Receive seasonal rituals, early product drops and a little bit of plant wisdom — straight
+        Receive seasonal routines, early product drops and a little bit of plant wisdom — straight
         to your inbox.
       </p>
       <form
