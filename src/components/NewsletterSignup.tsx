@@ -1,6 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { toast } from "sonner";
-import { SHOPIFY_STORE_PERMANENT_DOMAIN } from "@/lib/shopify";
+import { subscribeShopifyEmail } from "@/lib/shopify";
 
 type Variant = "light" | "dark";
 
