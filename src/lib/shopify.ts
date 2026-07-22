@@ -5,6 +5,13 @@ export const SHOPIFY_STORE_PERMANENT_DOMAIN = "ndkugy-pp.myshopify.com";
 export const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}/api/${SHOPIFY_API_VERSION}/graphql.json`;
 export const SHOPIFY_STOREFRONT_TOKEN = "176743865361306f1c0d7655ccd125a9";
 
+export const BUNDLE_DISCOUNT_CODE = "BUNDLE5";
+export const BUNDLE_DISCOUNT_AMOUNT = 5;
+export const BUNDLE_PRODUCT_HANDLES = [
+  "earth-balm-botanical-skin-balm-2oz",
+  "moon-balm-lavender-botanical-balm-2-0z",
+];
+
 export interface ShopifyProduct {
   node: {
     id: string;
