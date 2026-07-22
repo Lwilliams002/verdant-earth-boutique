@@ -4,6 +4,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import botanicalBg from "@/assets/botanical-bg.jpg";
 import plantPattern from "@/assets/plant-pattern.jpeg";
 import plantSprig from "@/assets/plant-sprig.png";
+import founderStory from "@/assets/founder-story.png.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
