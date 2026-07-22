@@ -14,7 +14,7 @@ interface NewsletterSignupProps {
 export function NewsletterSignup({
   variant = "light",
   heading = "Join the list",
-  description = "Be first to know about new tonics, skincare, and small-batch drops.",
+  description = "Be first to know about new tonics, skincare, and small batch drops.",
   className = "",
 }: NewsletterSignupProps) {
   const [email, setEmail] = useState("");

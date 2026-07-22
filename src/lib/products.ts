@@ -69,7 +69,7 @@ export const products: Product[] = [
       { name: "Skullcap", note: "Eases occasional stress", desc: "A traditional nervine herb that melts away the day's accumulated stress and supports a calm transition to sleep." },
     ],
     size: "2 FL OZ · 60 ML",
-    badges: ["No Melatonin", "Non-Habit Forming", "Plant Based", "Small Batch"],
+    badges: ["No Melatonin", "Non Habit Forming", "Plant Based", "Small Batch"],
   },
   {
     slug: "hibiscus-bloom-soap",

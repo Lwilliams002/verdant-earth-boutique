@@ -18,7 +18,7 @@ export const Route = createFileRoute("/shop/$slug")({
       { title: `${params.slug} Earth & Tonic` },
       { name: "description", content: "Earth & Tonic product" },
       { property: "og:title", content: `${params.slug} Earth & Tonic` },
-      { property: "og:description", content: "Explore this small-batch Earth & Tonic botanical product made with organic herbs." },
+      { property: "og:description", content: "Explore this small batch Earth & Tonic botanical product made with organic herbs." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary" },
     ],

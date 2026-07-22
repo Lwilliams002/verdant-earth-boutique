@@ -25,7 +25,7 @@ export const Route = createFileRoute("/")({
       {
         name: "description",
         content:
-          "Small-batch herbal tonics and botanical skincare made with organic ingredients. Discover Earth & Tonic's organic balms and tonics.",
+          "Small batch herbal tonics and botanical skincare made with organic ingredients. Discover Earth & Tonic's organic balms and tonics.",
       },
       { property: "og:title", content: "Earth & Tonic Rooted in nature." },
       {
@@ -386,7 +386,7 @@ function Ingredients() {
       name: "Earth Balm",
       tagline: "Botanical Skin Balm",
       copy:
-        "A grounding everyday balm crafted with calendula and chamomile-infused oils to soothe, soften and restore skin that needs a little extra care.",
+        "A grounding everyday balm crafted with calendula and chamomile infused oils to soothe, soften and restore skin that needs a little extra care.",
       ingredients: [
         "Calendula Infused Oil",
         "Chamomile Infused Oil",
@@ -401,7 +401,7 @@ function Ingredients() {
       name: "The Duo",
       tagline: "Earth Balm + Moon Balm",
       copy:
-        "Two balms, one routine. Earth Balm to ground your mornings and Moon Balm infused with lavender to soften the wind-down into evening.",
+        "Two balms, one routine. Earth Balm to ground your mornings and Moon Balm infused with lavender to soften the wind down into evening.",
       ingredients: [
         "Lavender Infused Oil",
         "Chamomile Infused Oil",
@@ -417,7 +417,7 @@ function Ingredients() {
   const standards = [
     { icon: Leaf, label: "Certified Organic", detail: "Grown without pesticides or synthetic fertilisers" },
     { icon: Droplet, label: "Infused, Not Isolated", detail: "Whole botanicals steeped into every oil" },
-    { icon: HandHeart, label: "Small-Batch Crafted", detail: "Handmade in limited quantities for freshness" },
+    { icon: HandHeart, label: "Small Batch Crafted", detail: "Handmade in limited quantities for freshness" },
     { icon: Sprout, label: "Clean Ingredients", detail: "Only clean carrier oils and botanical bases" },
   ];
 
@@ -455,7 +455,7 @@ function Ingredients() {
           <span className="font-script text-moss">matters.</span>
         </h2>
         <p className="mt-6 leading-relaxed text-foreground/70">
-          Every balm is built from a short list of whole-plant ingredients chosen for what they
+          Every balm is built from a short list of whole plant ingredients chosen for what they
           do, and how gently they do it. No isolates, no synthetics, no shortcuts.
         </p>
       </div>
