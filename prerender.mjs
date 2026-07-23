@@ -9,7 +9,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-const BASE = process.env.GITHUB_PAGES === "true" ? "/verdant-earth-boutique" : "";
+const BASE = "";
 
 const staticPages = [
   "/",

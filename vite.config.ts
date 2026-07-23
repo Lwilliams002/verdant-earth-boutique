@@ -17,15 +17,10 @@ const prerenderedPages = [
   "/shop/milk-honey-body-butter",
 ];
 
-const githubPagesBase = process.env.GITHUB_PAGES === "true" ? "/verdant-earth-boutique" : undefined;
-
+// Custom domain (earthandtonicwellness.com) serves from the root path,
+// so no base path override is needed for GitHub Pages anymore.
 export default defineConfig({
   vite: {
-    base: githubPagesBase ? `${githubPagesBase}/` : "/",
-  },
-  tanstackStart: {
-    router: {
-      basepath: githubPagesBase,
-    },
+    base: "/",
   },
 });
