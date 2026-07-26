@@ -295,7 +295,7 @@ function ValuesBand() {
   const values = [
     { t: "Small Batch", d: "Handcrafted in small quantities." },
     { t: "Clean Ingredients", d: "Organic, thoughtfully sourced." },
-    { t: "Rooted in Nature", d: "Herbs and botanicals, nothing extra." },
+    { t: "QUALITY FIRST", d: "Made with ingredients you can trust\u00a0" },
     { t: "Made with Care", d: "Formulated by our founder." },
   ];
   return (
