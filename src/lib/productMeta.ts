@@ -9,16 +9,18 @@ export type IngredientMeta = { name: string; note: string; desc: string };
 // Falls back to a generic set for products not listed here.
 export const PRODUCT_INGREDIENTS: Record<string, IngredientMeta[]> = {
   "earth-balm-botanical-skin-balm-2oz": [
-    { name: "Infused oil with Calendula flower", note: "Soothes skin", desc: "Calendula petals infused into oil to calm irritation and support the skin's natural repair." },
-    { name: "Infused oil with Chamomile", note: "Gentle & soothing", desc: "Chamomile flowers steeped in oil to soften skin and ease everyday sensitivity." },
-    { name: "Jojoba oil", note: "Balances moisture", desc: "A plant wax closely matching skin's own oils, absorbing easily to balance and condition." },
-    { name: "Organic arrowroot powder", note: "Light texture", desc: "A naturally lightweight powder that gives the balm a silky, non greasy finish." },
+    { name: "Calendula", note: "Calms irritation", desc: "Known for calming irritation and comforting sensitive skin." },
+    { name: "Chamomile", note: "Gentle & soothing", desc: "Naturally calming for delicate, stressed, or easily irritated skin." },
+    { name: "Jojoba oil", note: "Locks in hydration", desc: "Locks in hydration without feeling heavy, helping skin stay soft and balanced." },
+    { name: "Beeswax", note: "Protective seal", desc: "Creates a breathable layer that helps keep skin hydrated longer." },
+    { name: "Organic Arrowroot Powder", note: "Light texture", desc: "Helps absorb excess oil for a soft, smooth, non greasy feel." },
   ],
   "moon-balm-lavender-botanical-balm-2-0z": [
-    { name: "Lavender", note: "Calms the senses", desc: "Fragrant blooms that ease tension and signal to the nervous system it's safe to rest." },
-    { name: "Chamomile", note: "Gentle & soothing", desc: "Delicate flowers infused into oil to calm both skin and mind at day's end." },
-    { name: "Beeswax", note: "Protective seal", desc: "A breathable botanical wax that seals in moisture for hydrated, supple skin overnight." },
-    { name: "Jojoba Oil", note: "Balances moisture", desc: "A liquid wax nearly identical to skin's own sebum absorbs easily, balances beautifully." },
+    { name: "Lavender", note: "Calms the senses", desc: "Known for its calming properties that help comfort stressed, sensitive skin." },
+    { name: "Chamomile", note: "Gentle & soothing", desc: "Naturally calming for delicate, stressed, or easily irritated skin." },
+    { name: "Jojoba Oil", note: "Locks in hydration", desc: "Locks in hydration without feeling heavy, helping skin stay soft and balanced." },
+    { name: "Beeswax", note: "Protective seal", desc: "Creates a breathable layer that helps keep skin hydrated." },
+    { name: "Organic arrowroot powder", note: "Light texture", desc: "Helps absorb excess oil for a soft, smooth non greasy feel." },
   ],
 };
 
