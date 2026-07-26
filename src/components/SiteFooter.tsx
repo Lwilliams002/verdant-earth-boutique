@@ -1,36 +1,28 @@
 import { Link } from "@tanstack/react-router";
 import { Instagram } from "lucide-react";
-import navVines from "@/assets/nav-vines.png";
 import { NewsletterSignup } from "./NewsletterSignup";
 
 export function SiteFooter() {
   return (
-    <footer className="relative mt-32 overflow-hidden bg-forest-deep text-cream">
-      <img
-        src={navVines}
-        alt=""
-        aria-hidden
-        loading="lazy"
-        className="nav-vine-dark pointer-events-none absolute -top-6 left-0 right-0 z-0 h-32 w-full object-cover object-top md:h-44"
-      />
-      <div className="relative z-10 mx-auto max-w-7xl px-6 py-20 lg:px-10">
-        <div className="grid gap-14 md:grid-cols-[1.2fr_1fr_1fr_1fr]">
+    <footer className="mt-32 border-t border-border bg-[color:var(--cream-deep)] text-foreground">
+      <div className="mx-auto max-w-[1600px] px-6 py-20 lg:px-10">
+        <div className="grid gap-14 md:grid-cols-[1.4fr_1fr_1fr_1fr]">
           <div>
-            <div className="flex flex-col leading-none">
-              <span className="text-lg font-light tracking-[0.32em]" style={{ fontFamily: "var(--font-brand)" }}>EARTH &amp; TONIC</span>
-              <span className="mt-1 text-[10px] tracking-[0.4em] text-cream/70">EST · 2026</span>
+            <div className="flex flex-col leading-none" style={{ fontFamily: "var(--font-brand)" }}>
+              <span className="text-lg font-extralight tracking-[0.42em]">EARTH &amp; TONIC</span>
+              <span className="mt-2 text-[10px] tracking-[0.4em] text-foreground/55">EST · 2026</span>
             </div>
-            <p className="mt-6 max-w-xs font-display text-2xl italic text-cream/90">
-              Rooted in nature. <br />Crafted for wellness.
+            <p className="mt-6 max-w-xs font-display text-2xl italic leading-snug text-foreground/85">
+              Rooted in nature.<br />Crafted for wellness.
             </p>
           </div>
 
           <FooterCol title="Shop" links={[
             { to: "/shop", label: "All products" },
-            { to: "/shop", label: "Tonics" },
-            { to: "/shop", label: "Skincare" },
+            { to: "/shop", label: "Balms" },
+            { to: "/shop", label: "Bundles" },
           ]} />
-          <FooterCol title="Learn" links={[
+          <FooterCol title="About" links={[
             { to: "/about", label: "Our Story" },
             { to: "/journal", label: "Journal" },
             { to: "/about", label: "Ingredients" },
@@ -42,23 +34,19 @@ export function SiteFooter() {
           ]} />
         </div>
 
-        <div className="mt-16 border-t border-cream/15 pt-12">
+        <div className="mt-16 border-t border-border pt-12">
           <NewsletterSignup
-            variant="dark"
-            heading="Join the routine"
-            description="Get new drops, herbal notes, and small batch launches straight to your inbox."
+            heading="Join the list"
+            description="New drops, small batch launches and early access, straight to your inbox."
             className="max-w-xl"
           />
         </div>
 
-
-        <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-cream/15 pt-8 text-xs tracking-wide text-cream/60 md:flex-row md:items-center">
+        <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-border pt-8 text-xs tracking-wide text-foreground/55 md:flex-row md:items-center">
           <span>© {new Date().getFullYear()} Earth &amp; Tonic. All rights reserved.</span>
-          <div className="flex items-center gap-4">
-            <a href="#" aria-label="Instagram" className="flex items-center gap-2 hover:text-cream">
-              <Instagram className="h-4 w-4" /> @earth.and.tonic
-            </a>
-          </div>
+          <a href="#" aria-label="Instagram" className="flex items-center gap-2 hover:text-foreground">
+            <Instagram className="h-4 w-4" /> @earth.and.tonic
+          </a>
         </div>
       </div>
     </footer>
@@ -68,13 +56,11 @@ export function SiteFooter() {
 function FooterCol({ title, links }: { title: string; links: { to: string; label: string }[] }) {
   return (
     <div>
-      <h4 className="eyebrow text-cream/70">{title}</h4>
-      <ul className="mt-5 space-y-3 text-sm text-cream/85">
+      <h4 className="eyebrow text-foreground/60">{title}</h4>
+      <ul className="mt-5 space-y-3 text-sm text-foreground/85">
         {links.map((l) => (
           <li key={l.label}>
-            <Link to={l.to} className="transition-colors hover:text-cream">
-              {l.label}
-            </Link>
+            <Link to={l.to} className="hover-underline">{l.label}</Link>
           </li>
         ))}
       </ul>

@@ -32,6 +32,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
 
+  /* Legacy names kept so existing components render with the new palette. */
   --color-cream: var(--cream);
   --color-cream-deep: var(--cream-deep);
   --color-forest: var(--forest);
@@ -42,43 +43,44 @@
   --color-bark: var(--bark);
 
   --font-display: "Cormorant Garamond", ui-serif, Georgia, serif;
-  --font-script: "Pinyon Script", "Great Vibes", cursive;
+  --font-script: "Cormorant Garamond", ui-serif, Georgia, serif;
   --font-sans: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
   --font-brand: "Josefin Sans", ui-sans-serif, system-ui, sans-serif;
   --font-mono-caps: "Inter Tight", ui-sans-serif, system-ui, sans-serif;
 }
 
 :root {
-  --radius: 0.25rem;
+  --radius: 0.125rem;
 
-  --cream: oklch(0.965 0.018 85);
-  --cream-deep: oklch(0.93 0.025 84);
-  --forest: oklch(0.32 0.04 140);
-  --forest-deep: oklch(0.24 0.035 142);
-  --moss: oklch(0.45 0.055 138);
-  --sage: oklch(0.72 0.04 135);
-  --clay: oklch(0.62 0.09 55);
-  --bark: oklch(0.38 0.05 60);
+  /* Warm editorial neutrals (bone / latte / mocha / blush) */
+  --cream: oklch(0.975 0.006 80);          /* near white bone */
+  --cream-deep: oklch(0.945 0.010 78);     /* soft off white */
+  --forest: oklch(0.32 0.020 45);          /* deep espresso */
+  --forest-deep: oklch(0.22 0.015 50);     /* near black brown */
+  --moss: oklch(0.42 0.030 55);            /* mocha */
+  --sage: oklch(0.86 0.025 55);            /* blush latte */
+  --clay: oklch(0.72 0.055 55);            /* warm tan */
+  --bark: oklch(0.38 0.035 50);            /* walnut */
 
   --background: var(--cream);
   --foreground: var(--forest-deep);
-  --card: oklch(0.98 0.012 85);
+  --card: oklch(0.99 0.004 80);
   --card-foreground: var(--forest-deep);
   --popover: var(--cream);
   --popover-foreground: var(--forest-deep);
-  --primary: var(--forest);
+  --primary: var(--forest-deep);
   --primary-foreground: var(--cream);
   --secondary: var(--cream-deep);
   --secondary-foreground: var(--forest-deep);
-  --muted: oklch(0.92 0.02 85);
-  --muted-foreground: oklch(0.45 0.03 90);
+  --muted: oklch(0.94 0.008 78);
+  --muted-foreground: oklch(0.50 0.020 55);
   --accent: var(--clay);
   --accent-foreground: var(--cream);
   --destructive: oklch(0.55 0.18 25);
   --destructive-foreground: var(--cream);
-  --border: oklch(0.86 0.025 85);
-  --input: oklch(0.88 0.02 85);
-  --ring: var(--forest);
+  --border: oklch(0.88 0.010 78);
+  --input: oklch(0.90 0.010 78);
+  --ring: var(--forest-deep);
 }
 
 @font-face {
@@ -89,17 +91,17 @@
   font-display: swap;
 }
 @font-face {
-  font-family: "Pinyon Script";
-  src: url("https://fonts.gstatic.com/s/pinyonscript/v22/6xKpdSJbL9-e9LuoeQiDRQR8WOXqPLDPdQ.woff2")
-    format("woff2");
-  font-weight: 400;
-  font-display: swap;
-}
-@font-face {
   font-family: "Inter Tight";
   src: url("https://fonts.gstatic.com/s/intertight/v7/NGStv5HIAOFLgvBNBxgRMlhqUetH8mFn.woff2")
     format("woff2");
   font-weight: 300 700;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Josefin Sans";
+  src: url("https://fonts.gstatic.com/s/josefinsans/v32/Qw3aZQNVED7rKGKxtqIqX5E-AVSJrOCfjY46_djeXA.woff2")
+    format("woff2");
+  font-weight: 200 700;
   font-display: swap;
 }
 
@@ -114,251 +116,69 @@
     background: var(--color-background);
     color: var(--color-foreground);
     font-family: var(--font-sans);
-    font-feature-settings: "ss01", "cv11";
     -webkit-font-smoothing: antialiased;
   }
-  h1,
-  h2,
-  h3,
-  h4 {
+  h1, h2, h3, h4 {
     font-family: var(--font-display);
-    font-weight: 500;
-    letter-spacing: -0.01em;
-  }
-  .font-script {
-    font-family: var(--font-script);
     font-weight: 400;
+    letter-spacing: -0.005em;
   }
-  .font-display {
-    font-family: var(--font-display);
-  }
+  .font-script { font-family: var(--font-display); font-style: italic; font-weight: 400; }
+  .font-display { font-family: var(--font-display); }
+  .font-brand { font-family: var(--font-brand); }
   .eyebrow {
-    font-size: 0.72rem;
+    font-size: 0.7rem;
     letter-spacing: 0.32em;
     text-transform: uppercase;
     font-weight: 500;
+    font-family: var(--font-brand);
   }
 }
 
 @layer utilities {
-  .grain {
-    position: relative;
+  /* Kept as no-ops so any lingering references stay harmless. */
+  .grain, .grain::after { content: normal; background: none; }
+  .bottle-shadow { filter: drop-shadow(0 30px 40px rgba(60, 40, 30, 0.18)); }
+  .nav-vine, .nav-vine-soft, .nav-vine-dark, .nav-vine-flip,
+  .side-vine, .section-leaves, .collection-herbs,
+  .story-real-plants, .story-plants-top, .story-plants-bottom,
+  .plant-photo, .blend-multiply,
+  .mask-fade-r, .mask-fade-l, .mask-fade-t, .mask-fade-b {
+    display: none !important;
   }
-  .grain::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    pointer-events: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.15  0 0 0 0 0.15  0 0 0 0 0.10  0 0 0 0.18 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-    opacity: 0.35;
-    mix-blend-mode: multiply;
-  }
-  .bottle-shadow {
-    filter: drop-shadow(0 40px 30px rgba(36, 50, 30, 0.28))
-      drop-shadow(0 12px 14px rgba(36, 50, 30, 0.18));
-  }
-  .divider-leaf {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-  }
-  .divider-leaf::before,
-  .divider-leaf::after {
+  .divider-leaf { display: inline-flex; align-items: center; gap: 0.75rem; }
+  .divider-leaf::before, .divider-leaf::after {
     content: "";
     height: 1px;
     width: 2.5rem;
     background: currentColor;
-    opacity: 0.4;
-  }
-  .mask-fade-r {
-    -webkit-mask-image: linear-gradient(to right, black 50%, transparent 100%);
-    mask-image: linear-gradient(to right, black 50%, transparent 100%);
-  }
-  .mask-fade-l {
-    -webkit-mask-image: linear-gradient(to left, black 50%, transparent 100%);
-    mask-image: linear-gradient(to left, black 50%, transparent 100%);
-  }
-  .mask-fade-t {
-    -webkit-mask-image: linear-gradient(to top, black 50%, transparent 100%);
-    mask-image: linear-gradient(to top, black 50%, transparent 100%);
-  }
-  .mask-fade-b {
-    -webkit-mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-    mask-image: linear-gradient(to bottom, black 50%, transparent 100%);
-  }
-  .plant-photo {
-    filter: saturate(1.18) contrast(1.06) drop-shadow(0 18px 18px rgba(36, 50, 30, 0.14));
-  }
-  .side-vine,
-  .section-leaves,
-  .collection-herbs,
-  .story-real-plants,
-  .nav-vine-soft {
-    image-rendering: auto;
-    backface-visibility: hidden;
-  }
-  .blend-multiply {
-    mix-blend-mode: multiply;
-  }
-  .nav-vine {
-    mix-blend-mode: multiply;
-    opacity: 0.78;
-    filter: saturate(0.92) contrast(0.98);
-    mask-image:
-      linear-gradient(to bottom, black 35%, transparent 100%),
-      radial-gradient(120% 80% at 50% 0%, black 55%, transparent 100%);
-    mask-composite: intersect;
-    -webkit-mask-image:
-      linear-gradient(to bottom, black 35%, transparent 100%),
-      radial-gradient(120% 80% at 50% 0%, black 55%, transparent 100%);
-    -webkit-mask-composite: source-in;
-  }
-  .nav-vine-soft {
-    mix-blend-mode: multiply;
-    opacity: 0.55;
-    filter: saturate(0.9) contrast(0.96);
-    mask-image:
-      linear-gradient(to bottom, black 30%, transparent 100%),
-      radial-gradient(130% 90% at 50% 0%, black 50%, transparent 100%);
-    mask-composite: intersect;
-    -webkit-mask-image:
-      linear-gradient(to bottom, black 30%, transparent 100%),
-      radial-gradient(130% 90% at 50% 0%, black 50%, transparent 100%);
-    -webkit-mask-composite: source-in;
-  }
-  .nav-vine-flip {
-    transform: scaleY(-1);
-  }
-  .nav-vine-dark {
-    mix-blend-mode: screen;
-    opacity: 0.22;
-    filter: saturate(0.6) brightness(1.2);
-    mask-image:
-      linear-gradient(to bottom, black 30%, transparent 100%),
-      radial-gradient(130% 90% at 50% 0%, black 55%, transparent 100%);
-    mask-composite: intersect;
-    -webkit-mask-image:
-      linear-gradient(to bottom, black 30%, transparent 100%),
-      radial-gradient(130% 90% at 50% 0%, black 55%, transparent 100%);
-    -webkit-mask-composite: source-in;
-  }
-  .side-vine {
-    mix-blend-mode: multiply;
-    opacity: 0.48;
-    filter: saturate(1.04) contrast(1.04) drop-shadow(0 18px 18px rgba(36, 50, 30, 0.12));
-    mask-image: linear-gradient(to bottom, transparent 0%, black 18%, black 70%, transparent 100%);
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      transparent 0%,
-      black 18%,
-      black 70%,
-      transparent 100%
-    );
-  }
-  .section-leaves {
-    mix-blend-mode: multiply;
-    opacity: 0.72;
-    filter: saturate(1.18) contrast(1.15) drop-shadow(0 18px 18px rgba(36, 50, 30, 0.1));
-    mask-image: linear-gradient(to bottom, black 54%, rgba(0, 0, 0, 0.62) 72%, transparent 100%);
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      black 54%,
-      rgba(0, 0, 0, 0.62) 72%,
-      transparent 100%
-    );
-  }
-  .collection-herbs {
-    mix-blend-mode: multiply;
-    opacity: 0.72;
-    filter: saturate(1.12) contrast(1.08) drop-shadow(0 16px 16px rgba(36, 50, 30, 0.1));
-    mask-image: linear-gradient(to bottom, black 48%, rgba(0, 0, 0, 0.58) 70%, transparent 100%);
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      black 48%,
-      rgba(0, 0, 0, 0.58) 70%,
-      transparent 100%
-    );
-  }
-  .story-real-plants {
-    opacity: 0.92;
-    filter: saturate(1.18) contrast(1.14) brightness(1.1)
-      drop-shadow(0 24px 28px rgba(3, 13, 7, 0.3));
-    mix-blend-mode: screen;
-  }
-  .story-plants-top {
-    object-position: center 39%;
-    mask-image: linear-gradient(to bottom, black 45%, rgba(0, 0, 0, 0.75) 62%, transparent 100%);
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      black 45%,
-      rgba(0, 0, 0, 0.75) 62%,
-      transparent 100%
-    );
-  }
-  .story-plants-bottom {
-    object-position: center 39%;
-    transform: scaleY(-1);
-    mask-image: linear-gradient(to bottom, black 45%, rgba(0, 0, 0, 0.75) 62%, transparent 100%);
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      black 45%,
-      rgba(0, 0, 0, 0.75) 62%,
-      transparent 100%
-    );
+    opacity: 0.35;
   }
   .story-script-heading {
-    font-family: "Snell Roundhand", "Apple Chancery", "Brush Script MT", "Pinyon Script", cursive;
-    font-weight: 400;
+    font-family: var(--font-display);
     font-style: italic;
-    text-shadow: 0 12px 30px rgba(3, 13, 7, 0.28);
+    font-weight: 400;
   }
-  .text-glow {
-    text-shadow:
-      0 1px 10px var(--cream),
-      0 1px 4px var(--cream);
+  .text-glow { text-shadow: none; }
+  .hover-underline {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0 1px;
+    transition: background-size 0.35s ease;
   }
+  .hover-underline:hover { background-size: 100% 1px; }
 }
 
 @keyframes float-y {
-  0%,
-  100% {
-    transform: translateY(-8px);
-  }
-  50% {
-    transform: translateY(8px);
-  }
+  0%, 100% { transform: translateY(-6px); }
+  50%      { transform: translateY(6px); }
 }
-.animate-float {
-  animation: float-y 7s ease-in-out infinite;
-}
+.animate-float { animation: float-y 8s ease-in-out infinite; }
+.animate-sway, .animate-sway-slow, .animate-sway-reverse { animation: none; }
 
-@keyframes sway {
-  0%,
-  100% {
-    transform: rotate(-2deg);
-  }
-  50% {
-    transform: rotate(2deg);
-  }
+@keyframes marquee-x {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
 }
-@keyframes sway-soft {
-  0%,
-  100% {
-    transform: translateY(0) rotate(-1deg);
-  }
-  50% {
-    transform: translateY(-6px) rotate(1.5deg);
-  }
-}
-.animate-sway {
-  animation: sway 9s ease-in-out infinite;
-  transform-origin: top center;
-}
-.animate-sway-slow {
-  animation: sway-soft 14s ease-in-out infinite;
-  transform-origin: top left;
-}
-.animate-sway-reverse {
-  animation: sway 11s ease-in-out infinite reverse;
-  transform-origin: top right;
-}
+.animate-marquee { animation: marquee-x 30s linear infinite; }
