@@ -75,8 +75,7 @@ function Hero({ products }: { products: ShopifyProduct[] }) {
             <span className="italic text-foreground/80">Balm Collection</span>
           </h1>
           <p className="mt-6 max-w-md text-base leading-relaxed text-foreground/70">
-            Clean, thoughtfully crafted balms made with organic infused oils and botanicals.
-            Everything your everyday routine needs. Nothing it doesn't.
+            Thoughtfully crafted balms made with herb infused oils and clean ingredients for your everyday routine
           </p>
 
           <div className="mt-10 flex flex-wrap items-center gap-6">
