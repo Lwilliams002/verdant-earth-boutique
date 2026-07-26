@@ -153,8 +153,9 @@ function EditorialSplit() {
           The <span className="italic">Routine</span> Duo
         </h2>
         <p className="mt-6 max-w-md text-foreground/70">
-          Earth Balm and Moon Balm, together at last. Two clean botanical formulas
-          made to move with you from morning to night. Now available as a bundle.
+          Two balms for your everyday routine. Use Earth Balm whenever your skin
+          needs a little extra care, and Moon Balm at night with lavender and
+          chamomile to help you relax and unwind
         </p>
         <div className="mt-10">
           <Link
