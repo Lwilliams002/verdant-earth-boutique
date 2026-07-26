@@ -29,14 +29,11 @@ export function SiteHeader() {
 
         <Link
           to="/"
-          className="flex flex-col items-center leading-none"
+          className="leading-none"
           style={{ fontFamily: "var(--font-brand)" }}
         >
           <span className="text-xl font-extralight tracking-[0.42em] text-foreground md:text-[1.6rem]">
             EARTH &amp; TONIC
-          </span>
-          <span className="mt-1.5 text-[9px] font-normal tracking-[0.42em] text-foreground/55">
-            BOTANICAL WELLNESS
           </span>
         </Link>
 
