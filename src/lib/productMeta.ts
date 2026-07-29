@@ -70,9 +70,11 @@ export const PRODUCT_USES: Record<string, ProductUseMeta> = {
       "Massage gently until absorbed.",
     ],
     suggestedUses: [
-      "Hands",
+      "Neck",
+      "Arms",
       "Elbows",
-      "Knees",
+      "Hands",
+      "Legs",
       "Feet",
       "Dry skin areas",
     ],
