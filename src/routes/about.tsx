@@ -32,9 +32,7 @@ function AboutPage() {
         <div className="mx-auto max-w-4xl px-6 py-28 text-center lg:py-36">
           <span className="eyebrow inline-block text-moss">Our story</span>
           <h1 className="mt-4 font-display text-6xl leading-tight text-forest-deep md:text-7xl">
-            Rooted in nature.
-            <br />
-            <span className="font-script text-moss">Crafted for wellness.</span>
+            Everyday wellness starts with clean ingredients
           </h1>
         </div>
       </section>
