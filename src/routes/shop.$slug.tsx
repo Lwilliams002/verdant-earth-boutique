@@ -9,7 +9,7 @@ import botanicalBg from "@/assets/botanical-bg.jpg";
 import { fetchShopifyProductByHandle, fetchShopifyProducts } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import type { ShopifyProduct } from "@/lib/shopify";
-import { getIngredients } from "@/lib/productMeta";
+import { getIngredients, getProductUses } from "@/lib/productMeta";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/shop/$slug")({
