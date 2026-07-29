@@ -35,6 +35,57 @@ export function getIngredients(handle: string): IngredientMeta[] {
   return PRODUCT_INGREDIENTS[handle] ?? DEFAULT_INGREDIENTS;
 }
 
+export type ProductUseMeta = {
+  directions: string[];
+  suggestedUses: string[];
+  suggestedNote?: string;
+  storage: string[];
+};
+
+export const PRODUCT_USES: Record<string, ProductUseMeta> = {
+  "moon-balm-lavender-botanical-balm-2-0z": {
+    directions: [
+      "Apply a small amount to dry, rough, or irritated skin as needed.",
+      "Massage gently until absorbed.",
+    ],
+    suggestedUses: [
+      "Temples",
+      "Neck",
+      "Shoulders",
+      "Chest",
+      "Wrists",
+      "Hands",
+      "Legs",
+      "Feet",
+      "Dry skin areas",
+    ],
+    suggestedNote: "For relaxation and a restful night.",
+    storage: [
+      "Store in a cool, dry place away from direct sunlight.",
+    ],
+  },
+  "earth-balm-botanical-skin-balm-2oz": {
+    directions: [
+      "Apply a small amount to dry, rough, or irritated skin as needed.",
+      "Massage gently until absorbed.",
+    ],
+    suggestedUses: [
+      "Hands",
+      "Elbows",
+      "Knees",
+      "Feet",
+      "Dry skin areas",
+    ],
+    storage: [
+      "Store in a cool, dry place away from direct sunlight.",
+    ],
+  },
+};
+
+export function getProductUses(handle: string): ProductUseMeta | null {
+  return PRODUCT_USES[handle] ?? null;
+}
+
 // Products we plan to bring back surfaced as "Coming soon" in the collection.
 export type ComingSoonProduct = {
   slug: string;
