@@ -9,7 +9,7 @@ import botanicalBg from "@/assets/botanical-bg.jpg";
 import { fetchShopifyProductByHandle, fetchShopifyProducts } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import type { ShopifyProduct } from "@/lib/shopify";
-import { getIngredients } from "@/lib/productMeta";
+import { getIngredients, getProductUses } from "@/lib/productMeta";
 import { toast } from "sonner";
 
 export const Route = createFileRoute("/shop/$slug")({
@@ -82,6 +82,7 @@ function ProductPage() {
   const ingredients = getIngredients(product.handle);
   const leftIngredients = ingredients.slice(0, 2);
   const rightIngredients = ingredients.slice(2, 4);
+  const uses = getProductUses(product.handle);
   const related = (allProducts ?? [])
     .filter((p: ShopifyProduct) => p.node.handle !== product.handle)
     .slice(0, 3);
@@ -228,6 +229,50 @@ function ProductPage() {
           </div>
         </div>
       </section>
+
+      {/* Directions, suggested uses, and storage */}
+      {uses && (
+        <section className="mx-auto max-w-4xl px-6 py-16 lg:px-10 lg:py-24">
+          <div className="overflow-hidden rounded-sm border border-border bg-card/60 p-8 backdrop-blur sm:p-12">
+            <div className="grid gap-10 md:grid-cols-3 md:gap-8">
+              <div>
+                <h3 className="font-display text-lg tracking-[0.15em] text-forest-deep">DIRECTIONS</h3>
+                <ul className="mt-4 space-y-3 text-sm leading-relaxed text-foreground/80">
+                  {uses.directions.map((d, i) => (
+                    <li key={i}>{d}</li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="md:col-span-1">
+                <h3 className="font-display text-lg tracking-[0.15em] text-forest-deep">SUGGESTED USES</h3>
+                <div className="mt-4 flex flex-wrap gap-2">
+                  {uses.suggestedUses.map((use) => (
+                    <span
+                      key={use}
+                      className="inline-flex rounded-full border border-border bg-background px-3 py-1.5 text-xs tracking-wide text-foreground/80"
+                    >
+                      {use}
+                    </span>
+                  ))}
+                </div>
+                {uses.suggestedNote && (
+                  <p className="mt-4 font-script text-xl text-moss">{uses.suggestedNote}</p>
+                )}
+              </div>
+
+              <div>
+                <h3 className="font-display text-lg tracking-[0.15em] text-forest-deep">STORAGE</h3>
+                <ul className="mt-4 space-y-3 text-sm leading-relaxed text-foreground/80">
+                  {uses.storage.map((s, i) => (
+                    <li key={i}>{s}</li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
 
       {/* Sticky mobile buy bar */}
       <div className="fixed inset-x-0 bottom-0 z-40 border-t border-border bg-background/95 px-4 py-3 backdrop-blur lg:hidden">
