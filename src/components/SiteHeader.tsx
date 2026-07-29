@@ -8,7 +8,7 @@ export function SiteHeader() {
   const nav = [
     { to: "/shop", label: "Shop" },
     { to: "/about", label: "Our Story" },
-    { to: "/journal", label: "Journal" },
+    { to: "/gallery", label: "Gallery" },
   ] as const;
 
   return (
