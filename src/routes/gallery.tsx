@@ -6,6 +6,8 @@ import galleryMoonBalm from "@/assets/gallery-moon-balm.png";
 import galleryEarthBalm from "@/assets/gallery-earth-balm.png";
 import galleryFounderDuo from "@/assets/gallery-founder-duo.jpg";
 import galleryMoonBalmLifestyle from "@/assets/gallery-moon-balm-lifestyle.jpg";
+import galleryMoonBalmPortrait from "@/assets/gallery-moon-balm-portrait.jpg";
+import galleryMoonBalmBlanket from "@/assets/gallery-moon-balm-blanket.jpg";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -26,6 +28,8 @@ const photos = [
   { src: galleryEarthBalm, alt: "Earth Balm tin resting on soft linen fabric", span: "" },
   { src: galleryMoonBalm, alt: "Moon Balm tin resting on soft linen fabric", span: "" },
   { src: galleryFounderDuo, alt: "Founder holding Earth Balm and Moon Balm outdoors", span: "md:row-span-2" },
+  { src: galleryMoonBalmPortrait, alt: "Pamela holding a Moon Balm tin", span: "md:row-span-2" },
+  { src: galleryMoonBalmBlanket, alt: "Moon Balm tin resting on a soft blanket", span: "" },
   { src: galleryMoonBalmLifestyle, alt: "Moon Balm as part of a nightly routine", span: "md:col-span-2" },
 ];
 
