@@ -14,9 +14,7 @@ import { Route as GalleryRouteImport } from './routes/gallery'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as ShopIndexRouteImport } from './routes/shop.index'
-import { Route as JournalIndexRouteImport } from './routes/journal.index'
 import { Route as ShopSlugRouteImport } from './routes/shop.$slug'
-import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 
 const SitemapDotxmlRoute = SitemapDotxmlRouteImport.update({
   id: '/sitemap.xml',
@@ -43,19 +41,9 @@ const ShopIndexRoute = ShopIndexRouteImport.update({
   path: '/shop/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const JournalIndexRoute = JournalIndexRouteImport.update({
-  id: '/journal/',
-  path: '/journal/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const ShopSlugRoute = ShopSlugRouteImport.update({
   id: '/shop/$slug',
   path: '/shop/$slug',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const JournalSlugRoute = JournalSlugRouteImport.update({
-  id: '/journal/$slug',
-  path: '/journal/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 
@@ -64,9 +52,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/gallery': typeof GalleryRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/journal/$slug': typeof JournalSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
-  '/journal/': typeof JournalIndexRoute
   '/shop/': typeof ShopIndexRoute
 }
 export interface FileRoutesByTo {
@@ -74,9 +60,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/gallery': typeof GalleryRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/journal/$slug': typeof JournalSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
-  '/journal': typeof JournalIndexRoute
   '/shop': typeof ShopIndexRoute
 }
 export interface FileRoutesById {
@@ -85,9 +69,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/gallery': typeof GalleryRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
-  '/journal/$slug': typeof JournalSlugRoute
   '/shop/$slug': typeof ShopSlugRoute
-  '/journal/': typeof JournalIndexRoute
   '/shop/': typeof ShopIndexRoute
 }
 export interface FileRouteTypes {
@@ -97,29 +79,17 @@ export interface FileRouteTypes {
     | '/about'
     | '/gallery'
     | '/sitemap.xml'
-    | '/journal/$slug'
     | '/shop/$slug'
-    | '/journal/'
     | '/shop/'
   fileRoutesByTo: FileRoutesByTo
-  to:
-    | '/'
-    | '/about'
-    | '/gallery'
-    | '/sitemap.xml'
-    | '/journal/$slug'
-    | '/shop/$slug'
-    | '/journal'
-    | '/shop'
+  to: '/' | '/about' | '/gallery' | '/sitemap.xml' | '/shop/$slug' | '/shop'
   id:
     | '__root__'
     | '/'
     | '/about'
     | '/gallery'
     | '/sitemap.xml'
-    | '/journal/$slug'
     | '/shop/$slug'
-    | '/journal/'
     | '/shop/'
   fileRoutesById: FileRoutesById
 }
@@ -128,9 +98,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   GalleryRoute: typeof GalleryRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  JournalSlugRoute: typeof JournalSlugRoute
   ShopSlugRoute: typeof ShopSlugRoute
-  JournalIndexRoute: typeof JournalIndexRoute
   ShopIndexRoute: typeof ShopIndexRoute
 }
 
@@ -171,25 +139,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/journal/': {
-      id: '/journal/'
-      path: '/journal'
-      fullPath: '/journal/'
-      preLoaderRoute: typeof JournalIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/shop/$slug': {
       id: '/shop/$slug'
       path: '/shop/$slug'
       fullPath: '/shop/$slug'
       preLoaderRoute: typeof ShopSlugRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/journal/$slug': {
-      id: '/journal/$slug'
-      path: '/journal/$slug'
-      fullPath: '/journal/$slug'
-      preLoaderRoute: typeof JournalSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
   }
@@ -200,9 +154,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   GalleryRoute: GalleryRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  JournalSlugRoute: JournalSlugRoute,
   ShopSlugRoute: ShopSlugRoute,
-  JournalIndexRoute: JournalIndexRoute,
   ShopIndexRoute: ShopIndexRoute,
 }
 export const routeTree = rootRouteImport

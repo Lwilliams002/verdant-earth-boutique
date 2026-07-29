@@ -24,7 +24,7 @@ export function SiteFooter() {
           ]} />
           <FooterCol title="About" links={[
             { to: "/about", label: "Our Story" },
-            { to: "/journal", label: "Journal" },
+            { to: "/gallery", label: "Gallery" },
             { to: "/about", label: "Ingredients" },
           ]} />
           <FooterCol title="Care" links={[
