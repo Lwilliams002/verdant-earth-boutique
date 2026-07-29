@@ -82,6 +82,7 @@ function ProductPage() {
   const ingredients = getIngredients(product.handle);
   const leftIngredients = ingredients.slice(0, 2);
   const rightIngredients = ingredients.slice(2, 4);
+  const uses = getProductUses(product.handle);
   const related = (allProducts ?? [])
     .filter((p: ShopifyProduct) => p.node.handle !== product.handle)
     .slice(0, 3);
