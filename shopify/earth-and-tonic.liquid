@@ -1,0 +1,814 @@
+{% comment %}
+============================================================================
+  EARTH & TONIC — COMPLETE SITE IN ONE LIQUID FILE
+============================================================================
+
+  HOW TO INSTALL (5 minutes, no code editor needed beyond Shopify's)
+
+  1. Shopify admin > Online Store > Themes > ... > Edit code
+  2. Sections > Add a new section > name it: earth-and-tonic
+     Delete everything Shopify puts in it and paste this entire file.
+  3. Layout > theme.liquid — inside <body>, replace the theme's own
+     header/main/footer with just:
+
+         {% raw %}{% section 'earth-and-tonic' %}{% endraw %}
+
+     (Keep {% raw %}{{ content_for_header }}{% endraw %} in <head> and
+      {% raw %}{{ content_for_layout }}{% endraw %} nowhere — this file
+      renders every page itself.)
+  4. Assets > Add a new asset — upload these images with these exact names:
+         founder-story.png
+         product-duo-boxed.png
+         product-earth-balm-collection.png
+         botanical-bg.jpg
+         gallery-kitchen.jpg
+         gallery-earth-balm.png
+         gallery-moon-balm.png
+         gallery-founder-duo.jpg
+         gallery-moon-balm-portrait.jpg
+         gallery-moon-balm-blanket.jpg
+         gallery-moon-balm-lifestyle.jpg
+  5. Online Store > Pages — create two pages so the nav links resolve:
+         "Our Story"  with handle: about
+         "Gallery"    with handle: gallery
+     (Content can be blank; this file supplies the layout.)
+
+  WHAT RENDERS WHERE
+     template = index       -> Home
+     template = collection  -> Shop (all products)
+     template = product     -> Product page (centered bottle + ingredients)
+     page handle = about    -> Our Story
+     page handle = gallery  -> Gallery
+     anything else          -> theme's own content
+
+  Cart and checkout use Shopify's native cart — no API tokens, no JS SDK.
+  The bundle button adds both balms and applies the BUNDLE5 discount.
+============================================================================
+{% endcomment %}
+
+{%- assign BUNDLE_CODE = 'BUNDLE5' -%}
+{%- assign EARTH_HANDLE = 'earth-balm-botanical-skin-balm-2oz' -%}
+{%- assign MOON_HANDLE = 'moon-balm-lavender-botanical-balm-2-0z' -%}
+
+<style>
+/* ------------------------------- FONTS ------------------------------- */
+@font-face{font-family:"Cormorant Garamond";src:url("https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjornFLsS6V7w.woff2") format("woff2");font-weight:300 700;font-display:swap}
+@font-face{font-family:"Inter Tight";src:url("https://fonts.gstatic.com/s/intertight/v7/NGStv5HIAOFLgvBNBxgRMlhqUetH8mFn.woff2") format("woff2");font-weight:300 700;font-display:swap}
+@font-face{font-family:"Josefin Sans";src:url("https://fonts.gstatic.com/s/josefinsans/v32/Qw3aZQNVED7rKGKxtqIqX5E-AVSJrOCfjY46_djeXA.woff2") format("woff2");font-weight:200 700;font-display:swap}
+
+/* ------------------------------- TOKENS ------------------------------- */
+.et{
+  --cream:oklch(0.975 0.006 80);
+  --cream-deep:oklch(0.945 0.010 78);
+  --forest:oklch(0.32 0.020 45);
+  --forest-deep:oklch(0.22 0.015 50);
+  --moss:oklch(0.42 0.030 55);
+  --sage:oklch(0.86 0.025 55);
+  --clay:oklch(0.72 0.055 55);
+  --bg:var(--cream);
+  --fg:var(--forest-deep);
+  --muted-fg:oklch(0.50 0.020 55);
+  --border:oklch(0.88 0.010 78);
+  --font-display:"Cormorant Garamond",ui-serif,Georgia,serif;
+  --font-sans:"Inter Tight",ui-sans-serif,system-ui,sans-serif;
+  --font-brand:"Josefin Sans",ui-sans-serif,system-ui,sans-serif;
+}
+
+/* ------------------------------- BASE ------------------------------- */
+.et,.et *{box-sizing:border-box}
+.et{background:var(--bg);color:var(--fg);font-family:var(--font-sans);-webkit-font-smoothing:antialiased;overflow-x:hidden}
+.et img{max-width:100%;display:block}
+.et a{color:inherit;text-decoration:none}
+.et h1,.et h2,.et h3,.et h4{font-family:var(--font-display);font-weight:400;letter-spacing:-.005em;margin:0}
+.et p{margin:0}
+.et ul{margin:0;padding:0;list-style:none}
+.et button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+.et-eyebrow{font-family:var(--font-brand);font-size:.7rem;letter-spacing:.32em;text-transform:uppercase;font-weight:500}
+.et-italic{font-style:italic}
+.et-wrap{max-width:1600px;margin:0 auto;padding-left:1.5rem;padding-right:1.5rem}
+@media(min-width:1024px){.et-wrap{padding-left:2.5rem;padding-right:2.5rem}}
+.et-muted{color:var(--muted-fg)}
+.et-fg70{color:color-mix(in oklab,var(--fg) 70%,transparent)}
+.et-fg60{color:color-mix(in oklab,var(--fg) 60%,transparent)}
+.et-deep{background:var(--cream-deep)}
+
+.et-btn{display:inline-flex;align-items:center;gap:.75rem;padding:1rem 2.25rem;font-family:var(--font-brand);font-size:11px;letter-spacing:.32em;background:var(--fg);color:var(--bg);transition:opacity .25s;text-transform:uppercase}
+.et-btn:hover{opacity:.85}
+.et-btn--ghost{background:transparent;color:var(--fg);border:1px solid var(--fg)}
+.et-btn--ghost:hover{background:var(--fg);color:var(--bg);opacity:1}
+.et-btn[disabled]{opacity:.4;cursor:not-allowed}
+.et-link{border-bottom:1px solid color-mix(in oklab,var(--fg) 40%,transparent);padding-bottom:.15rem}
+.et-link:hover{border-color:var(--fg)}
+
+/* ------------------------------- HEADER ------------------------------- */
+.et-header{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--border);background:color-mix(in oklab,var(--bg) 92%,transparent);backdrop-filter:blur(12px)}
+.et-header__in{max-width:1600px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:1rem 1.25rem}
+@media(min-width:1024px){.et-header__in{padding:1.25rem 2.5rem}}
+.et-nav{display:none;flex:1;gap:2rem;align-items:center}
+@media(min-width:768px){.et-nav{display:flex}}
+.et-brand{font-family:var(--font-brand);font-weight:200;letter-spacing:.42em;font-size:1.25rem;line-height:1;white-space:nowrap}
+@media(min-width:768px){.et-brand{font-size:1.6rem}}
+.et-header__right{display:none;flex:1;justify-content:flex-end;align-items:center;gap:1.5rem}
+@media(min-width:768px){.et-header__right{display:flex}}
+.et-mobilebar{display:flex;align-items:center;gap:1rem}
+@media(min-width:768px){.et-mobilebar{display:none}}
+.et-cart{position:relative;display:inline-flex;align-items:center;gap:.5rem}
+.et-cart__count{position:absolute;top:-8px;right:-12px;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--fg);color:var(--bg);font-size:10px;line-height:18px;text-align:center;font-family:var(--font-brand)}
+.et-mobilemenu{display:none;border-top:1px solid var(--border);padding:1rem 1.25rem 1.5rem}
+.et-mobilemenu.is-open{display:block}
+@media(min-width:768px){.et-mobilemenu.is-open{display:none}}
+.et-mobilemenu a{display:block;padding:.75rem 0}
+
+/* ------------------------------- HERO ------------------------------- */
+.et-hero{border-bottom:1px solid var(--border)}
+.et-hero__grid{display:grid;grid-template-columns:1fr;min-height:78vh}
+@media(min-width:1024px){.et-hero__grid{grid-template-columns:1fr 1fr}}
+.et-hero__copy{order:2;display:flex;flex-direction:column;justify-content:center;padding:4rem 1.5rem}
+@media(min-width:1024px){.et-hero__copy{order:1;padding:6rem 4rem}}
+.et-hero__title{font-size:clamp(2.75rem,6vw,5.5rem);line-height:1.02;letter-spacing:-.02em;margin-top:1.5rem}
+.et-hero__media{order:1;position:relative;overflow:hidden;background:var(--cream-deep)}
+@media(min-width:1024px){.et-hero__media{order:2}}
+.et-hero__media img{width:100%;height:100%;min-height:60vh;object-fit:contain;padding:3rem 2.5rem}
+@media(min-width:1024px){.et-hero__media img{min-height:78vh}}
+.et-hero__cap{position:absolute;left:1.5rem;right:1.5rem;bottom:1.5rem;display:flex;align-items:flex-end;justify-content:space-between;gap:1rem}
+
+/* ------------------------------ MARQUEE ------------------------------ */
+.et-marquee{overflow:hidden;border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--cream-deep);padding:1.25rem 0}
+.et-marquee__track{display:flex;gap:3rem;white-space:nowrap;width:max-content;animation:et-marquee 38s linear infinite}
+@keyframes et-marquee{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+
+/* ------------------------------ SECTIONS ------------------------------ */
+.et-split{display:grid;grid-template-columns:1fr;max-width:1600px;margin:0 auto}
+@media(min-width:768px){.et-split{grid-template-columns:1fr 1fr}}
+.et-split__media{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--cream-deep)}
+.et-split__media img{width:100%;height:100%;object-fit:contain;padding:2.5rem 2rem}
+.et-split__body{display:flex;flex-direction:column;justify-content:center;padding:4rem 2rem}
+@media(min-width:1024px){.et-split__body{padding:4rem 5rem}}
+.et-h2{font-size:3rem;line-height:1.05;margin-top:1.5rem}
+@media(min-width:768px){.et-h2{font-size:3.75rem}}
+
+.et-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:3.5rem 1.5rem}
+@media(min-width:1024px){.et-grid{grid-template-columns:repeat(4,1fr);gap:3.5rem 2rem}}
+.et-card__media{position:relative;aspect-ratio:4/5;overflow:hidden;background:var(--cream-deep)}
+.et-card__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:1.5rem;transition:opacity .5s}
+.et-card__media img.et-alt{opacity:0}
+.et-card:hover .et-card__media img.et-main{opacity:0}
+.et-card:hover .et-card__media img.et-alt{opacity:1}
+.et-card__row{display:flex;justify-content:space-between;gap:.75rem;margin-top:1.25rem}
+
+.et-story{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--cream-deep)}
+.et-story__grid{display:grid;grid-template-columns:1fr;max-width:1600px;margin:0 auto}
+@media(min-width:768px){.et-story__grid{grid-template-columns:1fr 1fr}}
+.et-story__grid img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
+@media(min-width:768px){.et-story__grid img{aspect-ratio:auto}}
+
+.et-values{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:1600px;margin:0 auto;padding:5rem 1.5rem}
+@media(min-width:768px){.et-values{grid-template-columns:repeat(4,1fr)}}
+
+/* ------------------------------ PRODUCT ------------------------------ */
+.et-pdp{max-width:1200px;margin:0 auto;padding:4rem 1.5rem}
+@media(min-width:1024px){.et-pdp{padding:6rem 2.5rem}}
+.et-pdp__title{font-size:3.5rem;line-height:1;margin-top:.75rem}
+@media(min-width:768px){.et-pdp__title{font-size:4.5rem}}
+.et-pdp__stage{display:grid;gap:2rem;margin-top:3rem}
+@media(min-width:1024px){.et-pdp__stage{grid-template-columns:1fr auto 1fr;align-items:center;gap:2.5rem}}
+.et-pdp__side{display:none}
+@media(min-width:1024px){.et-pdp__side{display:flex;flex-direction:column;gap:2.5rem}}
+.et-pdp__side--l{text-align:right}
+.et-pdp__bottle{position:relative;display:flex;align-items:center;justify-content:center}
+.et-pdp__bottle img{position:relative;z-index:1;width:auto;height:300px;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(60,40,30,.18));animation:et-float 8s ease-in-out infinite}
+@media(min-width:640px){.et-pdp__bottle img{height:440px}}
+@media(min-width:1024px){.et-pdp__bottle img{height:560px}}
+@keyframes et-float{0%,100%{transform:translateY(-6px)}50%{transform:translateY(6px)}}
+.et-ring{position:absolute;aspect-ratio:1;border-radius:999px;border:1px solid color-mix(in oklab,var(--forest) 15%,transparent)}
+.et-ring--a{width:88%}
+.et-ring--b{width:70%;border-color:color-mix(in oklab,var(--forest) 10%,transparent)}
+.et-ing-mobile{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2.5rem}
+@media(min-width:1024px){.et-ing-mobile{display:none}}
+.et-buy{max-width:640px;margin:4rem auto 0;border:1px solid var(--border);background:color-mix(in oklab,#fff 60%,transparent);padding:2rem}
+.et-qty{display:inline-flex;align-items:center;border:1px solid var(--border);border-radius:999px;background:var(--bg)}
+.et-qty button{padding:.75rem 1.1rem;color:var(--muted-fg)}
+.et-qty input{width:2.5rem;text-align:center;border:0;background:transparent;font:inherit}
+.et-uses{display:grid;gap:2rem;margin-top:3rem}
+@media(min-width:768px){.et-uses{grid-template-columns:repeat(3,1fr)}}
+.et-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
+.et-chip{border:1px solid var(--border);padding:.3rem .7rem;font-size:.75rem;border-radius:999px}
+
+/* ------------------------------- SHOP ------------------------------- */
+.et-shopgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem 1rem;margin-top:3.5rem}
+@media(min-width:1024px){.et-shopgrid{grid-template-columns:repeat(3,1fr);gap:2.5rem}}
+.et-shopcard__media{position:relative;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--cream-deep)}
+.et-shopcard__media img{height:88%;width:auto;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(60,40,30,.18));transition:transform .7s}
+.et-shopcard:hover .et-shopcard__media img{transform:scale(1.05)}
+
+/* ------------------------------- ABOUT ------------------------------- */
+.et-dark{background:var(--forest-deep);color:var(--cream);position:relative;overflow:hidden}
+.et-about__grid{display:grid;gap:2.5rem;max-width:1100px;margin:0 auto;padding:6rem 1.5rem;align-items:center}
+@media(min-width:1024px){.et-about__grid{grid-template-columns:1fr 1.15fr;gap:4rem;padding:8rem 2.5rem}}
+.et-frame{border:4px solid color-mix(in oklab,var(--cream) 90%,transparent);background:var(--cream);padding:.5rem;box-shadow:0 25px 50px rgba(0,0,0,.35)}
+.et-frame img{aspect-ratio:3/4;width:100%;object-fit:cover;object-position:top}
+.et-process{display:grid;gap:2.5rem;max-width:1100px;margin:0 auto;padding:6rem 1.5rem}
+@media(min-width:768px){.et-process{grid-template-columns:repeat(3,1fr)}}
+.et-num{font-family:var(--font-display);font-style:italic;font-size:3rem;color:var(--sage)}
+
+/* ------------------------------ GALLERY ------------------------------ */
+.et-gallery{display:grid;grid-template-columns:repeat(2,1fr);grid-auto-rows:220px;gap:.75rem}
+@media(min-width:768px){.et-gallery{grid-template-columns:repeat(4,1fr);grid-auto-rows:280px;gap:1rem}}
+.et-gallery figure{margin:0;position:relative;overflow:hidden;background:var(--cream-deep)}
+.et-gallery img{width:100%;height:100%;object-fit:cover;transition:transform .9s ease-out}
+.et-gallery figure:hover img{transform:scale(1.04)}
+@media(min-width:768px){
+  .et-g-2x2{grid-column:span 2;grid-row:span 2}
+  .et-g-1x2{grid-row:span 2}
+  .et-g-2x1{grid-column:span 2}
+}
+
+/* ------------------------------- FOOTER ------------------------------- */
+.et-footer{margin-top:8rem;border-top:1px solid var(--border);background:var(--cream-deep)}
+.et-footer__grid{display:grid;gap:3.5rem}
+@media(min-width:768px){.et-footer__grid{grid-template-columns:1.4fr 1fr 1fr 1fr}}
+.et-news{display:flex;flex-wrap:wrap;gap:.75rem;margin-top:1.25rem;max-width:34rem}
+.et-news input{flex:1;min-width:220px;padding:.9rem 1rem;border:1px solid var(--border);background:var(--bg);font:inherit}
+.et-rule{border-top:1px solid var(--border);margin-top:4rem;padding-top:3rem}
+.et-center{text-align:center}
+.et-mt{margin-top:1.5rem}
+.et-mt-sm{margin-top:.5rem}
+.et-mt-lg{margin-top:2.5rem}
+</style>
+
+{%- comment -%} ============ HEADER (every page) ============ {%- endcomment -%}
+<div class="et">
+<header class="et-header">
+  <div class="et-header__in">
+    <nav class="et-nav">
+      <a class="et-eyebrow" href="/collections/all">Shop</a>
+      <a class="et-eyebrow" href="/pages/about">Our Story</a>
+      <a class="et-eyebrow" href="/pages/gallery">Gallery</a>
+    </nav>
+
+    <a href="/" class="et-brand">EARTH &amp; TONIC</a>
+
+    <div class="et-header__right">
+      <a class="et-eyebrow" href="/search">Search</a>
+      <a class="et-eyebrow et-cart" href="{{ routes.cart_url }}">
+        Cart
+        {% if cart.item_count > 0 %}<span class="et-cart__count">{{ cart.item_count }}</span>{% endif %}
+      </a>
+    </div>
+
+    <div class="et-mobilebar">
+      <a class="et-eyebrow et-cart" href="{{ routes.cart_url }}">
+        Cart
+        {% if cart.item_count > 0 %}<span class="et-cart__count">{{ cart.item_count }}</span>{% endif %}
+      </a>
+      <button class="et-eyebrow" aria-label="Open menu" onclick="document.getElementById('et-mm').classList.toggle('is-open')">Menu</button>
+    </div>
+  </div>
+  <div class="et-mobilemenu" id="et-mm">
+    <a class="et-eyebrow" href="/collections/all">Shop</a>
+    <a class="et-eyebrow" href="/pages/about">Our Story</a>
+    <a class="et-eyebrow" href="/pages/gallery">Gallery</a>
+  </div>
+</header>
+
+{%- comment -%} ============================ HOME ============================ {%- endcomment -%}
+{% if template.name == 'index' %}
+  {%- assign all_prods = collections.all.products -%}
+  {%- assign hero = all_prods.first -%}
+
+  <section class="et-hero">
+    <div class="et-hero__grid">
+      <div class="et-hero__copy">
+        <span class="et-eyebrow et-fg60">Now Available</span>
+        <h1 class="et-hero__title">The Botanical<br><span class="et-italic et-fg70">Balm Collection</span></h1>
+        <p class="et-mt et-fg70" style="max-width:28rem;line-height:1.7">
+          Thoughtfully crafted balms made with herb infused oils and clean ingredients for your everyday routine
+        </p>
+        <div class="et-mt-lg" style="display:flex;flex-wrap:wrap;align-items:center;gap:1.5rem">
+          <a class="et-btn" href="/collections/all">Shop Now &rarr;</a>
+          <a class="et-eyebrow et-link" href="/pages/about">Our story</a>
+        </div>
+      </div>
+
+      <div class="et-hero__media">
+        {% if hero and hero.featured_image %}
+          <img src="{{ hero.featured_image | image_url: width: 1200 }}" alt="{{ hero.featured_image.alt | default: hero.title | escape }}" width="1200" height="1500">
+        {% else %}
+          <img src="{{ 'product-earth-balm-collection.png' | asset_url }}" alt="Earth &amp; Tonic balm collection" width="1200" height="1500">
+        {% endif %}
+        {% if hero %}
+          <div class="et-hero__cap">
+            <div style="max-width:20rem">
+              <div class="et-eyebrow et-fg60">Featured</div>
+              <div class="et-mt-sm" style="font-family:var(--font-display);font-size:1.5rem">{{ hero.title }}</div>
+            </div>
+            <a class="et-eyebrow et-link" href="{{ hero.url }}">{{ hero.price | money_without_trailing_zeros }}</a>
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <div class="et-marquee">
+    <div class="et-marquee__track">
+      {% for i in (1..2) %}
+        <span class="et-eyebrow">Rooted in Nature</span>
+        <span class="et-eyebrow">Small Batch</span>
+        <span class="et-eyebrow">Clean Ingredients</span>
+        <span class="et-eyebrow">No Seed Oils</span>
+        <span class="et-eyebrow">Cruelty Free</span>
+        <span class="et-eyebrow">Non GMO</span>
+        <span class="et-eyebrow">Crafted for Wellness</span>
+      {% endfor %}
+    </div>
+  </div>
+
+  <section class="et-split">
+    <div class="et-split__media">
+      <img src="{{ 'product-duo-boxed.png' | asset_url }}" alt="Earth Balm and Moon Balm duo" loading="lazy" width="900" height="1125">
+    </div>
+    <div class="et-split__body">
+      <span class="et-eyebrow et-fg60">Introducing</span>
+      <h2 class="et-h2">The <span class="et-italic">Routine</span> Duo</h2>
+      <p class="et-mt et-fg70" style="max-width:28rem;line-height:1.7">
+        Earth Balm and Moon Balm. Your daily skincare essentials, thoughtfully crafted with clean ingredients
+      </p>
+      <div class="et-mt-lg"><a class="et-btn et-btn--ghost" href="/collections/all">Shop the duo &rarr;</a></div>
+    </div>
+  </section>
+
+  {% if all_prods.size > 0 %}
+  <section class="et-wrap" style="padding-top:6rem;padding-bottom:5rem">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:1.5rem;margin-bottom:3.5rem">
+      <div>
+        <span class="et-eyebrow et-fg60">Shop</span>
+        <h2 class="et-h2" style="font-size:2.5rem;margin-top:.75rem">The <span class="et-italic">Collection</span></h2>
+      </div>
+      <a class="et-eyebrow et-link" href="/collections/all">View all</a>
+    </div>
+
+    <div class="et-grid">
+      {% for product in all_prods limit: 8 %}
+        <a class="et-card" href="{{ product.url }}">
+          <div class="et-card__media">
+            {% if product.featured_image %}
+              <img class="et-main" src="{{ product.featured_image | image_url: width: 700 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy" width="700" height="875">
+            {% endif %}
+            {% if product.images[1] %}
+              <img class="et-alt" src="{{ product.images[1] | image_url: width: 700 }}" alt="" aria-hidden="true" loading="lazy" width="700" height="875">
+            {% endif %}
+          </div>
+          <div class="et-card__row">
+            <div>
+              <h3 style="font-family:var(--font-sans);font-size:.875rem;font-weight:500;letter-spacing:.02em">{{ product.title }}</h3>
+              <p class="et-mt-sm et-fg60" style="font-size:.75rem">{{ product.type | default: 'Botanical balm' }}</p>
+            </div>
+            <span class="et-fg70" style="font-size:.875rem">{{ product.price | money_without_trailing_zeros }}</span>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </section>
+  {% endif %}
+
+  {%- comment -%} ---- Bundle: adds both balms + applies BUNDLE5 ---- {%- endcomment -%}
+  {%- assign earth = all_products[EARTH_HANDLE] -%}
+  {%- assign moon = all_products[MOON_HANDLE] -%}
+  {% if earth.available and moon.available %}
+  <section class="et-deep" style="border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
+    <div class="et-wrap et-center" style="padding-top:5rem;padding-bottom:5rem;max-width:820px">
+      <span class="et-eyebrow et-fg60">Save {{ 500 | money_without_trailing_zeros }}</span>
+      <h2 class="et-h2">The <span class="et-italic">Routine</span> Bundle</h2>
+      <p class="et-mt et-fg70" style="line-height:1.8">
+        Earth Balm and Moon Balm. Your daily skincare essentials, thoughtfully crafted with clean ingredients
+      </p>
+      <p class="et-mt-lg" style="font-family:var(--font-display);font-size:2rem">
+        {{ earth.price | plus: moon.price | minus: 500 | money_without_trailing_zeros }}
+        <span class="et-muted" style="font-size:1rem;text-decoration:line-through;margin-left:.75rem">
+          {{ earth.price | plus: moon.price | money_without_trailing_zeros }}
+        </span>
+      </p>
+      <form method="post" action="/cart/add" class="et-mt-lg" style="display:inline-block">
+        <input type="hidden" name="items[0][id]" value="{{ earth.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="items[0][quantity]" value="1">
+        <input type="hidden" name="items[1][id]" value="{{ moon.selected_or_first_available_variant.id }}">
+        <input type="hidden" name="items[1][quantity]" value="1">
+        <input type="hidden" name="return_to" value="/discount/{{ BUNDLE_CODE }}?redirect=/cart">
+        <button type="submit" class="et-btn">Add the bundle</button>
+      </form>
+      <p class="et-mt et-muted" style="font-size:.75rem">Discount {{ BUNDLE_CODE }} applies automatically at checkout.</p>
+    </div>
+  </section>
+  {% endif %}
+
+  <section class="et-story">
+    <div class="et-story__grid">
+      <div>
+        <img src="{{ 'founder-story.png' | asset_url }}" alt="Pamela, founder of Earth &amp; Tonic" loading="lazy" width="900" height="1125">
+      </div>
+      <div class="et-split__body">
+        <span class="et-eyebrow et-fg60">Our Story</span>
+        <h2 class="et-h2"><span class="et-italic">Why</span> I started</h2>
+        <div class="et-mt-lg et-fg70" style="display:grid;gap:1.25rem;line-height:1.8">
+          <p>Earth &amp; Tonic started during my own health journey after being diagnosed with PCOS. I began researching herbs and natural ingredients to better understand my body, and what started as a personal passion quickly turned into something I genuinely loved.</p>
+          <p>I create products with clean, thoughtfully chosen ingredients because I truly believe we don't always need all the extra additives to care for our bodies.</p>
+        </div>
+        <div class="et-mt-lg">
+          <p style="font-family:var(--font-display);font-style:italic;font-size:1.5rem">Pamela</p>
+          <p class="et-eyebrow et-fg60 et-mt-sm">Founder, Earth &amp; Tonic</p>
+        </div>
+        <div class="et-mt-lg"><a class="et-btn et-btn--ghost" href="/pages/about">Read more &rarr;</a></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="et-values">
+    <div class="et-center"><h3 class="et-eyebrow">Small Batch</h3><p class="et-mt et-fg60" style="font-size:.875rem">Handcrafted in small quantities.</p></div>
+    <div class="et-center"><h3 class="et-eyebrow">Clean Ingredients</h3><p class="et-mt et-fg60" style="font-size:.875rem">Organic, thoughtfully sourced.</p></div>
+    <div class="et-center"><h3 class="et-eyebrow">Quality First</h3><p class="et-mt et-fg60" style="font-size:.875rem">Made with ingredients you can trust</p></div>
+    <div class="et-center"><h3 class="et-eyebrow">Made with Care</h3><p class="et-mt et-fg60" style="font-size:.875rem">Formulated by our founder.</p></div>
+  </section>
+
+{%- comment -%} =========================== PRODUCT =========================== {%- endcomment -%}
+{% elsif template.name == 'product' %}
+
+  {%- comment -%} Ingredient metadata, keyed by product handle {%- endcomment -%}
+  {%- capture ing_json -%}
+    {%- case product.handle -%}
+      {%- when EARTH_HANDLE -%}
+        Calendula|Calms irritation|Known for calming irritation and comforting sensitive skin.~
+        Chamomile|Gentle &amp; soothing|Naturally calming for delicate, stressed, or easily irritated skin.~
+        Jojoba oil|Locks in hydration|Locks in hydration without feeling heavy, helping skin stay soft and balanced.~
+        Beeswax|Protective seal|Creates a breathable layer that helps keep skin hydrated longer.~
+        Organic Arrowroot Powder|Light texture|Helps absorb excess oil for a soft, smooth, non greasy feel.
+      {%- when MOON_HANDLE -%}
+        Lavender|Calms the senses|Known for its calming properties that help comfort stressed, sensitive skin.~
+        Chamomile|Gentle &amp; soothing|Naturally calming for delicate, stressed, or easily irritated skin.~
+        Jojoba Oil|Locks in hydration|Locks in hydration without feeling heavy, helping skin stay soft and balanced.~
+        Beeswax|Protective seal|Creates a breathable layer that helps keep skin hydrated.~
+        Organic arrowroot powder|Light texture|Helps absorb excess oil for a soft, smooth non greasy feel.
+      {%- else -%}
+        Organic Herbs|Whole plant|Whole plant botanicals from farms we trust, chosen for purity and potency.~
+        Clean Carrier Oils|Nourishing base|Cold pressed plant oils never seed oils that carry active botanicals into the skin.~
+        Small Batch Craft|Made by hand|Formulated and poured in small batches to preserve freshness and integrity.~
+        No Synthetics|Nothing hidden|Free from synthetic fragrance, dyes, and fillers. Just what belongs.
+    {%- endcase -%}
+  {%- endcapture -%}
+  {%- assign ingredients = ing_json | strip | split: '~' -%}
+
+  {%- case product.handle -%}
+    {%- when MOON_HANDLE -%}
+      {%- assign uses_list = 'Temples,Neck,Shoulders,Chest,Wrists,Hands,Legs,Feet,Dry skin areas' | split: ',' -%}
+      {%- assign uses_note = 'For relaxation and a restful night.' -%}
+    {%- when EARTH_HANDLE -%}
+      {%- assign uses_list = 'Neck,Arms,Elbows,Hands,Legs,Feet,Dry skin areas' | split: ',' -%}
+      {%- assign uses_note = '' -%}
+    {%- else -%}
+      {%- assign uses_list = '' | split: ',' -%}
+      {%- assign uses_note = '' -%}
+  {%- endcase -%}
+
+  <section class="et-pdp">
+    <div class="et-center">
+      <span class="et-eyebrow" style="color:var(--moss)">{{ product.type | default: 'Product' }}</span>
+      <h1 class="et-pdp__title">{{ product.title }}</h1>
+      {% if product.vendor != blank %}
+        <p class="et-mt-sm et-italic" style="font-family:var(--font-display);font-size:1.75rem;color:var(--moss)">{{ product.vendor }}</p>
+      {% endif %}
+    </div>
+
+    <div class="et-pdp__stage">
+      <div class="et-pdp__side et-pdp__side--l">
+        {% for row in ingredients limit: 2 %}
+          {%- assign parts = row | strip | split: '|' -%}
+          <div style="margin-left:auto;max-width:20rem">
+            <span class="et-eyebrow" style="color:var(--moss)">{{ parts[1] }}</span>
+            <h3 class="et-mt-sm" style="font-size:1.5rem">{{ parts[0] }}</h3>
+            <p class="et-mt-sm et-fg70" style="font-size:.875rem;line-height:1.7">{{ parts[2] }}</p>
+          </div>
+        {% endfor %}
+      </div>
+
+      <div class="et-pdp__bottle">
+        <span class="et-ring et-ring--a"></span>
+        <span class="et-ring et-ring--b"></span>
+        {% if product.featured_image %}
+          <img src="{{ product.featured_image | image_url: width: 900 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" width="900" height="900">
+        {% endif %}
+      </div>
+
+      <div class="et-pdp__side">
+        {% for row in ingredients offset: 2 limit: 2 %}
+          {%- assign parts = row | strip | split: '|' -%}
+          <div style="max-width:20rem">
+            <span class="et-eyebrow" style="color:var(--moss)">{{ parts[1] }}</span>
+            <h3 class="et-mt-sm" style="font-size:1.5rem">{{ parts[0] }}</h3>
+            <p class="et-mt-sm et-fg70" style="font-size:.875rem;line-height:1.7">{{ parts[2] }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <div class="et-ing-mobile">
+      {% for row in ingredients %}
+        {%- assign parts = row | strip | split: '|' -%}
+        <div>
+          <span class="et-eyebrow" style="color:var(--moss)">{{ parts[1] }}</span>
+          <h3 style="font-size:1.125rem;margin-top:.25rem">{{ parts[0] }}</h3>
+          <p class="et-fg70" style="font-size:.75rem;line-height:1.6;margin-top:.25rem">{{ parts[2] }}</p>
+        </div>
+      {% endfor %}
+    </div>
+
+    <div class="et-buy">
+      <p class="et-center et-fg70" style="line-height:1.8">{{ product.description | strip_html | truncatewords: 60 }}</p>
+
+      <form method="post" action="/cart/add" class="et-mt-lg">
+        {% if product.variants.size > 1 %}
+          <div class="et-center et-mt">
+            <select name="id" class="et-eyebrow" style="padding:.75rem 1rem;border:1px solid var(--border);background:var(--bg)">
+              {% for variant in product.variants %}
+                <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
+                  {{ variant.title }} — {{ variant.price | money }}
+                </option>
+              {% endfor %}
+            </select>
+          </div>
+        {% else %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+        {% endif %}
+
+        <div class="et-center et-mt-lg" style="font-family:var(--font-display);font-size:1.875rem">
+          {{ product.price | money }}
+        </div>
+
+        <div class="et-mt" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.75rem">
+          <div class="et-qty">
+            <button type="button" aria-label="Decrease" onclick="var q=this.parentNode.querySelector('input');q.value=Math.max(1,parseInt(q.value||1)-1)">&minus;</button>
+            <input type="number" name="quantity" value="1" min="1" inputmode="numeric" aria-label="Quantity">
+            <button type="button" aria-label="Increase" onclick="var q=this.parentNode.querySelector('input');q.value=parseInt(q.value||1)+1">&plus;</button>
+          </div>
+          <button type="submit" class="et-btn" {% unless product.available %}disabled{% endunless %}>
+            {% if product.available %}Add to cart{% else %}Sold out{% endif %}
+          </button>
+        </div>
+      </form>
+    </div>
+
+    {% if uses_list.size > 0 %}
+    <div class="et-uses">
+      <div>
+        <h3 class="et-eyebrow" style="color:var(--moss)">Directions</h3>
+        <p class="et-mt et-fg70" style="font-size:.9rem;line-height:1.7">
+          Apply a small amount to dry, rough, or irritated skin as needed. Massage gently until absorbed.
+        </p>
+      </div>
+      <div>
+        <h3 class="et-eyebrow" style="color:var(--moss)">Suggested uses</h3>
+        <div class="et-chips">
+          {% for u in uses_list %}<span class="et-chip">{{ u }}</span>{% endfor %}
+        </div>
+        {% if uses_note != blank %}
+          <p class="et-mt-sm et-muted" style="font-size:.8rem">{{ uses_note }}</p>
+        {% endif %}
+      </div>
+      <div>
+        <h3 class="et-eyebrow" style="color:var(--moss)">Storage</h3>
+        <p class="et-mt et-fg70" style="font-size:.9rem;line-height:1.7">
+          Store in a cool, dry place away from direct sunlight.
+        </p>
+      </div>
+    </div>
+    {% endif %}
+
+    {%- assign related = collections.all.products -%}
+    {% if related.size > 1 %}
+      <div style="margin-top:6rem">
+        <h2 class="et-eyebrow et-center et-fg60">You may also like</h2>
+        <div class="et-shopgrid">
+          {% for p in related limit: 4 %}
+            {% unless p.handle == product.handle %}
+              <a class="et-shopcard" href="{{ p.url }}">
+                <div class="et-shopcard__media">
+                  {% if p.featured_image %}
+                    <img src="{{ p.featured_image | image_url: width: 600 }}" alt="{{ p.title | escape }}" loading="lazy" width="600" height="800">
+                  {% endif %}
+                </div>
+                <div class="et-card__row">
+                  <h3 style="font-size:1.25rem">{{ p.title }}</h3>
+                  <span class="et-fg70" style="font-size:.875rem">{{ p.price | money_without_trailing_zeros }}</span>
+                </div>
+              </a>
+            {% endunless %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
+  </section>
+
+{%- comment -%} ======================= SHOP / COLLECTION ======================= {%- endcomment -%}
+{% elsif template.name == 'collection' or template.name == 'list-collections' or template.name == 'search' %}
+
+  {%- if collection -%}{%- assign shop_products = collection.products -%}
+  {%- else -%}{%- assign shop_products = collections.all.products -%}{%- endif -%}
+
+  <section class="et-wrap" style="padding-top:4rem;padding-bottom:6rem;max-width:1200px">
+    <div class="et-center" style="max-width:36rem;margin:0 auto">
+      <span class="et-eyebrow" style="color:var(--moss)">The Apothecary</span>
+      <h1 class="et-h2" style="margin-top:1rem">
+        <span class="et-italic" style="color:var(--moss)">All</span> products
+      </h1>
+      <p class="et-mt et-fg70">Small batch tonics and botanical skincare, made with organic ingredients.</p>
+    </div>
+
+    {% if shop_products.size > 0 %}
+      <div class="et-shopgrid">
+        {% for product in shop_products %}
+          <a class="et-shopcard" href="{{ product.url }}">
+            <div class="et-shopcard__media">
+              {% if product.featured_image %}
+                <img src="{{ product.featured_image | image_url: width: 700 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy" width="700" height="933">
+              {% endif %}
+              <span class="et-eyebrow" style="position:absolute;left:1rem;top:1rem;color:var(--moss)">{{ product.type | default: 'Product' }}</span>
+            </div>
+            <div class="et-card__row" style="align-items:baseline">
+              <h3 style="font-size:1.4rem">{{ product.title }}</h3>
+              <span class="et-fg70" style="font-size:.875rem">{{ product.price | money_without_trailing_zeros }}</span>
+            </div>
+            <p class="et-muted et-italic" style="font-size:.85rem;margin-top:.25rem">
+              {{ product.description | strip_html | truncatewords: 16 }}
+            </p>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <p class="et-center et-muted" style="margin-top:3.5rem">No products found.</p>
+    {% endif %}
+  </section>
+
+{%- comment -%} ========================== OUR STORY ========================== {%- endcomment -%}
+{% elsif template.name == 'page' and page.handle == 'about' %}
+
+  <section style="position:relative;overflow:hidden">
+    <div style="position:absolute;inset:0;z-index:0;opacity:.4;background:url('{{ 'botanical-bg.jpg' | asset_url }}') center/cover"></div>
+    <div style="position:absolute;inset:0;z-index:1;background:linear-gradient(to bottom,color-mix(in oklab,var(--bg) 70%,transparent),var(--bg))"></div>
+    <div class="et-center" style="position:relative;z-index:2;max-width:56rem;margin:0 auto;padding:7rem 1.5rem">
+      <span class="et-eyebrow" style="color:var(--moss)">Our story</span>
+      <h1 style="margin-top:1rem;font-size:3.5rem;line-height:1.1">Everyday wellness starts with clean ingredients</h1>
+    </div>
+  </section>
+
+  <section class="et-dark">
+    <div class="et-about__grid">
+      <div class="et-frame">
+        <img src="{{ 'founder-story.png' | asset_url }}" alt="Pamela, founder of Earth &amp; Tonic, holding Earth Balm and Moon Balm" loading="lazy" width="800" height="1066">
+      </div>
+      <div>
+        <span class="et-eyebrow" style="opacity:.7">Our story</span>
+        <h2 class="et-h2 et-italic">Why I started</h2>
+        <div class="et-mt-lg" style="display:grid;gap:1.25rem;line-height:1.85;opacity:.88;max-width:36rem">
+          <p>Earth &amp; Tonic started during my own health journey after being diagnosed with PCOS. I wanted to better understand my body, so I began researching herbs and natural ingredients to support my overall wellness. What started as a personal passion quickly turned into something I genuinely loved.</p>
+          <p>I also realized how many everyday products are filled with unnecessary synthetic ingredients. That inspired me to create products made with clean, thoughtfully chosen ingredients because I truly believe we don't always need all the extra additives to care for our bodies.</p>
+          <p>Thank you for being here and supporting my small business. It truly means the world to me.</p>
+        </div>
+        <div class="et-mt-lg">
+          <p class="et-italic" style="font-family:var(--font-display);font-size:1.5rem;color:var(--sage)">Pamela</p>
+          <p class="et-eyebrow et-mt-sm" style="opacity:.6">Founder, Earth &amp; Tonic</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="et-dark">
+    <div class="et-process">
+      <div>
+        <span class="et-num">01</span>
+        <h3 style="font-size:1.875rem;margin-top:.75rem">Source</h3>
+        <p class="et-mt-sm" style="opacity:.8">We carefully choose every ingredient because what goes into our products matter</p>
+      </div>
+      <div>
+        <span class="et-num">02</span>
+        <h3 style="font-size:1.875rem;margin-top:.75rem">Craft</h3>
+        <p class="et-mt-sm" style="opacity:.8">Every batch is handcrafted in small quantities</p>
+      </div>
+      <div>
+        <span class="et-num">03</span>
+        <h3 style="font-size:1.875rem;margin-top:.75rem">Share</h3>
+        <p class="et-mt-sm" style="opacity:.8">Created to become part of your everyday routine</p>
+      </div>
+    </div>
+  </section>
+
+{%- comment -%} =========================== GALLERY =========================== {%- endcomment -%}
+{% elsif template.name == 'page' and page.handle == 'gallery' %}
+
+  <section class="et-center" style="max-width:64rem;margin:0 auto;padding:5rem 1.5rem 2.5rem">
+    <span class="et-eyebrow" style="color:var(--moss)">Gallery</span>
+    <h1 style="margin-top:1rem;font-size:3rem;line-height:1.15">Moments from the studio</h1>
+    <p class="et-mt et-muted" style="max-width:36rem;margin-left:auto;margin-right:auto;line-height:1.7">
+      A closer look at how each batch of Earth &amp; Tonic comes to life. Handcrafted in small quantities with clean, thoughtfully chosen ingredients.
+    </p>
+  </section>
+
+  <section style="max-width:1400px;margin:0 auto;padding:0 1rem 6rem">
+    <div class="et-gallery">
+      <figure class="et-g-2x2"><img src="{{ 'gallery-kitchen.jpg' | asset_url }}" alt="Pamela weighing ingredients in the studio kitchen" loading="lazy" width="900" height="900"></figure>
+      <figure><img src="{{ 'gallery-earth-balm.png' | asset_url }}" alt="Earth Balm tin resting on soft linen fabric" loading="lazy" width="600" height="600"></figure>
+      <figure><img src="{{ 'gallery-moon-balm.png' | asset_url }}" alt="Moon Balm tin resting on soft linen fabric" loading="lazy" width="600" height="600"></figure>
+      <figure class="et-g-1x2"><img src="{{ 'gallery-founder-duo.jpg' | asset_url }}" alt="Founder holding Earth Balm and Moon Balm outdoors" loading="lazy" width="600" height="900"></figure>
+      <figure class="et-g-1x2"><img src="{{ 'gallery-moon-balm-portrait.jpg' | asset_url }}" alt="Pamela holding a Moon Balm tin" loading="lazy" width="600" height="900"></figure>
+      <figure><img src="{{ 'gallery-moon-balm-blanket.jpg' | asset_url }}" alt="Moon Balm tin resting on a soft blanket" loading="lazy" width="600" height="600"></figure>
+      <figure class="et-g-2x1"><img src="{{ 'gallery-moon-balm-lifestyle.jpg' | asset_url }}" alt="Moon Balm as part of a nightly routine" loading="lazy" width="900" height="600"></figure>
+    </div>
+  </section>
+
+{%- comment -%} ==================== ANY OTHER TEMPLATE ==================== {%- endcomment -%}
+{% else %}
+  <section class="et-wrap" style="padding-top:4rem;padding-bottom:4rem;max-width:1000px">
+    {% if page %}
+      <h1 class="et-h2 et-center">{{ page.title }}</h1>
+      <div class="et-mt-lg et-fg70" style="line-height:1.8">{{ page.content }}</div>
+    {% else %}
+      {{ content_for_layout }}
+    {% endif %}
+  </section>
+{% endif %}
+
+{%- comment -%} ============ FOOTER (every page) ============ {%- endcomment -%}
+<footer class="et-footer">
+  <div class="et-wrap" style="padding-top:5rem;padding-bottom:5rem">
+    <div class="et-footer__grid">
+      <div>
+        <div style="font-family:var(--font-brand);line-height:1">
+          <span style="display:block;font-size:1.125rem;font-weight:200;letter-spacing:.42em">EARTH &amp; TONIC</span>
+          <span class="et-fg60" style="display:block;margin-top:.5rem;font-size:10px;letter-spacing:.4em">EST · 2026</span>
+        </div>
+        <p class="et-mt-lg et-italic" style="font-family:var(--font-display);font-size:1.5rem;line-height:1.35;max-width:20rem">
+          Rooted in nature.<br>Crafted for wellness.
+        </p>
+      </div>
+
+      <div>
+        <h4 class="et-eyebrow et-fg60">Shop</h4>
+        <ul class="et-mt" style="display:grid;gap:.75rem;font-size:.875rem">
+          <li><a href="/collections/all">All products</a></li>
+          <li><a href="/collections/all">Balms</a></li>
+          <li><a href="/collections/all">Bundles</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="et-eyebrow et-fg60">About</h4>
+        <ul class="et-mt" style="display:grid;gap:.75rem;font-size:.875rem">
+          <li><a href="/pages/about">Our Story</a></li>
+          <li><a href="/pages/gallery">Gallery</a></li>
+          <li><a href="/pages/about">Ingredients</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h4 class="et-eyebrow et-fg60">Care</h4>
+        <ul class="et-mt" style="display:grid;gap:.75rem;font-size:.875rem">
+          <li><a href="/pages/contact">Contact</a></li>
+          <li><a href="/policies/shipping-policy">Shipping</a></li>
+          <li><a href="/policies/refund-policy">Returns</a></li>
+        </ul>
+      </div>
+    </div>
+
+    {%- comment -%} Native Shopify newsletter signup — saves to Customers {%- endcomment -%}
+    <div class="et-rule">
+      <h4 class="et-h2" style="font-size:2rem;margin-top:0">Join the list</h4>
+      <p class="et-mt et-fg70" style="max-width:32rem">New drops, small batch launches and early access, straight to your inbox.</p>
+      {% form 'customer' %}
+        {% if form.posted_successfully? %}
+          <p class="et-mt" style="color:var(--moss)">Thank you for subscribing. Keep an eye on your inbox.</p>
+        {% else %}
+          <input type="hidden" name="contact[tags]" value="newsletter">
+          <div class="et-news">
+            <input type="email" name="contact[email]" placeholder="Email address" aria-label="Email address" required>
+            <button type="submit" class="et-btn">Subscribe</button>
+          </div>
+          {% if form.errors %}
+            <p class="et-mt-sm" style="color:#b3261e;font-size:.8rem">{{ form.errors.messages['email'] }}</p>
+          {% endif %}
+        {% endif %}
+      {% endform %}
+    </div>
+
+    <div class="et-rule" style="display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1.5rem;font-size:.75rem;letter-spacing:.04em;color:var(--muted-fg)">
+      <span>&copy; {{ 'now' | date: '%Y' }} Earth &amp; Tonic. All rights reserved.</span>
+      <a href="https://instagram.com/earth.and.tonic" target="_blank" rel="noopener">@earth.and.tonic</a>
+    </div>
+  </div>
+</footer>
+</div>
+
+{% schema %}
+{
+  "name": "Earth & Tonic Site",
+  "settings": [],
+  "presets": [{ "name": "Earth & Tonic Site" }]
+}
+{% endschema %}
