@@ -11,10 +11,10 @@
   3. Layout > theme.liquid — inside <body>, replace the theme's own
      header/main/footer with just:
 
-         {% raw %}{% section 'earth-and-tonic' %}{% endraw %}
+         {% section 'earth-and-tonic' %}
 
-     (Keep {% raw %}{{ content_for_header }}{% endraw %} in <head> and
-      {% raw %}{{ content_for_layout }}{% endraw %} nowhere — this file
+     (Keep {{ content_for_header }} in <head> and
+      {{ content_for_layout }} nowhere — this file
       renders every page itself.)
   4. Assets > Add a new asset — upload these images with these exact names:
          founder-story.png
