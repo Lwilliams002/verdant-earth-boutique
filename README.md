@@ -1,32 +1,58 @@
-# Earth & Tonic — Shopify Liquid build
+# Earth & Tonic — Shopify theme
 
-Everything (home, shop, product, our story, gallery, header, footer, cart, newsletter)
-lives in **one file**: `earth-and-tonic.liquid`.
+This folder is a **complete, valid Shopify theme** (proper `layout/`, `templates/`,
+`sections/`, `config/`, `locales/`, `snippets/`, `assets/` structure). The whole
+storefront is drawn by one section, `sections/earth-and-tonic.liquid`, which
+branches on `template.name` to render home, shop, product, our story, gallery,
+cart, and footer. `layout/theme.liquid` simply calls that section.
 
-No API tokens, no JavaScript framework. It uses Shopify's native product data,
-native cart (`/cart/add`), native checkout, and the native `{% form 'customer' %}`
-newsletter, so orders and email subscribers land in your Shopify admin directly.
+No API tokens, no JS framework — it uses Shopify's native product data, native
+cart, native checkout, and the native `{% form 'customer' %}` newsletter.
 
-## Install
+## ⚠️ Why "not a theme" happens on the GitHub connection
 
-1. **Shopify admin → Online Store → Themes → ⋯ → Edit code**
-2. **Sections → Add a new section** → name it `earth-and-tonic`.
-   Delete the placeholder content and paste all of `earth-and-tonic.liquid`.
-3. **Layout → theme.liquid** — inside `<body>`, replace the theme's header /
-   main / footer markup with a single line:
+Shopify's **GitHub integration reads the ROOT of the branch you connect** and
+expects the theme folders (`layout/`, `templates/`, `config/`, …) to be right
+there. This repository's root is a **React/Vite app**, and the theme lives in
+this `shopify/` subfolder — so Shopify sees no theme at the root and reports
+**"not a theme."**
 
-   ```liquid
-   {% section 'earth-and-tonic' %}
-   ```
+Give Shopify a branch (or repo) whose **root** is this theme. Pick one:
 
-   Keep `{{ content_for_header }}` in `<head>`.
-4. **Assets → Add a new asset** — upload every file from the `assets/` folder
-   here, keeping the exact filenames.
-5. **Online Store → Pages** — create two pages so the nav links resolve:
-   - "Our Story" with handle `about`
-   - "Gallery" with handle `gallery`
+### Option A — Dedicated branch via `git subtree` (single repo, recommended)
 
-   Content can be blank; the section supplies the layout.
+Run from the repo root:
+
+```sh
+# create/refresh a branch whose ROOT is the shopify/ folder
+git subtree split --prefix shopify -b shopify-theme
+git push -f origin shopify-theme
+```
+
+Then in Shopify admin → **Online Store → Themes → Add theme → Connect from GitHub**,
+choose this repo and the **`shopify-theme`** branch. It now sees a valid theme.
+Re-run those two commands whenever you edit files in `shopify/` to update it.
+
+### Option B — Separate theme repo
+
+```sh
+cd shopify
+git init && git add . && git commit -m "Earth & Tonic Shopify theme"
+git branch -M main
+git remote add origin git@github.com:<you>/earth-and-tonic-theme.git
+git push -u origin main
+```
+
+Connect that repo's `main` branch in Shopify.
+
+### Option C — Shopify CLI (no GitHub needed)
+
+```sh
+npm i -g @shopify/cli @shopify/theme
+cd shopify
+shopify theme dev     # live local preview
+shopify theme push    # upload to your store
+```
 
 ## Which page renders what
 
@@ -37,19 +63,30 @@ newsletter, so orders and email subscribers land in your Shopify admin directly.
 | `collection`, `list-collections`, `search` | Shop grid |
 | page handle `about` | Our Story |
 | page handle `gallery` | Photo mosaic |
+| `cart` | Native cart (`templates/cart.liquid`) |
+| `404`, `blog`, `article`, `gift_card`, `password` | Standard templates inside the site chrome |
 | anything else | That page's own Shopify content, inside the site chrome |
+
+## Store setup after connecting
+
+**Online Store → Pages** — create two pages so the nav links resolve:
+- "Our Story" with handle `about`
+- "Gallery" with handle `gallery`
+
+Content can be blank; the section supplies the layout.
 
 ## Bundle discount
 
 The bundle button adds both balms and then redirects through
 `/discount/BUNDLE5`, so the $5 off applies automatically. Keep the `BUNDLE5`
 discount code active in **Discounts**. If you rename it, change `BUNDLE_CODE`
-at the top of the Liquid file.
+at the top of `sections/earth-and-tonic.liquid`.
 
 ## Product ingredient copy
 
 Ingredient names, notes, descriptions, suggested uses and storage are near the
-top of the `product` block, keyed by product handle. The two handles used are:
+top of the `product` block in `sections/earth-and-tonic.liquid`, keyed by
+product handle. The two handles used are:
 
 - `earth-balm-botanical-skin-balm-2oz`
 - `moon-balm-lavender-botanical-balm-2-0z`

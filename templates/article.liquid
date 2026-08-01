@@ -1,0 +1,11 @@
+{%- comment -%} Rendered inside the site chrome via {{ content_for_layout }}. {%- endcomment -%}
+<article class="et-wrap" style="padding-top:3rem;padding-bottom:5rem;max-width:760px">
+  <a href="{{ blog.url }}" class="et-eyebrow" style="color:var(--moss)">&larr; {{ blog.title }}</a>
+  <h1 class="et-h2" style="margin-top:1rem">{{ article.title }}</h1>
+  <div class="et-fg60" style="font-size:.8rem;margin-top:.35rem">{{ article.published_at | date: '%B %-d, %Y' }}</div>
+  {%- if article.image -%}
+    <img src="{{ article.image | image_url: width: 1200 }}" alt="{{ article.title | escape }}" style="width:100%;border-radius:.75rem;margin-top:1.5rem">
+  {%- endif -%}
+  <div class="et-mt-lg et-fg70" style="line-height:1.8">{{ article.content }}</div>
+</article>
+

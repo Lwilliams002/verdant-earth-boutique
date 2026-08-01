@@ -1,0 +1,15 @@
+{%- comment -%} Rendered inside the site chrome via {{ content_for_layout }}. {%- endcomment -%}
+<div class="et-wrap" style="padding-top:3rem;padding-bottom:5rem;max-width:900px">
+  <h1 class="et-h2" style="margin-top:0">{{ blog.title }}</h1>
+  <div class="et-mt-lg" style="display:grid;gap:2.5rem">
+    {%- for article in blog.articles -%}
+      <article style="border-top:1px solid var(--border,#e5e0d8);padding-top:1.5rem">
+        <a href="{{ article.url }}" style="font-family:var(--font-display);font-size:1.6rem">{{ article.title }}</a>
+        <div class="et-fg60" style="font-size:.8rem;margin-top:.35rem">{{ article.published_at | date: '%B %-d, %Y' }}</div>
+        <p class="et-mt et-fg70">{{ article.excerpt_or_content | strip_html | truncatewords: 40 }}</p>
+      </article>
+    {%- endfor -%}
+  </div>
+  {{ paginate | default: '' }}
+</div>
+
