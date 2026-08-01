@@ -52,9 +52,8 @@
 
 <style>
 /* ------------------------------- FONTS ------------------------------- */
-@font-face{font-family:"Cormorant Garamond";src:url("https://fonts.gstatic.com/s/cormorantgaramond/v16/co3YmX5slCNuHLi8bLeY9MK7whWMhyjornFLsS6V7w.woff2") format("woff2");font-weight:300 700;font-display:swap}
-@font-face{font-family:"Inter Tight";src:url("https://fonts.gstatic.com/s/intertight/v7/NGStv5HIAOFLgvBNBxgRMlhqUetH8mFn.woff2") format("woff2");font-weight:300 700;font-display:swap}
-@font-face{font-family:"Josefin Sans";src:url("https://fonts.gstatic.com/s/josefinsans/v32/Qw3aZQNVED7rKGKxtqIqX5E-AVSJrOCfjY46_djeXA.woff2") format("woff2");font-weight:200 700;font-display:swap}
+/* Cormorant Garamond, Inter Tight and Josefin Sans (all weights + italics)
+   are loaded via <link> in layout/theme.liquid so italics render correctly. */
 
 /* ------------------------------- TOKENS ------------------------------- */
 .et{
@@ -93,13 +92,17 @@
 .et-fg60{color:color-mix(in oklab,var(--fg) 60%,transparent)}
 .et-deep{background:var(--cream-deep)}
 
-.et-btn{display:inline-flex;align-items:center;gap:.75rem;padding:1rem 2.25rem;font-family:var(--font-brand);font-size:11px;letter-spacing:.32em;background:var(--fg);color:var(--bg);transition:opacity .25s;text-transform:uppercase}
-.et-btn:hover{opacity:.85}
-.et-btn--ghost{background:transparent;color:var(--fg);border:1px solid var(--fg)}
-.et-btn--ghost:hover{background:var(--fg);color:var(--bg);opacity:1}
-.et-btn[disabled]{opacity:.4;cursor:not-allowed}
-.et-link{border-bottom:1px solid color-mix(in oklab,var(--fg) 40%,transparent);padding-bottom:.15rem}
-.et-link:hover{border-color:var(--fg)}
+/* NOTE: rules are prefixed with `.et ` so they out-specify the base
+   `.et a{color:inherit}` and `.et button{border:0}` rules above — otherwise
+   primary-button text inherits the dark color (invisible) and ghost <button>s
+   lose their border. */
+.et .et-btn{display:inline-flex;align-items:center;gap:.75rem;padding:1rem 2.25rem;font-family:var(--font-brand);font-size:11px;letter-spacing:.32em;background:var(--fg);color:var(--bg);transition:opacity .25s;text-transform:uppercase}
+.et .et-btn:hover{opacity:.85}
+.et .et-btn--ghost{background:transparent;color:var(--fg);border:1px solid var(--fg)}
+.et .et-btn--ghost:hover{background:var(--fg);color:var(--bg);opacity:1}
+.et .et-btn[disabled]{opacity:.4;cursor:not-allowed}
+.et .et-link{border-bottom:1px solid color-mix(in oklab,var(--fg) 40%,transparent);padding-bottom:.15rem}
+.et .et-link:hover{border-color:var(--fg)}
 
 /* ------------------------------- HEADER ------------------------------- */
 .et-header{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--border);background:color-mix(in oklab,var(--bg) 92%,transparent);backdrop-filter:blur(12px)}
