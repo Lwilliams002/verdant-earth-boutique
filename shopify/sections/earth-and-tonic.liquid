@@ -726,6 +726,76 @@
     </div>
   </section>
 
+{%- comment -%} ============================ CART ============================ {%- endcomment -%}
+{% elsif template.name == 'cart' %}
+
+  <div class="et-wrap" style="padding-top:3rem;padding-bottom:5rem;max-width:1000px">
+    <h1 class="et-h2" style="margin-top:0">Your cart</h1>
+
+    {%- if cart.item_count == 0 -%}
+      <p class="et-mt et-fg70">Your cart is currently empty.</p>
+      <a href="/collections/all" class="et-btn" style="margin-top:1.5rem;display:inline-flex">Continue shopping</a>
+    {%- else -%}
+      <form action="{{ routes.cart_url }}" method="post" novalidate class="et-mt-lg">
+        <table style="width:100%;border-collapse:collapse">
+          <thead>
+            <tr class="et-eyebrow et-fg60" style="text-align:left">
+              <th style="padding:.75rem 0">Product</th>
+              <th style="padding:.75rem 0">Quantity</th>
+              <th style="padding:.75rem 0;text-align:right">Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%- for item in cart.items -%}
+              <tr style="border-top:1px solid var(--border)">
+                <td style="padding:1.25rem 0">
+                  <div style="display:flex;gap:1rem;align-items:center">
+                    {%- if item.image -%}
+                      <img src="{{ item.image | image_url: width: 120 }}" alt="{{ item.title | escape }}" width="60" height="60" style="border-radius:.5rem;object-fit:cover">
+                    {%- endif -%}
+                    <div>
+                      <a href="{{ item.url }}" style="font-family:var(--font-display);font-size:1.1rem">{{ item.product.title }}</a>
+                      {%- unless item.variant.title contains 'Default' -%}
+                        <div class="et-fg60" style="font-size:.8rem">{{ item.variant.title }}</div>
+                      {%- endunless -%}
+                      <div class="et-fg60" style="font-size:.85rem">{{ item.final_price | money }}</div>
+                    </div>
+                  </div>
+                </td>
+                <td style="padding:1.25rem 0">
+                  <input type="number" name="updates[]" value="{{ item.quantity }}" min="0" aria-label="Quantity for {{ item.title | escape }}" style="width:4rem;padding:.4rem;border:1px solid var(--border);border-radius:.4rem">
+                  <a href="{{ item.url_to_remove }}" class="et-fg60" style="display:block;font-size:.75rem;margin-top:.4rem">Remove</a>
+                </td>
+                <td style="padding:1.25rem 0;text-align:right">{{ item.final_line_price | money }}</td>
+              </tr>
+            {%- endfor -%}
+          </tbody>
+        </table>
+
+        <div class="et-rule" style="display:flex;flex-wrap:wrap;gap:1rem;justify-content:space-between;align-items:center;margin-top:2rem">
+          <span class="et-eyebrow et-fg60">Subtotal</span>
+          <strong style="font-size:1.25rem">{{ cart.total_price | money }}</strong>
+        </div>
+        <p class="et-fg60" style="font-size:.8rem;margin-top:.5rem">Taxes and shipping calculated at checkout.</p>
+
+        <div style="display:flex;gap:1rem;flex-wrap:wrap;margin-top:1.5rem">
+          <button type="submit" name="update" class="et-btn et-btn--ghost">Update cart</button>
+          <button type="submit" name="checkout" class="et-btn">Check out</button>
+        </div>
+      </form>
+    {%- endif -%}
+  </div>
+
+{%- comment -%} ============================ 404 ============================ {%- endcomment -%}
+{% elsif template.name == '404' %}
+
+  <div class="et-wrap et-center" style="padding-top:5rem;padding-bottom:6rem;max-width:700px">
+    <span class="et-eyebrow" style="color:var(--moss)">404</span>
+    <h1 class="et-h2" style="margin-top:1rem">Page not found</h1>
+    <p class="et-mt et-fg70">The page you were looking for doesn&rsquo;t exist or has been moved.</p>
+    <a href="/" class="et-btn" style="margin-top:1.75rem;display:inline-flex">Back to home</a>
+  </div>
+
 {%- comment -%} ==================== ANY OTHER TEMPLATE ==================== {%- endcomment -%}
 {% else %}
   <section class="et-wrap" style="padding-top:4rem;padding-bottom:4rem;max-width:1000px">
@@ -733,7 +803,7 @@
       <h1 class="et-h2 et-center">{{ page.title }}</h1>
       <div class="et-mt-lg et-fg70" style="line-height:1.8">{{ page.content }}</div>
     {% else %}
-      {{ content_for_layout }}
+      <h1 class="et-h2 et-center">{{ page_title }}</h1>
     {% endif %}
   </section>
 {% endif %}
