@@ -9,7 +9,7 @@ import { defineConfig } from "@lovable.dev/vite-tanstack-config";
 const prerenderedPages = [
   "/",
   "/about",
-  "/journal",
+  "/gallery",
   "/shop",
   "/shop/gut-tonic",
   "/shop/sleep-drops",

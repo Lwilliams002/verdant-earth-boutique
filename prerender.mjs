@@ -14,7 +14,7 @@ const BASE = "";
 const staticPages = [
   "/",
   "/about",
-  "/journal",
+  "/gallery",
   "/shop",
 ];
 
