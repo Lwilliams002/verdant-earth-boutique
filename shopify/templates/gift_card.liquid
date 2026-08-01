@@ -1,0 +1,11 @@
+{%- comment -%} Rendered inside the site chrome via {{ content_for_layout }}. {%- endcomment -%}
+<div class="et-wrap et-center" style="padding-top:3rem;padding-bottom:5rem;max-width:520px">
+  <span class="et-eyebrow" style="color:var(--moss)">Gift card</span>
+  <h1 class="et-h2" style="margin-top:1rem">{{ gift_card.balance | money }}</h1>
+  <p class="et-fg60" style="font-size:.85rem">Gift card code</p>
+  <div style="font-family:monospace;font-size:1.25rem;letter-spacing:.15em;margin-top:.5rem">{{ gift_card.code | format_code }}</div>
+  {%- if gift_card.qr_identifier -%}
+    <img src="{{ gift_card.qr_identifier | generate_qr_code: size: 240 }}" alt="Gift card QR code" width="180" height="180" style="margin:1.5rem auto 0">
+  {%- endif -%}
+</div>
+
