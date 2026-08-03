@@ -116,10 +116,13 @@
 @media(min-width:768px){.et-nav{display:flex}}
 .et-brand{font-family:var(--font-brand);font-weight:200;letter-spacing:.42em;font-size:1.25rem;line-height:1;white-space:nowrap}
 @media(min-width:768px){.et-brand{font-size:1.6rem}}
+@media(max-width:520px){.et-brand{letter-spacing:.2em;font-size:1rem}}
 .et-header__right{display:none;flex:1;justify-content:flex-end;align-items:center;gap:1.5rem}
 @media(min-width:768px){.et-header__right{display:flex}}
-.et-mobilebar{display:flex;align-items:center;gap:1rem}
+.et-mobilebar{display:flex;align-items:center;gap:.9rem}
 @media(min-width:768px){.et-mobilebar{display:none}}
+.et .et-menu-btn{display:inline-flex;align-items:center;justify-content:center;padding:.15rem;color:var(--fg)}
+.et-menu-btn svg{display:block}
 .et-cart{position:relative;display:inline-flex;align-items:center;gap:.5rem}
 .et-cart__count{display:inline-flex;align-items:center;justify-content:center;min-width:18px;height:18px;padding:0 5px;border-radius:999px;background:var(--fg);color:var(--bg);font-size:10px;line-height:1;letter-spacing:0;text-align:center;font-family:var(--font-brand)}
 .et-mobilemenu{display:none;border-top:1px solid var(--border);padding:1rem 1.25rem 1.5rem}
@@ -209,8 +212,10 @@
 .et-pdp__figure img{position:relative;z-index:1;width:auto;height:300px;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(60,40,30,.18));animation:et-float 8s ease-in-out infinite}
 @media(min-width:640px){.et-pdp__figure img{height:440px}}
 @media(min-width:1024px){.et-pdp__figure img{height:560px}}
-.et-pdp__thumbs{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;max-width:320px}
-.et .et-pdp__thumb{width:64px;height:64px;padding:0;border:1px solid var(--border);border-radius:.4rem;overflow:hidden;background:var(--cream-deep);cursor:pointer;transition:border-color .2s}
+.et-pdp__thumbs{display:flex;gap:.6rem;max-width:320px;overflow-x:auto;padding-bottom:.35rem;justify-content:center}
+.et-pdp__swipe{font-size:.7rem;letter-spacing:.1em;text-transform:uppercase;font-family:var(--font-brand)}
+@media(min-width:1024px){.et-pdp__swipe{display:none}}
+.et .et-pdp__thumb{flex:none;width:64px;height:64px;padding:0;border:1px solid var(--border);border-radius:.4rem;overflow:hidden;background:var(--cream-deep);cursor:pointer;transition:border-color .2s}
 .et .et-pdp__thumb:hover{border-color:color-mix(in oklab,var(--fg) 50%,transparent)}
 .et .et-pdp__thumb.is-active{border-color:var(--fg)}
 .et-pdp__thumb img{width:100%;height:100%;object-fit:contain;padding:.25rem;animation:none;filter:none}
@@ -296,7 +301,11 @@
         Cart
         {% if cart.item_count > 0 %}<span class="et-cart__count">{{ cart.item_count }}</span>{% endif %}
       </a>
-      <button class="et-eyebrow" aria-label="Open menu" onclick="document.getElementById('et-mm').classList.toggle('is-open')">Menu</button>
+      <button class="et-menu-btn" aria-label="Open menu" aria-expanded="false"
+        onclick="var m=document.getElementById('et-mm');var o=m.classList.toggle('is-open');this.setAttribute('aria-expanded',o);this.querySelector('.et-i-open').style.display=o?'none':'block';this.querySelector('.et-i-close').style.display=o?'block':'none';">
+        <svg class="et-i-open" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+        <svg class="et-i-close" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true" style="display:none"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </button>
     </div>
   </div>
   <div class="et-mobilemenu" id="et-mm">
@@ -550,7 +559,7 @@
       </div>
 
       <div class="et-pdp__bottle">
-        <div class="et-pdp__figure">
+        <div class="et-pdp__figure" id="et-pdp-figure">
           <span class="et-ring et-ring--a"></span>
           <span class="et-ring et-ring--b"></span>
           {% if product.featured_image %}
@@ -560,19 +569,40 @@
         {% if product.images.size > 1 %}
           <div class="et-pdp__thumbs">
             {% for img in product.images %}
-              <button type="button" class="et-pdp__thumb{% if img == product.featured_image %} is-active{% endif %}" aria-label="View image {{ forloop.index }}" onclick="etPdpImg(this,'{{ img | image_url: width: 900 }}')">
+              <button type="button" class="et-pdp__thumb{% if img == product.featured_image %} is-active{% endif %}" aria-label="View image {{ forloop.index }}" data-full="{{ img | image_url: width: 900 }}">
                 <img src="{{ img | image_url: width: 140 }}" alt="{{ product.title | escape }} — view {{ forloop.index }}" loading="lazy" width="70" height="70">
               </button>
             {% endfor %}
           </div>
+          <p class="et-pdp__swipe et-fg60">Swipe or tap to view more</p>
           <script>
-            function etPdpImg(btn, src){
+            (function(){
+              var figure = document.getElementById('et-pdp-figure');
               var main = document.getElementById('et-pdp-main');
-              if (main) main.src = src;
-              var thumbs = btn.parentNode.querySelectorAll('.et-pdp__thumb');
-              for (var i = 0; i < thumbs.length; i++) thumbs[i].classList.remove('is-active');
-              btn.classList.add('is-active');
-            }
+              var thumbs = Array.prototype.slice.call(document.querySelectorAll('.et-pdp__thumb'));
+              if (!thumbs.length || !main) return;
+              var idx = 0;
+              for (var j = 0; j < thumbs.length; j++){ if (thumbs[j].classList.contains('is-active')) { idx = j; break; } }
+              function show(i){
+                idx = (i + thumbs.length) % thumbs.length;
+                var src = thumbs[idx].getAttribute('data-full');
+                if (src) main.src = src;
+                for (var k = 0; k < thumbs.length; k++){ thumbs[k].classList.remove('is-active'); }
+                thumbs[idx].classList.add('is-active');
+                thumbs[idx].scrollIntoView({block:'nearest', inline:'center', behavior:'smooth'});
+              }
+              thumbs.forEach(function(t, i){ t.addEventListener('click', function(){ show(i); }); });
+              var x0 = null;
+              if (figure){
+                figure.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+                figure.addEventListener('touchend', function(e){
+                  if (x0 === null) return;
+                  var dx = e.changedTouches[0].clientX - x0;
+                  if (Math.abs(dx) > 40) { show(dx < 0 ? idx + 1 : idx - 1); }
+                  x0 = null;
+                }, {passive:true});
+              }
+            })();
           </script>
         {% endif %}
       </div>
