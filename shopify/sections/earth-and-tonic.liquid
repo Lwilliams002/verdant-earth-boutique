@@ -204,10 +204,16 @@
 .et-pdp__side{display:none}
 @media(min-width:1024px){.et-pdp__side{display:flex;flex-direction:column;gap:2.5rem}}
 .et-pdp__side--l{text-align:right}
-.et-pdp__bottle{position:relative;display:flex;align-items:center;justify-content:center}
-.et-pdp__bottle img{position:relative;z-index:1;width:auto;height:300px;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(60,40,30,.18));animation:et-float 8s ease-in-out infinite}
-@media(min-width:640px){.et-pdp__bottle img{height:440px}}
-@media(min-width:1024px){.et-pdp__bottle img{height:560px}}
+.et-pdp__bottle{position:relative;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+.et-pdp__figure{position:relative;display:flex;align-items:center;justify-content:center}
+.et-pdp__figure img{position:relative;z-index:1;width:auto;height:300px;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(60,40,30,.18));animation:et-float 8s ease-in-out infinite}
+@media(min-width:640px){.et-pdp__figure img{height:440px}}
+@media(min-width:1024px){.et-pdp__figure img{height:560px}}
+.et-pdp__thumbs{display:flex;flex-wrap:wrap;justify-content:center;gap:.6rem;max-width:320px}
+.et .et-pdp__thumb{width:64px;height:64px;padding:0;border:1px solid var(--border);border-radius:.4rem;overflow:hidden;background:var(--cream-deep);cursor:pointer;transition:border-color .2s}
+.et .et-pdp__thumb:hover{border-color:color-mix(in oklab,var(--fg) 50%,transparent)}
+.et .et-pdp__thumb.is-active{border-color:var(--fg)}
+.et-pdp__thumb img{width:100%;height:100%;object-fit:contain;padding:.25rem;animation:none;filter:none}
 @keyframes et-float{0%,100%{transform:translateY(-6px)}50%{transform:translateY(6px)}}
 .et-ring{position:absolute;aspect-ratio:1;border-radius:999px;border:1px solid color-mix(in oklab,var(--forest) 15%,transparent)}
 .et-ring--a{width:88%}
@@ -544,10 +550,30 @@
       </div>
 
       <div class="et-pdp__bottle">
-        <span class="et-ring et-ring--a"></span>
-        <span class="et-ring et-ring--b"></span>
-        {% if product.featured_image %}
-          <img src="{{ product.featured_image | image_url: width: 900 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" width="900" height="900">
+        <div class="et-pdp__figure">
+          <span class="et-ring et-ring--a"></span>
+          <span class="et-ring et-ring--b"></span>
+          {% if product.featured_image %}
+            <img id="et-pdp-main" src="{{ product.featured_image | image_url: width: 900 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" width="900" height="900">
+          {% endif %}
+        </div>
+        {% if product.images.size > 1 %}
+          <div class="et-pdp__thumbs">
+            {% for img in product.images %}
+              <button type="button" class="et-pdp__thumb{% if img == product.featured_image %} is-active{% endif %}" aria-label="View image {{ forloop.index }}" onclick="etPdpImg(this,'{{ img | image_url: width: 900 }}')">
+                <img src="{{ img | image_url: width: 140 }}" alt="{{ product.title | escape }} — view {{ forloop.index }}" loading="lazy" width="70" height="70">
+              </button>
+            {% endfor %}
+          </div>
+          <script>
+            function etPdpImg(btn, src){
+              var main = document.getElementById('et-pdp-main');
+              if (main) main.src = src;
+              var thumbs = btn.parentNode.querySelectorAll('.et-pdp__thumb');
+              for (var i = 0; i < thumbs.length; i++) thumbs[i].classList.remove('is-active');
+              btn.classList.add('is-active');
+            }
+          </script>
         {% endif %}
       </div>
 
