@@ -22,12 +22,14 @@
          product-earth-balm-collection.png
          botanical-bg.jpg
          gallery-kitchen.jpg
-         gallery-earth-balm.png
-         gallery-moon-balm.png
          gallery-founder-duo.jpg
          gallery-moon-balm-portrait.jpg
          gallery-moon-balm-blanket.jpg
          gallery-moon-balm-lifestyle.jpg
+         gallery-new-1.jpg
+         gallery-new-2.jpg
+         gallery-new-3.jpg
+         gallery-new-4.jpg
   5. Online Store > Pages — create two pages so the nav links resolve:
          "Our Story"  with handle: about
          "Gallery"    with handle: gallery
@@ -103,6 +105,8 @@
 .et .et-btn[disabled]{opacity:.4;cursor:not-allowed}
 .et .et-link{border-bottom:1px solid color-mix(in oklab,var(--fg) 40%,transparent);padding-bottom:.15rem}
 .et .et-link:hover{border-color:var(--fg)}
+.et .et-btn--cream{background:var(--cream);color:var(--forest-deep);border-radius:999px;padding:1rem 2.25rem}
+.et .et-btn--cream:hover{background:var(--cream);opacity:.9}
 
 /* ------------------------------- HEADER ------------------------------- */
 .et-header{position:sticky;top:0;z-index:40;border-bottom:1px solid var(--border);background:color-mix(in oklab,var(--bg) 92%,transparent);backdrop-filter:blur(12px)}
@@ -161,13 +165,34 @@
 .et-card__row{display:flex;justify-content:space-between;gap:.75rem;margin-top:1.25rem}
 
 .et-story{border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--cream-deep)}
-.et-story__grid{display:grid;grid-template-columns:1fr;max-width:1600px;margin:0 auto}
+.et-story__grid{display:grid;grid-template-columns:1fr;max-width:1600px;margin:0 auto;align-items:stretch}
 @media(min-width:768px){.et-story__grid{grid-template-columns:1fr 1fr}}
-.et-story__grid img{width:100%;height:100%;object-fit:cover;aspect-ratio:4/5}
-@media(min-width:768px){.et-story__grid img{aspect-ratio:auto}}
+.et-story__media{position:relative;overflow:hidden;aspect-ratio:4/5}
+@media(min-width:768px){.et-story__media{aspect-ratio:auto;min-height:100%}}
+.et-story__media img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center}
 
 .et-values{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem;max-width:1600px;margin:0 auto;padding:5rem 1.5rem}
 @media(min-width:768px){.et-values{grid-template-columns:repeat(4,1fr)}}
+
+/* ------------------------------ BUNDLE ------------------------------ */
+.et-bundle{background:var(--forest-deep);color:var(--cream);border-radius:.6rem;overflow:hidden;border:1px solid color-mix(in oklab,var(--cream) 12%,transparent)}
+.et-bundle__grid{display:grid;gap:2rem;padding:2rem}
+@media(min-width:768px){.et-bundle__grid{grid-template-columns:1fr auto;align-items:center;gap:3rem;padding:3.5rem}}
+.et-bundle__tag{display:inline-flex;align-items:center;gap:.5rem;color:var(--sage)}
+.et-bundle__title{margin-top:.75rem;font-size:2.5rem;line-height:1.05}
+@media(min-width:768px){.et-bundle__title{font-size:3.25rem}}
+.et-bundle__title .et-italic{color:var(--sage)}
+.et-bundle__desc{margin-top:1rem;max-width:38rem;line-height:1.7;color:color-mix(in oklab,var(--cream) 80%,transparent)}
+.et-bundle__items{display:flex;flex-wrap:wrap;gap:1.5rem 2rem;margin-top:1.75rem}
+.et-bundle__item{display:flex;align-items:center;gap:.75rem}
+.et-bundle__item img{width:4rem;height:4rem;border-radius:.35rem;background:color-mix(in oklab,var(--cream) 10%,transparent);object-fit:contain;padding:.25rem}
+.et-bundle__item-name{font-family:var(--font-display);font-size:1.05rem}
+.et-bundle__item-price{margin-top:.15rem;font-size:.8rem;color:color-mix(in oklab,var(--cream) 60%,transparent)}
+.et-bundle__buy{display:flex;flex-direction:column;align-items:flex-start;gap:1.5rem}
+@media(min-width:768px){.et-bundle__buy{align-items:flex-end;text-align:right}}
+.et-bundle__was{font-size:.9rem;color:color-mix(in oklab,var(--cream) 55%,transparent);text-decoration:line-through}
+.et-bundle__now{font-family:var(--font-display);font-size:2.75rem;line-height:1.1;margin-top:.15rem}
+.et-bundle__save{margin-top:.4rem;font-family:var(--font-brand);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sage)}
 
 /* ------------------------------ PRODUCT ------------------------------ */
 .et-pdp{max-width:1200px;margin:0 auto;padding:4rem 1.5rem}
@@ -379,35 +404,60 @@
   {%- assign earth = all_products[EARTH_HANDLE] -%}
   {%- assign moon = all_products[MOON_HANDLE] -%}
   {% if earth.available and moon.available %}
-  <section class="et-deep" style="border-top:1px solid var(--border);border-bottom:1px solid var(--border)">
-    <div class="et-wrap et-center" style="padding-top:5rem;padding-bottom:5rem;max-width:820px">
-      <span class="et-eyebrow et-fg60">Save {{ 500 | money_without_trailing_zeros }}</span>
-      <h2 class="et-h2">The <span class="et-italic">Routine</span> Bundle</h2>
-      <p class="et-mt et-fg70" style="line-height:1.8">
-        Earth Balm and Moon Balm. Your daily skincare essentials, thoughtfully crafted with clean ingredients
-      </p>
-      <p class="et-mt-lg" style="font-family:var(--font-display);font-size:2rem">
-        {{ earth.price | plus: moon.price | minus: 500 | money_without_trailing_zeros }}
-        <span class="et-muted" style="font-size:1rem;text-decoration:line-through;margin-left:.75rem">
-          {{ earth.price | plus: moon.price | money_without_trailing_zeros }}
-        </span>
-      </p>
-      <form method="post" action="/cart/add" class="et-mt-lg" style="display:inline-block">
-        <input type="hidden" name="items[0][id]" value="{{ earth.selected_or_first_available_variant.id }}">
-        <input type="hidden" name="items[0][quantity]" value="1">
-        <input type="hidden" name="items[1][id]" value="{{ moon.selected_or_first_available_variant.id }}">
-        <input type="hidden" name="items[1][quantity]" value="1">
-        <input type="hidden" name="return_to" value="/discount/{{ BUNDLE_CODE }}?redirect=/cart">
-        <button type="submit" class="et-btn">Add the bundle</button>
-      </form>
-      <p class="et-mt et-muted" style="font-size:.75rem">Discount {{ BUNDLE_CODE }} applies automatically at checkout.</p>
+  {%- assign bundle_subtotal = earth.price | plus: moon.price -%}
+  <section class="et-wrap" style="padding-top:4rem;padding-bottom:4rem;max-width:1200px">
+    <div class="et-bundle">
+      <div class="et-bundle__grid">
+        <div>
+          <span class="et-eyebrow et-bundle__tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:none"><path d="M12 2l1.9 5.6L19.5 9l-4.4 3.2L16.8 18 12 14.7 7.2 18l1.7-5.8L4.5 9l5.6-1.4L12 2z"/></svg>
+            Limited bundle
+          </span>
+          <h2 class="et-h2 et-bundle__title">The <span class="et-italic">Routine</span> Bundle</h2>
+          <p class="et-bundle__desc">
+            Both of our botanical balms together — Earth Balm and Moon Balm for a complete morning and evening routine. Save {{ 500 | money_without_trailing_zeros }} when you take home the pair.
+          </p>
+          <div class="et-bundle__items">
+            <div class="et-bundle__item">
+              {% if earth.featured_image %}<img src="{{ earth.featured_image | image_url: width: 160 }}" alt="{{ earth.title | escape }}" width="64" height="64">{% endif %}
+              <div>
+                <p class="et-bundle__item-name">{{ earth.title }}</p>
+                <p class="et-bundle__item-price">{{ earth.price | money }}</p>
+              </div>
+            </div>
+            <div class="et-bundle__item">
+              {% if moon.featured_image %}<img src="{{ moon.featured_image | image_url: width: 160 }}" alt="{{ moon.title | escape }}" width="64" height="64">{% endif %}
+              <div>
+                <p class="et-bundle__item-name">{{ moon.title }}</p>
+                <p class="et-bundle__item-price">{{ moon.price | money }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="et-bundle__buy">
+          <div>
+            <p class="et-bundle__was">{{ bundle_subtotal | money }}</p>
+            <p class="et-bundle__now">{{ bundle_subtotal | minus: 500 | money }}</p>
+            <p class="et-bundle__save">Save {{ 500 | money_without_trailing_zeros }}</p>
+          </div>
+          <form method="post" action="/cart/add">
+            <input type="hidden" name="items[0][id]" value="{{ earth.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="items[0][quantity]" value="1">
+            <input type="hidden" name="items[1][id]" value="{{ moon.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="items[1][quantity]" value="1">
+            <input type="hidden" name="return_to" value="/discount/{{ BUNDLE_CODE }}?redirect=/cart">
+            <button type="submit" class="et-btn et-btn--cream">Add bundle to cart</button>
+          </form>
+        </div>
+      </div>
     </div>
   </section>
   {% endif %}
 
   <section class="et-story">
     <div class="et-story__grid">
-      <div>
+      <div class="et-story__media">
         <img src="{{ 'founder-story.png' | asset_url }}" alt="Pamela, founder of Earth &amp; Tonic" loading="lazy" width="900" height="1125">
       </div>
       <div class="et-split__body">
@@ -717,12 +767,14 @@
   <section style="max-width:1400px;margin:0 auto;padding:0 1rem 6rem">
     <div class="et-gallery">
       <figure class="et-g-2x2"><img src="{{ 'gallery-kitchen.jpg' | asset_url }}" alt="Pamela weighing ingredients in the studio kitchen" loading="lazy" width="900" height="900"></figure>
-      <figure><img src="{{ 'gallery-earth-balm.png' | asset_url }}" alt="Earth Balm tin resting on soft linen fabric" loading="lazy" width="600" height="600"></figure>
-      <figure><img src="{{ 'gallery-moon-balm.png' | asset_url }}" alt="Moon Balm tin resting on soft linen fabric" loading="lazy" width="600" height="600"></figure>
+      <figure class="et-g-1x2"><img src="{{ 'gallery-new-1.jpg' | asset_url }}" alt="Earth &amp; Tonic botanical balm" loading="lazy" width="810" height="1012"></figure>
+      <figure><img src="{{ 'gallery-new-2.jpg' | asset_url }}" alt="Handcrafted balm detail" loading="lazy" width="800" height="800"></figure>
       <figure class="et-g-1x2"><img src="{{ 'gallery-founder-duo.jpg' | asset_url }}" alt="Founder holding Earth Balm and Moon Balm outdoors" loading="lazy" width="600" height="900"></figure>
       <figure class="et-g-1x2"><img src="{{ 'gallery-moon-balm-portrait.jpg' | asset_url }}" alt="Pamela holding a Moon Balm tin" loading="lazy" width="600" height="900"></figure>
+      <figure><img src="{{ 'gallery-new-3.jpg' | asset_url }}" alt="Small batch botanical balm" loading="lazy" width="800" height="800"></figure>
       <figure><img src="{{ 'gallery-moon-balm-blanket.jpg' | asset_url }}" alt="Moon Balm tin resting on a soft blanket" loading="lazy" width="600" height="600"></figure>
       <figure class="et-g-2x1"><img src="{{ 'gallery-moon-balm-lifestyle.jpg' | asset_url }}" alt="Moon Balm as part of a nightly routine" loading="lazy" width="900" height="600"></figure>
+      <figure class="et-g-1x2"><img src="{{ 'gallery-new-4.jpg' | asset_url }}" alt="Earth &amp; Tonic balm in the studio" loading="lazy" width="768" height="960"></figure>
     </div>
   </section>
 
