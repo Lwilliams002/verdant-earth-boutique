@@ -202,11 +202,8 @@
 @media(min-width:1024px){.et-pdp{padding:6rem 2.5rem}}
 .et-pdp__title{font-size:3.5rem;line-height:1;margin-top:.75rem}
 @media(min-width:768px){.et-pdp__title{font-size:4.5rem}}
-.et-pdp__stage{display:grid;gap:2rem;margin-top:3rem}
-@media(min-width:1024px){.et-pdp__stage{grid-template-columns:1fr auto 1fr;align-items:center;gap:2.5rem}}
-.et-pdp__side{display:none}
-@media(min-width:1024px){.et-pdp__side{display:flex;flex-direction:column;gap:2.5rem}}
-.et-pdp__side--l{text-align:right}
+.et-pdp__hero{display:grid;gap:3rem;margin-top:3rem;align-items:start}
+@media(min-width:1024px){.et-pdp__hero{grid-template-columns:1fr 1fr;gap:4rem}}
 .et-pdp__bottle{position:relative;display:flex;flex-direction:column;align-items:center;gap:1.5rem}
 .et-pdp__figure{position:relative;display:flex;align-items:center;justify-content:center}
 .et-pdp__figure img{position:relative;z-index:1;width:auto;height:300px;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(60,40,30,.18));animation:et-float 8s ease-in-out infinite}
@@ -223,14 +220,12 @@
 .et-ring{position:absolute;aspect-ratio:1;border-radius:999px;border:1px solid color-mix(in oklab,var(--forest) 15%,transparent)}
 .et-ring--a{width:88%}
 .et-ring--b{width:70%;border-color:color-mix(in oklab,var(--forest) 10%,transparent)}
-.et-ing-mobile{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem;margin-top:2.5rem}
-@media(min-width:1024px){.et-ing-mobile{display:none}}
-.et-buy{max-width:640px;margin:4rem auto 0;border:1px solid var(--border);background:color-mix(in oklab,#fff 60%,transparent);padding:2rem}
+.et-buy{border:1px solid var(--border);background:color-mix(in oklab,#fff 60%,transparent);padding:2rem;margin-top:2rem}
 .et-qty{display:inline-flex;align-items:center;border:1px solid var(--border);border-radius:999px;background:var(--bg)}
 .et-qty button{padding:.75rem 1.1rem;color:var(--muted-fg)}
 .et-qty input{width:2.5rem;text-align:center;border:0;background:transparent;font:inherit}
-.et-uses{display:grid;gap:2rem;margin-top:3rem}
-@media(min-width:768px){.et-uses{grid-template-columns:repeat(3,1fr)}}
+.et-uses{display:grid;gap:2rem;margin-top:2rem}
+@media(min-width:640px){.et-uses{grid-template-columns:repeat(3,1fr)}}
 .et-chips{display:flex;flex-wrap:wrap;gap:.5rem;margin-top:.75rem}
 .et-chip{border:1px solid var(--border);padding:.3rem .7rem;font-size:.75rem;border-radius:999px}
 
@@ -578,18 +573,9 @@
       {% endif %}
     </div>
 
-    <div class="et-pdp__stage">
-      <div class="et-pdp__side et-pdp__side--l">
-        {% for row in ingredients limit: 2 %}
-          {%- assign parts = row | strip | split: '|' -%}
-          <div style="margin-left:auto;max-width:20rem">
-            <span class="et-eyebrow" style="color:var(--moss)">{{ parts[1] }}</span>
-            <h3 class="et-mt-sm" style="font-size:1.5rem">{{ parts[0] }}</h3>
-            <p class="et-mt-sm et-fg70" style="font-size:.875rem;line-height:1.7">{{ parts[2] }}</p>
-          </div>
-        {% endfor %}
-      </div>
+    <div class="et-pdp__hero">
 
+      {%- comment -%} LEFT — product image {%- endcomment -%}
       <div class="et-pdp__bottle">
         <div class="et-pdp__figure" id="et-pdp-figure">
           <span class="et-ring et-ring--a"></span>
@@ -639,62 +625,69 @@
         {% endif %}
       </div>
 
-      <div class="et-pdp__side">
-        {% for row in ingredients offset: 2 limit: 2 %}
-          {%- assign parts = row | strip | split: '|' -%}
-          <div style="max-width:20rem">
-            <span class="et-eyebrow" style="color:var(--moss)">{{ parts[1] }}</span>
-            <h3 class="et-mt-sm" style="font-size:1.5rem">{{ parts[0] }}</h3>
-            <p class="et-mt-sm et-fg70" style="font-size:.875rem;line-height:1.7">{{ parts[2] }}</p>
+      {%- comment -%} RIGHT — description, uses, directions, storage, add to cart {%- endcomment -%}
+      <div>
+        <p class="et-fg70" style="line-height:1.8">{{ product.description | strip_html }}</p>
+
+        {% if uses_list.size > 0 %}
+          <div class="et-uses">
+            <div>
+              <h3 class="et-eyebrow" style="color:var(--moss)">Directions</h3>
+              <p class="et-mt et-fg70" style="font-size:.9rem;line-height:1.7">
+                Apply a small amount to dry, rough, or irritated skin as needed. Massage gently until absorbed.
+              </p>
+            </div>
+            <div>
+              <h3 class="et-eyebrow" style="color:var(--moss)">Suggested uses</h3>
+              <div class="et-chips">
+                {% for u in uses_list %}<span class="et-chip">{{ u }}</span>{% endfor %}
+              </div>
+              {% if uses_note != blank %}
+                <p class="et-mt-sm et-muted" style="font-size:.8rem">{{ uses_note }}</p>
+              {% endif %}
+            </div>
+            <div>
+              <h3 class="et-eyebrow" style="color:var(--moss)">Storage</h3>
+              <p class="et-mt et-fg70" style="font-size:.9rem;line-height:1.7">
+                Store in a cool, dry place away from direct sunlight.
+              </p>
+            </div>
           </div>
-        {% endfor %}
-      </div>
-    </div>
-
-    <div class="et-ing-mobile">
-      {% for row in ingredients %}
-        {%- assign parts = row | strip | split: '|' -%}
-        <div>
-          <span class="et-eyebrow" style="color:var(--moss)">{{ parts[1] }}</span>
-          <h3 style="font-size:1.125rem;margin-top:.25rem">{{ parts[0] }}</h3>
-          <p class="et-fg70" style="font-size:.75rem;line-height:1.6;margin-top:.25rem">{{ parts[2] }}</p>
-        </div>
-      {% endfor %}
-    </div>
-
-    <div class="et-buy">
-      <p class="et-center et-fg70" style="line-height:1.8">{{ product.description | strip_html | truncatewords: 60 }}</p>
-
-      <form method="post" action="/cart/add" class="et-mt-lg">
-        {% if product.variants.size > 1 %}
-          <div class="et-center et-mt">
-            <select name="id" class="et-eyebrow" style="padding:.75rem 1rem;border:1px solid var(--border);background:var(--bg)">
-              {% for variant in product.variants %}
-                <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
-                  {{ variant.title }} — {{ variant.price | money }}
-                </option>
-              {% endfor %}
-            </select>
-          </div>
-        {% else %}
-          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
         {% endif %}
 
-        <div class="et-center et-mt-lg" style="font-family:var(--font-display);font-size:1.875rem">
-          {{ product.price | money }}
-        </div>
+        <div class="et-buy">
+          <form method="post" action="/cart/add">
+            {% if product.variants.size > 1 %}
+              <div>
+                <select name="id" class="et-eyebrow" style="padding:.75rem 1rem;border:1px solid var(--border);background:var(--bg);width:100%">
+                  {% for variant in product.variants %}
+                    <option value="{{ variant.id }}" {% unless variant.available %}disabled{% endunless %}>
+                      {{ variant.title }} — {{ variant.price | money }}
+                    </option>
+                  {% endfor %}
+                </select>
+              </div>
+            {% else %}
+              <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+            {% endif %}
 
-        <div class="et-mt" style="display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:.75rem">
-          <div class="et-qty">
-            <button type="button" aria-label="Decrease" onclick="var q=this.parentNode.querySelector('input');q.value=Math.max(1,parseInt(q.value||1)-1)">&minus;</button>
-            <input type="number" name="quantity" value="1" min="1" inputmode="numeric" aria-label="Quantity">
-            <button type="button" aria-label="Increase" onclick="var q=this.parentNode.querySelector('input');q.value=parseInt(q.value||1)+1">&plus;</button>
-          </div>
-          <button type="submit" class="et-btn" {% unless product.available %}disabled{% endunless %}>
-            {% if product.available %}Add to cart{% else %}Sold out{% endif %}
-          </button>
+            <div style="font-family:var(--font-display);font-size:1.875rem;margin-bottom:1rem">
+              {{ product.price | money }}
+            </div>
+
+            <div style="display:flex;flex-wrap:wrap;align-items:center;gap:.75rem">
+              <div class="et-qty">
+                <button type="button" aria-label="Decrease" onclick="var q=this.parentNode.querySelector('input');q.value=Math.max(1,parseInt(q.value||1)-1)">&minus;</button>
+                <input type="number" name="quantity" value="1" min="1" inputmode="numeric" aria-label="Quantity">
+                <button type="button" aria-label="Increase" onclick="var q=this.parentNode.querySelector('input');q.value=parseInt(q.value||1)+1">&plus;</button>
+              </div>
+              <button type="submit" class="et-btn" {% unless product.available %}disabled{% endunless %} style="flex:1">
+                {% if product.available %}Add to cart{% else %}Sold out{% endif %}
+              </button>
+            </div>
+          </form>
         </div>
-      </form>
+      </div>
     </div>
 
     {%- comment -%} Key Ingredients — image cards with on-image description overlay {%- endcomment -%}
@@ -746,31 +739,6 @@
       }
     </script>
 
-    {% if uses_list.size > 0 %}
-    <div class="et-uses">
-      <div>
-        <h3 class="et-eyebrow" style="color:var(--moss)">Directions</h3>
-        <p class="et-mt et-fg70" style="font-size:.9rem;line-height:1.7">
-          Apply a small amount to dry, rough, or irritated skin as needed. Massage gently until absorbed.
-        </p>
-      </div>
-      <div>
-        <h3 class="et-eyebrow" style="color:var(--moss)">Suggested uses</h3>
-        <div class="et-chips">
-          {% for u in uses_list %}<span class="et-chip">{{ u }}</span>{% endfor %}
-        </div>
-        {% if uses_note != blank %}
-          <p class="et-mt-sm et-muted" style="font-size:.8rem">{{ uses_note }}</p>
-        {% endif %}
-      </div>
-      <div>
-        <h3 class="et-eyebrow" style="color:var(--moss)">Storage</h3>
-        <p class="et-mt et-fg70" style="font-size:.9rem;line-height:1.7">
-          Store in a cool, dry place away from direct sunlight.
-        </p>
-      </div>
-    </div>
-    {% endif %}
 
     {%- assign related = collections.all.products -%}
     {% if related.size > 1 %}
