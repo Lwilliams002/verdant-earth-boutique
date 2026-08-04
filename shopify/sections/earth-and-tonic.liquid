@@ -254,7 +254,8 @@
 @media(min-width:1024px){.et-about__grid{grid-template-columns:1fr 1.15fr;gap:4rem;padding:8rem 2.5rem}}
 .et-frame-wrap{position:relative;max-width:26rem;margin:0 auto;width:100%}
 .et-frame{position:relative;border:4px solid color-mix(in oklab,var(--cream) 90%,transparent);background:var(--cream);padding:.5rem;box-shadow:0 25px 50px rgba(0,0,0,.35)}
-.et-frame img{display:block;aspect-ratio:3/4;width:100%;object-fit:cover;object-position:top}
+.et-frame__pic{position:relative;aspect-ratio:4/5;overflow:hidden}
+.et-frame__pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center top}
 .et-badge{position:absolute;bottom:-1rem;right:-1rem;border:1px solid color-mix(in oklab,var(--cream) 30%,transparent);background:color-mix(in oklab,var(--forest-deep) 88%,transparent);backdrop-filter:blur(6px);border-radius:999px;padding:.55rem 1.35rem;text-align:center}
 .et-badge__name{display:block;font-family:var(--font-display);font-style:italic;font-size:1.5rem;line-height:1;color:var(--sage)}
 .et-badge__role{display:block;font-family:var(--font-brand);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:color-mix(in oklab,var(--cream) 70%,transparent);margin-top:.15rem}
@@ -786,7 +787,9 @@
     <div class="et-about__grid">
       <div class="et-frame-wrap">
         <div class="et-frame">
-          <img src="{{ 'founder-story.png' | asset_url }}" alt="Pamela, founder of Earth &amp; Tonic, holding Earth Balm and Moon Balm" loading="lazy" width="800" height="1066">
+          <div class="et-frame__pic">
+            <img src="{{ 'founder-story.png' | asset_url }}" alt="Pamela, founder of Earth &amp; Tonic, holding Earth Balm and Moon Balm" loading="lazy" width="800" height="1000">
+          </div>
         </div>
         <div class="et-badge">
           <span class="et-badge__name">Pamela</span>
