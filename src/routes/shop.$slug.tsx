@@ -9,8 +9,41 @@ import botanicalBg from "@/assets/botanical-bg.jpg";
 import { fetchShopifyProductByHandle, fetchShopifyProducts } from "@/lib/shopify";
 import { useCartStore } from "@/stores/cartStore";
 import type { ShopifyProduct } from "@/lib/shopify";
-import { getIngredients, getProductUses } from "@/lib/productMeta";
+import { getIngredients, getProductUses, type IngredientMeta } from "@/lib/productMeta";
 import { toast } from "sonner";
+
+function IngredientCard({ ing }: { ing: IngredientMeta }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <div className="flex flex-col">
+      <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-[#d5cfc5]">
+        {ing.img && (
+          <img src={ing.img} alt={ing.name} className="absolute inset-0 h-full w-full object-cover" />
+        )}
+        {/* gradient overlay */}
+        <div className="absolute inset-0 bg-gradient-to-b from-black/10 to-black/55" />
+        {/* text overlay */}
+        <div className="absolute inset-0 z-10 flex flex-col items-center justify-center gap-2 p-3 text-center">
+          <h3 className="font-display text-xl leading-tight text-white sm:text-2xl">{ing.name}</h3>
+          <button
+            type="button"
+            onClick={() => setOpen((o) => !o)}
+            className="text-[0.6rem] tracking-[0.2em] uppercase text-white underline underline-offset-4"
+          >
+            {open ? "Close" : "Learn more"}
+          </button>
+        </div>
+      </div>
+      {/* expandable description */}
+      <div
+        className="overflow-hidden transition-all duration-300"
+        style={{ maxHeight: open ? "120px" : "0px" }}
+      >
+        <p className="pt-3 text-xs leading-relaxed text-foreground/70">{ing.desc}</p>
+      </div>
+    </div>
+  );
+}
 
 export const Route = createFileRoute("/shop/$slug")({
   head: ({ params }) => ({
@@ -80,8 +113,6 @@ function ProductPage() {
   const price = product.priceRange.minVariantPrice;
   const variant = product.variants.edges[0]?.node;
   const ingredients = getIngredients(product.handle);
-  const leftIngredients = ingredients.slice(0, 2);
-  const rightIngredients = ingredients.slice(2, 4);
   const uses = getProductUses(product.handle);
   const related = (allProducts ?? [])
     .filter((p: ShopifyProduct) => p.node.handle !== product.handle)
@@ -123,19 +154,8 @@ function ProductPage() {
             <p className="mt-2 font-script text-3xl text-moss">{product.vendor}</p>
           </div>
 
-          {/* Center product with flanking ingredients */}
-          <div className="mt-10 grid gap-8 lg:mt-14 lg:grid-cols-[1fr_auto_1fr] lg:items-center lg:gap-10">
-            {/* Left ingredients desktop only */}
-            <div className="hidden lg:flex lg:flex-col lg:gap-10 lg:pr-4 lg:text-right">
-              {leftIngredients.map((ing) => (
-                <div key={ing.name} className="ml-auto max-w-xs">
-                  <span className="eyebrow text-moss">{ing.note}</span>
-                  <h3 className="mt-2 font-display text-2xl text-forest-deep">{ing.name}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-foreground/70">{ing.desc}</p>
-                </div>
-              ))}
-            </div>
-
+          {/* Product image centred */}
+          <div className="mt-10 flex items-center justify-center lg:mt-14">
             <div className="relative flex items-center justify-center">
               <div className="absolute aspect-square w-[88%] rounded-full border border-forest/15" />
               <div className="absolute aspect-square w-[70%] rounded-full border border-forest/10" />
@@ -150,29 +170,21 @@ function ProductPage() {
                 <div className="relative z-10 h-[300px] w-[190px] sm:h-[440px] sm:w-[300px] lg:h-[560px] lg:w-[400px] bg-muted rounded-full" />
               )}
             </div>
-
-            {/* Right ingredients desktop only */}
-            <div className="hidden lg:flex lg:flex-col lg:gap-10 lg:pl-4">
-              {rightIngredients.map((ing) => (
-                <div key={ing.name} className="max-w-xs">
-                  <span className="eyebrow text-moss">{ing.note}</span>
-                  <h3 className="mt-2 font-display text-2xl text-forest-deep">{ing.name}</h3>
-                  <p className="mt-2 text-sm leading-relaxed text-foreground/70">{ing.desc}</p>
-                </div>
-              ))}
-            </div>
           </div>
 
-          {/* Mobile / tablet ingredient grid */}
-          <div className="mt-10 grid grid-cols-2 gap-6 lg:hidden">
-            {ingredients.map((ing) => (
-              <div key={ing.name}>
-                <span className="eyebrow text-moss">{ing.note}</span>
-                <h3 className="mt-1 font-display text-lg text-forest-deep">{ing.name}</h3>
-                <p className="mt-1 text-xs leading-relaxed text-foreground/70">{ing.desc}</p>
+          {/* Key Ingredients card grid */}
+          {ingredients.length > 0 && (
+            <div className="mt-16">
+              <div className="flex items-end justify-between gap-4 flex-wrap">
+                <h2 className="font-display text-4xl text-forest-deep">Key Ingredients</h2>
               </div>
-            ))}
-          </div>
+              <div className="mt-6 grid grid-cols-2 gap-4 sm:grid-cols-4">
+                {ingredients.map((ing) => (
+                  <IngredientCard key={ing.name} ing={ing} />
+                ))}
+              </div>
+            </div>
+          )}
 
           {/* Buy panel */}
           <div className="mx-auto mt-16 max-w-2xl rounded-sm border border-border bg-card/60 p-6 backdrop-blur sm:p-8">

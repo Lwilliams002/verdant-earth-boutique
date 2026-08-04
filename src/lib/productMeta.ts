@@ -3,24 +3,31 @@ import sleepDrops from "@/assets/sleep-drops.png";
 import hibiscusSoap from "@/assets/hibiscus-soap.png";
 import milkHoney from "@/assets/milk-honey.png";
 
-export type IngredientMeta = { name: string; note: string; desc: string };
+import imgBeeswax from "@/assets/ingredient-beeswax.jpg";
+import imgCalendula from "@/assets/ingredient-calendula.jpg";
+import imgChamomile from "@/assets/ingredient-chamomile.jpg";
+import imgJojobaOil from "@/assets/ingredient-jojoba-oil.jpg";
+import imgLavender from "@/assets/ingredient-lavender.jpg";
+import imgArrowroot from "@/assets/ingredient-organic-arrowroot-powder.jpg";
+
+export type IngredientMeta = { name: string; note: string; desc: string; img?: string };
 
 // Ingredient details keyed by Shopify product handle.
 // Falls back to a generic set for products not listed here.
 export const PRODUCT_INGREDIENTS: Record<string, IngredientMeta[]> = {
   "earth-balm-botanical-skin-balm-2oz": [
-    { name: "Calendula", note: "Calms irritation", desc: "Known for calming irritation and comforting sensitive skin." },
-    { name: "Chamomile", note: "Gentle & soothing", desc: "Naturally calming for delicate, stressed, or easily irritated skin." },
-    { name: "Jojoba oil", note: "Locks in hydration", desc: "Locks in hydration without feeling heavy, helping skin stay soft and balanced." },
-    { name: "Beeswax", note: "Protective seal", desc: "Creates a breathable layer that helps keep skin hydrated longer." },
-    { name: "Organic Arrowroot Powder", note: "Light texture", desc: "Helps absorb excess oil for a soft, smooth, non greasy feel." },
+    { name: "Calendula", note: "Calms irritation", desc: "Known for calming irritation and comforting sensitive skin.", img: imgCalendula },
+    { name: "Chamomile", note: "Gentle & soothing", desc: "Naturally calming for delicate, stressed, or easily irritated skin.", img: imgChamomile },
+    { name: "Jojoba oil", note: "Locks in hydration", desc: "Locks in hydration without feeling heavy, helping skin stay soft and balanced.", img: imgJojobaOil },
+    { name: "Beeswax", note: "Protective seal", desc: "Creates a breathable layer that helps keep skin hydrated longer.", img: imgBeeswax },
+    { name: "Organic Arrowroot Powder", note: "Light texture", desc: "Helps absorb excess oil for a soft, smooth, non greasy feel.", img: imgArrowroot },
   ],
   "moon-balm-lavender-botanical-balm-2-0z": [
-    { name: "Lavender", note: "Calms the senses", desc: "Known for its calming properties that help comfort stressed, sensitive skin." },
-    { name: "Chamomile", note: "Gentle & soothing", desc: "Naturally calming for delicate, stressed, or easily irritated skin." },
-    { name: "Jojoba Oil", note: "Locks in hydration", desc: "Locks in hydration without feeling heavy, helping skin stay soft and balanced." },
-    { name: "Beeswax", note: "Protective seal", desc: "Creates a breathable layer that helps keep skin hydrated." },
-    { name: "Organic arrowroot powder", note: "Light texture", desc: "Helps absorb excess oil for a soft, smooth non greasy feel." },
+    { name: "Lavender", note: "Calms the senses", desc: "Known for its calming properties that help comfort stressed, sensitive skin.", img: imgLavender },
+    { name: "Chamomile", note: "Gentle & soothing", desc: "Naturally calming for delicate, stressed, or easily irritated skin.", img: imgChamomile },
+    { name: "Jojoba Oil", note: "Locks in hydration", desc: "Locks in hydration without feeling heavy, helping skin stay soft and balanced.", img: imgJojobaOil },
+    { name: "Beeswax", note: "Protective seal", desc: "Creates a breathable layer that helps keep skin hydrated.", img: imgBeeswax },
+    { name: "Organic arrowroot powder", note: "Light texture", desc: "Helps absorb excess oil for a soft, smooth non greasy feel.", img: imgArrowroot },
   ],
 };
 
