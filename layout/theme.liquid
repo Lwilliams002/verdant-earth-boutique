@@ -15,16 +15,46 @@
       <link rel="icon" type="image/png" href="{{ settings.favicon | image_url: width: 32, height: 32 }}">
     {%- endif -%}
 
+    {%- assign et_site_name = 'Earth & Tonic Wellness' -%}
+    {%- assign et_description = 'At Earth & Tonic Wellness we create home & body care products with clean ingredients. Every product is thoughtfully made in small batches made for everyday wellness.' -%}
+    {%- assign et_og_image = 'founder-story.png' | asset_url -%}
+
+    {%- comment -%} Title: page name + brand on inner pages, just brand on home {%- endcomment -%}
     <title>
-      {{ page_title }}
+      {%- if template.name == 'index' -%}
+        {{ et_site_name }}
+      {%- else -%}
+        {{ page_title }} &ndash; {{ et_site_name }}
+      {%- endif -%}
       {%- if current_tags %} &ndash; tagged "{{ current_tags | join: ', ' }}"{% endif -%}
       {%- if current_page != 1 %} &ndash; Page {{ current_page }}{% endif -%}
-      {%- unless page_title contains shop.name %} &ndash; {{ shop.name }}{% endunless -%}
     </title>
 
-    {% if page_description %}
-      <meta name="description" content="{{ page_description | escape }}">
-    {% endif %}
+    {%- comment -%} Google / SEO description {%- endcomment -%}
+    <meta name="description" content="{%- if page_description != blank -%}{{ page_description | escape }}{%- else -%}{{ et_description | escape }}{%- endif -%}">
+
+    {%- comment -%} Open Graph (Facebook, WhatsApp, iMessage link previews) {%- endcomment -%}
+    <meta property="og:site_name" content="{{ et_site_name }}">
+    <meta property="og:type" content="{%- if template.name == 'product' -%}product{%- else -%}website{%- endif -%}">
+    <meta property="og:url" content="{{ canonical_url }}">
+    <meta property="og:title" content="{%- if template.name == 'index' -%}{{ et_site_name }}{%- else -%}{{ page_title }} &ndash; {{ et_site_name }}{%- endif -%}">
+    <meta property="og:description" content="{%- if page_description != blank -%}{{ page_description | escape }}{%- else -%}{{ et_description | escape }}{%- endif -%}">
+    {%- if template.name == 'product' and product.featured_image -%}
+      <meta property="og:image" content="{{ product.featured_image | image_url: width: 1200 }}">
+      <meta property="og:image:width" content="1200">
+    {%- else -%}
+      <meta property="og:image" content="{{ et_og_image }}">
+    {%- endif -%}
+
+    {%- comment -%} Twitter / X card {%- endcomment -%}
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{%- if template.name == 'index' -%}{{ et_site_name }}{%- else -%}{{ page_title }} &ndash; {{ et_site_name }}{%- endif -%}">
+    <meta name="twitter:description" content="{%- if page_description != blank -%}{{ page_description | escape }}{%- else -%}{{ et_description | escape }}{%- endif -%}">
+    {%- if template.name == 'product' and product.featured_image -%}
+      <meta name="twitter:image" content="{{ product.featured_image | image_url: width: 1200 }}">
+    {%- else -%}
+      <meta name="twitter:image" content="{{ et_og_image }}">
+    {%- endif -%}
 
     {{ content_for_header }}
   </head>
