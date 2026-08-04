@@ -5,7 +5,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { Marquee } from "@/components/Marquee";
 import { fetchShopifyProducts, type ShopifyProduct } from "@/lib/shopify";
 import productEarthCollection from "@/assets/product-earth-balm-collection.png";
-import productDuoBoxed from "@/assets/product-duo-boxed.png";
+import productDuoBoxed from "@/assets/product-duo-boxed.jpg";
 import founderStory from "@/assets/founder-story.png";
 import { BundleCTA } from "@/components/BundleCTA";
 import { ArrowRight } from "lucide-react";
