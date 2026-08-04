@@ -710,7 +710,7 @@
           <div class="et-ki{% if forloop.first %} is-open{% endif %}">
             <button type="button" class="et-ki__head" aria-expanded="{% if forloop.first %}true{% else %}false{% endif %}" onclick="etKiToggle(this)">
               <span class="et-ki__img" data-initial="{{ iname | slice: 0 }}">
-                <img src="{{ 'ingredient-' | append: islug | append: '.png' | asset_url }}" alt="{{ iname | escape }}" loading="lazy" onerror="this.style.display='none'">
+                <img src="{{ 'ingredient-' | append: islug | append: '.jpg' | asset_url }}" alt="{{ iname | escape }}" loading="lazy" onerror="this.style.display='none'">
               </span>
               <span class="et-ki__label">
                 <span class="et-ki__name">{{ iname }}</span>
