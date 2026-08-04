@@ -243,11 +243,22 @@
 
 /* ------------------------------- ABOUT ------------------------------- */
 .et-dark{background:var(--forest-deep);color:var(--cream);position:relative;overflow:hidden}
-.et-about__grid{display:grid;gap:2.5rem;max-width:1100px;margin:0 auto;padding:6rem 1.5rem;align-items:center}
+.et-about__pattern{position:absolute;inset:0;z-index:0;opacity:.08;mix-blend-mode:screen;background-image:url("{{ 'plant-pattern.jpeg' | asset_url }}");background-size:420px auto;background-repeat:repeat;pointer-events:none}
+.et-about__sprig{position:absolute;z-index:1;height:26rem;width:auto;opacity:.55;mix-blend-mode:screen;pointer-events:none}
+@media(min-width:768px){.et-about__sprig{height:34rem}}
+.et-about__sprig--l{left:-2.5rem;top:3rem}
+@media(min-width:768px){.et-about__sprig--l{left:-1rem}}
+.et-about__sprig--r{right:-2.5rem;bottom:3rem;transform:scaleX(-1)}
+@media(min-width:768px){.et-about__sprig--r{right:-1rem}}
+.et-about__grid{position:relative;z-index:2;display:grid;gap:2.5rem;max-width:1100px;margin:0 auto;padding:6rem 1.5rem;align-items:center}
 @media(min-width:1024px){.et-about__grid{grid-template-columns:1fr 1.15fr;gap:4rem;padding:8rem 2.5rem}}
-.et-frame{border:4px solid color-mix(in oklab,var(--cream) 90%,transparent);background:var(--cream);padding:.5rem;box-shadow:0 25px 50px rgba(0,0,0,.35)}
-.et-frame img{aspect-ratio:3/4;width:100%;object-fit:cover;object-position:top}
-.et-process{display:grid;gap:2.5rem;max-width:1100px;margin:0 auto;padding:6rem 1.5rem}
+.et-frame-wrap{position:relative;max-width:26rem;margin:0 auto;width:100%}
+.et-frame{position:relative;border:4px solid color-mix(in oklab,var(--cream) 90%,transparent);background:var(--cream);padding:.5rem;box-shadow:0 25px 50px rgba(0,0,0,.35)}
+.et-frame img{display:block;aspect-ratio:3/4;width:100%;object-fit:cover;object-position:top}
+.et-badge{position:absolute;bottom:-1rem;right:-1rem;border:1px solid color-mix(in oklab,var(--cream) 30%,transparent);background:color-mix(in oklab,var(--forest-deep) 88%,transparent);backdrop-filter:blur(6px);border-radius:999px;padding:.55rem 1.35rem;text-align:center}
+.et-badge__name{display:block;font-family:var(--font-display);font-style:italic;font-size:1.5rem;line-height:1;color:var(--sage)}
+.et-badge__role{display:block;font-family:var(--font-brand);font-size:10px;letter-spacing:.22em;text-transform:uppercase;color:color-mix(in oklab,var(--cream) 70%,transparent);margin-top:.15rem}
+.et-process{position:relative;z-index:2;display:grid;gap:2.5rem;max-width:1100px;margin:0 auto;padding:6rem 1.5rem}
 @media(min-width:768px){.et-process{grid-template-columns:repeat(3,1fr)}}
 .et-num{font-family:var(--font-display);font-style:italic;font-size:3rem;color:var(--sage)}
 
@@ -769,9 +780,18 @@
   </section>
 
   <section class="et-dark">
+    <span class="et-about__pattern" aria-hidden="true"></span>
+    <img class="et-about__sprig et-about__sprig--l" src="{{ 'plant-sprig.png' | asset_url }}" alt="" aria-hidden="true" loading="lazy">
+    <img class="et-about__sprig et-about__sprig--r" src="{{ 'plant-sprig.png' | asset_url }}" alt="" aria-hidden="true" loading="lazy">
     <div class="et-about__grid">
-      <div class="et-story__media" style="min-height:520px;aspect-ratio:4/5">
-        <img src="{{ 'founder-story.png' | asset_url }}" alt="Pamela, founder of Earth &amp; Tonic, holding Earth Balm and Moon Balm" loading="lazy" width="800" height="1066">
+      <div class="et-frame-wrap">
+        <div class="et-frame">
+          <img src="{{ 'founder-story.png' | asset_url }}" alt="Pamela, founder of Earth &amp; Tonic, holding Earth Balm and Moon Balm" loading="lazy" width="800" height="1066">
+        </div>
+        <div class="et-badge">
+          <span class="et-badge__name">Pamela</span>
+          <span class="et-badge__role">Founder</span>
+        </div>
       </div>
       <div>
         <span class="et-eyebrow" style="opacity:.7">Our story</span>
