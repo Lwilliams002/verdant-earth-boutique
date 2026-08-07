@@ -44,12 +44,42 @@ export function SiteFooter() {
 
         <div className="mt-16 flex flex-col items-start justify-between gap-6 border-t border-border pt-8 text-xs tracking-wide text-foreground/55 md:flex-row md:items-center">
           <span>© {new Date().getFullYear()} Earth &amp; Tonic. All rights reserved.</span>
-          <a href="#" aria-label="Instagram" className="flex items-center gap-2 hover:text-foreground">
-            <Instagram className="h-4 w-4" /> @earth.and.tonic
-          </a>
+          <div className="flex items-center gap-6">
+            <a
+              href="https://www.instagram.com/earth.and.tonic"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Instagram"
+              className="flex items-center gap-2 hover:text-foreground"
+            >
+              <Instagram className="h-4 w-4" /> @earth.and.tonic
+            </a>
+            <a
+              href="https://www.tiktok.com/@earthandtonicwellness"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="TikTok"
+              className="flex items-center gap-2 hover:text-foreground"
+            >
+              <TikTokIcon className="h-4 w-4" /> @earthandtonicwellness
+            </a>
+          </div>
         </div>
       </div>
     </footer>
+  );
+}
+
+function TikTokIcon({ className }: { className?: string }) {
+  return (
+    <svg
+      className={className}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+    >
+      <path d="M16.5 3c.3 2.1 1.6 3.6 3.6 3.8v2.4c-1.2.1-2.3-.2-3.4-.8v5.9c0 3.2-2.6 5.7-5.8 5.7A5.7 5.7 0 0 1 5.2 14a5.6 5.6 0 0 1 6-5.6v2.5a3.2 3.2 0 0 0-.7-.1 3.2 3.2 0 1 0 3.2 3.2V3h2.8z" />
+    </svg>
   );
 }
 

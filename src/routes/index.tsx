@@ -13,16 +13,17 @@ import { ArrowRight } from "lucide-react";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Earth & Tonic Botanical Wellness" },
+      { title: "Earth & Tonic Wellness" },
       {
         name: "description",
         content:
-          "Small batch botanical balms and herbal wellness. Clean, thoughtful ingredients crafted for everyday routines.",
+          "At Earth & Tonic Wellness we create home & body care products with clean ingredients. Every product is thoughtfully made in small batches made for everyday wellness.",
       },
-      { property: "og:title", content: "Earth & Tonic Botanical Wellness" },
+      { property: "og:title", content: "Earth & Tonic Wellness" },
       {
         property: "og:description",
-        content: "Clean botanical balms and herbal wellness, crafted in small batches.",
+        content:
+          "At Earth & Tonic Wellness we create home & body care products with clean ingredients. Every product is thoughtfully made in small batches made for everyday wellness.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },

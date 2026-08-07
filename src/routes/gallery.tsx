@@ -8,6 +8,7 @@ import galleryFounderDuo from "@/assets/gallery-founder-duo.jpg";
 import galleryMoonBalmLifestyle from "@/assets/gallery-moon-balm-lifestyle.jpg";
 import galleryMoonBalmPortrait from "@/assets/gallery-moon-balm-portrait.jpg";
 import galleryMoonBalmBlanket from "@/assets/gallery-moon-balm-blanket.jpg";
+import galleryNewImage from "@/assets/gallery-new-image.jpeg";
 
 export const Route = createFileRoute("/gallery")({
   head: () => ({
@@ -31,6 +32,7 @@ const photos = [
   { src: galleryMoonBalmPortrait, alt: "Pamela holding a Moon Balm tin", span: "md:row-span-2" },
   { src: galleryMoonBalmBlanket, alt: "Moon Balm tin resting on a soft blanket", span: "" },
   { src: galleryMoonBalmLifestyle, alt: "Moon Balm as part of a nightly routine", span: "md:col-span-2" },
+  { src: galleryNewImage, alt: "Earth & Tonic handcrafted balm", span: "md:col-span-2 md:row-span-2" },
 ];
 
 function GalleryPage() {
