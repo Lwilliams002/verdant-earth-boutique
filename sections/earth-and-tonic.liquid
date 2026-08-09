@@ -49,6 +49,7 @@
 {% endcomment %}
 
 {%- assign BUNDLE_CODE = 'BUNDLE5' -%}
+{%- assign BUNDLE_ALL_CODE = 'BUNDLE20' -%}
 {%- assign EARTH_HANDLE = 'earth-balm-botanical-skin-balm-2oz' -%}
 {%- assign MOON_HANDLE = 'moon-balm-lavender-botanical-balm-2-0z' -%}
 
@@ -252,9 +253,10 @@
 /* ------------------------------- SHOP ------------------------------- */
 .et-shopgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:2rem 1rem;margin-top:3.5rem}
 @media(min-width:1024px){.et-shopgrid{grid-template-columns:repeat(3,1fr);gap:2.5rem}}
-.et-shopcard__media{position:relative;aspect-ratio:3/4;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--cream-deep)}
-.et-shopcard__media img{height:88%;width:auto;object-fit:contain;filter:drop-shadow(0 30px 40px rgba(60,40,30,.18));transition:transform .7s}
+.et-shopcard__media{position:relative;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--cream-deep)}
+.et-shopcard__media img{height:100%;width:100%;object-fit:contain;padding:.75rem;filter:drop-shadow(0 30px 40px rgba(60,40,30,.18));transition:transform .7s}
 .et-shopcard:hover .et-shopcard__media img{transform:scale(1.05)}
+.et-shop-bundles{max-width:1200px;margin:0 auto;padding:0 1.5rem 6rem;display:grid;gap:2rem}
 
 /* ------------------------------- ABOUT ------------------------------- */
 .et-dark{background:var(--forest-deep);color:var(--cream);position:relative;overflow:hidden}
@@ -786,7 +788,7 @@
           <a class="et-shopcard" href="{{ product.url }}">
             <div class="et-shopcard__media">
               {% if product.featured_image %}
-                <img src="{{ product.featured_image | image_url: width: 700 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy" width="700" height="933">
+                <img src="{{ product.featured_image | image_url: width: 1000 }}" alt="{{ product.featured_image.alt | default: product.title | escape }}" loading="lazy" width="1000" height="1250">
               {% endif %}
               <span class="et-eyebrow" style="position:absolute;left:1rem;top:1rem;color:var(--moss)">{{ product.type | default: 'Product' }}</span>
             </div>
@@ -804,6 +806,121 @@
       <p class="et-center et-muted" style="margin-top:3.5rem">No products found.</p>
     {% endif %}
   </section>
+
+  {%- comment -%} ---- Shop bundles: Routine Duo (save $5) + Complete Collection (save $20) ---- {%- endcomment -%}
+  {%- assign earth = all_products[EARTH_HANDLE] -%}
+  {%- assign moon = all_products[MOON_HANDLE] -%}
+
+  <div class="et-shop-bundles">
+
+    {%- comment -%} Routine Duo — Earth Balm + Moon Balm ---- {%- endcomment -%}
+    {% if earth.available and moon.available %}
+    {%- assign duo_subtotal = earth.price | plus: moon.price -%}
+    <div class="et-bundle">
+      <div class="et-bundle__grid">
+        <div>
+          <span class="et-eyebrow et-bundle__tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:none"><path d="M12 2l1.9 5.6L19.5 9l-4.4 3.2L16.8 18 12 14.7 7.2 18l1.7-5.8L4.5 9l5.6-1.4L12 2z"/></svg>
+            Routine duo
+          </span>
+          <h2 class="et-h2 et-bundle__title">The <span class="et-italic">Routine</span> Duo</h2>
+          <p class="et-bundle__desc">
+            Earth Balm and Moon Balm together — your complete morning and evening ritual. Save {{ 500 | money_without_trailing_zeros }} when you take home the pair.
+          </p>
+          <div class="et-bundle__items">
+            <div class="et-bundle__item">
+              {% if earth.featured_image %}<img src="{{ earth.featured_image | image_url: width: 160 }}" alt="{{ earth.title | escape }}" width="64" height="64">{% endif %}
+              <div>
+                <p class="et-bundle__item-name">{{ earth.title }}</p>
+                <p class="et-bundle__item-price">{{ earth.price | money }}</p>
+              </div>
+            </div>
+            <div class="et-bundle__item">
+              {% if moon.featured_image %}<img src="{{ moon.featured_image | image_url: width: 160 }}" alt="{{ moon.title | escape }}" width="64" height="64">{% endif %}
+              <div>
+                <p class="et-bundle__item-name">{{ moon.title }}</p>
+                <p class="et-bundle__item-price">{{ moon.price | money }}</p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="et-bundle__buy">
+          <div>
+            <p class="et-bundle__was">{{ duo_subtotal | money }}</p>
+            <p class="et-bundle__now">{{ duo_subtotal | minus: 500 | money }}</p>
+            <p class="et-bundle__save">Save {{ 500 | money_without_trailing_zeros }}</p>
+          </div>
+          <form method="post" action="/cart/add">
+            <input type="hidden" name="items[0][id]" value="{{ earth.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="items[0][quantity]" value="1">
+            <input type="hidden" name="items[1][id]" value="{{ moon.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="items[1][quantity]" value="1">
+            <input type="hidden" name="return_to" value="/discount/{{ BUNDLE_CODE }}?redirect=/cart">
+            <button type="submit" class="et-btn et-btn--cream">Add duo to cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+    {%- comment -%} Complete Collection — every product, save $20 ---- {%- endcomment -%}
+    {%- assign all_prods = collections.all.products -%}
+    {%- assign all_total = 0 -%}
+    {%- assign all_count = 0 -%}
+    {%- for p in all_prods -%}
+      {%- if p.available -%}
+        {%- assign all_total = all_total | plus: p.price -%}
+        {%- assign all_count = all_count | plus: 1 -%}
+      {%- endif -%}
+    {%- endfor -%}
+    {% if all_count >= 3 %}
+    <div class="et-bundle">
+      <div class="et-bundle__grid">
+        <div>
+          <span class="et-eyebrow et-bundle__tag">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:none"><path d="M12 2l1.9 5.6L19.5 9l-4.4 3.2L16.8 18 12 14.7 7.2 18l1.7-5.8L4.5 9l5.6-1.4L12 2z"/></svg>
+            Best value
+          </span>
+          <h2 class="et-h2 et-bundle__title">The <span class="et-italic">Complete</span> Collection</h2>
+          <p class="et-bundle__desc">
+            Take home all {{ all_count }} of our small-batch products and save {{ 2000 | money_without_trailing_zeros }} on the full lineup.
+          </p>
+          <div class="et-bundle__items">
+            {%- for p in all_prods -%}{%- if p.available -%}
+            <div class="et-bundle__item">
+              {% if p.featured_image %}<img src="{{ p.featured_image | image_url: width: 160 }}" alt="{{ p.title | escape }}" width="64" height="64">{% endif %}
+              <div>
+                <p class="et-bundle__item-name">{{ p.title }}</p>
+                <p class="et-bundle__item-price">{{ p.price | money }}</p>
+              </div>
+            </div>
+            {%- endif -%}{%- endfor -%}
+          </div>
+        </div>
+
+        <div class="et-bundle__buy">
+          <div>
+            <p class="et-bundle__was">{{ all_total | money }}</p>
+            <p class="et-bundle__now">{{ all_total | minus: 2000 | money }}</p>
+            <p class="et-bundle__save">Save {{ 2000 | money_without_trailing_zeros }}</p>
+          </div>
+          <form method="post" action="/cart/add">
+            {%- assign idx = 0 -%}
+            {%- for p in all_prods -%}{%- if p.available -%}
+            <input type="hidden" name="items[{{ idx }}][id]" value="{{ p.selected_or_first_available_variant.id }}">
+            <input type="hidden" name="items[{{ idx }}][quantity]" value="1">
+            {%- assign idx = idx | plus: 1 -%}
+            {%- endif -%}{%- endfor -%}
+            <input type="hidden" name="return_to" value="/discount/{{ BUNDLE_ALL_CODE }}?redirect=/cart">
+            <button type="submit" class="et-btn et-btn--cream">Add all {{ all_count }} to cart</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    {% endif %}
+
+  </div>
 
 {%- comment -%} ========================== OUR STORY ========================== {%- endcomment -%}
 {% elsif template.name == 'page' and page.handle == 'about' %}
