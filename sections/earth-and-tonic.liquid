@@ -258,7 +258,18 @@
 .et-shopcard__media{position:relative;aspect-ratio:4/5;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--cream-deep)}
 .et-shopcard__media img{height:100%;width:100%;object-fit:contain;padding:.75rem;filter:drop-shadow(0 30px 40px rgba(60,40,30,.18));transition:transform .7s}
 .et-shopcard:hover .et-shopcard__media img{transform:scale(1.05)}
-.et-shop-bundles{max-width:1200px;margin:0 auto;padding:0 1.5rem 6rem;display:grid;gap:2rem}
+.et-shop-bundles{margin-top:2.5rem;display:grid;gap:2rem}
+/* Shop tabs */
+.et-tabs{display:flex;justify-content:center;gap:.5rem;margin-top:2.5rem}
+.et .et-tab{font-family:var(--font-brand);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;padding:.7rem 1.4rem;border:1px solid var(--border);border-radius:999px;background:transparent;color:var(--muted-fg);cursor:pointer;transition:background .2s,color .2s,border-color .2s}
+.et .et-tab:hover{color:var(--fg)}
+.et .et-tab.is-active{background:var(--forest-deep);color:var(--cream);border-color:var(--forest-deep)}
+.et-tabpanel[hidden]{display:none}
+/* Bundle with feature image */
+.et-bundle--media .et-bundle__grid{grid-template-columns:1fr}
+@media(min-width:900px){.et-bundle--media .et-bundle__grid{grid-template-columns:15rem 1fr auto;gap:2.5rem}}
+.et-bundle__media{border-radius:.5rem;overflow:hidden;background:color-mix(in oklab,var(--cream) 10%,transparent);align-self:stretch;min-height:12rem}
+.et-bundle__media img{width:100%;height:100%;object-fit:cover;display:block}
 
 /* ------------------------------- ABOUT ------------------------------- */
 .et-dark{background:var(--forest-deep);color:var(--cream);position:relative;overflow:hidden}
@@ -802,6 +813,12 @@
       <p class="et-mt et-fg70">Small batch tonics and botanical skincare, made with organic ingredients.</p>
     </div>
 
+    <div class="et-tabs" role="tablist">
+      <button type="button" class="et-tab is-active" data-tab="products" onclick="etShopTab('products')">Products</button>
+      <button type="button" class="et-tab" data-tab="bundles" onclick="etShopTab('bundles')">Bundle + Save</button>
+    </div>
+
+    <div class="et-tabpanel" data-panel="products">
     {% if shop_products.size > 0 %}
       <div class="et-shopgrid">
         {% for product in shop_products %}
@@ -825,19 +842,23 @@
     {% else %}
       <p class="et-center et-muted" style="margin-top:3.5rem">No products found.</p>
     {% endif %}
-  </section>
+    </div>{%- comment -%} /products panel {%- endcomment -%}
 
   {%- comment -%} ---- Shop bundles: Routine Duo (save $5) + Complete Collection (save $20) ---- {%- endcomment -%}
   {%- assign earth = all_products[EARTH_HANDLE] -%}
   {%- assign moon = all_products[MOON_HANDLE] -%}
 
+  <div class="et-tabpanel" data-panel="bundles" hidden>
   <div class="et-shop-bundles">
 
     {%- comment -%} Routine Duo — Earth Balm + Moon Balm ---- {%- endcomment -%}
     {% if earth.available and moon.available %}
     {%- assign duo_subtotal = earth.price | plus: moon.price -%}
-    <div class="et-bundle">
+    <div class="et-bundle et-bundle--media">
       <div class="et-bundle__grid">
+        <div class="et-bundle__media">
+          <img src="{{ 'product-duo-boxed.jpg' | asset_url }}" alt="Routine Duo — Earth Balm and Moon Balm boxed" loading="lazy">
+        </div>
         <div>
           <span class="et-eyebrow et-bundle__tag">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:none"><path d="M12 2l1.9 5.6L19.5 9l-4.4 3.2L16.8 18 12 14.7 7.2 18l1.7-5.8L4.5 9l5.6-1.4L12 2z"/></svg>
@@ -895,8 +916,11 @@
       {%- endif -%}
     {%- endfor -%}
     {% if all_count >= 3 %}
-    <div class="et-bundle">
+    <div class="et-bundle et-bundle--media">
       <div class="et-bundle__grid">
+        <div class="et-bundle__media">
+          <img src="{{ 'bundle20.jpg' | asset_url }}" alt="The Complete Collection — all four balms" loading="lazy">
+        </div>
         <div>
           <span class="et-eyebrow et-bundle__tag">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:none"><path d="M12 2l1.9 5.6L19.5 9l-4.4 3.2L16.8 18 12 14.7 7.2 18l1.7-5.8L4.5 9l5.6-1.4L12 2z"/></svg>
@@ -940,7 +964,20 @@
     </div>
     {% endif %}
 
-  </div>
+  </div>{%- comment -%} /et-shop-bundles {%- endcomment -%}
+  </div>{%- comment -%} /bundles panel {%- endcomment -%}
+  </section>
+
+  <script>
+    function etShopTab(name){
+      var tabs=document.querySelectorAll('.et-tab');
+      for(var i=0;i<tabs.length;i++){tabs[i].classList.toggle('is-active',tabs[i].getAttribute('data-tab')===name);}
+      var panels=document.querySelectorAll('.et-tabpanel');
+      for(var j=0;j<panels.length;j++){panels[j].hidden = panels[j].getAttribute('data-panel')!==name;}
+      if(name==='bundles'){try{history.replaceState(null,'','#bundles');}catch(e){}}
+    }
+    (function(){ if(location.hash==='#bundles'){etShopTab('bundles');} })();
+  </script>
 
 {%- comment -%} ========================== OUR STORY ========================== {%- endcomment -%}
 {% elsif template.name == 'page' and page.handle == 'about' %}
