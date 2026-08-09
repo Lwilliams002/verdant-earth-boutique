@@ -16,7 +16,7 @@ export const BUNDLE_DISCOUNT_AMOUNT = 5;
  */
 export const BUNDLE_DISCOUNT_PER_ITEM = 5;
 /** Minimum number of balms required to qualify for the build-your-own discount. */
-export const BUNDLE_MIN_ITEMS = 2;
+export const BUNDLE_MIN_ITEMS = 3;
 /** Preset "Routine Bundle" combo handles (kept as a one-click option). */
 export const BUNDLE_PRODUCT_HANDLES = [
   "earth-balm-botanical-skin-balm-2oz",

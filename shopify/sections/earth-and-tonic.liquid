@@ -834,11 +834,9 @@
 
   <section class="et-wrap" style="padding-top:4rem;padding-bottom:6rem;max-width:1200px">
     <div class="et-center" style="max-width:36rem;margin:0 auto">
-      <span class="et-eyebrow" style="color:var(--moss)">The Apothecary</span>
       <h1 class="et-h2" style="margin-top:1rem">
         <span class="et-italic" style="color:var(--moss)">All</span> products
       </h1>
-      <p class="et-mt et-fg70">Small batch tonics and botanical skincare, made with organic ingredients.</p>
     </div>
 
     <div class="et-tabs" role="tablist">
@@ -900,7 +898,7 @@
         </span>
         <h2 class="et-h2 et-bundle__title">Mix &amp; <span class="et-italic">Match</span> Bundle</h2>
         <p class="et-bundle__desc">
-          Choose any 2 or more balms you love and automatically save {{ BUNDLE_MIX_PER_ITEM | money_without_trailing_zeros }} on each one. Want two of the same? Add it twice — Peppermint&nbsp;+&nbsp;Earth, or 2×&nbsp;Moon, it's completely up to you.
+          Choose any 3 or more balms you love and automatically save {{ BUNDLE_MIX_PER_ITEM | money_without_trailing_zeros }} on each one. Want two of the same? Add it twice — it's completely up to you.
         </p>
 
         <div class="et-byob__grid">
@@ -932,7 +930,7 @@
 
         <div class="et-byob__foot">
           <div class="et-byob__summary" id="et-byob-summary" data-per="{{ BUNDLE_MIX_PER_ITEM }}">
-            Add at least 2 balms to unlock {{ BUNDLE_MIX_PER_ITEM | money_without_trailing_zeros }} off each.
+            Add at least 3 balms to unlock {{ BUNDLE_MIX_PER_ITEM | money_without_trailing_zeros }} off each.
           </div>
           <button type="submit" class="et-btn et-btn--cream et-byob__add" id="et-byob-add" disabled>Add bundle to cart</button>
         </div>
@@ -1086,7 +1084,7 @@
         totalQty += qty;
         subtotal += qty*price;
       }
-      var per=etByobPerItem(), meets=totalQty>=2;
+      var per=etByobPerItem(), meets=totalQty>=3;
       var savings=meets?per*totalQty:0, total=subtotal-savings;
       var sum=document.getElementById('et-byob-summary');
       var add=document.getElementById('et-byob-add');
@@ -1095,7 +1093,7 @@
         sum.innerHTML = totalQty + ' balms selected · <s>' + etMoney(subtotal) + '</s> <strong>' + etMoney(total) + '</strong> <em>Save ' + etMoney(savings) + '</em>';
         add.disabled=false;
       } else {
-        sum.textContent = 'Add at least 2 balms to unlock ' + etMoney(per) + ' off each.';
+        sum.textContent = 'Add at least 3 balms to unlock ' + etMoney(per) + ' off each.';
         add.disabled=true;
       }
     }
@@ -1118,7 +1116,7 @@
     function etByobSubmit(form){
       var cards=etByobCards(), totalQty=0, i;
       for(i=0;i<cards.length;i++){ totalQty += parseInt(cards[i].getAttribute('data-qty'),10)||0; }
-      if(totalQty<2) return false;
+      if(totalQty<3) return false;
       var old=form.querySelectorAll('.et-byob-dyn');
       for(i=0;i<old.length;i++){ old[i].parentNode.removeChild(old[i]); }
       var idx=0;

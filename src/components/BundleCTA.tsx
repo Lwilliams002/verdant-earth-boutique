@@ -52,7 +52,9 @@ export function BundleCTA({ products }: { products: ShopifyProduct[] }) {
   // Every balm the customer can mix and match.
   const balmProducts = useMemo(() => products.filter(isBalmProduct), [products]);
 
-  if (balmProducts.length < BUNDLE_MIN_ITEMS) return null;
+  // The section needs at least 2 balms to be useful (the preset pair still works
+  // even if there aren't enough balms to hit the mix-and-match minimum).
+  if (balmProducts.length < 2) return null;
 
   const currency = balmProducts[0].node.priceRange.minVariantPrice.currencyCode;
 
@@ -110,7 +112,7 @@ export function BundleCTA({ products }: { products: ShopifyProduct[] }) {
           <p className="mt-4 max-w-xl text-cream/80 leading-relaxed">
             Choose any {BUNDLE_MIN_ITEMS} or more balms you love and automatically save $
             {BUNDLE_DISCOUNT_PER_ITEM.toFixed(2)} on each one. Want two of the same? Just add it
-            twice it&apos;s completely up to you.
+            twice, it's completely up to you.
           </p>
 
           {/* Selectable balm grid with quantity steppers */}
@@ -202,7 +204,7 @@ export function BundleCTA({ products }: { products: ShopifyProduct[] }) {
           </div>
 
           {/* Preset combo quick-pick */}
-          {presetProducts.length >= BUNDLE_MIN_ITEMS && (
+          {presetProducts.length >= 2 && (
             <div className="mt-8 flex flex-col gap-4 rounded-md border border-cream/10 bg-cream/3 p-5 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <p className="font-display text-lg">
