@@ -50,6 +50,9 @@
 
 {%- assign BUNDLE_CODE = 'BUNDLE5' -%}
 {%- assign BUNDLE_ALL_CODE = 'BUNDLE20' -%}
+{%- comment -%} Build-your-own mix & match code: $5 off each balm (min 2). {%- endcomment -%}
+{%- assign BUNDLE_MIX_CODE = 'BUNDLEMIX' -%}
+{%- assign BUNDLE_MIX_PER_ITEM = 500 -%}
 {%- assign EARTH_HANDLE = 'earth-balm-botanical-skin-balm-2oz' -%}
 {%- assign MOON_HANDLE = 'moon-balm-lavender-botanical-balm-2-0z' -%}
 {%- assign PEPPERMINT_HANDLE = 'peppermint-balm-natural-skin-balm-2oz' -%}
@@ -199,6 +202,28 @@
 .et-bundle__was{font-size:.9rem;color:color-mix(in oklab,var(--cream) 55%,transparent);text-decoration:line-through}
 .et-bundle__now{font-family:var(--font-display);font-size:2.75rem;line-height:1.1;margin-top:.15rem}
 .et-bundle__save{margin-top:.4rem;font-family:var(--font-brand);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;color:var(--sage)}
+
+/* ---- Build your own (mix & match) bundle ---- */
+.et-byob{padding:2rem}
+@media(min-width:768px){.et-byob{padding:3.5rem}}
+.et-byob__grid{display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;margin-top:1.75rem}
+@media(min-width:640px){.et-byob__grid{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:1024px){.et-byob__grid{grid-template-columns:repeat(4,1fr)}}
+.et-byob__card{position:relative;display:flex;align-items:center;gap:.75rem;text-align:left;padding:.75rem;border-radius:.4rem;border:1px solid color-mix(in oklab,var(--cream) 15%,transparent);background:color-mix(in oklab,var(--cream) 3%,transparent);color:var(--cream);cursor:pointer;transition:border-color .2s,background .2s}
+.et-byob__card:hover{border-color:color-mix(in oklab,var(--cream) 40%,transparent)}
+.et-byob__card.is-selected{border-color:var(--sage);background:color-mix(in oklab,var(--cream) 10%,transparent)}
+.et-byob__card img{width:3.5rem;height:3.5rem;flex:none;border-radius:.35rem;background:color-mix(in oklab,var(--cream) 10%,transparent);object-fit:contain;padding:.25rem}
+.et-byob__card-name{display:block;font-family:var(--font-display);font-size:.95rem;line-height:1.2}
+.et-byob__card-price{display:block;font-size:.78rem;color:color-mix(in oklab,var(--cream) 60%,transparent)}
+.et-byob__check{position:absolute;right:.5rem;top:.5rem;width:1.25rem;height:1.25rem;border-radius:999px;border:1px solid color-mix(in oklab,var(--cream) 30%,transparent);display:flex;align-items:center;justify-content:center;color:transparent}
+.et-byob__card.is-selected .et-byob__check{border-color:var(--sage);background:var(--sage);color:var(--forest-deep)}
+.et-byob__foot{display:flex;flex-direction:column;gap:1rem;margin-top:2rem;padding-top:1.5rem;border-top:1px solid color-mix(in oklab,var(--cream) 10%,transparent)}
+@media(min-width:640px){.et-byob__foot{flex-direction:row;align-items:center;justify-content:space-between}}
+.et-byob__summary{font-size:.9rem;color:color-mix(in oklab,var(--cream) 70%,transparent)}
+.et-byob__summary s{color:color-mix(in oklab,var(--cream) 55%,transparent)}
+.et-byob__summary strong{font-family:var(--font-display);font-size:1.15rem;color:var(--cream);margin-left:.4rem}
+.et-byob__summary em{font-style:normal;font-family:var(--font-brand);font-size:.68rem;letter-spacing:.2em;text-transform:uppercase;color:var(--sage);margin-left:.4rem}
+.et-byob__add[disabled]{opacity:.4;cursor:not-allowed}
 
 /* ------------------------------ PRODUCT ------------------------------ */
 .et-pdp{max-width:1200px;margin:0 auto;padding:4rem 1.5rem}
@@ -851,7 +876,68 @@
   <div class="et-tabpanel" data-panel="bundles" hidden>
   <div class="et-shop-bundles">
 
-    {%- comment -%} Routine Duo — Earth Balm + Moon Balm ---- {%- endcomment -%}
+    {%- comment -%} ---- Build Your Own Bundle — pick any 2+ balms, $5 off each ---- {%- endcomment -%}
+    {%- assign all_prods = collections.all.products -%}
+    {%- assign byob_count = 0 -%}
+    {%- for p in all_prods -%}
+      {%- assign _bt = p.title | downcase -%}
+      {%- assign _by = p.type | downcase -%}
+      {%- assign is_balm = false -%}
+      {%- if _bt contains 'balm' -%}{%- assign is_balm = true -%}{%- endif -%}
+      {%- if _by contains 'balm' -%}{%- assign is_balm = true -%}{%- endif -%}
+      {%- if p.available and is_balm -%}{%- assign byob_count = byob_count | plus: 1 -%}{%- endif -%}
+    {%- endfor -%}
+
+    {% if byob_count >= 2 %}
+    <div class="et-bundle">
+      <form class="et-byob" method="post" action="/cart/add" onsubmit="return etByobSubmit(this)">
+        <span class="et-eyebrow et-bundle__tag">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style="flex:none"><path d="M12 2l1.9 5.6L19.5 9l-4.4 3.2L16.8 18 12 14.7 7.2 18l1.7-5.8L4.5 9l5.6-1.4L12 2z"/></svg>
+          Build your own bundle
+        </span>
+        <h2 class="et-h2 et-bundle__title">Mix &amp; <span class="et-italic">Match</span> Bundle</h2>
+        <p class="et-bundle__desc">
+          Choose any 2 or more balms you love and automatically save {{ BUNDLE_MIX_PER_ITEM | money_without_trailing_zeros }} on each one. Peppermint&nbsp;+&nbsp;Earth, Sweet&nbsp;Lemon&nbsp;+&nbsp;Moon — it's completely up to you.
+        </p>
+
+        <div class="et-byob__grid">
+          {%- for p in all_prods -%}
+            {%- assign _bt = p.title | downcase -%}
+            {%- assign _by = p.type | downcase -%}
+            {%- assign is_balm = false -%}
+            {%- if _bt contains 'balm' -%}{%- assign is_balm = true -%}{%- endif -%}
+            {%- if _by contains 'balm' -%}{%- assign is_balm = true -%}{%- endif -%}
+            {%- if p.available and is_balm -%}
+            <button type="button" class="et-byob__card"
+                    data-variant="{{ p.selected_or_first_available_variant.id }}"
+                    data-price="{{ p.price }}"
+                    onclick="etByobToggle(this)">
+              <span class="et-byob__check" aria-hidden="true">
+                <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+              {% if p.featured_image %}<img src="{{ p.featured_image | image_url: width: 160 }}" alt="{{ p.title | escape }}" width="56" height="56">{% endif %}
+              <span style="min-width:0">
+                <span class="et-byob__card-name">{{ p.title }}</span>
+                <span class="et-byob__card-price">{{ p.price | money }}</span>
+              </span>
+            </button>
+            {%- endif -%}
+          {%- endfor -%}
+        </div>
+
+        <div class="et-byob__foot">
+          <div class="et-byob__summary" id="et-byob-summary" data-per="{{ BUNDLE_MIX_PER_ITEM }}">
+            Select at least 2 balms to unlock {{ BUNDLE_MIX_PER_ITEM | money_without_trailing_zeros }} off each.
+          </div>
+          <button type="submit" class="et-btn et-btn--cream et-byob__add" id="et-byob-add" disabled>Add bundle to cart</button>
+        </div>
+
+        <input type="hidden" name="return_to" value="/discount/{{ BUNDLE_MIX_CODE }}?redirect=/cart">
+      </form>
+    </div>
+    {% endif %}
+
+
     {% if earth.available and moon.available %}
     {%- assign duo_subtotal = earth.price | plus: moon.price -%}
     <div class="et-bundle et-bundle--media">
@@ -977,6 +1063,48 @@
       if(name==='bundles'){try{history.replaceState(null,'','#bundles');}catch(e){}}
     }
     (function(){ if(location.hash==='#bundles'){etShopTab('bundles');} })();
+
+    /* ---- Build your own bundle: select any 2+ balms, $5 off each ---- */
+    function etMoney(cents){ return '$' + (cents/100).toFixed(2); }
+    function etByobSelected(){
+      return Array.prototype.slice.call(document.querySelectorAll('.et-byob__card.is-selected'));
+    }
+    function etByobPerItem(){
+      var s=document.getElementById('et-byob-summary');
+      return s ? (parseInt(s.getAttribute('data-per'),10)||500) : 500;
+    }
+    function etByobRecalc(){
+      var sel=etByobSelected(), count=sel.length, subtotal=0, i;
+      for(i=0;i<count;i++){ subtotal += parseInt(sel[i].getAttribute('data-price'),10)||0; }
+      var per=etByobPerItem(), meets=count>=2;
+      var savings=meets?per*count:0, total=subtotal-savings;
+      var sum=document.getElementById('et-byob-summary');
+      var add=document.getElementById('et-byob-add');
+      if(!sum||!add) return;
+      if(meets){
+        sum.innerHTML = count + ' balms selected · <s>' + etMoney(subtotal) + '</s> <strong>' + etMoney(total) + '</strong> <em>Save ' + etMoney(savings) + '</em>';
+        add.disabled=false;
+      } else {
+        sum.textContent = 'Select at least 2 balms to unlock ' + etMoney(per) + ' off each.';
+        add.disabled=true;
+      }
+    }
+    function etByobToggle(btn){ btn.classList.toggle('is-selected'); etByobRecalc(); }
+    function etByobSubmit(form){
+      var sel=etByobSelected();
+      if(sel.length<2) return false;
+      var old=form.querySelectorAll('.et-byob-dyn'), i;
+      for(i=0;i<old.length;i++){ old[i].parentNode.removeChild(old[i]); }
+      for(i=0;i<sel.length;i++){
+        var idInput=document.createElement('input');
+        idInput.type='hidden'; idInput.name='items['+i+'][id]'; idInput.value=sel[i].getAttribute('data-variant'); idInput.className='et-byob-dyn';
+        form.appendChild(idInput);
+        var qtyInput=document.createElement('input');
+        qtyInput.type='hidden'; qtyInput.name='items['+i+'][quantity]'; qtyInput.value='1'; qtyInput.className='et-byob-dyn';
+        form.appendChild(qtyInput);
+      }
+      return true;
+    }
   </script>
 
 {%- comment -%} ========================== OUR STORY ========================== {%- endcomment -%}

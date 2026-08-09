@@ -6,11 +6,33 @@ export const SHOPIFY_STOREFRONT_URL = `https://${SHOPIFY_STORE_PERMANENT_DOMAIN}
 export const SHOPIFY_STOREFRONT_TOKEN = "176743865361306f1c0d7655ccd125a9";
 
 export const BUNDLE_DISCOUNT_CODE = "BUNDLE5";
+/** Total discount applied to the preset 2-balm "Routine Bundle". */
 export const BUNDLE_DISCOUNT_AMOUNT = 5;
+/**
+ * Discount a customer receives for EACH balm in a "Build Your Own Bundle".
+ * NOTE: the actual price at checkout is controlled by the Shopify discount code
+ * (BUNDLE_DISCOUNT_CODE). Make sure that code is configured in Shopify Admin to
+ * give this same per-item amount so the displayed savings match checkout.
+ */
+export const BUNDLE_DISCOUNT_PER_ITEM = 5;
+/** Minimum number of balms required to qualify for the build-your-own discount. */
+export const BUNDLE_MIN_ITEMS = 2;
+/** Preset "Routine Bundle" combo handles (kept as a one-click option). */
 export const BUNDLE_PRODUCT_HANDLES = [
   "earth-balm-botanical-skin-balm-2oz",
   "moon-balm-lavender-botanical-balm-2-0z",
 ];
+
+/**
+ * Returns true when a product should be selectable in the build-your-own
+ * bundle. We treat anything whose product type or title mentions "balm" as a
+ * qualifying balm.
+ */
+export function isBalmProduct(product: ShopifyProduct): boolean {
+  const type = product.node.productType?.toLowerCase() ?? "";
+  const title = product.node.title?.toLowerCase() ?? "";
+  return type.includes("balm") || title.includes("balm");
+}
 
 export interface ShopifyProduct {
   node: {
@@ -231,6 +253,22 @@ export async function storefrontApiRequest(query: string, variables: Record<stri
     toast.error("Shopify: Payment required", {
       description:
         "Shopify API access requires an active Shopify billing plan. Your store needs to be upgraded to a paid plan. Visit https://admin.shopify.com to upgrade.",
+    });
+    return null;
+  }
+
+  // 401 (Unauthorized) / 403 (Forbidden) mean the Storefront access token or
+  // store domain is invalid, expired, or missing the required scopes. Rather
+  // than throwing and blanking the whole site via the root error boundary, we
+  // degrade gracefully: warn once and return null so callers fall back to
+  // empty data and the page still renders.
+  if (response.status === 401 || response.status === 403) {
+    console.error(
+      `Shopify Storefront API returned ${response.status}. Check SHOPIFY_STORE_PERMANENT_DOMAIN and SHOPIFY_STOREFRONT_TOKEN in src/lib/shopify.ts.`
+    );
+    toast.error("Shopify: Unable to connect", {
+      description:
+        "The Shopify Storefront access token appears to be invalid or expired. Update the storefront token in your Shopify Admin (Apps → Develop apps → Storefront API).",
     });
     return null;
   }

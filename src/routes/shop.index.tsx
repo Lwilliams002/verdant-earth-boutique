@@ -76,7 +76,7 @@ function ShopPage() {
                         loading="lazy"
                         width={420}
                         height={560}
-                        className="bottle-shadow h-[88%] w-auto object-contain transition-transform duration-700 group-hover:scale-105"
+                        className="bottle-shadow h-[88%] w-full object-contain transition-transform duration-700 group-hover:scale-105"
                       />
                     ) : (
                       <div className="h-[88%] w-full bg-muted" />
