@@ -52,6 +52,8 @@
 {%- assign BUNDLE_ALL_CODE = 'BUNDLE20' -%}
 {%- assign EARTH_HANDLE = 'earth-balm-botanical-skin-balm-2oz' -%}
 {%- assign MOON_HANDLE = 'moon-balm-lavender-botanical-balm-2-0z' -%}
+{%- assign PEPPERMINT_HANDLE = 'peppermint-balm' -%}
+{%- assign LEMON_HANDLE = 'sweet-lemon-balm' -%}
 
 <style>
 /* ------------------------------- FONTS ------------------------------- */
@@ -545,6 +547,18 @@
         Jojoba Oil|Locks in hydration|Locks in hydration without feeling heavy, helping skin stay soft and balanced.~
         Beeswax|Protective seal|Creates a breathable layer that helps keep skin hydrated.~
         Organic arrowroot powder|Light texture|Helps absorb excess oil for a soft, smooth non greasy feel.
+      {%- when PEPPERMINT_HANDLE -%}
+        Organic Peppermint Essential Oil|Cooling &amp; refreshing|Provides a naturally refreshing aroma and a cooling sensation when applied to the skin.~
+        Mango Butter|Softens dry skin|Rich in fatty acids that help soften and moisturize dry skin.~
+        Jojoba Oil|Locks in hydration|Locks in hydration without feeling heavy, helping skin stay soft and balanced.~
+        Beeswax|Protective seal|Creates a breathable layer that helps keep skin hydrated.~
+        Organic Arrowroot Powder|Light texture|Helps absorb excess oil for a soft, smooth, non greasy feel.
+      {%- when LEMON_HANDLE -%}
+        Organic Lemon Essential Oil|Uplifting citrus|Provides a fresh, uplifting citrus aroma while leaving the skin feeling refreshed.~
+        Mango Butter|Softens dry skin|Rich in fatty acids that help soften and moisturize dry skin.~
+        Jojoba Oil|Locks in hydration|Locks in hydration without feeling heavy, helping skin stay soft and balanced.~
+        Beeswax|Protective seal|Creates a breathable layer that helps keep skin hydrated.~
+        Organic Arrowroot Powder|Light texture|Helps absorb excess oil for a soft, smooth, non greasy feel.
       {%- else -%}
         Organic Herbs|Whole plant|Whole plant botanicals from farms we trust, chosen for purity and potency.~
         Clean Carrier Oils|Nourishing base|Cold pressed plant oils never seed oils that carry active botanicals into the skin.~
@@ -561,6 +575,12 @@
     {%- when EARTH_HANDLE -%}
       {%- assign uses_list = 'Neck,Arms,Elbows,Hands,Legs,Feet,Dry skin areas' | split: ',' -%}
       {%- assign uses_note = '' -%}
+    {%- when PEPPERMINT_HANDLE -%}
+      {%- assign uses_list = 'Temples,Neck,Shoulders,Chest,Wrists,Hands,Legs,Feet' | split: ',' -%}
+      {%- assign uses_note = 'For a cooling, refreshing pick me up.' -%}
+    {%- when LEMON_HANDLE -%}
+      {%- assign uses_list = 'Neck,Wrists,Chest,Hands,Legs,Feet,Dry skin areas' | split: ',' -%}
+      {%- assign uses_note = 'For a fresh, uplifting lift to your routine.' -%}
     {%- else -%}
       {%- assign uses_list = '' | split: ',' -%}
       {%- assign uses_note = '' -%}
